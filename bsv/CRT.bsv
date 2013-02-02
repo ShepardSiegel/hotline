@@ -4,6 +4,7 @@
 package CRT;
 
 import ARAXI4L      ::*; 
+import A4LS         ::*;   // for TB
 
 import ClientServer ::*; 
 import Clocks       ::*;
@@ -191,6 +192,9 @@ endmodule
 module mkCRT_TB1 (Empty);
 
   CRTServToA4LMIfc crt2axi  <- mkCRTServToA4LM;
+  A4L_Em           a4lm     <- mkA4MtoEm(crt2axi.axiM0); // make the crt2axi Expliict on the AXI side
+  A4L_Es           a4ls     <- mkA4LS(True);
+  mkConnection(a4lm, a4ls);
 
 endmodule
 
