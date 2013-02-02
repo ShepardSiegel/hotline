@@ -1,0 +1,14 @@
+# .gitignore file for Hotline
+# ssiegel 2013-02-02
+#
+*~
+*.swp
+*.log
+*.sof
+*.rpt
+*.smsg
+*.summary
+*.done
+*.pin
+build/
+obj/
