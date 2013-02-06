@@ -191,10 +191,21 @@ endmodule
 (* synthesize *)
 module mkCRT_TB1 (Empty);
 
-  CRTServToA4LMIfc crt2axi  <- mkCRTServToA4LM;
-  A4L_Em           a4lm     <- mkA4MtoEm(crt2axi.axiM0); // make the crt2axi Expliict on the AXI side
-  A4L_Es           a4ls     <- mkA4LS(True);
+  CRTServToA4LMIfc crt2axi    <- mkCRTServToA4LM;
+  A4L_Em           a4lm       <- mkA4MtoEm(crt2axi.axiM0); // make the crt2axi Expliict on the AXI side
+  A4L_Es           a4ls       <- mkA4LS(True);
+  Reg#(UInt#(16))  cycleCount <- mkReg(0);
+
   mkConnection(a4lm, a4ls);
+
+  rule advance_cycleCount;
+    cycleCount <= cycleCount + 1;
+  endrule
+
+  rule terminate (cycleCount==200);
+    $display("[%0d]: %m: Terminate rule fired in cycle:%0d", $time, cycleCount);
+    $finish;
+  endrule
 
 endmodule
 

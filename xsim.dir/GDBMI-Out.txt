@@ -1,0 +1,20 @@
+
+(isim-gdb)
+=elaboration-done,precision="-12"
+(isim-gdb)
+1^done
+(isim-gdb)
+2^running
+(isim-gdb)
+@"[2005]: main.top: Terminate rule fired in cycle:200\n"
+(isim-gdb)
+2*stopped,reason="finish",frame={linefile="8589934816"},now="2005000",scope="17"
+(isim-gdb)
+3^done
+(isim-gdb)
+4^done,status="stopped",reason="finish",frame={linefile="8589934816"},now="2005000",scope="17"
+(isim-gdb)
+5^done
+(isim-gdb)
+6^exit
+(isim-gdb)

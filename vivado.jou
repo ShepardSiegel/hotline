@@ -1,0 +1,35 @@
+#-----------------------------------------------------------
+# Vivado v2012.4 (64-bit)
+# Build 222254 by xbuild on Tue Dec 18 05:17:28 MST 2012
+# Start of session at: Mon Feb  4 18:02:32 2013
+# Process ID: 11039
+# Log file: /home/shep/projects/hotline/vivado.log
+# Journal file: /home/shep/projects/hotline/vivado.jou
+#-----------------------------------------------------------
+source "/home/shep/.Xilinx/Vivado/init.tcl"
+start_gui
+open_project /home/shep/projects/maxim/p1/p1.xpr
+close_project
+open_project /home/shep/projects/nxtl100/hdmi1/hdmi/hdmi.xpr
+open_run synth_1 -name netlist_1
+close_project
+open_project /home/shep/projects/cms1/sanitycheckin/sanitycheckin.xpr
+update_compile_order -fileset sources_1
+open_run synth_3 -name netlist_1
+report_utilization -name utilization_1
+reset_run synth_3
+launch_runs synth_3
+wait_on_run synth_3
+close_design
+open_run synth_3 -name netlist_1
+report_utilization -name utilization_1
+create_run synth_4 -flow {Vivado Synthesis 2012} -strategy {Vivado Synthesis Defaults}
+set_property steps.synth_design.args.effort_level high [get_runs synth_4]
+current_run [get_runs synth_4]
+set_property board vc707 [current_project]
+close_design
+open_run synth_4 -name netlist_1
+launch_runs synth_4
+wait_on_run synth_4
+open_run synth_4 -name netlist_1
+report_utilization -name utilization_1
