@@ -13,4 +13,4 @@ do
     exec $BLUESPECDIR/tcllib/bluespec/bluesim.tcl $0.so mkCRT_TB1 --script_name `basename $0` -h
   fi
 done
-exec $BLUESPECDIR/tcllib/bluespec/bluesim.tcl $0.so mkCRT_TB1 --script_name `basename $0` --creation_time 1360266302 "$@"
+exec $BLUESPECDIR/tcllib/bluespec/bluesim.tcl $0.so mkCRT_TB1 --script_name `basename $0` --creation_time 1360269603 "$@"

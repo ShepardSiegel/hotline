@@ -32,7 +32,7 @@ module mkL2Proc (L2ProcIfc);
   FIFO#(ABS)          dgRxF       <- mkFIFO;   // Payload RX Datagram up to next-higher layer from MAC
   FIFOF#(ABS)         dgTxF       <- mkFIFOF;  // Payload TX Datagram from  next-higher layer down to MAC
 
-  Reg#(MACAddress)    uMAddr      <- mkRegU;   // unicast MAC address of this device
+  Reg#(MACAddress)    uMAddr      <- mkReg(48'h00_0A_35_02_60_80);   // unicast MAC address of this device
 
   Reg#(UInt#(4))      igPtr       <- mkReg(0); // Ingress Byte/Octet Counter
   Reg#(MACAddress)    igDA        <- mkRegU;   // Ingess Destination Address

@@ -229,13 +229,13 @@ module mkCRT_TB1 (Empty);
   rule l2_gen_payload (gqPtr<8 && gpPDU); // L2 Egress PDU / Payload move to MAC
     gqPtr <= (gqPtr==15) ? gqPtr : gqPtr+1;
     case (gqPtr)
-      0: l2GenF.enq(tagged ValidNotEOP 8'h80);
-      1: l2GenF.enq(tagged ValidNotEOP 8'h80);
-      2: l2GenF.enq(tagged ValidNotEOP 8'h80);
-      3: l2GenF.enq(tagged ValidNotEOP 8'h80);
-      4: l2GenF.enq(tagged ValidNotEOP 8'h80);
-      5: l2GenF.enq(tagged ValidNotEOP 8'h80);
-      6: l2GenF.enq(tagged ValidNotEOP 8'h80);
+      0: l2GenF.enq(tagged ValidNotEOP 8'h81);
+      1: l2GenF.enq(tagged ValidNotEOP 8'h82);
+      2: l2GenF.enq(tagged ValidNotEOP 8'h83);
+      3: l2GenF.enq(tagged ValidNotEOP 8'h84);
+      4: l2GenF.enq(tagged ValidNotEOP 8'h85);
+      5: l2GenF.enq(tagged ValidNotEOP 8'h86);
+      6: l2GenF.enq(tagged ValidNotEOP 8'h87);
       7: action
          l2GenF.enq(tagged ValidEOP 8'h80);
          //gpPtr <= 0;
