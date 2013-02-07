@@ -5,7 +5,9 @@
 
 package GMAC;
 
+import ABS               ::*;
 import E8023             ::*;
+import CounterM          ::*;
 
 import Clocks            ::*;
 import Connectable       ::*;

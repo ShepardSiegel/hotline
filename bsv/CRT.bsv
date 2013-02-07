@@ -5,6 +5,7 @@ package CRT;
 
 import ARAXI4L      ::*; 
 import A4LS         ::*;   // for TB
+import L2Proc       ::*;   // for TB
 
 import ClientServer ::*; 
 import Clocks       ::*;
@@ -191,10 +192,13 @@ endmodule
 (* synthesize *)
 module mkCRT_TB1 (Empty);
 
+  L2ProcIfc        l2p        <- mkL2Proc;
   CRTServToA4LMIfc crt2axi    <- mkCRTServToA4LM;
   A4L_Em           a4lm       <- mkA4MtoEm(crt2axi.axiM0); // make the crt2axi Expliict on the AXI side
   A4L_Es           a4ls       <- mkA4LS(True);
   Reg#(UInt#(16))  cycleCount <- mkReg(0);
+
+
 
   mkConnection(a4lm, a4ls);
 
