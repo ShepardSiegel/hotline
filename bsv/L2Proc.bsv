@@ -132,5 +132,85 @@ module mkL2Proc (L2ProcIfc);
   method Bool l2Tx = l2Egress;
 endmodule
 
+`ifdef TBFROM_CRT
+(* synthesize *)
+module mkCRT_TB1 (Empty);
+
+  L2ProcIfc        l2P        <- mkL2Proc;
+  CRTServToA4LMIfc crt2axi    <- mkCRTServToA4LM;
+  A4L_Em           a4lm       <- mkA4MtoEm(crt2axi.axiM0); // make the crt2axi Expliict on the AXI side
+  A4L_Es           a4ls       <- mkA4LS(True);
+  Reg#(UInt#(16))  cycleCount <- mkReg(0);
+
+  // Generate L2 packet
+  Reg#(UInt#(4))      gpPtr       <- mkReg(0); // Egress Byte/Octet Counter
+  Reg#(UInt#(4))      gqPtr       <- mkReg(0);
+  Reg#(Bool)          gpL2Hdr     <- mkReg(True);   // Egress L2 Header
+  Reg#(Vector#(6,Bit#(8))) gpDA   <- mkRegU;        // Egress Destination Address
+  Reg#(Vector#(6,Bit#(8))) gpSA   <- mkRegU;        // Egress Destination Address
+  Reg#(Bool)          gpPDU       <- mkReg(False);  // Egress Protocol Data Unit (PDU)
+  FIFO#(ABS)          l2GenF      <- mkFIFO;        // TX to   Ethernet Layer 2 MAC
+  
+  FIFO#(ABS)         l2ConsumeF   <- mkFIFO;
+  Reg#(UInt#(16))    consumeCnt   <- mkReg(0);
+
+  MACAddress sAddr = 48'hA0_36_FA_25_3E_A5;   // A real Ettus N210 MAC Addr
+  MACAddress uAddr = 48'h00_0A_35_02_60_80;   // Atomic Rules KC705 #1
+
+  rule l2_gen_header (gpPtr<15 && !gpPDU);
+    gpPtr <= (gpPtr==15) ? gpPtr : gpPtr+1;
+    case (gpPtr)
+      0              : action gpDA<=unpack(uAddr);  gpSA<=unpack(sAddr); endaction     // Setup
+      1,2,3,4,5,6    : action l2GenF.enq(tagged ValidNotEOP gpDA[5]); gpDA <= rotateR(gpDA); endaction  // Send DA
+      7,8,9,10,11,12 : action l2GenF.enq(tagged ValidNotEOP gpSA[5]); gpSA <= rotateR(gpSA); endaction  // Send SA
+      13 :        l2GenF.enq(tagged ValidNotEOP 8'hF0);
+      14 : action l2GenF.enq(tagged ValidNotEOP 8'h52); gpPDU<=True; endaction
+    endcase
+  endrule
+
+  rule l2_gen_payload (gqPtr<8 && gpPDU); // L2 Egress PDU / Payload move to MAC
+    gqPtr <= (gqPtr==15) ? gqPtr : gqPtr+1;
+    case (gqPtr)
+      0: l2GenF.enq(tagged ValidNotEOP 8'h81);
+      1: l2GenF.enq(tagged ValidNotEOP 8'h82);
+      2: l2GenF.enq(tagged ValidNotEOP 8'h83);
+      3: l2GenF.enq(tagged ValidNotEOP 8'h84);
+      4: l2GenF.enq(tagged ValidNotEOP 8'h85);
+      5: l2GenF.enq(tagged ValidNotEOP 8'h86);
+      6: l2GenF.enq(tagged ValidNotEOP 8'h87);
+      7: action
+         l2GenF.enq(tagged ValidEOP 8'h80);
+         //gpPtr <= 0;
+         //gqPtr <= 0;
+         //gpPDU <= False;
+         endaction
+    endcase
+  endrule
+
+  mkConnection(toGet(l2GenF), l2P.server.request);
+  mkConnection(l2P.client.request, l2P.client.response);
+  mkConnection(l2P.server.response, toPut(l2ConsumeF));
+
+  rule chomp_l2;
+    let bs = l2ConsumeF.first;  l2ConsumeF.deq;
+    consumeCnt <= consumeCnt + 1;
+    $display("[%0d]: %m: Consumed %0d Byte with value %0x in cycle:%0d", $time, consumeCnt, getData(bs), cycleCount);
+  endrule
+
+  mkConnection(a4lm, a4ls);
+
+  rule advance_cycleCount;
+    cycleCount <= cycleCount + 1;
+  endrule
+
+  rule terminate (cycleCount==400);
+    $display("[%0d]: %m: Terminate rule fired in cycle:%0d", $time, cycleCount);
+    $finish;
+  endrule
+
+endmodule
+`endif
+
+
 endpackage
 
