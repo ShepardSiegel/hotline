@@ -90,8 +90,8 @@ typedef union tagged {
 // Commands arriving are assumed correct to the protocol. 
 
 interface HCrtCompleter2AxiIfc;
-  interface Server#(Bit#(32),Bit#(32))  crtS0; 
-  interface A4LMIfc                     axiM0;
+  interface Server#(Bit#(32),QABS)  crtS0; 
+  interface A4LMIfc                 axiM0;
   method Bool isActive;
   method Bool isFaulted;
 endinterface 
@@ -103,7 +103,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
 
   // HCrt Command/Response FIFOs...
   FIFO#(Bit#(32))       crtCmdF      <- mkFIFO;        // Inbound  HCrt Commands
-  FIFO#(Bit#(32))       crtRespF     <- mkFIFO;        // Outbound HCrt Responses
+  FIFO#(QABS)           crtRespF     <- mkFIFO;        // Outbound HCrt Responses
   A4LMasterIfc          a4l          <- mkA4LMaster;   // The AXI4-Lite Master Interface
   // The internal state of the HCrt module...
   Reg#(Bool)            modActive    <- mkDReg(True);  // Pulse indication of module activity
@@ -113,9 +113,11 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   Reg#(Bool)            cmdIsDO      <- mkReg(False);  // True when command is a Discovery Operation (DO) 
   Reg#(UInt#(2))        cmdAdrRemain <- mkReg(0);
   Reg#(UInt#(12))       cmdAdlRemain <- mkReg(0);
+  Reg#(UInt#(12))       rspAdlRemain <- mkReg(0);
   Reg#(Maybe#(Bit#(8))) lastTag      <- mkReg(tagged Invalid);  // The last tag captured (valid or not)
   FIFO#(Bit#(32))       respBuffer   <- mkSizedFIFO(respBufSize/4);
   Reg#(TagCRH)          rspCRH       <- mkReg(tagged Invalid);
+  Reg#(Bool)            rspActive    <- mkReg(False); 
 
   Bit#(32) targAdvert = fromInteger(respBufSize);
 
@@ -140,11 +142,12 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   rule cmd_nop (cmdCRH matches tagged NOP .n);
     let x = crtCmdF.first; crtCmdF.deq;
     cmdAdlRemain <= cmdAdlRemain - 1;
-    // TODO: NOP Processing Here
+    // TODO: NOP Command Processing Here
     if (cmdAdlRemain==1) begin
+      UInt#(12) rspAdl = 4;
       cmdCRH <= tagged Invalid;
-      rspCRH <= tagged Response CRHResp {isLast:True,rsvd28:?,adl:4,rsvd12:?,respt:OK,
-                                c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
+      rspCRH <= tagged Response CRHResp {isLast:True,rsvd28:?,adl:rspAdl,rsvd12:?,respt:OK,
+                                c0:CRH0{isDO:False,isAM64:False,mesgt:NOP,tag:n.c0.tag}};
     end
     if ( n.c0.isDO) cmdIsDO <= True;
     if (!n.c0.isDO) lastTag <= (tagged Invalid);  // non-DO NOPs Invalidate the lastTag so next command is always accepted
@@ -152,26 +155,21 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     modActive <= True;
   endrule
 
-  /*
-  // Rule to respond to NOP Command requests...
-  rule rsp_nop (cmdCRH matches tagged NOP .n);
-    let x = crtCmdF.first; crtCmdF.deq;
-    cmdAdlRemain <= cmdAdlRemain - 1;
-    // TODO: NOP Processing Here
-    if (cmdAdlRemain==1) begin
-      cmdCRH <= tagged Invalid;
-      nopRespF.enq(?); // Trigger generation of NOP reponse
+  // Rule to respond to NOP Command Requests...
+  rule rsp_nop (rspCRH matches tagged Response .n &&& n.c0.mesgt==NOP);
+    Bool isEOM = rspActive && rspAdlRemain==1;
+    rspActive    <= isEOM ? False : (rspAdlRemain!=1);
+    rspAdlRemain <= (rspActive) ? rspAdlRemain-1 : n.adl;
+    // TODO: NOP Response Processing Here
+    if (isEOM) begin
+      rspCRH <= tagged Invalid;
     end
-    if ( n.c0.isDO) cmdIsDO <= True;
-    if (!n.c0.isDO) lastTag <= (tagged Invalid);  // non-DO NOPs Invalidate the lastTag so next command is always accepted
-    $display("[%0d]: %m: Hcrt cmd_nop cmdAdlRemain:%0d data:%0x", $time, cmdAdlRemain, x);
+    Bit#(32) advert = (rspAdlRemain==4) ? 4 : 0;
+    $display("[%0d]: %m: Hcrt rsp_nop rspAdlRemain:%0d advert:%0x", $time, rspAdlRemain, advert);
+    Bit#(32) data = rspActive ? pack(n) : advert;
+    crtRespF.enq(qabsFromBits(data, isEOM ? 4'h8 :4'h0));
     modActive <= True;
   endrule
-  */
-
-
-
-
 
 
 
@@ -251,11 +249,11 @@ endmodule
 (* synthesize *)
 module mkHCrt_TB1 (Empty);
 
-  L2ProcIfc        l2P        <- mkL2Proc;
-  HCrtCompleter2AxiIfc crt2axi   <- mkHCrtCompleter2Axi;
-  A4L_Em           a4lm       <- mkA4MtoEm(crt2axi.axiM0); // make the crt2axi Expliict on the AXI side
-  A4L_Es           a4ls       <- mkA4LS(True);
-  Reg#(UInt#(16))  cycleCount <- mkReg(0);
+  L2ProcIfc            l2P        <- mkL2Proc;
+  HCrtCompleter2AxiIfc crt2axi    <- mkHCrtCompleter2Axi;
+  A4L_Em               a4lm       <- mkA4MtoEm(crt2axi.axiM0); // make the crt2axi Expliict on the AXI side
+  A4L_Es               a4ls       <- mkA4LS(True);
+  Reg#(UInt#(16))      cycleCount <- mkReg(0);
 
   // Generate L2 packet
   Reg#(UInt#(4))      gpPtr       <- mkReg(0); // Egress Byte/Octet Counter
@@ -283,18 +281,25 @@ module mkHCrt_TB1 (Empty);
     endcase
   endrule
 
-  rule l2_gen_payload (gqPtr<8 && gpPDU); // L2 Egress PDU / Payload move to MAC
+  rule l2_gen_payload (gqPtr<12 && gpPDU); // L2 Egress PDU / Payload move to MAC
     gqPtr <= (gqPtr==15) ? gqPtr : gqPtr+1;
     case (gqPtr)
-      0: l2GenF.enq(tagged ValidNotEOP 8'h81);
-      1: l2GenF.enq(tagged ValidNotEOP 8'h82);
-      2: l2GenF.enq(tagged ValidNotEOP 8'h83);
-      3: l2GenF.enq(tagged ValidNotEOP 8'h84);
-      4: l2GenF.enq(tagged ValidNotEOP 8'h85);
-      5: l2GenF.enq(tagged ValidNotEOP 8'h86);
-      6: l2GenF.enq(tagged ValidNotEOP 8'h87);
-      7: action
-         l2GenF.enq(tagged ValidEOP 8'h80);
+      0: l2GenF.enq(tagged ValidNotEOP 8'h00);
+      1: l2GenF.enq(tagged ValidNotEOP 8'hFF);
+      2: l2GenF.enq(tagged ValidNotEOP 8'h02);  // 2 DW follow
+      3: l2GenF.enq(tagged ValidNotEOP 8'h80);
+
+      4: l2GenF.enq(tagged ValidNotEOP 8'h04);
+      5: l2GenF.enq(tagged ValidNotEOP 8'h00);
+      6: l2GenF.enq(tagged ValidNotEOP 8'h00);
+      7: l2GenF.enq(tagged ValidNotEOP 8'h00);
+
+      8: l2GenF.enq(tagged ValidNotEOP 8'h00);
+      9: l2GenF.enq(tagged ValidNotEOP 8'h00);
+      10:l2GenF.enq(tagged ValidNotEOP 8'h00);
+
+      11: action
+         l2GenF.enq(tagged ValidEOP 8'h00);
          //gpPtr <= 0;
          //gqPtr <= 0;
          //gpPDU <= False;
@@ -303,7 +308,21 @@ module mkHCrt_TB1 (Empty);
   endrule
 
   mkConnection(toGet(l2GenF), l2P.server.request);
-  mkConnection(l2P.client.request, l2P.client.response);
+
+  ABS2QABSIfc     l2qc <- mkABS2QABS;
+  FIFO#(Bit#(32)) qcF  <- mkFIFO;
+  mkConnection(l2P.client.request, l2qc.putSerial);
+  rule feed_hcrt_req;
+    let q <- l2qc.getVector.get;
+    Bit#(32) dw = pack(map(getData,q));   // Extract data from the QABS stream
+    qcF.enq(dw);
+  endrule
+  mkConnection(toGet(qcF), crt2axi.crtS0.request);
+
+  QABS2ABSIfc     qcl2 <- mkQABS2ABS;
+  mkConnection(crt2axi.crtS0.response, qcl2.putVector);
+  mkConnection(qcl2.getSerial, l2P.client.response);
+
   mkConnection(l2P.server.response, toPut(l2ConsumeF));
 
   rule chomp_l2;

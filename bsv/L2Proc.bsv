@@ -51,6 +51,8 @@ module mkL2Proc (L2ProcIfc);
 
   Reg#(Bool)          l2Ingress   <- mkDReg(False); // Ingress Activity
   Reg#(Bool)          l2Egress    <- mkDReg(False); // Egress  Activity
+  Reg#(UInt#(16))     dgRxCount   <- mkReg(0);      // Count Bytes moving Rx to datagram
+  Reg#(UInt#(16))     dgTxCount   <- mkReg(0);      // Count Bytes moving datagram to Tx
 
   MACAddress bAddr = 48'hFF_FF_FF_FF_FF_FF;   // Broadacast Address
 //MACAddress uAddr = 48'h00_0A_35_42_01_00;   // A fake Xilinx MAC Addr
@@ -86,6 +88,7 @@ module mkL2Proc (L2ProcIfc);
 
   rule l2_ingress_payload (!igL2Hdr);  // L2 Ingress Payload Processing...
     l2Ingress <= True;
+    dgRxCount <= dgRxCount + 1;
     let bs = l2RxF.first;  l2RxF.deq;  // Get the upstream ABS Byte
     if (igPDU) dgRxF.enq(bs);          // Advance the PDU datagram if criterion satisfied
     igL2Hdr <= isEOP(bs);              // Set igL2Hdr when EOP comes along
@@ -110,7 +113,9 @@ module mkL2Proc (L2ProcIfc);
 
   rule l2_egress_payload (egPDU); // L2 Egress PDU / Payload move to MAC
     l2Egress <= True;
+    dgTxCount <= dgTxCount + 1;
     let c  = dgTxF.first; dgTxF.deq; 
+    $display("[%0d]: %m:       L2_EGRESS_PAYLOAD:%0x", $time, c);
     l2TxF.enq(c);
     if (isEOP(c)) begin
       egPtr <= 0;
