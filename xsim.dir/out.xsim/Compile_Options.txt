@@ -1,1 +1,0 @@
--v "0" -debug "typical" -s "./out.xsim" -prj "/tmp/xsim.prj.IFa5Na" -sourcelibdir "rtl" -sourcelibdir "/opt/Bluespec/Bluespec-2013.01.beta5/lib/Libraries" -sourcelibdir "/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog" -sourcelibext ".v" -d "TOP=mkCRT_TB1" -L "unisims_ver" -t "work_mkCRT_TB1.glbl" -t "work_mkCRT_TB1.main" 

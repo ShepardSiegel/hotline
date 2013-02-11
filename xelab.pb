@@ -8,10 +8,10 @@ V
 %s
 *	simulator2B
 @Copyright 1986-1999, 2001-2012 Xilinx, Inc. All Rights Reserved.
-ö
+ù
 Running: %s
-333*	simulator2Ó
-Î/opt/Xilinx/14.4/ISE_DS/PlanAhead/bin/unwrapped/lnx64.o/xelab -v 0 -debug typical -s ./out.xsim -prj /tmp/xsim.prj.IFa5Na -sourcelibdir rtl -sourcelibdir /opt/Bluespec/Bluespec-2013.01.beta5/lib/Libraries -sourcelibdir /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog -sourcelibext .v -d TOP=mkCRT_TB1 -L unisims_ver -t work_mkCRT_TB1.glbl -t work_mkCRT_TB1.main Z43-3449
+333*	simulator2Ò
+Ó/opt/Xilinx/14.4/ISE_DS/PlanAhead/bin/unwrapped/lnx64.o/xelab -v 0 -debug typical -s ./out.xsim -prj /tmp/xsim.prj.Ut26ei -sourcelibdir rtl -sourcelibdir /opt/Bluespec/Bluespec-2013.01.beta5/lib/Libraries -sourcelibdir /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog -sourcelibext .v -d TOP=mkHCrt_TB1 -L unisims_ver -t work_mkHCrt_TB1.glbl -t work_mkHCrt_TB1.main Z43-3449
 P
 .Multi-threading is on. Using %s slave threads
 406*	simulator2
@@ -19,58 +19,24 @@ P
 H
 +Determining compilation order of HDL files
 286*	simulatorZ43-3402
-ñ
+ó
 +Analyzing Verilog file "%s" into library %s165*xsimverific29
-7/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/main.v2
-work_mkCRT_TB1Z10-165
-i
-+Analyzing Verilog file "%s" into library %s165*xsimverific2
-rtl/mkCRT_TB1.v2
-	library 2Z10-165
-@
-      Resolving module %s1*xsimverific2
-	mkCRT_TB1Z10-1
-f
-+Analyzing Verilog file "%s" into library %s165*xsimverific2
-rtl/mkA4LS.v2
-	library 2Z10-165
-=
-      Resolving module %s1*xsimverific2
-mkA4LSZ10-1
-o
-+Analyzing Verilog file "%s" into library %s165*xsimverific2
-rtl/mkCRTServToA4LM.v2
-	library 2Z10-165
-F
-      Resolving module %s1*xsimverific2
-mkCRTServToA4LMZ10-1
-í
-+Analyzing Verilog file "%s" into library %s165*xsimverific2:
-8/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v2
-	library 2Z10-165
-<
-      Resolving module %s1*xsimverific2
-FIFO2Z10-1
-ñ
-+Analyzing Verilog file "%s" into library %s165*xsimverific2>
-</opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v2
-	library 2Z10-165
-@
-      Resolving module %s1*xsimverific2
-	SizedFIFOZ10-1
-ä
-+Analyzing Verilog file "%s" into library %s165*xsimverific2-
-+/home/shep/projects/hotline/rtl/mkCRT_TB1.v2
-work_mkCRT_TB1Z10-165
-ñ
-,overwriting previous definition of module %s1195*xsimverific2
-	mkCRT_TB12/
-+/home/shep/projects/hotline/rtl/mkCRT_TB1.v2
+7/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/main.v2
+work_mkHCrt_TB1Z10-165
+å
++Analyzing Verilog file "%s" into library %s165*xsimverific2.
+,/home/shep/projects/hotline/rtl/mkHCrt_TB1.v2
+work_mkHCrt_TB1Z10-165
+ò
+,overwriting previous definition of module %s1195*xsimverific2
+
+mkHCrt_TB120
+,/home/shep/projects/hotline/rtl/mkHCrt_TB1.v2
 318@Z10-1195
-ç
+é
 +Analyzing Verilog file "%s" into library %s165*xsimverific20
-./opt/Xilinx/14.4/ISE_DS/ISE/verilog/src/glbl.v2
-work_mkCRT_TB1Z10-165
+./opt/Xilinx/14.4/ISE_DS/ISE/verilog/src/glbl.v2
+work_mkHCrt_TB1Z10-165
 9
 Starting static elaboration
 342*	simulatorZ43-3458
@@ -87,49 +53,65 @@ I
 %Time Resolution for simulation is %s
 344*	simulator2
 1psZ43-3460
-H
-Compiling module %s405*	simulator2
-work_mkCRT_TB1.glbl
+I
+Compiling module %s405*	simulator2
+work_mkHCrt_TB1.glbl
 Z43-3953
-g
-Compiling module %s405*	simulator25
-3work_mkCRT_TB1.FIFO2(width=32'b0100011,guarded=...
+h
+Compiling module %s405*	simulator26
+4work_mkHCrt_TB1.FIFO2(width=32'b0100011,guarded=...
 Z43-3953
-g
-Compiling module %s405*	simulator25
-3work_mkCRT_TB1.FIFO2(width=32'b0100100,guarded=...
+h
+Compiling module %s405*	simulator26
+4work_mkHCrt_TB1.FIFO2(width=32'b0100100,guarded=...
 Z43-3953
-^
-Compiling module %s405*	simulator2,
-*work_mkCRT_TB1.mkA4LS(hasDebugLogic=1'b1)
+_
+Compiling module %s405*	simulator2-
++work_mkHCrt_TB1.mkA4LS(hasDebugLogic=1'b1)
 Z43-3953
-g
-Compiling module %s405*	simulator25
-3work_mkCRT_TB1.FIFO2(width=32'b0100010,guarded=...
+h
+Compiling module %s405*	simulator26
+4work_mkHCrt_TB1.FIFO2(width=32'b0100010,guarded=...
 Z43-3953
-g
-Compiling module %s405*	simulator25
-3work_mkCRT_TB1.FIFO2(width=32'b010,guarded=32'b...
+h
+Compiling module %s405*	simulator26
+4work_mkHCrt_TB1.FIFO2(width=32'b010,guarded=32'b...
 Z43-3953
-g
-Compiling module %s405*	simulator25
-3work_mkCRT_TB1.FIFO2(width=32'b0100000,guarded=...
+h
+Compiling module %s405*	simulator26
+4work_mkHCrt_TB1.FIFO2(width=32'b0100000,guarded=...
 Z43-3953
-g
-Compiling module %s405*	simulator25
-3work_mkCRT_TB1.SizedFIFO(p1width=32'b0100000,p2...
+h
+Compiling module %s405*	simulator26
+4work_mkHCrt_TB1.FIFO2(width=32'b0101000,guarded=...
 Z43-3953
-S
-Compiling module %s405*	simulator2!
-work_mkCRT_TB1.mkCRTServToA4LM
+h
+Compiling module %s405*	simulator26
+4work_mkHCrt_TB1.SizedFIFO(p1width=32'b0100000,p2...
+Z43-3953
+X
+Compiling module %s405*	simulator2&
+$work_mkHCrt_TB1.mkHCrtCompleter2Axi
+Z43-3953
+h
+Compiling module %s405*	simulator26
+4work_mkHCrt_TB1.FIFO2(width=32'b01010,guarded=32...
+Z43-3953
+h
+Compiling module %s405*	simulator26
+4work_mkHCrt_TB1.FIFO2(width=32'b0110000,guarded=...
 Z43-3953
 M
 Compiling module %s405*	simulator2
-work_mkCRT_TB1.mkCRT_TB1
+work_mkHCrt_TB1.mkL2Proc
 Z43-3953
-H
-Compiling module %s405*	simulator2
-work_mkCRT_TB1.main
+O
+Compiling module %s405*	simulator2
+work_mkHCrt_TB1.mkHCrt_TB1
+Z43-3953
+I
+Compiling module %s405*	simulator2
+work_mkHCrt_TB1.main
 Z43-3953
 H
 Built simulation snapshot %s
