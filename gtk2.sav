@@ -1,0 +1,55 @@
+[*]
+[*] GTKWave Analyzer v3.3.43 (w)1999-2012 BSI
+[*] Mon Feb 11 14:42:25 2013
+[*]
+[dumpfile] "/home/shep/projects/hotline/dump.vcd"
+[dumpfile_mtime] "Mon Feb 11 14:34:06 2013"
+[dumpfile_size] 60994
+[savefile] "/home/shep/projects/hotline/gtk2.sav"
+[timestart] 139
+[size] 1614 1319
+[pos] -81 -1
+*-6.238111 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 240
+[signals_width] 438
+[sst_expanded] 1
+[sst_vpaned_height] 396
+@22
++{main.top.cycleCount [UInt#(16)]} main.top.cycleCount[15:0]
+@c00022
++{main.top.l2P.dgRxF.D_IN [+] [ABS]} main.top.l2P.dgRxF.D_IN[9:0]
+@4022
+^>1 enum ABS::ValidNotEOP ABS::ValidEOP ABS::EmptyEOP ABS::AbortEOP
++{main.top.l2P.dgRxF.D_IN|tag [ABS]} #{main.top.l2P.dgRxF.D_IN[9:8]} (0)main.top.l2P.dgRxF.D_IN[9:0] (1)main.top.l2P.dgRxF.D_IN[9:0]
+@22
++{main.top.l2P.dgRxF.D_IN|ValidNotEOP [Bit#(8)]} #{main.top.l2P.dgRxF.D_IN[7:0]} (2)main.top.l2P.dgRxF.D_IN[9:0] (3)main.top.l2P.dgRxF.D_IN[9:0] (4)main.top.l2P.dgRxF.D_IN[9:0] (5)main.top.l2P.dgRxF.D_IN[9:0] (6)main.top.l2P.dgRxF.D_IN[9:0] (7)main.top.l2P.dgRxF.D_IN[9:0] (8)main.top.l2P.dgRxF.D_IN[9:0] (9)main.top.l2P.dgRxF.D_IN[9:0]
++{main.top.l2P.dgRxF.D_IN|ValidEOP [Bit#(8)]} #{main.top.l2P.dgRxF.D_IN[7:0]} (2)main.top.l2P.dgRxF.D_IN[9:0] (3)main.top.l2P.dgRxF.D_IN[9:0] (4)main.top.l2P.dgRxF.D_IN[9:0] (5)main.top.l2P.dgRxF.D_IN[9:0] (6)main.top.l2P.dgRxF.D_IN[9:0] (7)main.top.l2P.dgRxF.D_IN[9:0] (8)main.top.l2P.dgRxF.D_IN[9:0] (9)main.top.l2P.dgRxF.D_IN[9:0]
+@1401200
+-group_end
+@22
++{main.top.l2P.dgRxF.ENQ [Bool]} main.top.l2P.dgRxF.ENQ
++{main.top.l2P.dgRxF.FULL_N [Bool]} main.top.l2P.dgRxF.FULL_N
++{main.top.l2P.dgRxF.DEQ [Bool]} main.top.l2P.dgRxF.DEQ
++{main.top.l2P.dgRxF.EMPTY_N [Bool]} main.top.l2P.dgRxF.EMPTY_N
+@800022
++{main.top.l2P.dgRxF.D_OUT [+] [ABS]} main.top.l2P.dgRxF.D_OUT[9:0]
+@4022
+^>1 enum ABS::ValidNotEOP ABS::ValidEOP ABS::EmptyEOP ABS::AbortEOP
++{main.top.l2P.dgRxF.D_OUT|tag [ABS]} #{main.top.l2P.dgRxF.D_OUT[9:8]} (0)main.top.l2P.dgRxF.D_OUT[9:0] (1)main.top.l2P.dgRxF.D_OUT[9:0]
+@22
++{main.top.l2P.dgRxF.D_OUT|ValidNotEOP [Bit#(8)]} #{main.top.l2P.dgRxF.D_OUT[7:0]} (2)main.top.l2P.dgRxF.D_OUT[9:0] (3)main.top.l2P.dgRxF.D_OUT[9:0] (4)main.top.l2P.dgRxF.D_OUT[9:0] (5)main.top.l2P.dgRxF.D_OUT[9:0] (6)main.top.l2P.dgRxF.D_OUT[9:0] (7)main.top.l2P.dgRxF.D_OUT[9:0] (8)main.top.l2P.dgRxF.D_OUT[9:0] (9)main.top.l2P.dgRxF.D_OUT[9:0]
++{main.top.l2P.dgRxF.D_OUT|ValidEOP [Bit#(8)]} #{main.top.l2P.dgRxF.D_OUT[7:0]} (2)main.top.l2P.dgRxF.D_OUT[9:0] (3)main.top.l2P.dgRxF.D_OUT[9:0] (4)main.top.l2P.dgRxF.D_OUT[9:0] (5)main.top.l2P.dgRxF.D_OUT[9:0] (6)main.top.l2P.dgRxF.D_OUT[9:0] (7)main.top.l2P.dgRxF.D_OUT[9:0] (8)main.top.l2P.dgRxF.D_OUT[9:0] (9)main.top.l2P.dgRxF.D_OUT[9:0]
+@1001200
+-group_end
+@22
++{main.top.l2P.dgRxF.CLR [Bool]} main.top.l2P.dgRxF.CLR
++{main.top.crt2axi.crtCmdF.D_IN [Bit#(32)]} main.top.crt2axi.crtCmdF.D_IN[31:0]
++{main.top.crt2axi.crtCmdF.ENQ [Bool]} main.top.crt2axi.crtCmdF.ENQ
++{main.top.crt2axi.crtCmdF.DEQ [Bool]} main.top.crt2axi.crtCmdF.DEQ
++{main.top.crt2axi.crtCmdF.EMPTY_N [Bool]} main.top.crt2axi.crtCmdF.EMPTY_N
++{main.top.crt2axi.crtCmdF.D_OUT [Bit#(32)]} main.top.crt2axi.crtCmdF.D_OUT[31:0]
++{main.top.crt2axi.WILL_FIRE_RL_cmd_accept [Bool]} main.top.crt2axi.WILL_FIRE_RL_cmd_accept
++{main.top.crt2axi.WILL_FIRE_RL_cmd_nop [Bool]} main.top.crt2axi.WILL_FIRE_RL_cmd_nop
++{main.top.crt2axi.WILL_FIRE_RL_rsp_nop [Bool]} main.top.crt2axi.WILL_FIRE_RL_rsp_nop
+[pattern_trace] 1
+[pattern_trace] 0

@@ -77,7 +77,9 @@ typedef union tagged {
   CRHNOP    NOP;
   CRHWrite  Write;
   CRHRead   Read;
-  CRHResp   Response;
+  CRHResp   RespNOP;
+  CRHResp   RespWrite;
+  CRHResp   RespRead;
   void      Invalid;
 } TagCRH deriving (Bits, Eq); 
 
@@ -118,6 +120,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   FIFO#(Bit#(32))       respBuffer   <- mkSizedFIFO(respBufSize/4);
   Reg#(TagCRH)          rspCRH       <- mkReg(tagged Invalid);
   Reg#(Bool)            rspActive    <- mkReg(False); 
+  Reg#(UInt#(32))       sizInitRespB <- mkReg(0);      // Size in Bytes of the Initiator Resposne Buffer
 
   Bit#(32) targAdvert = fromInteger(respBufSize);
 
@@ -130,7 +133,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
       NOP:      action t = (tagged NOP      unpack(x)); cmdAdlRemain<=unpack(x[27:16]); endaction
       Write:    action t = (tagged Write    unpack(x)); cmdAdlRemain<=unpack(x[27:16]); endaction
       Read:     action t = (tagged Read     unpack(x)); endaction
-      Response: action t = (tagged Response unpack(x)); endaction
+      Response: action modFaulted<=True; endaction // Completer does not expect a Response
     endcase
     cmdCRH <= t; // update state variable
     cmdAdrRemain <= unpack(x[6]) ? 2 : 1;
@@ -139,15 +142,16 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   endrule
 
   // Rule to process NOP Command Requests, consume ADL DWORDs
-  rule cmd_nop (cmdCRH matches tagged NOP .n);
+  rule cmd_nop (cmdCRH matches tagged NOP .n &&& rspCRH matches tagged Invalid);
     let x = crtCmdF.first; crtCmdF.deq;
     cmdAdlRemain <= cmdAdlRemain - 1;
     // TODO: NOP Command Processing Here
+    if (cmdAdlRemain==2) sizInitRespB <= unpack(x);
     if (cmdAdlRemain==1) begin
-      UInt#(12) rspAdl = 4;
+      UInt#(12) rspAdl = n.adl;
       cmdCRH <= tagged Invalid;
-      rspCRH <= tagged Response CRHResp {isLast:True,rsvd28:?,adl:rspAdl,rsvd12:?,respt:OK,
-                                c0:CRH0{isDO:False,isAM64:False,mesgt:NOP,tag:n.c0.tag}};
+      rspCRH <= tagged RespNOP CRHResp {isLast:True,rsvd28:0,adl:rspAdl,rsvd12:0,respt:OK,
+                               c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
     end
     if ( n.c0.isDO) cmdIsDO <= True;
     if (!n.c0.isDO) lastTag <= (tagged Invalid);  // non-DO NOPs Invalidate the lastTag so next command is always accepted
@@ -156,18 +160,16 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   endrule
 
   // Rule to respond to NOP Command Requests...
-  rule rsp_nop (rspCRH matches tagged Response .n &&& n.c0.mesgt==NOP);
+  rule rsp_nop (rspCRH matches tagged RespNOP .n);
     Bool isEOM = rspActive && rspAdlRemain==1;
     rspActive    <= isEOM ? False : (rspAdlRemain!=1);
     rspAdlRemain <= (rspActive) ? rspAdlRemain-1 : n.adl;
     // TODO: NOP Response Processing Here
-    if (isEOM) begin
-      rspCRH <= tagged Invalid;
-    end
-    Bit#(32) advert = (rspAdlRemain==4) ? 4 : 0;
+    Bit#(32) advert = (rspAdlRemain==2) ? 32'h0000_0052 : 0;
     $display("[%0d]: %m: Hcrt rsp_nop rspAdlRemain:%0d advert:%0x", $time, rspAdlRemain, advert);
-    Bit#(32) data = rspActive ? pack(n) : advert;
+    Bit#(32) data = rspActive ? advert : pack(n); // Send Resp CRH in first, non-rspActive cycle
     crtRespF.enq(qabsFromBits(data, isEOM ? 4'h8 :4'h0));
+    if (isEOM) rspCRH <= tagged Invalid;
     modActive <= True;
   endrule
 
@@ -284,12 +286,12 @@ module mkHCrt_TB1 (Empty);
   rule l2_gen_payload (gqPtr<12 && gpPDU); // L2 Egress PDU / Payload move to MAC
     gqPtr <= (gqPtr==15) ? gqPtr : gqPtr+1;
     case (gqPtr)
-      0: l2GenF.enq(tagged ValidNotEOP 8'h00);
+      0: l2GenF.enq(tagged ValidNotEOP 8'h00); 
       1: l2GenF.enq(tagged ValidNotEOP 8'hFF);
       2: l2GenF.enq(tagged ValidNotEOP 8'h02);  // 2 DW follow
-      3: l2GenF.enq(tagged ValidNotEOP 8'h80);
+      3: l2GenF.enq(tagged ValidNotEOP 8'h80);  // Last Dword
 
-      4: l2GenF.enq(tagged ValidNotEOP 8'h04);
+      4: l2GenF.enq(tagged ValidNotEOP 8'h42);
       5: l2GenF.enq(tagged ValidNotEOP 8'h00);
       6: l2GenF.enq(tagged ValidNotEOP 8'h00);
       7: l2GenF.enq(tagged ValidNotEOP 8'h00);
