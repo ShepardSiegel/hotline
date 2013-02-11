@@ -121,7 +121,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   Reg#(TagCRH)              rspCRH        <- mkReg(tagged Invalid);
   Reg#(Bool)                rspActive     <- mkReg(False); 
   Reg#(UInt#(32))           sizInitRespB  <- mkReg(0);      // Size in Bytes of the Initiator Resposne Buffer
-  Reg#(Vector#(2,Bit#(32))) cmdWrtAddrV   <- mkRegU;
+  Reg#(Vector#(2,Bit#(32))) cmdAddrV      <- mkRegU;
 
   Bit#(32) targAdvert = fromInteger(respBufSize);
 
@@ -149,9 +149,9 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     // TODO: NOP Command Processing Here
     if (cmdAdlRemain==2) sizInitRespB <= unpack(x);
     if (cmdAdlRemain==1) begin
-      UInt#(12) rspAdl = n.adl;
+      //UInt#(12) rspAdl = n.adl;
       cmdCRH <= tagged Invalid;
-      rspCRH <= tagged RespNOP CRHResp {isLast:True,rsvd28:0,adl:rspAdl,rsvd12:0,respt:OK,
+      rspCRH <= tagged RespNOP CRHResp {isLast:True,rsvd28:0,adl:n.adl,rsvd12:0,respt:OK,
                                c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
     end
     if ( n.c0.isDO) cmdIsDO <= True;
@@ -174,20 +174,20 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     modActive <= True;
   endrule
 
-  // Rule to process WRITE Command Requests, consume ADL DWORDs of Write Data
+  // Rule to process Write Command Requests, consume ADL DWORDs of Write Data
   rule cmd_write (cmdCRH matches tagged Write .n &&& rspCRH matches tagged Invalid);
     let x = crtCmdF.first; crtCmdF.deq;
     cmdAdrRemain <= (cmdAdrRemain==0) ? 0 : cmdAdrRemain - 1;
-    if (cmdAdrRemain>0) cmdWrtAddrV <= shiftInAtN(cmdWrtAddrV, x);  // LS 32b first when 64b Addr
+    if (cmdAdrRemain>0) cmdAddrV <= shiftInAtN(cmdAddrV, x);  // LS 32b first when 64b Addr
     cmdAdlRemain <= (cmdAdlRemain==0) ? cmdAdlRemain - 1 : cmdAdlRemain;
     // TODO: Write Command Processing Here
     if (cmdAdrRemain==0 && cmdAdlRemain==1) begin
-      a4l.f.wrAddr.enq(A4LAddrCmd{addr:cmdWrtAddrV[1], prot:aProtDflt});
+      a4l.f.wrAddr.enq(A4LAddrCmd{addr:cmdAddrV[1], prot:aProtDflt});
       a4l.f.wrData.enq(A4LWrData {strb:n.firstBE,  data:x});
       cmdCRH <= tagged Invalid;
       rspCRH <= tagged RespWrite CRHResp {isLast:True,rsvd28:0,adl:0,rsvd12:0,respt:OK,
                                  c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
-      $display("[%0d]: %m: Hcrt cmd_write address:%0x data:%0x", $time, cmdWrtAddrV[1], x);
+      $display("[%0d]: %m: Hcrt cmd_write address:%0x data:%0x", $time, cmdAddrV[1], x);
     end
     if ( n.c0.isDO) cmdIsDO <= True;
     if (!n.c0.isDO) lastTag <= (tagged Valid n.c0.tag); // Capture the tag into lastTag
@@ -202,6 +202,43 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     $display("[%0d]: %m: Hcrt rsp_write", $time);
     crtRespF.enq(qabsFromBits(pack(n), 4'h8));
     rspCRH <= tagged Invalid;
+    modActive <= True;
+  endrule
+
+
+  // Rule to process Read Command Requests
+  rule cmd_read (cmdCRH matches tagged Read .n &&& rspCRH matches tagged Invalid);
+    let x = crtCmdF.first; crtCmdF.deq;
+    cmdAdrRemain <= (cmdAdrRemain==0) ? 0 : cmdAdrRemain - 1;
+    if (cmdAdrRemain>0) cmdAddrV<= shiftInAtN(cmdAddrV   , x);  // LS 32b first when 64b Addr
+    // TODO: Read Command Processing Here
+    Bit#(32) addr32 = x;
+    if (True) begin // FIXME : cmdAdr Dec
+      a4l.f.rdAddr.enq(A4LAddrCmd{addr:addr32, prot:aProtDflt});
+      cmdCRH <= tagged Invalid;
+      rspCRH <= tagged RespRead CRHResp {isLast:True,rsvd28:0,adl:n.adl,rsvd12:0,respt:OK,
+                                 c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
+      $display("[%0d]: %m: Hcrt cmd_read address:%0x", $time, addr32);
+    end
+    if ( n.c0.isDO) cmdIsDO <= True;
+    if (!n.c0.isDO) lastTag <= (tagged Valid n.c0.tag); // Capture the tag into lastTag
+    modActive <= True;
+  endrule
+
+  // Rule to respond to Read Command Requests...
+  rule rsp_read (rspCRH matches tagged RespRead .n);
+    Bool isEOM = rspActive && rspAdlRemain==1;
+    rspActive    <= isEOM ? False : (rspAdlRemain!=1);
+    rspAdlRemain <= (rspActive) ? rspAdlRemain-1 : n.adl;
+    // TODO: Read Response Processing Here
+    let ar = a4l.f.rdResp.first; //TODO: look at AXI read response code (assume OKAY for now)
+    if (rspActive) begin
+      a4l.f.rdResp.deq;             // Implicit condition of read blocks until resp
+    end
+    Bit#(32) data = rspActive ? ar.data : pack(n); // Send Resp CRH in first, non-rspActive cycle
+    crtRespF.enq(qabsFromBits(data, isEOM ? 4'h8 :4'h0));
+    if (isEOM) $display("[%0d]: %m: Hcrt rsp_read got data:%0x", $time, data);
+    if (isEOM) rspCRH <= tagged Invalid;
     modActive <= True;
   endrule
 
@@ -316,14 +353,28 @@ module mkHCrt_TB1 (Empty);
     endcase
   endrule
 
-  rule l2_gen_payload (gqPtr<12 && gpPDU); // L2 Egress PDU / Payload move to MAC
+  rule l2_gen_payload (gqPtr<8 && gpPDU); // L2 Egress PDU / Payload move to MAC
     gqPtr <= (gqPtr==15) ? gqPtr : gqPtr+1;
 
+    // Read
+    case (gqPtr)
+      0:  l2GenF.enq(tagged ValidNotEOP 8'h20);  // Read Req
+      1:  l2GenF.enq(tagged ValidNotEOP 8'hFF);
+      2:  l2GenF.enq(tagged ValidNotEOP 8'h01);  // 1 DW Read Request (ADL is for resp)
+      3:  l2GenF.enq(tagged ValidNotEOP 8'h80);  // Last Dword
+
+      4:  l2GenF.enq(tagged ValidNotEOP 8'h10);  // Addr 0000_0004
+      5:  l2GenF.enq(tagged ValidNotEOP 8'h00);
+      6:  l2GenF.enq(tagged ValidNotEOP 8'h00);
+      7:  l2GenF.enq(tagged ValidEOP    8'h00);
+    endcase
+    
+    /*
     // Write
     case (gqPtr)
       0:  l2GenF.enq(tagged ValidNotEOP 8'h10);  // Write Req
       1:  l2GenF.enq(tagged ValidNotEOP 8'hFF);
-      2:  l2GenF.enq(tagged ValidNotEOP 8'h01);  // 1 DW follow
+      2:  l2GenF.enq(tagged ValidNotEOP 8'h01);  // 1 DW follow Addr
       3:  l2GenF.enq(tagged ValidNotEOP 8'h80);  // Last Dword
 
       4:  l2GenF.enq(tagged ValidNotEOP 8'h04);  // Addr 0000_0004
@@ -336,8 +387,10 @@ module mkHCrt_TB1 (Empty);
       10: l2GenF.enq(tagged ValidNotEOP 8'hEF);
       11: l2GenF.enq(tagged ValidEOP    8'hBE);
     endcase
-
+    */
+    
     /*  NOP
+    // NOP
     case (gqPtr)
       0: l2GenF.enq(tagged ValidNotEOP 8'h00);  // NOP
       1: l2GenF.enq(tagged ValidNotEOP 8'hFF);
