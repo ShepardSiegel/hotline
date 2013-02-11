@@ -51,7 +51,7 @@ typedef struct {  // CRHWrite - Write CR-Header
   Bit#(3)       rsvd28; // 3b unused in Write
   UInt#(12)     adl;
   Bit#(4)       lastBE;
-  Bit#(4)       firtBE;
+  Bit#(4)       firstBE;
   CRH0          c0;
 } CRHWrite deriving (Bits, Eq);
 
@@ -60,7 +60,7 @@ typedef struct {  // CRHRead - Read CR-Header
   Bit#(3)       rsvd28; // 3b unused in Write
   UInt#(12)     adl;
   Bit#(4)       lastBE;
-  Bit#(4)       firtBE;
+  Bit#(4)       firstBE;
   CRH0          c0;
 } CRHRead deriving (Bits, Eq);
 
@@ -104,28 +104,29 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   Integer respBufSize = 64;
 
   // HCrt Command/Response FIFOs...
-  FIFO#(Bit#(32))       crtCmdF      <- mkFIFO;        // Inbound  HCrt Commands
-  FIFO#(QABS)           crtRespF     <- mkFIFO;        // Outbound HCrt Responses
-  A4LMasterIfc          a4l          <- mkA4LMaster;   // The AXI4-Lite Master Interface
+  FIFO#(Bit#(32))           crtCmdF       <- mkFIFO;        // Inbound  HCrt Commands
+  FIFO#(QABS)               crtRespF      <- mkFIFO;        // Outbound HCrt Responses
+  A4LMasterIfc              a4l           <- mkA4LMaster;   // The AXI4-Lite Master Interface
   // The internal state of the HCrt module...
-  Reg#(Bool)            modActive    <- mkDReg(True);  // Pulse indication of module activity
-  Reg#(Bool)            modFaulted   <- mkDReg(True);  // Pulse indication of module fault
-  Reg#(TagCRH)          cmdCRH       <- mkReg(tagged Invalid);
-  Reg#(Bool)            cmdIsLast    <- mkReg(False);  // Indicates LAST command of message
-  Reg#(Bool)            cmdIsDO      <- mkReg(False);  // True when command is a Discovery Operation (DO) 
-  Reg#(UInt#(2))        cmdAdrRemain <- mkReg(0);
-  Reg#(UInt#(12))       cmdAdlRemain <- mkReg(0);
-  Reg#(UInt#(12))       rspAdlRemain <- mkReg(0);
-  Reg#(Maybe#(Bit#(8))) lastTag      <- mkReg(tagged Invalid);  // The last tag captured (valid or not)
-  FIFO#(Bit#(32))       respBuffer   <- mkSizedFIFO(respBufSize/4);
-  Reg#(TagCRH)          rspCRH       <- mkReg(tagged Invalid);
-  Reg#(Bool)            rspActive    <- mkReg(False); 
-  Reg#(UInt#(32))       sizInitRespB <- mkReg(0);      // Size in Bytes of the Initiator Resposne Buffer
+  Reg#(Bool)                modActive     <- mkDReg(True);  // Pulse indication of module activity
+  Reg#(Bool)                modFaulted    <- mkDReg(True);  // Pulse indication of module fault
+  Reg#(TagCRH)              cmdCRH        <- mkReg(tagged Invalid);
+  Reg#(Bool)                cmdIsLast     <- mkReg(False);  // Indicates LAST command of message
+  Reg#(Bool)                cmdIsDO       <- mkReg(False);  // True when command is a Discovery Operation (DO) 
+  Reg#(UInt#(2))            cmdAdrRemain  <- mkReg(0);
+  Reg#(UInt#(12))           cmdAdlRemain  <- mkReg(0);
+  Reg#(UInt#(12))           rspAdlRemain  <- mkReg(0);
+  Reg#(Maybe#(Bit#(4)))     lastTag       <- mkReg(tagged Invalid);  // The last tag captured (valid or not)
+  FIFO#(Bit#(32))           respBuffer    <- mkSizedFIFO(respBufSize/4);
+  Reg#(TagCRH)              rspCRH        <- mkReg(tagged Invalid);
+  Reg#(Bool)                rspActive     <- mkReg(False); 
+  Reg#(UInt#(32))           sizInitRespB  <- mkReg(0);      // Size in Bytes of the Initiator Resposne Buffer
+  Reg#(Vector#(2,Bit#(32))) cmdWrtAddrV   <- mkRegU;
 
   Bit#(32) targAdvert = fromInteger(respBufSize);
 
   // Fire and take a new CRH DWORD...
-  rule cmd_accept (cmdCRH matches tagged Invalid .crh);
+  rule cmd_crh (cmdCRH matches tagged Invalid .crh);
     let x = crtCmdF.first; crtCmdF.deq;
     HCrtMesgType cmt = unpack(x[5:4]); // Decide what kind of message this is
     TagCRH t = ?;
@@ -141,7 +142,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     modActive <= True;
   endrule
 
-  // Rule to process NOP Command Requests, consume ADL DWORDs
+  // Rule to process NOP Command Requests, consume ADL DWORDs of Initiator Advertisement
   rule cmd_nop (cmdCRH matches tagged NOP .n &&& rspCRH matches tagged Invalid);
     let x = crtCmdF.first; crtCmdF.deq;
     cmdAdlRemain <= cmdAdlRemain - 1;
@@ -172,6 +173,38 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     if (isEOM) rspCRH <= tagged Invalid;
     modActive <= True;
   endrule
+
+  // Rule to process WRITE Command Requests, consume ADL DWORDs of Write Data
+  rule cmd_write (cmdCRH matches tagged Write .n &&& rspCRH matches tagged Invalid);
+    let x = crtCmdF.first; crtCmdF.deq;
+    cmdAdrRemain <= (cmdAdrRemain==0) ? 0 : cmdAdrRemain - 1;
+    if (cmdAdrRemain>0) cmdWrtAddrV <= shiftInAtN(cmdWrtAddrV, x);  // LS 32b first when 64b Addr
+    cmdAdlRemain <= (cmdAdlRemain==0) ? cmdAdlRemain - 1 : cmdAdlRemain;
+    // TODO: Write Command Processing Here
+    if (cmdAdrRemain==0 && cmdAdlRemain==1) begin
+      a4l.f.wrAddr.enq(A4LAddrCmd{addr:cmdWrtAddrV[1], prot:aProtDflt});
+      a4l.f.wrData.enq(A4LWrData {strb:n.firstBE,  data:x});
+      cmdCRH <= tagged Invalid;
+      rspCRH <= tagged RespWrite CRHResp {isLast:True,rsvd28:0,adl:0,rsvd12:0,respt:OK,
+                                 c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
+      $display("[%0d]: %m: Hcrt cmd_write address:%0x data:%0x", $time, cmdWrtAddrV[1], x);
+    end
+    if ( n.c0.isDO) cmdIsDO <= True;
+    if (!n.c0.isDO) lastTag <= (tagged Valid n.c0.tag); // Capture the tag into lastTag
+    modActive <= True;
+  endrule
+
+  // Rule to respond to Write Command Requests...
+  rule rsp_write (rspCRH matches tagged RespWrite .n);
+    // TODO: Write Response Processing Here
+    let awr = a4l.f.wrResp.first; //TODO: look at AXI write response code (assume OKAY for now)
+    a4l.f.wrResp.deq;             // Implicit condition of read blocks until resp
+    $display("[%0d]: %m: Hcrt rsp_write", $time);
+    crtRespF.enq(qabsFromBits(pack(n), 4'h8));
+    rspCRH <= tagged Invalid;
+    modActive <= True;
+  endrule
+
 
 
 
@@ -285,8 +318,28 @@ module mkHCrt_TB1 (Empty);
 
   rule l2_gen_payload (gqPtr<12 && gpPDU); // L2 Egress PDU / Payload move to MAC
     gqPtr <= (gqPtr==15) ? gqPtr : gqPtr+1;
+
+    // Write
     case (gqPtr)
-      0: l2GenF.enq(tagged ValidNotEOP 8'h00); 
+      0:  l2GenF.enq(tagged ValidNotEOP 8'h10);  // Write Req
+      1:  l2GenF.enq(tagged ValidNotEOP 8'hFF);
+      2:  l2GenF.enq(tagged ValidNotEOP 8'h01);  // 1 DW follow
+      3:  l2GenF.enq(tagged ValidNotEOP 8'h80);  // Last Dword
+
+      4:  l2GenF.enq(tagged ValidNotEOP 8'h04);  // Addr 0000_0004
+      5:  l2GenF.enq(tagged ValidNotEOP 8'h00);
+      6:  l2GenF.enq(tagged ValidNotEOP 8'h00);
+      7:  l2GenF.enq(tagged ValidNotEOP 8'h00);
+
+      8:  l2GenF.enq(tagged ValidNotEOP 8'hFE);  // Data BEEF_CAFE
+      9:  l2GenF.enq(tagged ValidNotEOP 8'hCA);
+      10: l2GenF.enq(tagged ValidNotEOP 8'hEF);
+      11: l2GenF.enq(tagged ValidEOP    8'hBE);
+    endcase
+
+    /*  NOP
+    case (gqPtr)
+      0: l2GenF.enq(tagged ValidNotEOP 8'h00);  // NOP
       1: l2GenF.enq(tagged ValidNotEOP 8'hFF);
       2: l2GenF.enq(tagged ValidNotEOP 8'h02);  // 2 DW follow
       3: l2GenF.enq(tagged ValidNotEOP 8'h80);  // Last Dword
@@ -307,6 +360,9 @@ module mkHCrt_TB1 (Empty);
          //gpPDU <= False;
          endaction
     endcase
+    */
+
+
   endrule
 
   mkConnection(toGet(l2GenF), l2P.server.request);
@@ -330,7 +386,7 @@ module mkHCrt_TB1 (Empty);
   rule chomp_l2;
     let bs = l2ConsumeF.first;  l2ConsumeF.deq;
     consumeCnt <= consumeCnt + 1;
-    $display("[%0d]: %m: Consumed %0d Byte with value %0x in cycle:%0d", $time, consumeCnt, getData(bs), cycleCount);
+    //$display("[%0d]: %m: Consumed %0d Byte with value %0x in cycle:%0d", $time, consumeCnt, getData(bs), cycleCount);
   endrule
 
 
