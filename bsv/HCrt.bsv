@@ -91,6 +91,16 @@ typedef union tagged {
 // This implementation processes 32b (1 DWORD) per cycle. It has no expliict notion of HCrt framing.
 // Commands arriving are assumed correct to the protocol. 
 
+// TODO: Retransmittimg response when tag match received; Need a solution that works well
+// for bulk reads. Perhaps consider a "Recyle Buffer"?
+/*
+interface RecycleBufferIfc;
+  method Bool clear;        // reset buffer state to empty
+  method Action enq(t arg)  // enq responses in buffer
+  method Action commit(Bool)  //etc
+endinterface
+*/
+
 interface HCrtCompleter2AxiIfc;
   interface Server#(Bit#(32),QABS)  crtS0; 
   interface A4LMIfc                 axiM0;
@@ -117,7 +127,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   Reg#(UInt#(12))           cmdAdlRemain  <- mkReg(0);
   Reg#(UInt#(12))           rspAdlRemain  <- mkReg(0);
   Reg#(Maybe#(Bit#(4)))     lastTag       <- mkReg(tagged Invalid);  // The last tag captured (valid or not)
-  FIFO#(Bit#(32))           respBuffer    <- mkSizedFIFO(respBufSize/4);
+  FIFO#(QABS)               respBufferF   <- mkSizedFIFO(respBufSize/4);
   Reg#(TagCRH)              rspCRH        <- mkReg(tagged Invalid);
   Reg#(Bool)                rspActive     <- mkReg(False); 
   Reg#(UInt#(32))           sizInitRespB  <- mkReg(0);      // Size in Bytes of the Initiator Resposne Buffer
@@ -146,17 +156,16 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   rule cmd_nop (cmdCRH matches tagged NOP .n &&& rspCRH matches tagged Invalid);
     let x = crtCmdF.first; crtCmdF.deq;
     cmdAdlRemain <= cmdAdlRemain - 1;
-    // TODO: NOP Command Processing Here
     if (cmdAdlRemain==2) sizInitRespB <= unpack(x);
     if (cmdAdlRemain==1) begin
-      //UInt#(12) rspAdl = n.adl;
       cmdCRH <= tagged Invalid;
       rspCRH <= tagged RespNOP CRHResp {isLast:True,rsvd28:0,adl:n.adl,rsvd12:0,respt:OK,
-                               c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
+                               c0:CRH0{isDO:n.c0.isDO, isAM64:False, mesgt:Response, tag:n.c0.tag}};
     end
     if ( n.c0.isDO) cmdIsDO <= True;
     if (!n.c0.isDO) lastTag <= (tagged Invalid);  // non-DO NOPs Invalidate the lastTag so next command is always accepted
     $display("[%0d]: %m: Hcrt cmd_nop cmdAdlRemain:%0d data:%0x", $time, cmdAdlRemain, x);
+    //if (True) respBufferF.clear;  // Clear the response buffer before performing NOP
     modActive <= True;
   endrule
 
@@ -165,14 +174,17 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     Bool isEOM = rspActive && rspAdlRemain==1;
     rspActive    <= isEOM ? False : (rspAdlRemain!=1);
     rspAdlRemain <= (rspActive) ? rspAdlRemain-1 : n.adl;
-    // TODO: NOP Response Processing Here
     Bit#(32) advert = (rspAdlRemain==2) ? 32'h0000_0052 : 0;
     $display("[%0d]: %m: Hcrt rsp_nop rspAdlRemain:%0d advert:%0x", $time, rspAdlRemain, advert);
     Bit#(32) data = rspActive ? advert : pack(n); // Send Resp CRH in first, non-rspActive cycle
-    crtRespF.enq(qabsFromBits(data, isEOM ? 4'h8 :4'h0));
+    QABS resp = qabsFromDword(data, isEOM);
+    crtRespF.enq(resp);
+    //if (!cmdIsDO) respBufferF.enq(resp);
     if (isEOM) rspCRH <= tagged Invalid;
+    if (isEOM) cmdIsDO <= False;
     modActive <= True;
   endrule
+
 
   // Rule to process Write Command Requests, consume ADL DWORDs of Write Data
   rule cmd_write (cmdCRH matches tagged Write .n &&& rspCRH matches tagged Invalid);
@@ -180,28 +192,36 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     cmdAdrRemain <= (cmdAdrRemain==0) ? 0 : cmdAdrRemain - 1;
     if (cmdAdrRemain>0) cmdAddrV <= shiftInAtN(cmdAddrV, x);  // LS 32b first when 64b Addr
     cmdAdlRemain <= (cmdAdlRemain==0) ? cmdAdlRemain - 1 : cmdAdlRemain;
-    // TODO: Write Command Processing Here
+    // commitWrite if the lastTag is Valid and the tags dont match OR if the lastTag is Invalid OR a Discovery Op...
+    Bool commitWrite = ((isValid(lastTag) && n.c0.tag!=fromMaybe(?,lastTag)) || !isValid(lastTag) || n.c0.isDO);
     if (cmdAdrRemain==0 && cmdAdlRemain==1) begin
-      a4l.f.wrAddr.enq(A4LAddrCmd{addr:cmdAddrV[1], prot:aProtDflt});
-      a4l.f.wrData.enq(A4LWrData {strb:n.firstBE,  data:x});
+      if (commitWrite) a4l.f.wrAddr.enq(A4LAddrCmd{addr:cmdAddrV[1], prot:aProtDflt});
+      if (commitWrite) a4l.f.wrData.enq(A4LWrData {strb:n.firstBE,  data:x});
       cmdCRH <= tagged Invalid;
+      // Blind ACK the Write regardless if tag match or not...
+      //TODO: When write responses are non-blind (from non-posted requests), make write machine use lastResp like Read
       rspCRH <= tagged RespWrite CRHResp {isLast:True,rsvd28:0,adl:0,rsvd12:0,respt:OK,
                                  c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
       $display("[%0d]: %m: Hcrt cmd_write address:%0x data:%0x", $time, cmdAddrV[1], x);
     end
     if ( n.c0.isDO) cmdIsDO <= True;
-    if (!n.c0.isDO) lastTag <= (tagged Valid n.c0.tag); // Capture the tag into lastTag
+    if (commitWrite && !n.c0.isDO) lastTag <= (tagged Valid n.c0.tag); // Capture the tag into lastTag
+    if (commitWrite) respBufferF.clear;  // Clear the response buffer before performing Write
     modActive <= True;
   endrule
 
   // Rule to respond to Write Command Requests...
   rule rsp_write (rspCRH matches tagged RespWrite .n);
+    Bool isEOM = True;
     // TODO: Write Response Processing Here
     let awr = a4l.f.wrResp.first; //TODO: look at AXI write response code (assume OKAY for now)
     a4l.f.wrResp.deq;             // Implicit condition of read blocks until resp
     $display("[%0d]: %m: Hcrt rsp_write", $time);
-    crtRespF.enq(qabsFromBits(pack(n), 4'h8));
+    QABS resp = qabsFromDword(pack(n), True);
+    crtRespF.enq(resp);
+    //if (!cmdIsDO) respBufferF.enq(resp);
     rspCRH <= tagged Invalid;
+    if (isEOM) cmdIsDO <= False;
     modActive <= True;
   endrule
 
@@ -211,17 +231,25 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     let x = crtCmdF.first; crtCmdF.deq;
     cmdAdrRemain <= (cmdAdrRemain==0) ? 0 : cmdAdrRemain - 1;
     if (cmdAdrRemain>0) cmdAddrV<= shiftInAtN(cmdAddrV   , x);  // LS 32b first when 64b Addr
-    // TODO: Read Command Processing Here
     Bit#(32) addr32 = x;
+    // commitRead if the lastTag is Valid and the tags dont match OR if the lastTag is Invalid OR a Discovery Op
+    Bool commitRead = ((isValid(lastTag) && n.c0.tag!=fromMaybe(?,lastTag)) || !isValid(lastTag) || n.c0.isDO);
     if (True) begin // FIXME : cmdAdr Dec
-      a4l.f.rdAddr.enq(A4LAddrCmd{addr:addr32, prot:aProtDflt});
+      if (commitRead) a4l.f.rdAddr.enq(A4LAddrCmd{addr:addr32, prot:aProtDflt});
       cmdCRH <= tagged Invalid;
-      rspCRH <= tagged RespRead CRHResp {isLast:True,rsvd28:0,adl:n.adl,rsvd12:0,respt:OK,
-                                 c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
-      $display("[%0d]: %m: Hcrt cmd_read address:%0x", $time, addr32);
+      if (commitRead) begin
+        rspCRH <= tagged RespRead CRHResp {isLast:True,rsvd28:0,adl:n.adl,rsvd12:0,respt:OK,
+                                  c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
+        $display("[%0d]: %m: Hcrt cmd_read address:%0x", $time, addr32);
+      end else begin
+        $display("[%0d]: %m: Hcrt cmd_read *TAGS MATCH *address:%0x", $time, addr32);
+        // TODO: Implement correct retransmission
+        //crtRespF.enq(lastResp);   // Retransmit the lastResp since tags match
+      end
     end
     if ( n.c0.isDO) cmdIsDO <= True;
-    if (!n.c0.isDO) lastTag <= (tagged Valid n.c0.tag); // Capture the tag into lastTag
+    if (commitRead && !n.c0.isDO) lastTag <= (tagged Valid n.c0.tag); // Capture the tag into lastTag
+    if (commitRead) respBufferF.clear;  // Clear the response buffer before performing Read
     modActive <= True;
   endrule
 
@@ -230,62 +258,20 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     Bool isEOM = rspActive && rspAdlRemain==1;
     rspActive    <= isEOM ? False : (rspAdlRemain!=1);
     rspAdlRemain <= (rspActive) ? rspAdlRemain-1 : n.adl;
-    // TODO: Read Response Processing Here
     let ar = a4l.f.rdResp.first; //TODO: look at AXI read response code (assume OKAY for now)
     if (rspActive) begin
       a4l.f.rdResp.deq;             // Implicit condition of read blocks until resp
     end
     Bit#(32) data = rspActive ? ar.data : pack(n); // Send Resp CRH in first, non-rspActive cycle
-    crtRespF.enq(qabsFromBits(data, isEOM ? 4'h8 :4'h0));
+    QABS resp = qabsFromDword(data, isEOM);
+    crtRespF.enq(resp);
+    //if (!cmdIsDO) respBufferF.enq(resp);
     if (isEOM) $display("[%0d]: %m: Hcrt rsp_read got data:%0x", $time, data);
-    if (isEOM) rspCRH <= tagged Invalid;
+    if (isEOM) rspCRH  <= tagged Invalid;
+    if (isEOM) cmdIsDO <= False;
     modActive <= True;
   endrule
 
-
-
-
-
-
-/*
-  Reg#(Bool)            doInFlight  <- mkReg(False);           // True when a Discovery Operation (DO) is in flight
-
-    case (x) matches
-      tagged NOP   .n: begin
-          crtRespF.enq(tagged NOP( HCrtResponseNOP{hasDO:n.isDO, targAdvert:targAdvert, tag:n.tag, code:RESP_OK})); // Respond to the NOP
-          if (!n.isDO) lastTag <= (tagged Invalid);  // NOPs Invalidate the lastTag so next command is always accepted
-          if ( n.isDO) doInFlight <= True;
-        end
-      tagged Write .w: begin
-        if ((isValid(lastTag) && w.tag!=fromMaybe(?,lastTag)) || !isValid(lastTag) || w.isDO) begin // if the lastTag is Valid and the tags dont match OR if the lastTag is Invalid OR a Discovery Op
-          cpReqF.enq(tagged WriteRequest( CpWriteReq{dwAddr:truncate(w.addr>>2), byteEn:w.be, data:w.data}));  // Issue the Write
-          if (!w.isDO) lastTag <= (tagged Valid w.tag); // Capture the tag into lastTag
-          if ( w.isDO) doInFlight <= True;
-        end 
-        crtRespF.enq(tagged Write( HCrtResponseWrite{hasDO:w.isDO, tag:w.tag, code:RESP_OK})); // Blind ACK the Write regardless if tag match or not
-        //TODO: When CP write responses are non-blind (from non-posted requests), make write machine use lastResp like Read
-        end
-        tagged Read  .r: begin
-        if ((isValid(lastTag) && r.tag!=fromMaybe(?,lastTag)) || !isValid(lastTag) || r.isDO) begin // if the lastTag is Valid and the tags dont match OR if the lastTag is Invalid OR a Discovery Op
-          cpReqF.enq(tagged ReadRequest(  CpReadReq {dwAddr:truncate(r.addr>>2), byteEn:r.be, tag:r.tag}));    // Issue the Read
-          if (!r.isDO) lastTag <= (tagged Valid r.tag); // Capture the tag into lastTag
-          if ( r.isDO) doInFlight <= True;
-        end else crtRespF.enq(lastResp);   // Retransmit the lastResp since tags match
-        end
-    endcase
-  endrule
-
-  */
-
-  /*
-  rule cp_response;
-    let y = cpRespF.first; cpRespF.deq;
-    HCrtResponse crtr = (tagged Read( HCrtResponseRead{hasDO:doInFlight, data:y.data, tag:y.tag, code:RESP_OK}));
-    crtRespF.enq(crtr);  // Advance the CP Read response
-    if (!doInFlight) lastResp <= crtr;    // Save crtr in lastResponse for possible re-transmission
-    doInFlight <= False;
-  endrule
-  */
 
   interface Server crtS0;  // Facing the HCrt Packet Side
     interface request  = toPut(crtCmdF);
@@ -369,7 +355,7 @@ module mkHCrt_TB1 (Empty);
       7:  l2GenF.enq(tagged ValidEOP    8'h00);
     endcase
     
-    /*
+   /*
     // Write
     case (gqPtr)
       0:  l2GenF.enq(tagged ValidNotEOP 8'h10);  // Write Req
@@ -420,20 +406,15 @@ module mkHCrt_TB1 (Empty);
 
   mkConnection(toGet(l2GenF), l2P.server.request);
 
+  // Get#(ABS) -> Put#(Bit#(32)
   ABS2QABSIfc     l2qc <- mkABS2QABS;
-  FIFO#(Bit#(32)) qcF  <- mkFIFO;
   mkConnection(l2P.client.request, l2qc.putSerial);
-  rule feed_hcrt_req;
-    let q <- l2qc.getVector.get;
-    Bit#(32) dw = pack(map(getData,q));   // Extract data from the QABS stream
-    qcF.enq(dw);
-  endrule
-  mkConnection(toGet(qcF), crt2axi.crtS0.request);
+  mkConnection(l2qc.getDword, crt2axi.crtS0.request);
 
+  // Get#(QABS0 -> Put#(ABS)
   QABS2ABSIfc     qcl2 <- mkQABS2ABS;
   mkConnection(crt2axi.crtS0.response, qcl2.putVector);
   mkConnection(qcl2.getSerial, l2P.client.response);
-
   mkConnection(l2P.server.response, toPut(l2ConsumeF));
 
   rule chomp_l2;

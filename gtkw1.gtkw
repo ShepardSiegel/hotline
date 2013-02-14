@@ -1,0 +1,29 @@
+[*]
+[*] GTKWave Analyzer v3.3.43 (w)1999-2012 BSI
+[*] Mon Feb 11 22:11:52 2013
+[*]
+[dumpfile] "/home/shep/projects/hotline/dump.vcd"
+[dumpfile_mtime] "Mon Feb 11 22:06:54 2013"
+[dumpfile_size] 63826
+[savefile] "/home/shep/projects/hotline/gtkw1.gtkw"
+[timestart] 0
+[size] 1386 772
+[pos] -387 -1
+*-8.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 219
+[signals_width] 262
+[sst_expanded] 1
+[sst_vpaned_height] 211
+@22
++{main.top.cycleCount [UInt#(16)]} main.top.cycleCount[15:0]
++{main.top.crt2axi.WILL_FIRE_RL_cmd_crh [Bool]} main.top.crt2axi.WILL_FIRE_RL_cmd_crh
++{main.top.crt2axi.WILL_FIRE_RL_cmd_nop [Bool]} main.top.crt2axi.WILL_FIRE_RL_cmd_nop
++{main.top.crt2axi.WILL_FIRE_RL_cmd_write [Bool]} main.top.crt2axi.WILL_FIRE_RL_cmd_write
++{main.top.crt2axi.WILL_FIRE_RL_cmd_read [Bool]} main.top.crt2axi.WILL_FIRE_RL_cmd_read
++{main.top.crt2axi.WILL_FIRE_RL_rsp_nop [Bool]} main.top.crt2axi.WILL_FIRE_RL_rsp_nop
+@23
++{main.top.crt2axi.WILL_FIRE_RL_rsp_write [Bool]} main.top.crt2axi.WILL_FIRE_RL_rsp_write
+@22
++{main.top.crt2axi.WILL_FIRE_RL_rsp_read [Bool]} main.top.crt2axi.WILL_FIRE_RL_rsp_read
+[pattern_trace] 1
+[pattern_trace] 0

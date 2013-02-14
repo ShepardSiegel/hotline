@@ -75,14 +75,23 @@ function QABS qabsFromBits(Bit#(32) d, Bit#(4) eop);  // TODO: rewrite using map
   return(v);
 endfunction
 
-  function QABS qabsFromVector (Vector#(4,Bit#(8)) dV, Vector#(4,Bit#(1)) eopV);
-    QABS z = ?;
-      z[0] = tagValidData(unpack(eopV[0]), dV[0]);
-      z[1] = tagValidData(unpack(eopV[1]), dV[1]);
-      z[2] = tagValidData(unpack(eopV[2]), dV[2]);
-      z[3] = tagValidData(unpack(eopV[3]), dV[3]);
-    return(z);
-  endfunction
+function QABS qabsFromVector (Vector#(4,Bit#(8)) dV, Vector#(4,Bit#(1)) eopV);
+  QABS z = ?;
+   z[0] = tagValidData(unpack(eopV[0]), dV[0]);
+   z[1] = tagValidData(unpack(eopV[1]), dV[1]);
+   z[2] = tagValidData(unpack(eopV[2]), dV[2]);
+   z[3] = tagValidData(unpack(eopV[3]), dV[3]);
+  return(z);
+endfunction
+
+function QABS qabsFromDword (Bit#(32) dw, Bool eop);
+  QABS x = ?;
+  x[0] = tagged ValidNotEOP dw[7:0];
+  x[1] = tagged ValidNotEOP dw[15:8];
+  x[2] = tagged ValidNotEOP dw[23:16];
+  x[3] = eop ? tagged ValidEOP dw[31:24] : tagged ValidNotEOP dw[31:24];
+  return(x);
+endfunction
 
 // Explicit Byte Stream (EBS)...
 // Has 4b of unencoded explicit status for abort, empty, sof, and eof...
@@ -214,8 +223,9 @@ endmodule: mkABSMerge
 // ABS-QABS Conversion Modules...
 
 interface ABS2QABSIfc;
-  interface Put#(ABS)   putSerial;
-  interface Get#(QABS)  getVector;
+  interface Put#(ABS)      putSerial;
+  interface Get#(QABS)     getVector;
+  interface Get#(Bit#(32)) getDword;   // Strips off EOP
 endinterface
 
 module mkABS2QABS (ABS2QABSIfc);  // make a QABS vector from serial ABS stream...
@@ -235,6 +245,12 @@ module mkABS2QABS (ABS2QABSIfc);  // make a QABS vector from serial ABS stream..
 
   interface Put  putSerial = toPut(inF);
   interface Get  getVector = toGet(outF);
+  interface Get  getDword; // return the Dword data w/o the EOP info
+    method ActionValue#(Bit#(32)) get;
+      let z = outF.first; outF.deq;
+      return(pack(map(getData,z)));
+    endmethod
+  endinterface
 endmodule
 
 interface QABS2ABSIfc;
