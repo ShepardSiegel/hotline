@@ -245,8 +245,8 @@ end
   .lcd_rs             (lcd_rs),
   .lcd_rw             (lcd_rw),
 
-  .i2cpad_scl         (i2c_scl),
-  .i2cpad_sda         (i2c_sda),
+  .i2cpad_SCL         (i2c_scl),
+  .i2cpad_SDA         (i2c_sda),
 
   .gmii_rstn          (gmii_rstn),
   .gmii_tx_txd        (gmii_txd),

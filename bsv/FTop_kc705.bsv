@@ -113,7 +113,11 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
   BRAM_Configure cfg = defaultValue;
     cfg.memorySize = 1024;  // Number of DWORD entries in 4KB ROM
     cfg.latency    = 1;
-    cfg.loadFormat = tagged Hex "../../../hdmi_iic.hex";
+    //                            v- synth
+    //                               v- project
+    //                                  v- vivado
+    //                                     v- root
+    cfg.loadFormat = tagged Hex "../../../../data/hdmi_iic.hex";
   BRAM1Port#(Bit#(10), Bit#(32)) iicrom <- mkBRAM1Server(cfg, clocked_by sys0_clk, reset_by sys0_rst);
 
   rule cycleCountAdvance;

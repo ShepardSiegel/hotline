@@ -1,0 +1,622 @@
+select (PAResourceAtoH.GettingStartedView_CREATE_NEW_PROJECT, "Create New Project"); // I (JPanel, aM) [02/17 02:29:24]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:29:26]
+setText (PAResourceItoP.ProjectNameChooser_PROJECT_NAME, "hkp1"); // ac (JPanel, a) [02/17 02:30:08]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:30:08]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:30:17]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/17 02:30:22]
+dismissFileChooser (); //  [02/17 02:30:28]
+select (null, "< Back"); // JButton (ButtonPanel, a) [02/17 02:30:31]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:30:33]
+select (null, "< Back"); // JButton (ButtonPanel, a) [02/17 02:30:54]
+select (PAResourceItoP.NewProjectWizard_DO_NOT_SPECIFY_SOURCES_AT_THIS_TIME, "Do not specify sources at this time", true, false); // i (U, a): TRUE [02/17 02:30:58]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:31:00]
+select (PAResourceItoP.PartChooser_BOARDS, "Boards"); // s (q, a): TRUE [02/17 02:31:01]
+selectTable (PAResourceItoP.PartChooser_BOARDS, "Kintex-7 KC705 Evaluation Platform,xc7k325tffg900-2,900,500,203800,407600,445,840,16,16,0,0,1,10,0,85,85,0.97,0.97,1.03,C,0", 2, false, false, false, false, false); // D (JViewport, a) [02/17 02:31:05]
+selectTable (PAResourceItoP.PartChooser_BOARDS, "Kintex-7 KC705 Evaluation Platform,xc7k325tffg900-2,900,500,203800,407600,445,840,16,16,0,0,1,10,0,85,85,0.97,0.97,1.03,C,0", 2, false, false, false, false, false); // D (JViewport, a) [02/17 02:31:07]
+selectTable (PAResourceItoP.PartChooser_BOARDS, "Kintex-7 KC705 Evaluation Platform,xc7k325tffg900-2,900,500,203800,407600,445,840,16,16,0,0,1,10,0,85,85,0.97,0.97,1.03,C,0", 2, false, false, false, false, true); // D (JViewport, a) - DOUBLE CLICK [02/17 02:31:07]
+// ui.b.c.bS[ui.b.w.a.a]:  Create Project : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: create_project hkp1 /home/shep/projects/hotline/vivado/hkp1 -part xc7k325tffg900-2
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property board xilinx.com:kintex7:kc705:1.0 [current_project]
+select (null, "Finish"); // JButton (ButtonPanel, a) [02/17 02:31:10]
+dismissDialog (" Create Project "); // bS (a) [02/17 02:31:10]
+dismissDialog (" Create Project "); // bS (a) [02/17 02:31:10]
+select (PAResourceItoP.MainMenuMgr_FILE, "File"); // af (CommandMenuBar, aM) [02/17 02:31:19]
+dismissMenu (PAResourceItoP.MainMenuMgr_FILE, "File"); // af (CommandMenuBar, aM) [02/17 02:31:20]
+select (PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // ah (ao, aM) [02/17 02:31:41]
+select (PAResourceCommand.PACommandNames_ADD_SOURCES, "Add Sources..."); // aj (ao, aM) [02/17 02:31:41]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:31:45]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/17 02:31:47]
+String[] filenames31467 = {"/home/shep/projects/hotline/rtl/fpgaTop.v", "/home/shep/projects/hotline/rtl/mkFTop_kc705.v", "/home/shep/projects/hotline/rtl/mkGMAC.v", "/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v", "/home/shep/projects/hotline/rtl/mkL2Proc.v"};
+setFileChooser (filenames31467); //  [02/17 02:32:32]
+select (PAResourceQtoZ.SrcChooserPanel_COPY_SOURCES_INTO_PROJECT, "Copy sources into project", false, true); // i (JPanel, a): FALSE [02/17 02:32:35]
+select (null, "Finish"); // JButton (ButtonPanel, a) [02/17 02:32:40]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: add_files -norecurse {/home/shep/projects/hotline/rtl/fpgaTop.v /home/shep/projects/hotline/rtl/mkFTop_kc705.v /home/shep/projects/hotline/rtl/mkGMAC.v /home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v /home/shep/projects/hotline/rtl/mkL2Proc.v}
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sources_1update_compile_order -fileset sources_1update_compile_order -fileset sim_1
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v)]", 1, false, false, false, false, false); // o (r, aM) [02/17 02:32:55]
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design]", 12, false, false, false, false, false); // u (t, aM) [02/17 02:32:57]
+// ui.b.c.bS[ui.aM]:  Open Elaborated Design : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: synth_design -rtl -name rtl_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Command: synth_design -rtl -name rtl_1Starting synthesis...Using part: xc7k325tffg900-2Top: fpgaTop
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Using Xilinx IP Search Path: /opt/Xilinx/Vivado/2013.1/data/ip/xilinx /opt/Xilinx/Vivado/2013.1/ids_lite/ISE/coregen/ip/xilinx/primary/com/xilinx/ip
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: starting Rtl Elaboration : Time (s): cpu = 00:00:54 ; elapsed = 00:04:09 . Memory (MB): peak = 2765.309 ; gain = 2650.816
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]INFO: [Synth 8-638] synthesizing module 'IBUFGDS' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:11172]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 	Parameter DIFF_TERM bound to: FALSE - type: string 	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Synth 8-439] module 'mkA4LS' not found [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:1208]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter hasDebugLogic bound to: 1'b1 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Synth 8-285] failed synthesizing module 'mkFTop_kc705' [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:312]ERROR: [Synth 8-285] failed synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: finished Rtl Elaboration : Time (s): cpu = 00:01:11 ; elapsed = 00:04:26 . Memory (MB): peak = 2845.676 ; gain = 2731.184
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Rtl Elaboration failed    while executing"rt::run_rtlelab -module $rt::top"    ("uplevel" body line 32)    invoked from within"uplevel #0 {    source $::env(HRT_TCL_PATH)/rtSynthPrep.tcl    set rt::cmdEcho 0    rt::set_parameter writeXmsg true    if { [ info exists ::env(R..."ERROR: [Common 17-39] 'source' failed due to earlier errors.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 6 Infos, 0 Warnings, 0 Critical Warnings and 3 Errors encountered.synth_design failed
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+// ui.b.f.T[ui.aM]: Critical Messages: addNotify
+dismissDialog (" Open Elaborated Design "); // bS (aM) [02/17 02:33:32]
+selectTab (null, "Tcl Console", 0); // FrameContainer (ContainerContainer, aM) [02/17 02:33:47]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:33:53]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:33:53]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:33:53]
+selectTab (null, "Messages", 1); // FrameContainer (ContainerContainer, aM) [02/17 02:33:57]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v)]", 1, false, false, false, false, false); // o (r, aM) [02/17 02:34:12]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v)]", 1, false, false, false, true, false); // o (r, aM) - RIGHT MOUSE BUTTON [02/17 02:34:13]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v)]", 1, false, false, false, false, false); // o (r, aM) [02/17 02:34:15]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v)]", 1, false, false, false, true, false); // o (r, aM) - RIGHT MOUSE BUTTON [02/17 02:34:15]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v)]", 1, false, false, false, false, false); // o (r, aM) [02/17 02:34:17]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v)]", 1, false, false, false, true, false); // o (r, aM) - RIGHT MOUSE BUTTON [02/17 02:34:17]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v)]", 1, false, false, false, false, false); // o (r, aM) [02/17 02:34:20]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 3, false, false, false, false, false); // o (r, aM) [02/17 02:34:23]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 3, false, false, false, true, false); // o (r, aM) - RIGHT MOUSE BUTTON [02/17 02:34:23]
+select (PAResourceCommand.PACommandNames_ADD_SOURCES, "Add Sources..."); // aj (ao, aM) [02/17 02:34:25]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:34:28]
+select (PAResourceAtoH.ConstraintsChooserPanel_ADD_FILES, "Add Files..."); // b (JPanel, a) [02/17 02:34:29]
+setFileChooser ("/home/shep/projects/hotline/constrs/fpgaTop.xdc"); //  [02/17 02:34:34]
+select (null, "Finish"); // JButton (ButtonPanel, a) [02/17 02:34:36]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: add_files -fileset constrs_1 -norecurse /home/shep/projects/hotline/constrs/fpgaTop.xdc
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 3, false, false, false, false, false); // o (r, aM) [02/17 02:34:38]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 3, false, false, false, false, false); // o (r, aM) [02/17 02:34:39]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v)]", 1, false, false, false, false, false); // o (r, aM) [02/17 02:34:41]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v)]", 1, false, false, false, true, false); // o (r, aM) - RIGHT MOUSE BUTTON [02/17 02:34:42]
+select (PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // ah (ao, aM) [02/17 02:34:45]
+select (PAResourceCommand.PACommandNames_ADD_SOURCES, "Add Sources..."); // aj (ao, aM) [02/17 02:34:46]
+select (PAResourceAtoH.AddSrcWizard_SPECIFY_HDL_AND_NETLIST_FILES_OR_DIRECTORIES, "Add or Create Design Sources"); // a (JPanel, a) [02/17 02:34:48]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:34:51]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/17 02:34:52]
+setFileChooser ("/home/shep/projects/hotline/rtl/mkA4LS.v"); //  [02/17 02:35:08]
+select (null, "Finish"); // JButton (ButtonPanel, a) [02/17 02:35:17]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: add_files -norecurse /home/shep/projects/hotline/rtl/mkA4LS.v
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sources_1
+select (PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // ah (ao, aM) [02/17 02:35:25]
+select (null, "Refresh Hierarchy"); // aj (ao, aM) [02/17 02:35:26]
+select (PAResourceAtoH.DesignStateGadget_SHOW_ERROR, "4 errors"); // I (JPanel, aM) [02/17 02:35:33]
+select (PAResourceItoP.MsgView_INFORMATION_MESSAGES, null, false, true); // i (JPanel, aM): FALSE [02/17 02:35:33]
+select (PAResourceItoP.MsgView_WARNING_MESSAGES, null, false, true); // i (JPanel, aM): FALSE [02/17 02:35:33]
+select (PAResourceItoP.MsgView_CRITICAL_WARNINGS, null, false, true); // i (JPanel, aM): FALSE [02/17 02:35:33]
+selectTree (PAResourceItoP.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Vivado Commands, synth_design -rtl -name rtl_1, [Synth 8-439] module 'mkA4LS' not found [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:1208]]", 2, false, false, false, false, false); // M (JViewport, aM) [02/17 02:35:36]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v), ftop - mkFTop_kc705 (mkFTop_kc705.v), a4ls - mkA4LS (mkA4LS.v)]", 3, false, false, false, false, false); // o (r, aM) [02/17 02:35:47]
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design]", 12, false, false, false, false, false); // u (t, aM) [02/17 02:35:54]
+// ui.b.c.bS[ui.aM]:  Open Elaborated Design : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: synth_design -rtl -name rtl_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Command: synth_design -rtl -name rtl_1Starting synthesis...Using part: xc7k325tffg900-2Top: fpgaTop
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Using Xilinx IP Search Path: /opt/Xilinx/Vivado/2013.1/data/ip/xilinx /opt/Xilinx/Vivado/2013.1/ids_lite/ISE/coregen/ip/xilinx/primary/com/xilinx/ip
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: starting Rtl Elaboration : Time (s): cpu = 00:02:05 ; elapsed = 00:07:05 . Memory (MB): peak = 2848.680 ; gain = 2734.188
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]INFO: [Synth 8-638] synthesizing module 'IBUFGDS' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:11172]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 	Parameter DIFF_TERM bound to: FALSE - type: string 	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter hasDebugLogic bound to: 1'b1 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Synth 8-439] module 'FIFO2' not found [/home/shep/projects/hotline/rtl/mkA4LS.v:795]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 35 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Synth 8-285] failed synthesizing module 'mkA4LS' [/home/shep/projects/hotline/rtl/mkA4LS.v:448]ERROR: [Synth 8-285] failed synthesizing module 'mkFTop_kc705' [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:312]ERROR: [Synth 8-285] failed synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: finished Rtl Elaboration : Time (s): cpu = 00:02:23 ; elapsed = 00:07:23 . Memory (MB): peak = 2848.680 ; gain = 2734.188
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Rtl Elaboration failed    while executing"rt::run_rtlelab -module $rt::top"    ("uplevel" body line 33)    invoked from within"uplevel #0 {    source $::env(HRT_TCL_PATH)/rtSynthPrep.tcl    set rt::cmdEcho 0    rt::set_parameter writeXmsg true    if { [ info exists ::env(R..."ERROR: [Common 17-39] 'source' failed due to earlier errors.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 7 Infos, 0 Warnings, 0 Critical Warnings and 4 Errors encountered.synth_design failed
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+// ui.b.f.T[ui.aM]: Critical Messages: addNotify
+dismissDialog (" Open Elaborated Design "); // bS (aM) [02/17 02:36:28]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v), ftop - mkFTop_kc705 (mkFTop_kc705.v), a4ls - mkA4LS (mkA4LS.v)]", 3, false, false, false, true, false); // o (r, aM) - RIGHT MOUSE BUTTON [02/17 02:36:38]
+select (PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // ah (ao, aM) [02/17 02:36:39]
+select (PAResourceCommand.PACommandNames_ADD_SOURCES, "Add Sources..."); // aj (ao, aM) [02/17 02:36:40]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:36:44]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/17 02:36:46]
+setFileChooser ("/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v"); //  [02/17 02:37:06]
+select (null, "Finish"); // JButton (ButtonPanel, a) [02/17 02:37:08]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: add_files -norecurse /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sources_1
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:37:09]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:37:09]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:37:10]
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design]", 12, false, false, false, false, false); // u (t, aM) [02/17 02:37:13]
+// ui.b.c.bS[ui.aM]:  Open Elaborated Design : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: synth_design -rtl -name rtl_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Command: synth_design -rtl -name rtl_1Starting synthesis...Using part: xc7k325tffg900-2Top: fpgaTop
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Using Xilinx IP Search Path: /opt/Xilinx/Vivado/2013.1/data/ip/xilinx /opt/Xilinx/Vivado/2013.1/ids_lite/ISE/coregen/ip/xilinx/primary/com/xilinx/ip
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: starting Rtl Elaboration : Time (s): cpu = 00:03:26 ; elapsed = 00:08:24 . Memory (MB): peak = 2851.684 ; gain = 2737.191
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]INFO: [Synth 8-638] synthesizing module 'IBUFGDS' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:11172]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 	Parameter DIFF_TERM bound to: FALSE - type: string 	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter hasDebugLogic bound to: 1'b1 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'FIFO2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 35 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2' (3#15) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 36 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 34 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized1' (4#15) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 2 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized2' (4#15) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized3' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 32 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized3' (4#15) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized4' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 40 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized4' (4#15) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Synth 8-439] module 'SizedFIFO' not found [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:995]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 40 - type: integer 	Parameter p2depth bound to: 16 - type: integer 	Parameter p3cntr_width bound to: 4 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Synth 8-285] failed synthesizing module 'mkHCrtCompleter2Axi' [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:454]ERROR: [Synth 8-285] failed synthesizing module 'mkFTop_kc705' [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:312]ERROR: [Synth 8-285] failed synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: finished Rtl Elaboration : Time (s): cpu = 00:03:43 ; elapsed = 00:08:42 . Memory (MB): peak = 2852.684 ; gain = 2738.191
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Rtl Elaboration failed    while executing"rt::run_rtlelab -module $rt::top"    ("uplevel" body line 34)    invoked from within"uplevel #0 {    source $::env(HRT_TCL_PATH)/rtSynthPrep.tcl    set rt::cmdEcho 0    rt::set_parameter writeXmsg true    if { [ info exists ::env(R..."ERROR: [Common 17-39] 'source' failed due to earlier errors.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 27 Infos, 0 Warnings, 0 Critical Warnings and 4 Errors encountered.synth_design failed
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+// ui.b.f.T[ui.aM]: Critical Messages: addNotify
+dismissDialog (" Open Elaborated Design "); // bS (aM) [02/17 02:37:47]
+select (PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // ah (ao, aM) [02/17 02:38:05]
+select (PAResourceCommand.PACommandNames_ADD_SOURCES, "Add Sources..."); // aj (ao, aM) [02/17 02:38:05]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:38:06]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/17 02:38:08]
+setFileChooser ("/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v"); //  [02/17 02:38:11]
+select (null, "Finish"); // JButton (ButtonPanel, a) [02/17 02:38:18]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: add_files -norecurse /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:38:19]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:38:19]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:38:19]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sources_1
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, false, false, false, false, false); // o (r, aM) [02/17 02:38:30]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, false, false, false, false, false); // o (r, aM) [02/17 02:38:31]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, false, false, false, true, false); // o (r, aM) - RIGHT MOUSE BUTTON [02/17 02:38:32]
+select (PAResourceCommand.PACommandNames_ADD_SOURCES, "Add Sources..."); // aj (ao, aM) [02/17 02:38:33]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:38:35]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/17 02:38:36]
+setFileChooser ("/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/TriState.v"); //  [02/17 02:38:38]
+select (null, "Finish"); // JButton (ButtonPanel, a) [02/17 02:38:40]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: add_files -norecurse /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/TriState.v
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sources_1
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:39:20]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/17 02:39:23]
+setFileChooser ("/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/MakeResetA.v"); //  [02/17 02:39:30]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/17 02:39:31]
+setFileChooser ("/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/ResetInverter.v"); //  [02/17 02:39:37]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/17 02:39:39]
+setFileChooser ("/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v"); //  [02/17 02:39:44]
+select (null, "Finish"); // JButton (ButtonPanel, a) [02/17 02:39:45]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: add_files -norecurse {/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/MakeResetA.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/ResetInverter.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v}
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sources_1
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design]", 12, false, false, false, false, false); // u (t, aM) [02/17 02:39:48]
+// ui.b.c.bS[ui.aM]:  Open Elaborated Design : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: synth_design -rtl -name rtl_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Command: synth_design -rtl -name rtl_1Starting synthesis...Using part: xc7k325tffg900-2Top: fpgaTop
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Using Xilinx IP Search Path: /opt/Xilinx/Vivado/2013.1/data/ip/xilinx /opt/Xilinx/Vivado/2013.1/ids_lite/ISE/coregen/ip/xilinx/primary/com/xilinx/ip
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: starting Rtl Elaboration : Time (s): cpu = 00:04:41 ; elapsed = 00:11:00 . Memory (MB): peak = 2866.199 ; gain = 2751.707
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]INFO: [Synth 8-638] synthesizing module 'IBUFGDS' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:11172]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 	Parameter DIFF_TERM bound to: FALSE - type: string 	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter hasDebugLogic bound to: 1'b1 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'FIFO2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 35 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2' (3#20) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 36 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 34 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized1' (4#20) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 2 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized2' (4#20) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized3' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 32 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized3' (4#20) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized4' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 40 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized4' (4#20) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'SizedFIFO' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 40 - type: integer 	Parameter p2depth bound to: 16 - type: integer 	Parameter p3cntr_width bound to: 4 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 14 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Synth 8-439] module 'SyncBit' not found [/home/shep/projects/hotline/rtl/mkGMAC.v:1016]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter init bound to: 1'b0 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Synth 8-285] failed synthesizing module 'mkGMAC' [/home/shep/projects/hotline/rtl/mkGMAC.v:385]ERROR: [Synth 8-285] failed synthesizing module 'mkFTop_kc705' [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:312]ERROR: [Synth 8-285] failed synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: finished Rtl Elaboration : Time (s): cpu = 00:04:59 ; elapsed = 00:11:18 . Memory (MB): peak = 2866.199 ; gain = 2751.707
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Rtl Elaboration failed    while executing"rt::run_rtlelab -module $rt::top"    ("uplevel" body line 39)    invoked from within"uplevel #0 {    source $::env(HRT_TCL_PATH)/rtSynthPrep.tcl    set rt::cmdEcho 0    rt::set_parameter writeXmsg true    if { [ info exists ::env(R..."ERROR: [Common 17-39] 'source' failed due to earlier errors.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 54 Infos, 0 Warnings, 0 Critical Warnings and 4 Errors encountered.synth_design failed
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+// ui.b.f.T[ui.aM]: Critical Messages: addNotify
+dismissDialog (" Open Elaborated Design "); // bS (aM) [02/17 02:40:23]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:40:39]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:40:39]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:40:39]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v), ftop - mkFTop_kc705 (mkFTop_kc705.v), gmac - mkGMAC (mkGMAC.v)]", 5, false, false, false, false, false); // o (r, aM) [02/17 02:40:42]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v), ftop - mkFTop_kc705 (mkFTop_kc705.v), gmac - mkGMAC (mkGMAC.v)]", 5, false, false, false, false, false); // o (r, aM) [02/17 02:40:43]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v), ftop - mkFTop_kc705 (mkFTop_kc705.v), gmac - mkGMAC (mkGMAC.v)]", 5, false, false, false, false, true); // o (r, aM) - DOUBLE CLICK [02/17 02:40:44]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v), ftop - mkFTop_kc705 (mkFTop_kc705.v), gmac - mkGMAC (mkGMAC.v)]", 5, false, false, false, false, false); // o (r, aM) [02/17 02:41:21]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:41:25]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/17 02:41:27]
+String[] filenames16706 = {"/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncBit.v", "/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v", "/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v"};
+setFileChooser (filenames16706); //  [02/17 02:41:59]
+select (null, "Finish"); // JButton (ButtonPanel, a) [02/17 02:42:01]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: add_files -norecurse {/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncBit.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v}
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sources_1
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design]", 12, false, false, false, false, false); // u (t, aM) [02/17 02:42:03]
+// ui.b.c.bS[ui.aM]:  Open Elaborated Design : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: synth_design -rtl -name rtl_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Command: synth_design -rtl -name rtl_1Starting synthesis...Using part: xc7k325tffg900-2Top: fpgaTop
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Using Xilinx IP Search Path: /opt/Xilinx/Vivado/2013.1/data/ip/xilinx /opt/Xilinx/Vivado/2013.1/ids_lite/ISE/coregen/ip/xilinx/primary/com/xilinx/ip
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: starting Rtl Elaboration : Time (s): cpu = 00:05:40 ; elapsed = 00:13:15 . Memory (MB): peak = 2870.074 ; gain = 2755.582
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]INFO: [Synth 8-638] synthesizing module 'IBUFGDS' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:11172]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 	Parameter DIFF_TERM bound to: FALSE - type: string 	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter hasDebugLogic bound to: 1'b1 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'FIFO2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 35 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2' (3#23) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 36 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 34 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized1' (4#23) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 2 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized2' (4#23) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized3' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 32 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized3' (4#23) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized4' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 40 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized4' (4#23) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'SizedFIFO' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 40 - type: integer 	Parameter p2depth bound to: 16 - type: integer 	Parameter p3cntr_width bound to: 4 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 14 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter init bound to: 1'b0 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter DELAY_SRC bound to: I - type: string 	Parameter HIGH_PERFORMANCE_MODE bound to: TRUE - type: string 	Parameter IDELAY_TYPE bound to: FIXED - type: string 	Parameter SIGNAL_PATTERN bound to: CLOCK - type: string 	Parameter IDELAY_VALUE bound to: 0 - type: integer 	Parameter ODELAY_VALUE bound to: 0 - type: integer 	Parameter REFCLK_FREQUENCY bound to: 200.000000 - type: float 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'IODELAY' (9#23) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:14959]INFO: [Synth 8-638] synthesizing module 'SyncResetA' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 7 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncResetA' (10#23) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]INFO: [Synth 8-638] synthesizing module 'BUFR' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:856]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter BUFR_DIVIDE bound to: BYPASS - type: string 	Parameter SIM_DEVICE bound to: VIRTEX4 - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'BUFR' (11#23) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:856]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Synth 8-439] module 'mkCRC32' not found [/home/shep/projects/hotline/rtl/mkGMAC.v:1069]ERROR: [Synth 8-285] failed synthesizing module 'mkGMAC' [/home/shep/projects/hotline/rtl/mkGMAC.v:385]ERROR: [Synth 8-285] failed synthesizing module 'mkFTop_kc705' [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:312]ERROR: [Synth 8-285] failed synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: finished Rtl Elaboration : Time (s): cpu = 00:05:58 ; elapsed = 00:13:32 . Memory (MB): peak = 2870.074 ; gain = 2755.582
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Rtl Elaboration failed    while executing"rt::run_rtlelab -module $rt::top"    ("uplevel" body line 42)    invoked from within"uplevel #0 {    source $::env(HRT_TCL_PATH)/rtSynthPrep.tcl    set rt::cmdEcho 0    rt::set_parameter writeXmsg true    if { [ info exists ::env(R..."ERROR: [Common 17-39] 'source' failed due to earlier errors.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 64 Infos, 0 Warnings, 0 Critical Warnings and 4 Errors encountered.synth_design failed
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+// ui.b.f.T[ui.aM]: Critical Messages: addNotify
+dismissDialog (" Open Elaborated Design "); // bS (aM) [02/17 02:42:38]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:43:35]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:43:35]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:43:35]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:43:41]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/17 02:43:42]
+setFileChooser ("/home/shep/projects/hotline/rtl/mkCRC32.v"); //  [02/17 02:43:47]
+select (null, "Finish"); // JButton (ButtonPanel, a) [02/17 02:43:49]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: add_files -norecurse /home/shep/projects/hotline/rtl/mkCRC32.v
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sources_1
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design]", 12, false, false, false, false, false); // u (t, aM) [02/17 02:43:50]
+// ui.b.c.bS[ui.aM]:  Open Elaborated Design : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: synth_design -rtl -name rtl_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Command: synth_design -rtl -name rtl_1Starting synthesis...Using part: xc7k325tffg900-2Top: fpgaTop
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Using Xilinx IP Search Path: /opt/Xilinx/Vivado/2013.1/data/ip/xilinx /opt/Xilinx/Vivado/2013.1/ids_lite/ISE/coregen/ip/xilinx/primary/com/xilinx/ip
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: starting Rtl Elaboration : Time (s): cpu = 00:07:16 ; elapsed = 00:15:01 . Memory (MB): peak = 2874.078 ; gain = 2759.586
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]INFO: [Synth 8-638] synthesizing module 'IBUFGDS' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:11172]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 	Parameter DIFF_TERM bound to: FALSE - type: string 	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter hasDebugLogic bound to: 1'b1 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'FIFO2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 35 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2' (3#24) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 36 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 34 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized1' (4#24) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 2 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized2' (4#24) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized3' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 32 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized3' (4#24) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized4' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 40 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized4' (4#24) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'SizedFIFO' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 40 - type: integer 	Parameter p2depth bound to: 16 - type: integer 	Parameter p3cntr_width bound to: 4 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 14 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter init bound to: 1'b0 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter DELAY_SRC bound to: I - type: string 	Parameter HIGH_PERFORMANCE_MODE bound to: TRUE - type: string 	Parameter IDELAY_TYPE bound to: FIXED - type: string 	Parameter SIGNAL_PATTERN bound to: CLOCK - type: string 	Parameter IDELAY_VALUE bound to: 0 - type: integer 	Parameter ODELAY_VALUE bound to: 0 - type: integer 	Parameter REFCLK_FREQUENCY bound to: 200.000000 - type: float 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'IODELAY' (9#24) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:14959]INFO: [Synth 8-638] synthesizing module 'SyncResetA' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 7 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncResetA' (10#24) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]INFO: [Synth 8-638] synthesizing module 'BUFR' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:856]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter BUFR_DIVIDE bound to: BYPASS - type: string 	Parameter SIM_DEVICE bound to: VIRTEX4 - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'BUFR' (11#24) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:856]INFO: [Synth 8-638] synthesizing module 'mkCRC32' [/home/shep/projects/hotline/rtl/mkCRC32.v:55]INFO: [Synth 8-256] done synthesizing module 'mkCRC32' (12#24) [/home/shep/projects/hotline/rtl/mkCRC32.v:55]INFO: [Synth 8-638] synthesizing module 'SyncFIFO' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter dataWidth bound to: 10 - type: integer 	Parameter depth bound to: 8 - type: integer 	Parameter indxWidth bound to: 3 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncFIFO' (13#24) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]INFO: [Synth 8-638] synthesizing module 'SyncResetA__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncResetA__parameterized0' (13#24) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]INFO: [Synth 8-638] synthesizing module 'ODDR' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:20997]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter DDR_CLK_EDGE bound to: SAME_EDGE - type: string 	Parameter INIT bound to: 1'b0 	Parameter SRTYPE bound to: SYNC - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter dataWidth bound to: 10 - type: integer 	Parameter depth bound to: 16 - type: integer 	Parameter indxWidth bound to: 4 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 24 - type: integer 	Parameter p2depth bound to: 16 - type: integer 	Parameter p3cntr_width bound to: 4 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 14 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 8 - type: integer 	Parameter p2depth bound to: 16 - type: integer 	Parameter p3cntr_width bound to: 4 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 14 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:143]INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:200]INFO: [Synth 8-256] done synthesizing module 'SizedFIFO__parameterized1' (16#24) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Synth 8-439] module 'Counter' not found [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:1324]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 10 - type: integer 	Parameter init bound to: 10'b0000000000 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Synth 8-285] failed synthesizing module 'mkFTop_kc705' [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:312]ERROR: [Synth 8-285] failed synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: finished Rtl Elaboration : Time (s): cpu = 00:07:34 ; elapsed = 00:15:19 . Memory (MB): peak = 2876.203 ; gain = 2761.711
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Rtl Elaboration failed    while executing"rt::run_rtlelab -module $rt::top"    ("uplevel" body line 43)    invoked from within"uplevel #0 {    source $::env(HRT_TCL_PATH)/rtSynthPrep.tcl    set rt::cmdEcho 0    rt::set_parameter writeXmsg true    if { [ info exists ::env(R..."ERROR: [Common 17-39] 'source' failed due to earlier errors.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 87 Infos, 0 Warnings, 0 Critical Warnings and 3 Errors encountered.synth_design failed
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+// ui.b.f.T[ui.aM]: Critical Messages: addNotify
+dismissDialog (" Open Elaborated Design "); // bS (aM) [02/17 02:44:24]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:44:32]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:44:32]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:44:32]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:44:35]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/17 02:44:37]
+setFileChooser ("/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v"); //  [02/17 02:44:42]
+select (null, "Finish"); // JButton (ButtonPanel, a) [02/17 02:44:43]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: add_files -norecurse /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sources_1
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design]", 12, false, false, false, false, false); // u (t, aM) [02/17 02:44:53]
+// ui.b.c.bS[ui.aM]:  Open Elaborated Design : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: synth_design -rtl -name rtl_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Command: synth_design -rtl -name rtl_1Starting synthesis...Using part: xc7k325tffg900-2Top: fpgaTop
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Using Xilinx IP Search Path: /opt/Xilinx/Vivado/2013.1/data/ip/xilinx /opt/Xilinx/Vivado/2013.1/ids_lite/ISE/coregen/ip/xilinx/primary/com/xilinx/ip
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: starting Rtl Elaboration : Time (s): cpu = 00:07:59 ; elapsed = 00:16:04 . Memory (MB): peak = 2876.203 ; gain = 2761.711
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]INFO: [Synth 8-638] synthesizing module 'IBUFGDS' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:11172]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 	Parameter DIFF_TERM bound to: FALSE - type: string 	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter hasDebugLogic bound to: 1'b1 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'FIFO2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 35 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2' (3#25) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 36 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 34 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized1' (4#25) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 2 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized2' (4#25) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized3' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 32 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized3' (4#25) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized4' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 40 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized4' (4#25) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'SizedFIFO' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 40 - type: integer 	Parameter p2depth bound to: 16 - type: integer 	Parameter p3cntr_width bound to: 4 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 14 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter init bound to: 1'b0 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter DELAY_SRC bound to: I - type: string 	Parameter HIGH_PERFORMANCE_MODE bound to: TRUE - type: string 	Parameter IDELAY_TYPE bound to: FIXED - type: string 	Parameter SIGNAL_PATTERN bound to: CLOCK - type: string 	Parameter IDELAY_VALUE bound to: 0 - type: integer 	Parameter ODELAY_VALUE bound to: 0 - type: integer 	Parameter REFCLK_FREQUENCY bound to: 200.000000 - type: float 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'IODELAY' (9#25) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:14959]INFO: [Synth 8-638] synthesizing module 'SyncResetA' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 7 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncResetA' (10#25) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]INFO: [Synth 8-638] synthesizing module 'BUFR' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:856]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter BUFR_DIVIDE bound to: BYPASS - type: string 	Parameter SIM_DEVICE bound to: VIRTEX4 - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'BUFR' (11#25) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:856]INFO: [Synth 8-638] synthesizing module 'mkCRC32' [/home/shep/projects/hotline/rtl/mkCRC32.v:55]INFO: [Synth 8-256] done synthesizing module 'mkCRC32' (12#25) [/home/shep/projects/hotline/rtl/mkCRC32.v:55]INFO: [Synth 8-638] synthesizing module 'SyncFIFO' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter dataWidth bound to: 10 - type: integer 	Parameter depth bound to: 8 - type: integer 	Parameter indxWidth bound to: 3 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncFIFO' (13#25) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]INFO: [Synth 8-638] synthesizing module 'SyncResetA__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncResetA__parameterized0' (13#25) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]INFO: [Synth 8-638] synthesizing module 'ODDR' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:20997]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter DDR_CLK_EDGE bound to: SAME_EDGE - type: string 	Parameter INIT bound to: 1'b0 	Parameter SRTYPE bound to: SYNC - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter dataWidth bound to: 10 - type: integer 	Parameter depth bound to: 16 - type: integer 	Parameter indxWidth bound to: 4 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 24 - type: integer 	Parameter p2depth bound to: 16 - type: integer 	Parameter p3cntr_width bound to: 4 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 14 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 8 - type: integer 	Parameter p2depth bound to: 16 - type: integer 	Parameter p3cntr_width bound to: 4 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 14 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 10 - type: integer 	Parameter init bound to: 10'b0000000000 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'Counter' (17#25) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]INFO: [Synth 8-638] synthesizing module 'Counter__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 32 - type: integer 	Parameter init bound to: 32'b00000000000000000000001010011010 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'Counter__parameterized0' (17#25) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]INFO: [Synth 8-638] synthesizing module 'TriState' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/TriState.v:30]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 1 - type: integer 	Parameter init bound to: 1'b0 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'MakeResetA' (20#25) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/MakeResetA.v:40]INFO: [Synth 8-638] synthesizing module 'BRAM1Load' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v:30]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter FILENAME bound to: ../../../../data/hdmi_iic.hex - type: string 	Parameter PIPELINED bound to: 1'b0 	Parameter ADDR_WIDTH bound to: 10 - type: integer 	Parameter DATA_WIDTH bound to: 32 - type: integer 	Parameter MEMSIZE bound to: 11'b10000000000 	Parameter BINARY bound to: 1'b0 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'BRAM1Load' (21#25) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v:30]INFO: [Synth 8-638] synthesizing module 'SizedFIFO__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 32 - type: integer 	Parameter p2depth bound to: 3 - type: integer 	Parameter p3cntr_width bound to: 1 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 10 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized5' (21#25) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized6' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 48 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Synth 8-439] module 'mkLCDController' not found [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:1449]ERROR: [Synth 8-285] failed synthesizing module 'mkFTop_kc705' [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:312]ERROR: [Synth 8-285] failed synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: finished Rtl Elaboration : Time (s): cpu = 00:08:17 ; elapsed = 00:16:22 . Memory (MB): peak = 2881.203 ; gain = 2766.711
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Rtl Elaboration failed    while executing"rt::run_rtlelab -module $rt::top"    ("uplevel" body line 44)    invoked from within"uplevel #0 {    source $::env(HRT_TCL_PATH)/rtSynthPrep.tcl    set rt::cmdEcho 0    rt::set_parameter writeXmsg true    if { [ info exists ::env(R..."ERROR: [Common 17-39] 'source' failed due to earlier errors.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 113 Infos, 1 Warnings, 0 Critical Warnings and 3 Errors encountered.synth_design failed
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+// ui.b.f.T[ui.aM]: Critical Messages: addNotify
+dismissDialog (" Open Elaborated Design "); // bS (aM) [02/17 02:45:27]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:45:49]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:45:49]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:45:49]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/17 02:47:12]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/17 02:47:13]
+setFileChooser ("/home/shep/projects/hotline/rtl/mkLCDController.v"); //  [02/17 02:47:18]
+select (null, "Finish"); // JButton (ButtonPanel, a) [02/17 02:47:20]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: add_files -norecurse /home/shep/projects/hotline/rtl/mkLCDController.v
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sources_1
+// ui.b.c.bS[ui.aM]:  Open Elaborated Design : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: synth_design -rtl -name rtl_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Command: synth_design -rtl -name rtl_1Starting synthesis...Using part: xc7k325tffg900-2Top: fpgaTop
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Using Xilinx IP Search Path: /opt/Xilinx/Vivado/2013.1/data/ip/xilinx /opt/Xilinx/Vivado/2013.1/ids_lite/ISE/coregen/ip/xilinx/primary/com/xilinx/ip
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: starting Rtl Elaboration : Time (s): cpu = 00:08:58 ; elapsed = 00:18:34 . Memory (MB): peak = 2884.996 ; gain = 2770.504
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]INFO: [Synth 8-638] synthesizing module 'IBUFGDS' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:11172]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 	Parameter DIFF_TERM bound to: FALSE - type: string 	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter hasDebugLogic bound to: 1'b1 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'FIFO2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 35 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2' (3#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 36 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 34 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized1' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 2 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized2' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized3' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 32 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized3' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized4' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 40 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized4' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'SizedFIFO' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 40 - type: integer 	Parameter p2depth bound to: 16 - type: integer 	Parameter p3cntr_width bound to: 4 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 14 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter init bound to: 1'b0 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter DELAY_SRC bound to: I - type: string 	Parameter HIGH_PERFORMANCE_MODE bound to: TRUE - type: string 	Parameter IDELAY_TYPE bound to: FIXED - type: string 	Parameter SIGNAL_PATTERN bound to: CLOCK - type: string 	Parameter IDELAY_VALUE bound to: 0 - type: integer 	Parameter ODELAY_VALUE bound to: 0 - type: integer 	Parameter REFCLK_FREQUENCY bound to: 200.000000 - type: float 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'IODELAY' (9#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:14959]INFO: [Synth 8-638] synthesizing module 'SyncResetA' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 7 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncResetA' (10#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]INFO: [Synth 8-638] synthesizing module 'BUFR' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:856]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter BUFR_DIVIDE bound to: BYPASS - type: string 	Parameter SIM_DEVICE bound to: VIRTEX4 - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'BUFR' (11#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:856]INFO: [Synth 8-638] synthesizing module 'mkCRC32' [/home/shep/projects/hotline/rtl/mkCRC32.v:55]INFO: [Synth 8-256] done synthesizing module 'mkCRC32' (12#26) [/home/shep/projects/hotline/rtl/mkCRC32.v:55]INFO: [Synth 8-638] synthesizing module 'SyncFIFO' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter dataWidth bound to: 10 - type: integer 	Parameter depth bound to: 8 - type: integer 	Parameter indxWidth bound to: 3 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncFIFO' (13#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]INFO: [Synth 8-638] synthesizing module 'SyncResetA__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncResetA__parameterized0' (13#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]INFO: [Synth 8-638] synthesizing module 'ODDR' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:20997]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter DDR_CLK_EDGE bound to: SAME_EDGE - type: string 	Parameter INIT bound to: 1'b0 	Parameter SRTYPE bound to: SYNC - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter dataWidth bound to: 10 - type: integer 	Parameter depth bound to: 16 - type: integer 	Parameter indxWidth bound to: 4 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 24 - type: integer 	Parameter p2depth bound to: 16 - type: integer 	Parameter p3cntr_width bound to: 4 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 14 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 8 - type: integer 	Parameter p2depth bound to: 16 - type: integer 	Parameter p3cntr_width bound to: 4 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 14 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 10 - type: integer 	Parameter init bound to: 10'b0000000000 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'Counter' (17#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]INFO: [Synth 8-638] synthesizing module 'Counter__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 32 - type: integer 	Parameter init bound to: 32'b00000000000000000000001010011010 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'Counter__parameterized0' (17#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]INFO: [Synth 8-638] synthesizing module 'TriState' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/TriState.v:30]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 1 - type: integer 	Parameter init bound to: 1'b0 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'MakeResetA' (20#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/MakeResetA.v:40]INFO: [Synth 8-638] synthesizing module 'BRAM1Load' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v:30]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter FILENAME bound to: ../../../../data/hdmi_iic.hex - type: string 	Parameter PIPELINED bound to: 1'b0 	Parameter ADDR_WIDTH bound to: 10 - type: integer 	Parameter DATA_WIDTH bound to: 32 - type: integer 	Parameter MEMSIZE bound to: 11'b10000000000 	Parameter BINARY bound to: 1'b0 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'BRAM1Load' (21#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v:30]INFO: [Synth 8-638] synthesizing module 'SizedFIFO__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 32 - type: integer 	Parameter p2depth bound to: 3 - type: integer 	Parameter p3cntr_width bound to: 1 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 10 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized5' (21#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized6' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 48 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 27 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized7' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized8' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 17 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized8' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'Counter__parameterized1' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 8 - type: integer 	Parameter init bound to: 8'b00000000 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'Counter__parameterized1' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]INFO: [Synth 8-638] synthesizing module 'Counter__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 4 - type: integer 	Parameter init bound to: 4'b0110 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'Counter__parameterized2' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]INFO: [Synth 8-638] synthesizing module 'SyncResetA__parameterized1' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 15 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncResetA__parameterized1' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]INFO: [Synth 8-638] synthesizing module 'IBUFDS_GTE2' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:10936]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter CLKCM_CFG bound to: TRUE - type: string 	Parameter CLKRCV_TRST bound to: TRUE - type: string 	Parameter CLKSWING_CFG bound to: 2'b11 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'IBUFDS_GTE2' (24#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:10936]INFO: [Synth 8-638] synthesizing module 'SyncResetA__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 0 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncResetA__parameterized2' (24#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]INFO: [Synth 8-256] done synthesizing module 'mkFTop_kc705' (25#26) [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:312]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Synth 8-448] named port connection 'i2cpad_scl' does not exist for instance 'ftop' of module 'mkFTop_kc705' [/home/shep/projects/hotline/rtl/fpgaTop.v:248]ERROR: [Synth 8-448] named port connection 'i2cpad_sda' does not exist for instance 'ftop' of module 'mkFTop_kc705' [/home/shep/projects/hotline/rtl/fpgaTop.v:249]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Synth 8-285] failed synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: finished Rtl Elaboration : Time (s): cpu = 00:09:16 ; elapsed = 00:18:53 . Memory (MB): peak = 2907.402 ; gain = 2792.910
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Rtl Elaboration failed    while executing"rt::run_rtlelab -module $rt::top"    ("uplevel" body line 45)    invoked from within"uplevel #0 {    source $::env(HRT_TCL_PATH)/rtSynthPrep.tcl    set rt::cmdEcho 0    rt::set_parameter writeXmsg true    if { [ info exists ::env(R..."ERROR: [Common 17-39] 'source' failed due to earlier errors.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 144 Infos, 2 Warnings, 0 Critical Warnings and 3 Errors encountered.synth_design failed
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+// ui.b.f.T[ui.aM]: Critical Messages: addNotify
+dismissDialog (" Open Elaborated Design "); // bS (aM) [02/17 02:47:58]
+selectTab (null, "Tcl Console", 0); // FrameContainer (ContainerContainer, aM) [02/17 02:48:53]
+selectTab (null, "mkFTop_kc705.v", 1); // TdiGroup (CodeEditorDocumentPane, aM) [02/17 02:50:00]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:50:05]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:50:05]
+select (PAResourceAtoH.CmdMsgDialog_OK, " OK "); // b (JPanel, T) [02/17 02:50:05]
+select (PAResourceAtoH.DesignStateGadget_SHOW_ERROR, "4 errors"); // I (JPanel, aM) [02/17 02:56:44]
+select (PAResourceItoP.MsgView_CRITICAL_WARNINGS, null, true, false); // i (JPanel, aM): TRUE [02/17 02:56:44]
+selectTree (PAResourceItoP.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Vivado Commands, synth_design -rtl -name rtl_1, [Synth 8-448] named port connection 'i2cpad_scl' does not exist for instance 'ftop' of module 'mkFTop_kc705' [/home/shep/projects/hotline/rtl/fpgaTop.v:248]]", 2, false, false, false, false, false); // M (JViewport, aM) [02/17 02:56:49]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v), ftop - mkFTop_kc705 (mkFTop_kc705.v)]", 2, false, false, false, false, false); // o (r, aM) [02/17 02:57:29]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v), ftop - mkFTop_kc705 (mkFTop_kc705.v)]", 2, false, false, false, false, false); // o (r, aM) [02/17 02:57:32]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v), ftop - mkFTop_kc705 (mkFTop_kc705.v)]", 2, false, false, false, false, true); // o (r, aM) - DOUBLE CLICK [02/17 02:57:33]
+selectTab (null, "fpgaTop.v", 1); // TdiGroup (CodeEditorDocumentPane, aM) [02/17 02:57:43]
+selectTab (null, "mkFTop_kc705.v", 2); // TdiGroup (CodeEditorDocumentPane, aM) [02/17 02:57:48]
+selectTab (null, "fpgaTop.v", 1); // TdiGroup (CodeEditorDocumentPane, aM) [02/17 02:57:51]
+selectTab (null, "mkFTop_kc705.v", 2); // TdiGroup (CodeEditorDocumentPane, aM) [02/17 02:57:56]
+selectTab (null, "fpgaTop.v", 1); // TdiGroup (CodeEditorDocumentPane, aM) [02/17 02:58:00]
+// ui.b.c.bS[ui.aM]:  Open Elaborated Design : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: synth_design -rtl -name rtl_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Command: synth_design -rtl -name rtl_1Starting synthesis...Using part: xc7k325tffg900-2Top: fpgaTop
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Using Xilinx IP Search Path: /opt/Xilinx/Vivado/2013.1/data/ip/xilinx /opt/Xilinx/Vivado/2013.1/ids_lite/ISE/coregen/ip/xilinx/primary/com/xilinx/ip
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: starting Rtl Elaboration : Time (s): cpu = 00:11:53 ; elapsed = 00:31:19 . Memory (MB): peak = 2907.402 ; gain = 2792.910
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]INFO: [Synth 8-638] synthesizing module 'IBUFGDS' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:11172]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 	Parameter DIFF_TERM bound to: FALSE - type: string 	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter hasDebugLogic bound to: 1'b1 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-638] synthesizing module 'FIFO2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 35 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2' (3#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 36 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 34 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized1' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 2 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized2' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized3' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 32 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized3' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized4' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 40 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized4' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'SizedFIFO' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 40 - type: integer 	Parameter p2depth bound to: 16 - type: integer 	Parameter p3cntr_width bound to: 4 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 14 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter init bound to: 1'b0 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter DELAY_SRC bound to: I - type: string 	Parameter HIGH_PERFORMANCE_MODE bound to: TRUE - type: string 	Parameter IDELAY_TYPE bound to: FIXED - type: string 	Parameter SIGNAL_PATTERN bound to: CLOCK - type: string 	Parameter IDELAY_VALUE bound to: 0 - type: integer 	Parameter ODELAY_VALUE bound to: 0 - type: integer 	Parameter REFCLK_FREQUENCY bound to: 200.000000 - type: float 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'IODELAY' (9#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:14959]INFO: [Synth 8-638] synthesizing module 'SyncResetA' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 7 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncResetA' (10#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]INFO: [Synth 8-638] synthesizing module 'BUFR' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:856]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter BUFR_DIVIDE bound to: BYPASS - type: string 	Parameter SIM_DEVICE bound to: VIRTEX4 - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'BUFR' (11#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:856]INFO: [Synth 8-638] synthesizing module 'mkCRC32' [/home/shep/projects/hotline/rtl/mkCRC32.v:55]INFO: [Synth 8-256] done synthesizing module 'mkCRC32' (12#26) [/home/shep/projects/hotline/rtl/mkCRC32.v:55]INFO: [Synth 8-638] synthesizing module 'SyncFIFO' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter dataWidth bound to: 10 - type: integer 	Parameter depth bound to: 8 - type: integer 	Parameter indxWidth bound to: 3 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncFIFO' (13#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]INFO: [Synth 8-638] synthesizing module 'SyncResetA__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncResetA__parameterized0' (13#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]INFO: [Synth 8-638] synthesizing module 'ODDR' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:20997]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter DDR_CLK_EDGE bound to: SAME_EDGE - type: string 	Parameter INIT bound to: 1'b0 	Parameter SRTYPE bound to: SYNC - type: string 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter dataWidth bound to: 10 - type: integer 	Parameter depth bound to: 16 - type: integer 	Parameter indxWidth bound to: 4 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 24 - type: integer 	Parameter p2depth bound to: 16 - type: integer 	Parameter p3cntr_width bound to: 4 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 14 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 8 - type: integer 	Parameter p2depth bound to: 16 - type: integer 	Parameter p3cntr_width bound to: 4 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 14 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 10 - type: integer 	Parameter init bound to: 10'b0000000000 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'Counter' (17#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]INFO: [Synth 8-638] synthesizing module 'Counter__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 32 - type: integer 	Parameter init bound to: 32'b00000000000000000000001010011010 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'Counter__parameterized0' (17#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]INFO: [Synth 8-638] synthesizing module 'TriState' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/TriState.v:30]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 1 - type: integer 	Parameter init bound to: 1'b0 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'MakeResetA' (20#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/MakeResetA.v:40]INFO: [Synth 8-638] synthesizing module 'BRAM1Load' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v:30]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter FILENAME bound to: ../../../../data/hdmi_iic.hex - type: string 	Parameter PIPELINED bound to: 1'b0 	Parameter ADDR_WIDTH bound to: 10 - type: integer 	Parameter DATA_WIDTH bound to: 32 - type: integer 	Parameter MEMSIZE bound to: 11'b10000000000 	Parameter BINARY bound to: 1'b0 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'BRAM1Load' (21#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v:30]INFO: [Synth 8-638] synthesizing module 'SizedFIFO__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter p1width bound to: 32 - type: integer 	Parameter p2depth bound to: 3 - type: integer 	Parameter p3cntr_width bound to: 1 - type: integer 	Parameter guarded bound to: 1 - type: integer 	Parameter p2depth2 bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 10 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized5' (21#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized6' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 48 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 27 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized7' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized8' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 17 - type: integer 	Parameter guarded bound to: 1 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized8' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]INFO: [Synth 8-638] synthesizing module 'Counter__parameterized1' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 8 - type: integer 	Parameter init bound to: 8'b00000000 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'Counter__parameterized1' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]INFO: [Synth 8-638] synthesizing module 'Counter__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter width bound to: 4 - type: integer 	Parameter init bound to: 4'b0110 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'Counter__parameterized2' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]INFO: [Synth 8-638] synthesizing module 'SyncResetA__parameterized1' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 15 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncResetA__parameterized1' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]INFO: [Synth 8-638] synthesizing module 'IBUFDS_GTE2' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:10936]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter CLKCM_CFG bound to: TRUE - type: string 	Parameter CLKRCV_TRST bound to: TRUE - type: string 	Parameter CLKSWING_CFG bound to: 2'b11 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'IBUFDS_GTE2' (24#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:10936]INFO: [Synth 8-638] synthesizing module 'SyncResetA__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: 	Parameter RSTDELAY bound to: 0 - type: integer 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'SyncResetA__parameterized2' (24#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]INFO: [Synth 8-256] done synthesizing module 'mkFTop_kc705' (25#26) [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:312]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Synth 8-256] done synthesizing module 'fpgaTop' (26#26) [/home/shep/projects/hotline/rtl/fpgaTop.v:5]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_limit to change the current settings.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Netlist 29-17] Analyzing 14 Unisim elements for replacementINFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Project 1-111] Unisim Transformation Summary:  A total of 3 instances were transformed.  IBUFGDS => IBUFDS: 2 instances  IODELAY => IDELAYE2: 1 instances
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Phase 0 | Netlist Checksum: 6c52ce62
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: RTL Elaboration Complete:  : Time (s): cpu = 00:12:36 ; elapsed = 00:31:54 . Memory (MB): peak = 3549.879 ; gain = 3435.387131 Infos, 114 Warnings, 0 Critical Warnings and 0 Errors encountered.synth_design completed successfully
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: synth_design: Time (s): cpu = 00:00:59 ; elapsed = 00:00:51 . Memory (MB): peak = 3549.879 ; gain = 642.477
+dismissDialog (" Open Elaborated Design "); // bS (aM) [02/17 03:01:00]
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false, false, false, false, false); // u (t, aM) [02/17 03:02:00]
+// ui.b.c.bS[ui.aM]:  Starting Synthesis : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_runs synth_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: [Sun Feb 17 15:02:01 2013] Launched synth_1...Run output will be captured here: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/synth_1/runme.log
+dismissDialog (" Starting Synthesis "); // bS (aM) [02/17 03:02:01]
+// ui.b.w.M[ui.aM]: Synthesis Completed: addNotify
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, M) [02/17 03:05:53]
+// ui.b.c.bS[ui.aM]:  Starting Implementation : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_runs impl_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: [Sun Feb 17 15:05:54 2013] Launched impl_1...Run output will be captured here: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/runme.log
+dismissDialog (" Starting Implementation "); // bS (aM) [02/17 03:05:54]
+// ui.b.w.M[ui.aM]: Implementation Completed: addNotify
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, M) [02/17 03:07:09]
+// ui.views.I.d[ui.aM]: Vivado: addNotify
+select (PAResourceAtoH.ClosePlanner_YES, "Yes"); // b (JPanel, d) [02/17 03:07:11]
+// ui.b.c.bS[ui.aM]:  Open Implemented Design : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: close_design
+dismissDialog ("Vivado"); // d (aM) [02/17 03:07:12]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: open_run impl_1
+// Device: addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Netlist 29-17] Analyzing 186 Unisim elements for replacementINFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Parsing XDC File [/home/shep/projects/hotline/vivado/.Xil/Vivado-13515-ar-cms520/dcp/fpgaTop.xdc]Finished Parsing XDC File [/home/shep/projects/hotline/vivado/.Xil/Vivado-13515-ar-cms520/dcp/fpgaTop.xdc]Reading XDEF placement.Reading XDEF routing.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Read XDEF File: Time (s): cpu = 00:00:00.15 ; elapsed = 00:00:00.15 . Memory (MB): peak = 3557.910 ; gain = 0.000
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Restoring placement.Restored 1102 out of 1102 XDEF sites from archive | CPU: 0.430000 secs | Memory: 7.285233 MB |
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Project 1-111] Unisim Transformation Summary:  A total of 158 instances were transformed.  IOBUF => IOBUF (OBUFT, IBUF): 1 instances  RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 14 instances  WIRE => IBUF: 143 instances
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Phase 0 | Netlist Checksum: 5c5670e9
+// Device: addNotify
+// Device: addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: open_run: Time (s): cpu = 00:00:18 ; elapsed = 00:00:11 . Memory (MB): peak = 3557.910 ; gain = 0.000
+// Device: addNotify
+// Device: addNotify
+// Device: addNotify
+dismissDialog (" Open Implemented Design "); // bS (aM) [02/17 03:07:24]
+select (PAResourceItoP.MainMenuMgr_FILE, "File"); // af (CommandMenuBar, aM) [02/17 03:08:09]
+select (PAResourceItoP.MainMenuMgr_OPEN_RECENT_PROJECT, "Open Recent Project"); // ah (JPopupMenu, aM) [02/17 03:08:09]
+select (PAResourceItoP.MainMenuMgr_OPEN_EXAMPLE_PROJECT, "Open Example Project"); // ah (JPopupMenu, aM) [02/17 03:08:09]
+select (PAResourceItoP.MainMenuMgr_OPEN_RECENT_FILE, "Open Recent File"); // ah (JPopupMenu, aM) [02/17 03:08:09]
+select (PAResourceItoP.MainMenuMgr_IMPORT, "Import"); // ah (JPopupMenu, aM) [02/17 03:08:09]
+select (PAResourceItoP.MainMenuMgr_EXPORT, "Export"); // ah (JPopupMenu, aM) [02/17 03:08:09]
+select (PAResourceItoP.MainMenuMgr_EXPORT, "Export"); // ah (JPopupMenu, aM) [02/17 03:08:10]
+select (PAResourceItoP.MainMenuMgr_IMPORT, "Import"); // ah (JPopupMenu, aM) [02/17 03:08:10]
+select (PAResourceItoP.MainMenuMgr_OPEN_RECENT_FILE, "Open Recent File"); // ah (JPopupMenu, aM) [02/17 03:08:10]
+select (PAResourceItoP.MainMenuMgr_OPEN_EXAMPLE_PROJECT, "Open Example Project"); // ah (JPopupMenu, aM) [02/17 03:08:10]
+select (PAResourceItoP.MainMenuMgr_OPEN_RECENT_PROJECT, "Open Recent Project"); // ah (JPopupMenu, aM) [02/17 03:08:11]
+select (PAResourceItoP.MainMenuMgr_OPEN_EXAMPLE_PROJECT, "Open Example Project"); // ah (JPopupMenu, aM) [02/17 03:08:11]
+select (PAResourceItoP.MainMenuMgr_OPEN_EXAMPLE_PROJECT, "Open Example Project"); // ah (JPopupMenu, aM) [02/17 03:08:11]
+select (PAResourceItoP.MainMenuMgr_OPEN_RECENT_PROJECT, "Open Recent Project"); // ah (JPopupMenu, aM) [02/17 03:08:11]
+dismissMenu (PAResourceItoP.MainMenuMgr_FILE, "File"); // af (CommandMenuBar, aM) [02/17 03:08:11]
+select (PAResourceItoP.MainMenuMgr_TOOLS, "Tools"); // af (CommandMenuBar, aM) [02/17 03:08:11]
+dismissMenu (PAResourceItoP.MainMenuMgr_TOOLS, "Tools"); // af (CommandMenuBar, aM) [02/17 03:08:11]
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 30, false, false, false, false, false); // u (t, aM) [02/17 03:08:14]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_runs impl_1 -to_step write_bitstream
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: [Sun Feb 17 15:08:14 2013] Launched impl_1...Run output will be captured here: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/runme.log
+// ui.b.w.M[ui.aM]: Bitstream Generation Completed: addNotify
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, M) [02/17 03:09:06]
+// ui.b.c.bn[ui.aM]: Touchpoint Survey: addNotify
+dismissDialog ("Bitstream Generation Completed"); // M (aM) [02/17 03:09:06]
+select (RDIResource.BaseDialog_YES, " Yes "); // b (JPanel, bn) [02/17 03:09:13]
+dismissDialog ("Touchpoint Survey"); // bn (aM) [02/17 03:09:13]
+dismissDialog ("Touchpoint Survey"); // bn (aM) [02/17 03:09:13]
+select (PAResourceItoP.MainMenuMgr_FILE, "File"); // af (CommandMenuBar, aM) [02/17 03:09:31]
+select (PAResourceItoP.MainMenuMgr_OPEN_RECENT_PROJECT, "Open Recent Project"); // ah (JPopupMenu, aM) [02/17 03:09:31]
+select (PAResourceItoP.MainMenuMgr_OPEN_EXAMPLE_PROJECT, "Open Example Project"); // ah (JPopupMenu, aM) [02/17 03:09:31]
+select (PAResourceItoP.MainMenuMgr_OPEN_RECENT_FILE, "Open Recent File"); // ah (JPopupMenu, aM) [02/17 03:09:32]
+select (PAResourceItoP.MainMenuMgr_EXPORT, "Export"); // ah (JPopupMenu, aM) [02/17 03:09:32]
+select (PAResourceCommand.PACommandNames_EXIT, "Exit"); // aj (JPopupMenu, aM) [02/17 03:09:33]
+dismissMenu (PAResourceItoP.MainMenuMgr_FILE, "File"); // af (CommandMenuBar, aM) [02/17 03:09:33]
+// ui.b.c.Z[ui.aM]: Vivado: addNotify

@@ -1,0 +1,1760 @@
+#-----------------------------------------------------------
+# Vivado v2013.1.0 (64-bit)
+# Build 237167 by xbuild on Tue Feb 12 21:40:19 MST 2013
+# Start of session at: Sun Feb 17 15:02:01 2013
+# Process ID: 14436
+# Log file: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/synth_1/fpgaTop.rds
+# Journal file: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+INFO: [Common 17-81] Feature available: Implementation
+INFO: [Common 17-81] Feature available: Synthesis
+INFO: [Device 21-36] Loading parts and site information from /opt/Xilinx/Vivado/2013.1/data/parts/arch.xml
+Parsing RTL primitives file [/opt/Xilinx/Vivado/2013.1/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [/opt/Xilinx/Vivado/2013.1/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+INFO: [Common 17-201] Sourcing tcl script '/home/shep/.Xilinx/Vivado/init.tcl'
+source "/home/shep/.Xilinx/Vivado/init.tcl"
+# load_features ipintegrator
+# device_enable -enable xc7z020clg484-1
+# proc SplitBus {bus} {
+#     set res_list ""
+#     if {[regexp {([\w]+)\[([\d]+):([\d]+)\]} $bus match bus_name msb lsb]} {
+#         for {set i $lsb} {$i <= $msb} {incr i} {
+#             lappend res_list "$bus_name\[$i\]"
+#         }
+#     }
+#     return $res_list
+# }
+source fpgaTop.tcl
+# set_param gui.test TreeTableDev
+# create_project -in_memory
+# set_property part xc7k325tffg900-2 [current_project]
+# set_param project.compositeFile.enableAutoGeneration 0
+# read_verilog {
+#   /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v
+#   /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v
+#   /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncBit.v
+#   /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v
+#   /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/ResetInverter.v
+#   /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v
+#   /home/shep/projects/hotline/rtl/mkCRC32.v
+#   /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/TriState.v
+#   /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/MakeResetA.v
+#   /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v
+#   /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v
+#   /home/shep/projects/hotline/rtl/mkLCDController.v
+#   /home/shep/projects/hotline/rtl/mkL2Proc.v
+#   /home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v
+#   /home/shep/projects/hotline/rtl/mkGMAC.v
+#   /home/shep/projects/hotline/rtl/mkA4LS.v
+#   /home/shep/projects/hotline/rtl/mkFTop_kc705.v
+#   /home/shep/projects/hotline/rtl/fpgaTop.v
+# }
+# read_xdc /home/shep/projects/hotline/constrs/fpgaTop.xdc
+# set_property used_in_implementation false [get_files /home/shep/projects/hotline/constrs/fpgaTop.xdc]
+# set_param synth.vivado.isSynthRun true
+# set_property webtalk.parent_dir /home/shep/projects/hotline/vivado/hkp1/hkp1.data/wt [current_project]
+# set_property parent.project_dir /home/shep/projects/hotline/vivado/hkp1 [current_project]
+# synth_design -top fpgaTop -part xc7k325tffg900-2
+Command: synth_design -top fpgaTop -part xc7k325tffg900-2
+
+Starting synthesis...
+
+INFO: [Common 17-347] Attempting to get a license for feature 'Synthesis' and/or device 'xc7k325t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k325t'
+Using Xilinx IP Search Path: /opt/Xilinx/Vivado/2013.1/data/ip/xilinx /opt/Xilinx/Vivado/2013.1/ids_lite/ISE/coregen/ip/xilinx/primary/com/xilinx/ip
+starting Rtl Elaboration : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 183.340 ; gain = 68.844
+INFO: [Synth 8-638] synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]
+INFO: [Synth 8-638] synthesizing module 'IBUFGDS' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:11172]
+	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
+	Parameter DIFF_TERM bound to: FALSE - type: string 
+	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 
+	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+INFO: [Synth 8-256] done synthesizing module 'IBUFGDS' (1#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:11172]
+INFO: [Synth 8-638] synthesizing module 'BUFG' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:529]
+INFO: [Synth 8-256] done synthesizing module 'BUFG' (2#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:529]
+INFO: [Synth 8-638] synthesizing module 'mkFTop_kc705' [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:312]
+INFO: [Synth 8-638] synthesizing module 'mkA4LS' [/home/shep/projects/hotline/rtl/mkA4LS.v:448]
+	Parameter hasDebugLogic bound to: 1'b1 
+INFO: [Synth 8-638] synthesizing module 'FIFO2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 35 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2' (3#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 36 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized0' (3#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkA4LS.v:964]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkA4LS.v:990]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkA4LS.v:1024]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkA4LS.v:910]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkA4LS.v:910]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkA4LS.v:910]
+INFO: [Synth 8-256] done synthesizing module 'mkA4LS' (4#26) [/home/shep/projects/hotline/rtl/mkA4LS.v:448]
+INFO: [Synth 8-638] synthesizing module 'mkHCrtCompleter2Axi' [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:454]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized1' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 34 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized1' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 2 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized2' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized3' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 32 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized3' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized4' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 40 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized4' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'SizedFIFO' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+	Parameter p1width bound to: 40 - type: integer 
+	Parameter p2depth bound to: 16 - type: integer 
+	Parameter p3cntr_width bound to: 4 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+	Parameter p2depth2 bound to: 14 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:143]
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:200]
+INFO: [Synth 8-256] done synthesizing module 'SizedFIFO' (5#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1323]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1349]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1384]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1410]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1445]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1471]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1501]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1585]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1638]
+INFO: [Synth 8-3888] merging register 'modFaulted_reg' into 'modActive_reg' in module 'mkHCrtCompleter2Axi' [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:944]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1171]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1171]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1171]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1206]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1204]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1183]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1183]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1183]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1193]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1193]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1193]
+INFO: [Synth 8-256] done synthesizing module 'mkHCrtCompleter2Axi' (6#26) [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:454]
+INFO: [Synth 8-638] synthesizing module 'mkGMAC' [/home/shep/projects/hotline/rtl/mkGMAC.v:385]
+INFO: [Synth 8-638] synthesizing module 'SyncBit' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncBit.v:42]
+	Parameter init bound to: 1'b0 
+INFO: [Synth 8-256] done synthesizing module 'SyncBit' (7#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncBit.v:42]
+INFO: [Synth 8-638] synthesizing module 'BUFIO' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:717]
+INFO: [Synth 8-256] done synthesizing module 'BUFIO' (8#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:717]
+INFO: [Synth 8-638] synthesizing module 'IODELAY' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:14959]
+	Parameter DELAY_SRC bound to: I - type: string 
+	Parameter HIGH_PERFORMANCE_MODE bound to: TRUE - type: string 
+	Parameter IDELAY_TYPE bound to: FIXED - type: string 
+	Parameter SIGNAL_PATTERN bound to: CLOCK - type: string 
+	Parameter IDELAY_VALUE bound to: 0 - type: integer 
+	Parameter ODELAY_VALUE bound to: 0 - type: integer 
+	Parameter REFCLK_FREQUENCY bound to: 200.000000 - type: float 
+INFO: [Synth 8-256] done synthesizing module 'IODELAY' (9#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:14959]
+INFO: [Synth 8-638] synthesizing module 'SyncResetA' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+	Parameter RSTDELAY bound to: 7 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'SyncResetA' (10#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+INFO: [Synth 8-638] synthesizing module 'BUFR' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:856]
+	Parameter BUFR_DIVIDE bound to: BYPASS - type: string 
+	Parameter SIM_DEVICE bound to: VIRTEX4 - type: string 
+INFO: [Synth 8-256] done synthesizing module 'BUFR' (11#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:856]
+INFO: [Synth 8-638] synthesizing module 'mkCRC32' [/home/shep/projects/hotline/rtl/mkCRC32.v:55]
+INFO: [Synth 8-256] done synthesizing module 'mkCRC32' (12#26) [/home/shep/projects/hotline/rtl/mkCRC32.v:55]
+INFO: [Synth 8-638] synthesizing module 'SyncFIFO' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]
+	Parameter dataWidth bound to: 10 - type: integer 
+	Parameter depth bound to: 8 - type: integer 
+	Parameter indxWidth bound to: 3 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'SyncFIFO' (13#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]
+INFO: [Synth 8-638] synthesizing module 'SyncResetA__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+	Parameter RSTDELAY bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'SyncResetA__parameterized0' (13#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+INFO: [Synth 8-638] synthesizing module 'ODDR' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:20997]
+	Parameter DDR_CLK_EDGE bound to: SAME_EDGE - type: string 
+	Parameter INIT bound to: 1'b0 
+	Parameter SRTYPE bound to: SYNC - type: string 
+INFO: [Synth 8-256] done synthesizing module 'ODDR' (14#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:20997]
+INFO: [Synth 8-638] synthesizing module 'ResetInverter' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/ResetInverter.v:30]
+INFO: [Synth 8-256] done synthesizing module 'ResetInverter' (15#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/ResetInverter.v:30]
+INFO: [Synth 8-638] synthesizing module 'SyncFIFO__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]
+	Parameter dataWidth bound to: 10 - type: integer 
+	Parameter depth bound to: 16 - type: integer 
+	Parameter indxWidth bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'SyncFIFO__parameterized0' (15#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkGMAC.v:1574]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkGMAC.v:1506]
+INFO: [Synth 8-256] done synthesizing module 'mkGMAC' (16#26) [/home/shep/projects/hotline/rtl/mkGMAC.v:385]
+INFO: [Synth 8-638] synthesizing module 'SizedFIFO__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+	Parameter p1width bound to: 24 - type: integer 
+	Parameter p2depth bound to: 16 - type: integer 
+	Parameter p3cntr_width bound to: 4 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+	Parameter p2depth2 bound to: 14 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:143]
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:200]
+INFO: [Synth 8-256] done synthesizing module 'SizedFIFO__parameterized0' (16#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+INFO: [Synth 8-638] synthesizing module 'SizedFIFO__parameterized1' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+	Parameter p1width bound to: 8 - type: integer 
+	Parameter p2depth bound to: 16 - type: integer 
+	Parameter p3cntr_width bound to: 4 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+	Parameter p2depth2 bound to: 14 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:143]
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:200]
+INFO: [Synth 8-256] done synthesizing module 'SizedFIFO__parameterized1' (16#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+INFO: [Synth 8-638] synthesizing module 'Counter' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+	Parameter width bound to: 10 - type: integer 
+	Parameter init bound to: 10'b0000000000 
+INFO: [Synth 8-256] done synthesizing module 'Counter' (17#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+INFO: [Synth 8-638] synthesizing module 'Counter__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+	Parameter width bound to: 32 - type: integer 
+	Parameter init bound to: 32'b00000000000000000000001010011010 
+INFO: [Synth 8-256] done synthesizing module 'Counter__parameterized0' (17#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+INFO: [Synth 8-638] synthesizing module 'TriState' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/TriState.v:30]
+	Parameter width bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'TriState' (18#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/TriState.v:30]
+INFO: [Synth 8-638] synthesizing module 'IDELAYCTRL' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:12720]
+INFO: [Synth 8-256] done synthesizing module 'IDELAYCTRL' (19#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:12720]
+INFO: [Synth 8-638] synthesizing module 'MakeResetA' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/MakeResetA.v:40]
+	Parameter RSTDELAY bound to: 1 - type: integer 
+	Parameter init bound to: 1'b0 
+INFO: [Synth 8-256] done synthesizing module 'MakeResetA' (20#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/MakeResetA.v:40]
+INFO: [Synth 8-638] synthesizing module 'BRAM1Load' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v:30]
+	Parameter FILENAME bound to: ../../../../data/hdmi_iic.hex - type: string 
+	Parameter PIPELINED bound to: 1'b0 
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter MEMSIZE bound to: 11'b10000000000 
+	Parameter BINARY bound to: 1'b0 
+INFO: [Synth 8-3876] $readmem data file '../../../../data/hdmi_iic.hex' is read successfully [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v:72]
+INFO: [Synth 8-256] done synthesizing module 'BRAM1Load' (21#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v:30]
+INFO: [Synth 8-638] synthesizing module 'SizedFIFO__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+	Parameter p1width bound to: 32 - type: integer 
+	Parameter p2depth bound to: 3 - type: integer 
+	Parameter p3cntr_width bound to: 1 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+	Parameter p2depth2 bound to: 1 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:143]
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:200]
+INFO: [Synth 8-256] done synthesizing module 'SizedFIFO__parameterized2' (21#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+INFO: [Synth 8-638] synthesizing module 'mkL2Proc' [/home/shep/projects/hotline/rtl/mkL2Proc.v:112]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized5' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 10 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized5' (21#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized6' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 48 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized6' (21#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkL2Proc.v:466]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkL2Proc.v:462]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkL2Proc.v:462]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkL2Proc.v:462]
+INFO: [Synth 8-256] done synthesizing module 'mkL2Proc' (22#26) [/home/shep/projects/hotline/rtl/mkL2Proc.v:112]
+INFO: [Synth 8-638] synthesizing module 'mkLCDController' [/home/shep/projects/hotline/rtl/mkLCDController.v:58]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkLCDController.v:1806]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkLCDController.v:1877]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkLCDController.v:1923]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkLCDController.v:2064]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkLCDController.v:2278]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkLCDController.v:2746]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkLCDController.v:2822]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkLCDController.v:504]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkLCDController.v:541]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkLCDController.v:1794]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkLCDController.v:491]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkLCDController.v:1422]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkLCDController.v:1351]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkLCDController.v:508]
+INFO: [Synth 8-256] done synthesizing module 'mkLCDController' (23#26) [/home/shep/projects/hotline/rtl/mkLCDController.v:58]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized7' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 27 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized7' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized8' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 17 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized8' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'Counter__parameterized1' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+	Parameter width bound to: 8 - type: integer 
+	Parameter init bound to: 8'b00000000 
+INFO: [Synth 8-256] done synthesizing module 'Counter__parameterized1' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+INFO: [Synth 8-638] synthesizing module 'Counter__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+	Parameter width bound to: 4 - type: integer 
+	Parameter init bound to: 4'b0110 
+INFO: [Synth 8-256] done synthesizing module 'Counter__parameterized2' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+INFO: [Synth 8-638] synthesizing module 'SyncResetA__parameterized1' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+	Parameter RSTDELAY bound to: 15 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'SyncResetA__parameterized1' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+INFO: [Synth 8-638] synthesizing module 'IBUFDS_GTE2' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:10936]
+	Parameter CLKCM_CFG bound to: TRUE - type: string 
+	Parameter CLKRCV_TRST bound to: TRUE - type: string 
+	Parameter CLKSWING_CFG bound to: 2'b11 
+INFO: [Synth 8-256] done synthesizing module 'IBUFDS_GTE2' (24#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:10936]
+INFO: [Synth 8-638] synthesizing module 'SyncResetA__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+	Parameter RSTDELAY bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'SyncResetA__parameterized2' (24#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+INFO: [Synth 8-256] done synthesizing module 'mkFTop_kc705' (25#26) [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:312]
+WARNING: [Synth 8-350] instance 'ftop' of module 'mkFTop_kc705' requires 29 connections, but only 22 given [/home/shep/projects/hotline/rtl/fpgaTop.v:236]
+WARNING: [Synth 8-3848] Net i2c_rstb in module/entity fpgaTop does not have driver.
+WARNING: [Synth 8-3848] Net hdmiout_clk in module/entity fpgaTop does not have driver.
+WARNING: [Synth 8-3848] Net hdmiout_data in module/entity fpgaTop does not have driver.
+WARNING: [Synth 8-3848] Net hdmiout_de in module/entity fpgaTop does not have driver.
+WARNING: [Synth 8-3848] Net hdmiout_hs in module/entity fpgaTop does not have driver.
+WARNING: [Synth 8-3848] Net hdmiout_vs in module/entity fpgaTop does not have driver.
+INFO: [Synth 8-256] done synthesizing module 'fpgaTop' (26#26) [/home/shep/projects/hotline/rtl/fpgaTop.v:5]
+WARNING: [Synth 8-3917] design fpgaTop has port gpix_n driven by constant 0
+WARNING: [Synth 8-3917] design fpgaTop has port gpiy_p driven by constant 0
+WARNING: [Synth 8-3917] design fpgaTop has port gpiy_n driven by constant 0
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port i2c_rstb
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_clk
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[15]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[14]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[13]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[12]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[11]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[10]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[9]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[8]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[7]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[6]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[5]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[4]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[3]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[2]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[1]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_data[0]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_de
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_hs
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port hdmiout_vs
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port gmii_col
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port gmii_crs
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port gmii_intr
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port dipsw[3]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port dipsw[2]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port dipsw[1]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port dipsw[0]
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_clk0_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la00_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la01_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la02_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la03_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la04_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la05_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la06_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la07_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la08_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la09_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la10_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la11_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la12_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la13_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la14_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la15_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la16_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la17_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la18_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la19_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la20_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la21_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la22_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la23_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la24_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la25_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la26_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la27_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la28_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la29_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la30_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la31_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la32_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_clk1_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la00_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la01_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la02_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la03_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la04_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la05_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la06_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la07_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la08_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la09_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la10_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la11_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la12_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la13_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la14_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la15_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la16_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la17_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la18_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la19_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la20_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la21_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la22_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la23_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la24_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la25_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la26_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la27_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la28_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la29_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la30_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la31_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la32_n
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmcl_clk0_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmcl_la00_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmcl_la01_p
+WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmcl_la02_p
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_limit to change the current settings.
+finished Rtl Elaboration : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 397.488 ; gain = 282.992
+-------> Message [Synth 8-3331] suppressed 64 times
+Report Check Netlist: 
+-----+-----------------+------+--------+------+-----------------
+     |Item             |Errors|Warnings|Status|Description      
+-----+-----------------+------+--------+------+-----------------
+1    |multi_driven_nets|     0|       0|Passed|Multi driven nets
+-----+-----------------+------+--------+------+-----------------
+WARNING: [Synth 8-3295] tying undriven pin ftop:gmii_col_i to constant 0
+WARNING: [Synth 8-3295] tying undriven pin ftop:gmii_crs_i to constant 0
+WARNING: [Synth 8-3295] tying undriven pin ftop:gmii_intr_i to constant 0
+INFO: [Netlist 29-17] Analyzing 14 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+Loading clock regions from /opt/Xilinx/Vivado/2013.1/data/parts/xilinx/kintex7/kintex7/xc7k325t/ClockRegion.xml
+Loading clock buffers from /opt/Xilinx/Vivado/2013.1/data/parts/xilinx/kintex7/kintex7/xc7k325t/ClockBuffers.xml
+Loading clock placement rules from /opt/Xilinx/Vivado/2013.1/data/parts/xilinx/kintex7/ClockPlacerRules.xml
+Loading package pin functions from /opt/Xilinx/Vivado/2013.1/data/parts/xilinx/kintex7/PinFunctions.xml...
+Loading package from /opt/Xilinx/Vivado/2013.1/data/parts/xilinx/kintex7/kintex7/xc7k325t/ffg900/Package.xml
+Loading io standards from /opt/Xilinx/Vivado/2013.1/data/./parts/xilinx/kintex7/IOStandards.xml
+Loading device configuration modes from /opt/Xilinx/Vivado/2013.1/data/parts/xilinx/kintex7/ConfigModes.xml
+Loading list of drcs for the architecture : /opt/Xilinx/Vivado/2013.1/data/./parts/xilinx/kintex7/drc.xml
+
+Processing XDC Constraints
+Parsing XDC File [/home/shep/projects/hotline/constrs/fpgaTop.xdc]
+Finished Parsing XDC File [/home/shep/projects/hotline/constrs/fpgaTop.xdc]
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 3 instances were transformed.
+  IBUFGDS => IBUFDS: 2 instances
+  IODELAY => IDELAYE2: 1 instances
+
+Phase 0 | Netlist Checksum: 6c52ce62
+Using Xilinx IP Search Path: /opt/Xilinx/Vivado/2013.1/data/ip/xilinx /opt/Xilinx/Vivado/2013.1/ids_lite/ISE/coregen/ip/xilinx/primary/com/xilinx/ip
+starting synthesize : Time (s): cpu = 00:01:05 ; elapsed = 00:01:06 . Memory (MB): peak = 866.102 ; gain = 751.605
+INFO: [Synth 8-638] synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]
+INFO: [Synth 8-638] synthesizing module 'IBUFGDS' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:11172]
+	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
+	Parameter DIFF_TERM bound to: FALSE - type: string 
+	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 
+	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+INFO: [Synth 8-256] done synthesizing module 'IBUFGDS' (1#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:11172]
+INFO: [Synth 8-638] synthesizing module 'BUFG' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:529]
+INFO: [Synth 8-256] done synthesizing module 'BUFG' (2#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:529]
+INFO: [Synth 8-638] synthesizing module 'mkFTop_kc705' [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:312]
+INFO: [Synth 8-638] synthesizing module 'mkA4LS' [/home/shep/projects/hotline/rtl/mkA4LS.v:448]
+	Parameter hasDebugLogic bound to: 1'b1 
+INFO: [Synth 8-638] synthesizing module 'FIFO2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 35 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2' (3#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 36 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized0' (3#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkA4LS.v:964]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkA4LS.v:990]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkA4LS.v:1024]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkA4LS.v:910]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkA4LS.v:910]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkA4LS.v:910]
+INFO: [Synth 8-256] done synthesizing module 'mkA4LS' (4#26) [/home/shep/projects/hotline/rtl/mkA4LS.v:448]
+INFO: [Synth 8-638] synthesizing module 'mkHCrtCompleter2Axi' [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:454]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized1' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 34 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized1' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 2 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized2' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized3' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 32 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized3' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized4' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 40 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized4' (4#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'SizedFIFO' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+	Parameter p1width bound to: 40 - type: integer 
+	Parameter p2depth bound to: 16 - type: integer 
+	Parameter p3cntr_width bound to: 4 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+	Parameter p2depth2 bound to: 14 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:143]
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:200]
+INFO: [Synth 8-256] done synthesizing module 'SizedFIFO' (5#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1323]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1349]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1384]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1410]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1445]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1471]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1501]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1585]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1638]
+INFO: [Synth 8-3888] merging register 'modFaulted_reg' into 'modActive_reg' in module 'mkHCrtCompleter2Axi' [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:944]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1171]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1171]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1171]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1206]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1204]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1183]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1183]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1183]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1193]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1193]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:1193]
+INFO: [Synth 8-256] done synthesizing module 'mkHCrtCompleter2Axi' (6#26) [/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v:454]
+INFO: [Synth 8-638] synthesizing module 'mkGMAC' [/home/shep/projects/hotline/rtl/mkGMAC.v:385]
+INFO: [Synth 8-638] synthesizing module 'SyncBit' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncBit.v:42]
+	Parameter init bound to: 1'b0 
+INFO: [Synth 8-256] done synthesizing module 'SyncBit' (7#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncBit.v:42]
+INFO: [Synth 8-638] synthesizing module 'BUFIO' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:717]
+INFO: [Synth 8-256] done synthesizing module 'BUFIO' (8#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:717]
+INFO: [Synth 8-638] synthesizing module 'IODELAY' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:14959]
+	Parameter DELAY_SRC bound to: I - type: string 
+	Parameter HIGH_PERFORMANCE_MODE bound to: TRUE - type: string 
+	Parameter IDELAY_TYPE bound to: FIXED - type: string 
+	Parameter SIGNAL_PATTERN bound to: CLOCK - type: string 
+	Parameter IDELAY_VALUE bound to: 0 - type: integer 
+	Parameter ODELAY_VALUE bound to: 0 - type: integer 
+	Parameter REFCLK_FREQUENCY bound to: 200.000000 - type: float 
+INFO: [Synth 8-256] done synthesizing module 'IODELAY' (9#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:14959]
+INFO: [Synth 8-638] synthesizing module 'SyncResetA' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+	Parameter RSTDELAY bound to: 7 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'SyncResetA' (10#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+INFO: [Synth 8-638] synthesizing module 'BUFR' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:856]
+	Parameter BUFR_DIVIDE bound to: BYPASS - type: string 
+	Parameter SIM_DEVICE bound to: VIRTEX4 - type: string 
+INFO: [Synth 8-256] done synthesizing module 'BUFR' (11#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:856]
+INFO: [Synth 8-638] synthesizing module 'mkCRC32' [/home/shep/projects/hotline/rtl/mkCRC32.v:55]
+INFO: [Synth 8-256] done synthesizing module 'mkCRC32' (12#26) [/home/shep/projects/hotline/rtl/mkCRC32.v:55]
+INFO: [Synth 8-638] synthesizing module 'SyncFIFO' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]
+	Parameter dataWidth bound to: 10 - type: integer 
+	Parameter depth bound to: 8 - type: integer 
+	Parameter indxWidth bound to: 3 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'SyncFIFO' (13#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]
+INFO: [Synth 8-638] synthesizing module 'SyncResetA__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+	Parameter RSTDELAY bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'SyncResetA__parameterized0' (13#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+INFO: [Synth 8-638] synthesizing module 'ODDR' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:20997]
+	Parameter DDR_CLK_EDGE bound to: SAME_EDGE - type: string 
+	Parameter INIT bound to: 1'b0 
+	Parameter SRTYPE bound to: SYNC - type: string 
+INFO: [Synth 8-256] done synthesizing module 'ODDR' (14#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:20997]
+INFO: [Synth 8-638] synthesizing module 'ResetInverter' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/ResetInverter.v:30]
+INFO: [Synth 8-256] done synthesizing module 'ResetInverter' (15#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/ResetInverter.v:30]
+INFO: [Synth 8-638] synthesizing module 'SyncFIFO__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]
+	Parameter dataWidth bound to: 10 - type: integer 
+	Parameter depth bound to: 16 - type: integer 
+	Parameter indxWidth bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'SyncFIFO__parameterized0' (15#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v:47]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkGMAC.v:1574]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkGMAC.v:1506]
+INFO: [Synth 8-256] done synthesizing module 'mkGMAC' (16#26) [/home/shep/projects/hotline/rtl/mkGMAC.v:385]
+INFO: [Synth 8-638] synthesizing module 'SizedFIFO__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+	Parameter p1width bound to: 24 - type: integer 
+	Parameter p2depth bound to: 16 - type: integer 
+	Parameter p3cntr_width bound to: 4 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+	Parameter p2depth2 bound to: 14 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:143]
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:200]
+INFO: [Synth 8-256] done synthesizing module 'SizedFIFO__parameterized0' (16#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+INFO: [Synth 8-638] synthesizing module 'SizedFIFO__parameterized1' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+	Parameter p1width bound to: 8 - type: integer 
+	Parameter p2depth bound to: 16 - type: integer 
+	Parameter p3cntr_width bound to: 4 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+	Parameter p2depth2 bound to: 14 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:143]
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:200]
+INFO: [Synth 8-256] done synthesizing module 'SizedFIFO__parameterized1' (16#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+INFO: [Synth 8-638] synthesizing module 'Counter' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+	Parameter width bound to: 10 - type: integer 
+	Parameter init bound to: 10'b0000000000 
+INFO: [Synth 8-256] done synthesizing module 'Counter' (17#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+INFO: [Synth 8-638] synthesizing module 'Counter__parameterized0' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+	Parameter width bound to: 32 - type: integer 
+	Parameter init bound to: 32'b00000000000000000000001010011010 
+INFO: [Synth 8-256] done synthesizing module 'Counter__parameterized0' (17#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+INFO: [Synth 8-638] synthesizing module 'TriState' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/TriState.v:30]
+	Parameter width bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'TriState' (18#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/TriState.v:30]
+INFO: [Synth 8-638] synthesizing module 'IDELAYCTRL' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:12720]
+INFO: [Synth 8-256] done synthesizing module 'IDELAYCTRL' (19#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:12720]
+INFO: [Synth 8-638] synthesizing module 'MakeResetA' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/MakeResetA.v:40]
+	Parameter RSTDELAY bound to: 1 - type: integer 
+	Parameter init bound to: 1'b0 
+INFO: [Synth 8-256] done synthesizing module 'MakeResetA' (20#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/MakeResetA.v:40]
+INFO: [Synth 8-638] synthesizing module 'BRAM1Load' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v:30]
+	Parameter FILENAME bound to: ../../../../data/hdmi_iic.hex - type: string 
+	Parameter PIPELINED bound to: 1'b0 
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter MEMSIZE bound to: 11'b10000000000 
+	Parameter BINARY bound to: 1'b0 
+INFO: [Synth 8-3876] $readmem data file '../../../../data/hdmi_iic.hex' is read successfully [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v:72]
+INFO: [Synth 8-256] done synthesizing module 'BRAM1Load' (21#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v:30]
+INFO: [Synth 8-638] synthesizing module 'SizedFIFO__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+	Parameter p1width bound to: 32 - type: integer 
+	Parameter p2depth bound to: 3 - type: integer 
+	Parameter p3cntr_width bound to: 1 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+	Parameter p2depth2 bound to: 1 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:143]
+INFO: [Synth 8-155] case statement is not full and has no default [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:200]
+INFO: [Synth 8-256] done synthesizing module 'SizedFIFO__parameterized2' (21#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v:58]
+INFO: [Synth 8-638] synthesizing module 'mkL2Proc' [/home/shep/projects/hotline/rtl/mkL2Proc.v:112]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized5' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 10 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized5' (21#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized6' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 48 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized6' (21#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkL2Proc.v:466]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkL2Proc.v:462]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkL2Proc.v:462]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkL2Proc.v:462]
+INFO: [Synth 8-256] done synthesizing module 'mkL2Proc' (22#26) [/home/shep/projects/hotline/rtl/mkL2Proc.v:112]
+INFO: [Synth 8-638] synthesizing module 'mkLCDController' [/home/shep/projects/hotline/rtl/mkLCDController.v:58]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkLCDController.v:1806]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkLCDController.v:1877]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkLCDController.v:1923]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkLCDController.v:2064]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkLCDController.v:2278]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkLCDController.v:2746]
+INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [/home/shep/projects/hotline/rtl/mkLCDController.v:2822]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkLCDController.v:504]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkLCDController.v:541]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkLCDController.v:1794]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkLCDController.v:491]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkLCDController.v:1422]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkLCDController.v:1351]
+INFO: [Synth 8-2943] unable to generate logic for unpartitioned construct node [/home/shep/projects/hotline/rtl/mkLCDController.v:508]
+INFO: [Synth 8-256] done synthesizing module 'mkLCDController' (23#26) [/home/shep/projects/hotline/rtl/mkLCDController.v:58]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized7' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 27 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized7' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'FIFO2__parameterized8' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+	Parameter width bound to: 17 - type: integer 
+	Parameter guarded bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'FIFO2__parameterized8' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v:51]
+INFO: [Synth 8-638] synthesizing module 'Counter__parameterized1' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+	Parameter width bound to: 8 - type: integer 
+	Parameter init bound to: 8'b00000000 
+INFO: [Synth 8-256] done synthesizing module 'Counter__parameterized1' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+INFO: [Synth 8-638] synthesizing module 'Counter__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+	Parameter width bound to: 4 - type: integer 
+	Parameter init bound to: 4'b0110 
+INFO: [Synth 8-256] done synthesizing module 'Counter__parameterized2' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v:47]
+INFO: [Synth 8-638] synthesizing module 'SyncResetA__parameterized1' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+	Parameter RSTDELAY bound to: 15 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'SyncResetA__parameterized1' (23#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+INFO: [Synth 8-638] synthesizing module 'IBUFDS_GTE2' [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:10936]
+	Parameter CLKCM_CFG bound to: TRUE - type: string 
+	Parameter CLKRCV_TRST bound to: TRUE - type: string 
+	Parameter CLKSWING_CFG bound to: 2'b11 
+INFO: [Synth 8-256] done synthesizing module 'IBUFDS_GTE2' (24#26) [/opt/Xilinx/Vivado/2013.1/scripts/rt/data/unisim_comp.v:10936]
+INFO: [Synth 8-638] synthesizing module 'SyncResetA__parameterized2' [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+	Parameter RSTDELAY bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'SyncResetA__parameterized2' (24#26) [/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v:43]
+INFO: [Synth 8-256] done synthesizing module 'mkFTop_kc705' (25#26) [/home/shep/projects/hotline/rtl/mkFTop_kc705.v:312]
+WARNING: [Synth 8-350] instance 'ftop' of module 'mkFTop_kc705' requires 29 connections, but only 22 given [/home/shep/projects/hotline/rtl/fpgaTop.v:236]
+WARNING: [Synth 8-3848] Net i2c_rstb in module/entity fpgaTop does not have driver.
+WARNING: [Synth 8-3848] Net hdmiout_clk in module/entity fpgaTop does not have driver.
+WARNING: [Synth 8-3848] Net hdmiout_data in module/entity fpgaTop does not have driver.
+WARNING: [Synth 8-3848] Net hdmiout_de in module/entity fpgaTop does not have driver.
+WARNING: [Synth 8-3848] Net hdmiout_hs in module/entity fpgaTop does not have driver.
+WARNING: [Synth 8-3848] Net hdmiout_vs in module/entity fpgaTop does not have driver.
+INFO: [Synth 8-256] done synthesizing module 'fpgaTop' (26#26) [/home/shep/projects/hotline/rtl/fpgaTop.v:5]
+WARNING: [Synth 8-3917] design fpgaTop has port gpix_n driven by constant 0
+WARNING: [Synth 8-3917] design fpgaTop has port gpiy_p driven by constant 0
+WARNING: [Synth 8-3917] design fpgaTop has port gpiy_n driven by constant 0
+DF_module type graph has attr IBUFGDS
+DF_module type graph has attr BUFG
+DF_module type graph has attr IBUFGDS
+DF_module type graph has attr mkFTop_kc705
+DF_module type graph has attr mkA4LS
+DF_module type graph has attr FIFO2
+DF_module type graph has attr FIFO2
+DF_module type graph has attr FIFO2__parameterized0
+DF_module type graph has attr mkHCrtCompleter2Axi
+DF_module type graph has attr FIFO2__parameterized1
+DF_module type graph has attr FIFO2__parameterized2
+DF_module type graph has attr FIFO2__parameterized3
+DF_module type graph has attr FIFO2__parameterized4
+DF_module type graph has attr SizedFIFO
+DF_module type graph has attr mkGMAC
+DF_module type graph has attr SyncBit
+DF_module type graph has attr SyncBit
+DF_module type graph has attr BUFIO
+DF_module type graph has attr IODELAY
+DF_module type graph has attr SyncBit
+DF_module type graph has attr SyncResetA
+DF_module type graph has attr BUFR
+DF_module type graph has attr mkCRC32
+DF_module type graph has attr SyncBit
+DF_module type graph has attr SyncFIFO
+DF_module type graph has attr SyncBit
+DF_module type graph has attr SyncResetA__parameterized0
+DF_module type graph has attr mkCRC32
+DF_module type graph has attr ODDR
+DF_module type graph has attr ResetInverter
+DF_module type graph has attr ODDR
+DF_module type graph has attr ODDR
+DF_module type graph has attr ODDR
+DF_module type graph has attr ODDR
+DF_module type graph has attr ODDR
+DF_module type graph has attr ODDR
+DF_module type graph has attr ODDR
+DF_module type graph has attr ODDR
+DF_module type graph has attr ResetInverter
+DF_module type graph has attr ODDR
+DF_module type graph has attr ResetInverter
+DF_module type graph has attr ODDR
+DF_module type graph has attr ResetInverter
+DF_module type graph has attr SyncFIFO__parameterized0
+DF_module type graph has attr SyncBit
+DF_module type graph has attr SyncResetA__parameterized0
+DF_module type graph has attr SyncBit
+DF_module type graph has attr SizedFIFO__parameterized0
+DF_module type graph has attr SizedFIFO__parameterized1
+DF_module type graph has attr Counter
+DF_module type graph has attr Counter__parameterized0
+DF_module type graph has attr TriState
+DF_module type graph has attr TriState
+DF_module type graph has attr IDELAYCTRL
+DF_module type graph has attr MakeResetA
+DF_module type graph has attr SyncResetA__parameterized0
+DF_module type graph has attr ResetInverter
+DF_module type graph has attr BRAM1Load
+DF_module type graph has attr SizedFIFO__parameterized2
+DF_module type graph has attr mkL2Proc
+DF_module type graph has attr FIFO2__parameterized5
+DF_module type graph has attr FIFO2__parameterized5
+DF_module type graph has attr FIFO2__parameterized6
+DF_module type graph has attr FIFO2__parameterized5
+DF_module type graph has attr FIFO2__parameterized5
+WARNING: [Synth 8-3936] Found unconnected internal register 'igSR_reg' and it is trimmed from '48' to '40' bits. [/home/shep/projects/hotline/rtl/mkL2Proc.v:554]
+-------> Message [Synth 8-3331] suppressed 64 times
+DF_module type graph has attr FIFO2__parameterized5
+DF_module type graph has attr FIFO2__parameterized4
+DF_module type graph has attr mkLCDController
+DF_module type graph has attr FIFO2__parameterized7
+DF_module type graph has attr FIFO2__parameterized8
+DF_module type graph has attr Counter__parameterized1
+DF_module type graph has attr Counter__parameterized2
+DF_module type graph has attr TriState
+DF_module type graph has attr TriState
+DF_module type graph has attr FIFO2__parameterized4
+DF_module type graph has attr FIFO2__parameterized5
+DF_module type graph has attr SyncResetA__parameterized1
+DF_module type graph has attr BUFG
+DF_module type graph has attr IBUFDS_GTE2
+DF_module type graph has attr SyncResetA__parameterized2
+WARNING: [Synth 8-3848] Net i2c_rstb in module/entity fpgaTop does not have driver.
+WARNING: [Synth 8-3848] Net hdmiout_clk in module/entity fpgaTop does not have driver.
+WARNING: [Synth 8-3848] Net hdmiout_data in module/entity fpgaTop does not have driver.
+WARNING: [Synth 8-3848] Net hdmiout_de in module/entity fpgaTop does not have driver.
+WARNING: [Synth 8-3848] Net hdmiout_hs in module/entity fpgaTop does not have driver.
+WARNING: [Synth 8-3848] Net hdmiout_vs in module/entity fpgaTop does not have driver.
+module fpgaTop first visited, remove its graph
+module mkFTop_kc705 first visited, remove its graph
+module mkA4LS first visited, remove its graph
+module FIFO2 first visited, remove its graph
+module FIFO2__parameterized0 first visited, remove its graph
+module mkHCrtCompleter2Axi first visited, remove its graph
+module FIFO2__parameterized1 first visited, remove its graph
+module FIFO2__parameterized2 first visited, remove its graph
+module FIFO2__parameterized3 first visited, remove its graph
+module FIFO2__parameterized4 first visited, remove its graph
+module SizedFIFO first visited, remove its graph
+module mkGMAC first visited, remove its graph
+module SyncBit first visited, remove its graph
+module SyncResetA first visited, remove its graph
+module mkCRC32 first visited, remove its graph
+module SyncFIFO first visited, remove its graph
+module SyncResetA__parameterized0 first visited, remove its graph
+module ResetInverter first visited, remove its graph
+module SyncFIFO__parameterized0 first visited, remove its graph
+module SizedFIFO__parameterized0 first visited, remove its graph
+module SizedFIFO__parameterized1 first visited, remove its graph
+module Counter first visited, remove its graph
+module Counter__parameterized0 first visited, remove its graph
+module TriState first visited, remove its graph
+module MakeResetA first visited, remove its graph
+module BRAM1Load first visited, remove its graph
+module SizedFIFO__parameterized2 first visited, remove its graph
+module mkL2Proc first visited, remove its graph
+module FIFO2__parameterized5 first visited, remove its graph
+module FIFO2__parameterized6 first visited, remove its graph
+module mkLCDController first visited, remove its graph
+module FIFO2__parameterized7 first visited, remove its graph
+module FIFO2__parameterized8 first visited, remove its graph
+module Counter__parameterized1 first visited, remove its graph
+module Counter__parameterized2 first visited, remove its graph
+module SyncResetA__parameterized1 first visited, remove its graph
+module SyncResetA__parameterized2 first visited, remove its graph
+finished synthesize : Time (s): cpu = 00:01:25 ; elapsed = 00:01:26 . Memory (MB): peak = 866.102 ; gain = 751.605
+
+---------------------------------------------------------------------------------
+Applying 'set_property' XDC Constraints...
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:26 ; elapsed = 00:01:27 . Memory (MB): peak = 866.102 ; gain = 751.605
+---------------------------------------------------------------------------------
+
+INFO: [Synth 8-223] decloning instance 'ftop/gmac/txRS_iobTxClk_reset' (ResetInverter) to 'ftop/gmac/txRS_iobTxData_reset'
+INFO: [Synth 8-223] decloning instance 'ftop/gmac/txRS_iobTxClk_reset' (ResetInverter) to 'ftop/gmac/txRS_iobTxEna_reset'
+INFO: [Synth 8-223] decloning instance 'ftop/gmac/txRS_iobTxClk_reset' (ResetInverter) to 'ftop/gmac/txRS_iobTxErr_reset'
+Report RTL Partitions: 
+-----+-------------+-----------+---------
+     |RTL Partition|Replication|Instances
+-----+-------------+-----------+---------
+-----+-------------+-----------+---------
+
+---------------------------------------------------------------------------------
+Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7k325tffg900-2
+Part Resources:
+DSPs: 840 (col length:140)
+BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:31 ; elapsed = 00:01:33 . Memory (MB): peak = 866.102 ; gain = 751.605
+---------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------
+RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     32 Bit       Adders := 1     
+	   2 Input     24 Bit       Adders := 1     
+	   2 Input     12 Bit       Adders := 2     
+	   2 Input     11 Bit       Adders := 2     
+	   3 Input     10 Bit       Adders := 1     
+	   2 Input     10 Bit       Adders := 1     
+	   2 Input      8 Bit       Adders := 1     
+	   3 Input      8 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 3     
+	   3 Input      4 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 12    
+	   3 Input      3 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 1     
+	   2 Input      2 Bit       Adders := 13    
+	   2 Input      1 Bit       Adders := 2     
++---XORs : 
+	   2 Input     32 Bit         XORs := 2     
+	   2 Input      5 Bit         XORs := 4     
+	   2 Input      4 Bit         XORs := 4     
+	   2 Input      3 Bit         XORs := 1     
++---Registers : 
+	              128 Bit    Registers := 2     
+	               64 Bit    Registers := 1     
+	               48 Bit    Registers := 8     
+	               40 Bit    Registers := 8     
+	               36 Bit    Registers := 4     
+	               35 Bit    Registers := 10    
+	               34 Bit    Registers := 4     
+	               32 Bit    Registers := 11    
+	               30 Bit    Registers := 1     
+	               27 Bit    Registers := 2     
+	               24 Bit    Registers := 2     
+	               17 Bit    Registers := 2     
+	               16 Bit    Registers := 2     
+	               12 Bit    Registers := 2     
+	               11 Bit    Registers := 2     
+	               10 Bit    Registers := 16    
+	                8 Bit    Registers := 14    
+	                7 Bit    Registers := 1     
+	                6 Bit    Registers := 4     
+	                5 Bit    Registers := 12    
+	                4 Bit    Registers := 18    
+	                3 Bit    Registers := 2     
+	                2 Bit    Registers := 17    
+	                1 Bit    Registers := 157   
++---RAMs : 
+	              32K Bit         RAMs := 1     
+	              600 Bit         RAMs := 1     
+	              360 Bit         RAMs := 1     
+	              160 Bit         RAMs := 1     
+	              120 Bit         RAMs := 1     
+	               80 Bit         RAMs := 1     
+	               64 Bit         RAMs := 1     
++---Muxes : 
+	   2 Input     48 Bit        Muxes := 2     
+	   5 Input     40 Bit        Muxes := 1     
+	   4 Input     40 Bit        Muxes := 1     
+	   2 Input     36 Bit        Muxes := 2     
+	   4 Input     36 Bit        Muxes := 2     
+	   4 Input     35 Bit        Muxes := 2     
+	   2 Input     35 Bit        Muxes := 3     
+	   5 Input     35 Bit        Muxes := 1     
+	   4 Input     34 Bit        Muxes := 4     
+	   2 Input     34 Bit        Muxes := 1     
+	   5 Input     32 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 25    
+	   8 Input     24 Bit        Muxes := 1     
+	   5 Input     24 Bit        Muxes := 1     
+	   2 Input     24 Bit        Muxes := 3     
+	   2 Input     19 Bit        Muxes := 1     
+	   4 Input     12 Bit        Muxes := 1     
+	   2 Input     10 Bit        Muxes := 8     
+	   4 Input      8 Bit        Muxes := 2     
+	   2 Input      8 Bit        Muxes := 5     
+	   5 Input      8 Bit        Muxes := 2     
+	  16 Input      8 Bit        Muxes := 2     
+	  27 Input      8 Bit        Muxes := 1     
+	 140 Input      8 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 2     
+	   2 Input      6 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 2     
+	   2 Input      4 Bit        Muxes := 10    
+	   7 Input      4 Bit        Muxes := 6     
+	  12 Input      4 Bit        Muxes := 1     
+	  11 Input      4 Bit        Muxes := 2     
+	   5 Input      4 Bit        Muxes := 1     
+	   6 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 3     
+	   2 Input      2 Bit        Muxes := 12    
+	   3 Input      2 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 4     
+	   7 Input      1 Bit        Muxes := 30    
+	   2 Input      1 Bit        Muxes := 116   
+	   5 Input      1 Bit        Muxes := 4     
+
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module fpgaTop 
+Detailed RTL Component Info : 
+Module ResetInverter 
+Detailed RTL Component Info : 
+Module mkFTop_kc705 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     11 Bit       Adders := 2     
+	   2 Input     10 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 2     
+	   3 Input      3 Bit       Adders := 1     
+	   2 Input      2 Bit       Adders := 2     
++---XORs : 
+	   2 Input      3 Bit         XORs := 1     
++---Registers : 
+	               48 Bit    Registers := 1     
+	               30 Bit    Registers := 1     
+	               16 Bit    Registers := 1     
+	               11 Bit    Registers := 2     
+	               10 Bit    Registers := 1     
+	                8 Bit    Registers := 2     
+	                7 Bit    Registers := 1     
+	                5 Bit    Registers := 2     
+	                4 Bit    Registers := 2     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 3     
+	                1 Bit    Registers := 41    
++---Muxes : 
+	   2 Input     24 Bit        Muxes := 3     
+	   2 Input     10 Bit        Muxes := 2     
+	   4 Input      8 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 3     
+	   4 Input      1 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 9     
+Module FIFO2__parameterized3 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module FIFO2__parameterized1 
+Detailed RTL Component Info : 
++---Registers : 
+	               34 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module TriState 
+Detailed RTL Component Info : 
+Module FIFO2__parameterized0 
+Detailed RTL Component Info : 
++---Registers : 
+	               36 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module Counter__parameterized2 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input      4 Bit       Adders := 1     
++---Registers : 
+	                4 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 2     
+Module SyncResetA__parameterized2 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+Module SizedFIFO__parameterized0 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 2     
++---Registers : 
+	               24 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---RAMs : 
+	              360 Bit         RAMs := 1     
++---Muxes : 
+	   5 Input     24 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 2     
+	   7 Input      4 Bit        Muxes := 2     
+	   5 Input      1 Bit        Muxes := 1     
+	   7 Input      1 Bit        Muxes := 7     
+	   2 Input      1 Bit        Muxes := 5     
+Module mkHCrtCompleter2Axi 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     12 Bit       Adders := 1     
+	   2 Input      2 Bit       Adders := 7     
++---Registers : 
+	               64 Bit    Registers := 1     
+	               36 Bit    Registers := 2     
+	               35 Bit    Registers := 6     
+	               12 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                2 Bit    Registers := 4     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   4 Input     40 Bit        Muxes := 1     
+	   4 Input     36 Bit        Muxes := 2     
+	   2 Input     36 Bit        Muxes := 2     
+	   5 Input     35 Bit        Muxes := 1     
+	   4 Input     35 Bit        Muxes := 2     
+	   2 Input     35 Bit        Muxes := 3     
+	   4 Input     34 Bit        Muxes := 2     
+	   2 Input     32 Bit        Muxes := 4     
+	   4 Input     12 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 5     
+	   4 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 11    
+Module mkLCDController 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     24 Bit       Adders := 1     
+	   2 Input      8 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 1     
++---Registers : 
+	              128 Bit    Registers := 2     
+	               24 Bit    Registers := 1     
+	                8 Bit    Registers := 3     
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 5     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 19    
++---Muxes : 
+	   8 Input     24 Bit        Muxes := 1     
+	   2 Input     19 Bit        Muxes := 1     
+	  27 Input      8 Bit        Muxes := 1     
+	  16 Input      8 Bit        Muxes := 2     
+	 140 Input      8 Bit        Muxes := 1     
+	   5 Input      4 Bit        Muxes := 1     
+	  12 Input      4 Bit        Muxes := 1     
+	  11 Input      4 Bit        Muxes := 2     
+	   4 Input      2 Bit        Muxes := 1     
+Module FIFO2__parameterized8 
+Detailed RTL Component Info : 
++---Registers : 
+	               17 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module SizedFIFO__parameterized1 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 2     
++---Registers : 
+	                8 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---RAMs : 
+	              120 Bit         RAMs := 1     
++---Muxes : 
+	   5 Input      8 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 2     
+	   7 Input      4 Bit        Muxes := 2     
+	   5 Input      1 Bit        Muxes := 1     
+	   7 Input      1 Bit        Muxes := 7     
+	   2 Input      1 Bit        Muxes := 5     
+Module Counter__parameterized0 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     32 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 2     
+Module FIFO2__parameterized7 
+Detailed RTL Component Info : 
++---Registers : 
+	               27 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module SyncFIFO__parameterized0 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      5 Bit         XORs := 4     
++---Registers : 
+	               10 Bit    Registers := 1     
+	                6 Bit    Registers := 3     
+	                5 Bit    Registers := 4     
+	                1 Bit    Registers := 2     
++---RAMs : 
+	              160 Bit         RAMs := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 2     
+Module SyncResetA__parameterized1 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 1     
+Module FIFO2__parameterized4 
+Detailed RTL Component Info : 
++---Registers : 
+	               40 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module FIFO2__parameterized2 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module FIFO2__parameterized5 
+Detailed RTL Component Info : 
++---Registers : 
+	               10 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module SizedFIFO 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 2     
++---Registers : 
+	               40 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---RAMs : 
+	              600 Bit         RAMs := 1     
++---Muxes : 
+	   5 Input     40 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 2     
+	   7 Input      4 Bit        Muxes := 2     
+	   5 Input      1 Bit        Muxes := 1     
+	   7 Input      1 Bit        Muxes := 7     
+	   2 Input      1 Bit        Muxes := 5     
+Module SyncResetA__parameterized0 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 1     
+Module mkCRC32 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 9     
+Module MakeResetA 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+Module Counter 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     10 Bit       Adders := 1     
++---Registers : 
+	               10 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     10 Bit        Muxes := 2     
+Module SyncResetA 
+Detailed RTL Component Info : 
++---Registers : 
+	                8 Bit    Registers := 1     
+Module SyncFIFO 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      4 Bit         XORs := 4     
++---Registers : 
+	               10 Bit    Registers := 1     
+	                5 Bit    Registers := 2     
+	                4 Bit    Registers := 4     
+	                1 Bit    Registers := 2     
++---RAMs : 
+	               80 Bit         RAMs := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 2     
+Module mkL2Proc 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 2     
++---Registers : 
+	               48 Bit    Registers := 4     
+	               40 Bit    Registers := 1     
+	                4 Bit    Registers := 2     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   2 Input     48 Bit        Muxes := 2     
+	   2 Input     10 Bit        Muxes := 1     
+	   4 Input      8 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 8     
+Module BRAM1Load 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
++---RAMs : 
+	              32K Bit         RAMs := 1     
+Module SizedFIFO__parameterized2 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      1 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---RAMs : 
+	               64 Bit         RAMs := 1     
++---Muxes : 
+	   5 Input     32 Bit        Muxes := 1     
+	   5 Input      1 Bit        Muxes := 1     
+	   7 Input      1 Bit        Muxes := 9     
+	   2 Input      1 Bit        Muxes := 3     
+Module Counter__parameterized1 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input      8 Bit       Adders := 1     
++---Registers : 
+	                8 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 2     
+Module SyncBit 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 3     
+Module FIFO2 
+Detailed RTL Component Info : 
++---Registers : 
+	               35 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module FIFO2__parameterized6 
+Detailed RTL Component Info : 
++---Registers : 
+	               48 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module mkA4LS 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      2 Bit       Adders := 4     
++---Registers : 
+	               34 Bit    Registers := 2     
+	               32 Bit    Registers := 4     
+	                8 Bit    Registers := 4     
+	                2 Bit    Registers := 4     
++---Muxes : 
+	   2 Input     34 Bit        Muxes := 1     
+	   4 Input     34 Bit        Muxes := 2     
+	   2 Input     32 Bit        Muxes := 1     
+	   6 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 2     
+Module mkGMAC 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     12 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 1     
++---Registers : 
+	               48 Bit    Registers := 1     
+	               12 Bit    Registers := 1     
+	                8 Bit    Registers := 2     
+	                6 Bit    Registers := 1     
+	                5 Bit    Registers := 2     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 15    
++---Muxes : 
+	   2 Input     10 Bit        Muxes := 3     
+	   5 Input      8 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 3     
+	   2 Input      6 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 10    
+
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Start Cross Boundary Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4rdAddr_fifof/data1_reg_reg[34] ) is unused and will be removed from module reg__292.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4rdAddr_fifof/data1_reg_reg[33] ) is unused and will be removed from module reg__292.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4rdAddr_fifof/data1_reg_reg[32] ) is unused and will be removed from module reg__292.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4rdAddr_fifof/data0_reg_reg[34] ) is unused and will be removed from module reg__291.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4rdAddr_fifof/data0_reg_reg[33] ) is unused and will be removed from module reg__291.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4rdAddr_fifof/data0_reg_reg[32] ) is unused and will be removed from module reg__291.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4wrAddr_fifof/data1_reg_reg[34] ) is unused and will be removed from module reg__2.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4wrAddr_fifof/data1_reg_reg[33] ) is unused and will be removed from module reg__2.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4wrAddr_fifof/data1_reg_reg[32] ) is unused and will be removed from module reg__2.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4wrAddr_fifof/data0_reg_reg[34] ) is unused and will be removed from module reg__3.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4wrAddr_fifof/data0_reg_reg[33] ) is unused and will be removed from module reg__3.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4wrAddr_fifof/data0_reg_reg[32] ) is unused and will be removed from module reg__3.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4rdAddr_fifof/data1_reg_reg[34] ) is unused and will be removed from module mkA4LS.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4rdAddr_fifof/data1_reg_reg[33] ) is unused and will be removed from module mkA4LS.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4rdAddr_fifof/data1_reg_reg[32] ) is unused and will be removed from module mkA4LS.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4rdAddr_fifof/data0_reg_reg[34] ) is unused and will be removed from module mkA4LS.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4rdAddr_fifof/data0_reg_reg[33] ) is unused and will be removed from module mkA4LS.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4rdAddr_fifof/data0_reg_reg[32] ) is unused and will be removed from module mkA4LS.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4wrAddr_fifof/data1_reg_reg[34] ) is unused and will be removed from module mkA4LS.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4wrAddr_fifof/data1_reg_reg[33] ) is unused and will be removed from module mkA4LS.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4wrAddr_fifof/data1_reg_reg[32] ) is unused and will be removed from module mkA4LS.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4wrAddr_fifof/data0_reg_reg[34] ) is unused and will be removed from module mkA4LS.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4wrAddr_fifof/data0_reg_reg[33] ) is unused and will be removed from module mkA4LS.
+WARNING: [Synth 8-3332] Sequential element (\a4l_a4wrAddr_fifof/data0_reg_reg[32] ) is unused and will be removed from module mkA4LS.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[31] ) is unused and will be removed from module reg__48.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[30] ) is unused and will be removed from module reg__48.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[29] ) is unused and will be removed from module reg__48.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[28] ) is unused and will be removed from module reg__48.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[15] ) is unused and will be removed from module reg__48.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[14] ) is unused and will be removed from module reg__48.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[13] ) is unused and will be removed from module reg__48.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[12] ) is unused and will be removed from module reg__48.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[6] ) is unused and will be removed from module reg__48.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[5] ) is unused and will be removed from module reg__48.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[4] ) is unused and will be removed from module reg__48.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[31] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[30] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[29] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[28] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[27] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[26] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[25] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[24] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[23] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[22] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[21] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[20] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[19] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[18] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[17] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[16] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[15] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[14] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[13] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[12] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[11] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[10] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[9] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[8] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[7] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[6] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[5] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[4] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[3] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[2] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[1] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[0] ) is unused and will be removed from module reg__51.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[31] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[30] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[29] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[28] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[15] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[14] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[13] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[12] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[6] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[5] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdCRH_reg[4] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[31] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[30] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[29] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[28] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[27] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[26] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[25] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[24] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[23] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[22] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[21] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[20] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[19] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[18] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[17] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[16] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[15] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[14] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[13] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[12] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[11] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+WARNING: [Synth 8-3332] Sequential element (\cmdAddrV_reg[10] ) is unused and will be removed from module mkHCrtCompleter2Axi.
+INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_limit to change the current settings.
+WARNING: [Synth 8-3917] design fpgaTop has port gpix_n driven by constant 0
+-------> Message [Synth 8-3332] suppressed 48 times
+WARNING: [Synth 8-3917] design fpgaTop has port gpiy_p driven by constant 0
+WARNING: [Synth 8-3917] design fpgaTop has port gpiy_n driven by constant 0
+-------> Message [Synth 8-3331] suppressed 64 times
+---------------------------------------------------------------------------------
+Finished Cross Boundary Optimization : Time (s): cpu = 00:01:32 ; elapsed = 00:01:34 . Memory (MB): peak = 866.102 ; gain = 751.605
+---------------------------------------------------------------------------------
+
+INFO: [Synth 8-3967] The signal rxRS_rxF/fifoMem_reg was recognized as a RAM template but could not be mapped onto a dedicated block RAM for the following reason(s): The *asynchronous read* does not match a dedicated block HDL RAM template.
+INFO: [Synth 8-3967] The signal txRS_txF/fifoMem_reg was recognized as a RAM template but could not be mapped onto a dedicated block RAM for the following reason(s): The *asynchronous read* does not match a dedicated block HDL RAM template.
+INFO: [Synth 8-3967] The signal arr_reg was recognized as a RAM template but could not be mapped onto a dedicated block RAM for the following reason(s): The *asynchronous read* does not match a dedicated block HDL RAM template.
+INFO: [Synth 8-3967] The signal arr_reg was recognized as a RAM template but could not be mapped onto a dedicated block RAM for the following reason(s): The *asynchronous read* does not match a dedicated block HDL RAM template.
+INFO: [Synth 8-3967] The signal arr_reg was recognized as a RAM template but could not be mapped onto a dedicated block RAM for the following reason(s): The *asynchronous read* does not match a dedicated block HDL RAM template.
+---------------------------------------------------------------------------------
+ Start RAM, DSP and Shift Register Reporting 
+---------------------------------------------------------------------------------
+
+Block RAM:
+|Module Name|RTL Object|PORT A (depth X width)|W|R|PORT B (depth X width)|W|R|OUT_REG|RAMB18E1|RAMB36E1|Hierarchical Name   |
+|-----------|----------|----------------------|-|-|----------------------|-|-|-------|--------|--------|--------------------|
+|BRAM1Load  |RAM_reg   |1 K X 32(WRITE_FIRST) |W|R|                      | | |Port A |0       |1       |extram__5->BRAM1Load|
+|-----------|----------|----------------------|-|-|----------------------|-|-|-------|--------|--------|--------------------|
+
+
+Distributed RAM:
+|Module Name|RTL Object          |Inference Criteria|Size (depth X width)|Primitives  |Hierarchical Name                        |
+|-----------|--------------------|------------------|--------------------|------------|-----------------------------------------|
+|not found  |rxRS_rxF/fifoMem_reg|Implied           |8 X 10              |RAM32M x 2  |ram__6->mkGMAC->mkFTop_kc705->fpgaTop    |
+|not found  |txRS_txF/fifoMem_reg|Implied           |16 X 10             |RAM32M x 2  |ram__7->mkGMAC->mkFTop_kc705->fpgaTop    |
+|not found  |arr_reg             |Implied           |16 X 24             |RAM32M x 4  |ram__8->SizedFIFO->mkFTop_kc705->fpgaTop |
+|not found  |arr_reg             |Implied           |16 X 8              |RAM32M x 2  |ram__9->SizedFIFO->mkFTop_kc705->fpgaTop |
+|not found  |arr_reg             |Implied           |2 X 32              |RAM32M x 6  |ram__10->SizedFIFO->mkFTop_kc705->fpgaTop|
+|-----------|--------------------|------------------|--------------------|------------|-----------------------------------------|
+
+---------------------------------------------------------------------------------
+ Finished RAM, DSP and Shift Register Reporting 
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Start Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/crt2axi/\crtRespF/data1_reg_reg[8] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/crt2axi/\rspCRH_reg[6] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (ftop/crt2axi/\rspCRH_reg[31] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data1_reg_reg[26] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (ftop/lcd_ctrl/\line2_reg[75] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/lcd_ctrl/\line1_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/gmac/txRS_txER_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[17] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[14] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[16] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[13] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[12] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[10] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[18] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[26] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[25] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[24] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[23] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[22] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[21] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[20] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[19] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[8] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_fRequest/\data0_reg_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rRegAddr_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[14] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rRegAddr_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[13] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[12] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[10] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rRegAddr_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_rWrite_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rPhyAddr_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rPhyAddr_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rPhyAddr_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rPhyAddr_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rPhyAddr_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rRegAddr_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rRegAddr_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[8] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/\mdi_rWriteData_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (ftop/mdi_rOutEn_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (ftop/mdi_rMDD_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ftop/mdi_rMDC_reg)
+-------> Message [Synth 8-3332] suppressed 415 times
+---------------------------------------------------------------------------------
+Finished Area Optimization : Time (s): cpu = 00:01:38 ; elapsed = 00:01:40 . Memory (MB): peak = 866.102 ; gain = 751.605
+---------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:39 ; elapsed = 00:01:41 . Memory (MB): peak = 866.102 ; gain = 751.605
+---------------------------------------------------------------------------------
+
+info: (0) optimizing 'ftop/l2P/\uMAddr_reg[0] /D' (path group default) @ -169.0ps(1/1) (1 secs)
+info: start optimizing equally critical endpoints ...
+info: done optimizing (1) equally critical endpoints.
+info: done optimizing path group default
+info: start optimizing sub-critical range ...
+info: done optimizing sub-critical range for path group default.
+info: done optimizing sub-critical range.
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:40 ; elapsed = 00:01:41 . Memory (MB): peak = 866.102 ; gain = 751.605
+---------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:43 ; elapsed = 00:01:45 . Memory (MB): peak = 866.102 ; gain = 751.605
+---------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Final Netlist Cleanup
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:44 ; elapsed = 00:01:46 . Memory (MB): peak = 866.102 ; gain = 751.605
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
+-----+-----------------+------+--------+------+-----------------
+     |Item             |Errors|Warnings|Status|Description      
+-----+-----------------+------+--------+------+-----------------
+1    |multi_driven_nets|     0|       0|Passed|Multi driven nets
+-----+-----------------+------+--------+------+-----------------
+
+---------------------------------------------------------------------------------
+Start renaming generated instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:44 ; elapsed = 00:01:46 . Memory (MB): peak = 866.102 ; gain = 751.605
+---------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------
+Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:44 ; elapsed = 00:01:46 . Memory (MB): peak = 866.102 ; gain = 751.605
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+ Start RAM, DSP and Shift Register Reporting 
+---------------------------------------------------------------------------------
+
+Static Shift Register:
+|Module Name|RTL Name             |Length|Width|Reset Signal|Pull out first Reg|Pull out last Reg|SRL16E|SRLC32E|
+|-----------|---------------------|------|-----|------------|------------------|-----------------|------|-------|
+|fpgaTop    |ftop/l2P/egSA_reg[47]|5     |1    |YES         |NO                |NO               |1     |0      |
+|fpgaTop    |ftop/l2P/egSA_reg[46]|4     |2    |YES         |NO                |NO               |2     |0      |
+|-----------|---------------------|------|-----|------------|------------------|-----------------|------|-------|
+
+---------------------------------------------------------------------------------
+ Finished RAM, DSP and Shift Register Reporting 
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Writing Synthesis Report
+---------------------------------------------------------------------------------
+Report BlackBoxes: 
+-----+-------------+---------
+     |BlackBox name|Instances
+-----+-------------+---------
+-----+-------------+---------
+Report Cell Usage: 
+-----+-----------+-----
+     |Cell       |Count
+-----+-----------+-----
+1    |BUFG       |    2
+2    |BUFIO      |    1
+3    |BUFR_1     |    1
+4    |CARRY4     |   41
+5    |IBUFDS_GTE2|    1
+6    |IDELAYCTRL |    1
+7    |INV        |    2
+8    |IODELAY    |    1
+9    |LUT1       |  107
+10   |LUT2       |  132
+11   |LUT3       |  204
+12   |LUT4       |  286
+13   |LUT5       |  470
+14   |LUT6       | 1261
+15   |MUXF7      |   12
+16   |ODDR_1     |   11
+17   |RAM32M     |   14
+18   |RAMB36E1_1 |    1
+19   |SRL16E     |    3
+20   |FDCE       |  125
+21   |FDPE       |    8
+22   |FDRE       | 2012
+23   |FDSE       |  144
+24   |IBUF       |   14
+25   |IBUFGDS    |    2
+26   |IOBUF      |    1
+27   |OBUF       |   33
+28   |OBUFT      |    1
+-----+-----------+-----
+Report Instance Areas: 
+-----+------------------------------------+-----------------------------+-----
+     |Instance                            |Module                       |Cells
+-----+------------------------------------+-----------------------------+-----
+1    |top                                 |                             | 4891
+2    |  ftop                              |mkFTop_kc705                 | 4837
+3    |    idc_idcRst                      |MakeResetA                   |    8
+4    |      rstSync                       |SyncResetA__parameterized0_11|    5
+5    |    i2cC_rPrescaler                 |Counter__parameterized0      |  156
+6    |    a4ls                            |mkA4LS                       |  707
+7    |      a4l_a4rdAddr_fifof            |FIFO2                        |  245
+8    |      a4l_a4wrData_fifof            |FIFO2__parameterized0        |  119
+9    |      a4l_a4wrAddr_fifof            |FIFO2_10                     |  112
+10   |    iicrom_serverAdapter_outDataCore|SizedFIFO__parameterized2    |   90
+11   |    sys1_rst                        |SyncResetA__parameterized2   |    2
+12   |    l2qc_outF                       |FIFO2__parameterized4        |  103
+13   |    lcd_ctrl                        |mkLCDController              |  652
+14   |    crt2axi                         |mkHCrtCompleter2Axi          | 1066
+15   |      crtCmdF                       |FIFO2__parameterized3        |  324
+16   |      crtRespF                      |FIFO2__parameterized4_9      |  129
+17   |      a4l_a4rdResp_fifof            |FIFO2__parameterized1        |  148
+18   |      a4l_a4wrResp_fifof            |FIFO2__parameterized2        |   10
+19   |    iicrom_memory                   |BRAM1Load                    |    5
+20   |    l2qc_inF                        |FIFO2__parameterized5        |   44
+21   |    i2cC_fResponse                  |SizedFIFO__parameterized1    |   57
+22   |    i2cC_rPlayIndex                 |Counter                      |   91
+23   |    i2cC_fRequest                   |SizedFIFO__parameterized0    |  107
+24   |    l2P                             |mkL2Proc                     |  685
+25   |      igSAF                         |FIFO2__parameterized6        |  211
+26   |      dgTxF                         |FIFO2__parameterized5_5      |   58
+27   |      l2TxF                         |FIFO2__parameterized5_6      |   51
+28   |      dgRxF                         |FIFO2__parameterized5_7      |   37
+29   |      l2RxF                         |FIFO2__parameterized5_8      |   47
+30   |    qcl2_inF                        |FIFO2__parameterized4_0      |  135
+31   |    qcl2_outF                       |FIFO2__parameterized5_1      |   38
+32   |    gmac                            |mkGMAC                       |  581
+33   |      txRS_txRst                    |SyncResetA__parameterized0   |    4
+34   |      txRS_txF                      |SyncFIFO__parameterized0     |  142
+35   |      txRS_crc                      |mkCRC32                      |   45
+36   |      rxRS_rxOperateS               |SyncBit                      |   31
+37   |      txRS_txOperateS               |SyncBit_2                    |   41
+38   |      rxRS_rxRst                    |SyncResetA__parameterized0_3 |    3
+39   |      rxRS_rxF                      |SyncFIFO                     |   68
+40   |      rxRS_crc                      |mkCRC32_4                    |   94
+41   |    sys0_rst                        |SyncResetA__parameterized1   |   20
+-----+------------------------------------+-----------------------------+-----
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:45 ; elapsed = 00:01:46 . Memory (MB): peak = 866.102 ; gain = 751.605
+---------------------------------------------------------------------------------
+
+Synthesis finished with 0 errors, 0 critical warnings and 1086 warnings.
+Synthesis Optimization Complete : Time (s): cpu = 00:01:45 ; elapsed = 00:01:46 . Memory (MB): peak = 866.102 ; gain = 751.605
+INFO: [Netlist 29-17] Analyzing 44 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 20 instances were transformed.
+  IBUFGDS => IBUFDS: 2 instances
+  INV => LUT1: 2 instances
+  IOBUF => IOBUF (OBUFT, IBUF): 1 instances
+  IODELAY => IDELAYE2: 1 instances
+  RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 14 instances
+
+Phase 0 | Netlist Checksum: 954912ee
+INFO: [Common 17-83] Releasing license: Synthesis
+373 Infos, 233 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:47 ; elapsed = 00:01:49 . Memory (MB): peak = 955.195 ; gain = 806.293
+# write_checkpoint fpgaTop.dcp
+# report_utilization -file fpgaTop_utilization_synth.rpt -pb fpgaTop_utilization_synth.pb
+report_utilization: Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.07 . Memory (MB): peak = 955.195 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Sun Feb 17 15:03:53 2013...

@@ -4,14 +4,15 @@ Copyright (c) 2013 Atomic Rules LLC - ALL RIGHTS RESERVED
 
 Directory Structure
 ---------------------
-- bsv/ BSV codes
+- bsv/ BSV source codes
 - constrs/ Constraints files
+- data/ Source data supporting codes 
 - doc/ Documents
 - gtkwave/ GTKWave support
 - info/ Compiler artifacts
-- ip/ Packed IP
+- ip/ Packaged IPs
 - obj/ Compiler and Simulator artifacts
-- rtl/ RTL codes
+- rtl/ RTL source and intermediate codes
 - sim/ Simulator artifacts
 - vivado/ Vivado projects
 
