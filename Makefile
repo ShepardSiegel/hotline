@@ -1,8 +1,10 @@
 default:
-	echo hello
+	@echo hello
 
 clean:
-	rm -fR `find . -name \*~`
-	rm -fR info obj
-	mkdir info
-	mkdir obj
+	@echo -n "Size before: ";du -sh .
+	@rm -fR `find . -name \*~`
+	@echo "Removing and re-creating info obj sim"
+	@rm -fR info obj sim
+	@mkdir info obj sim
+	@echo -n "Size after: ";du -sh .
