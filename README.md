@@ -4,6 +4,7 @@ Copyright (c) 2013 Atomic Rules LLC - ALL RIGHTS RESERVED
 
 Directory Structure
 ---------------------
+- bin/ Binary and Script executables
 - bsv/ BSV source codes
 - constrs/ Constraints files
 - data/ Source data supporting codes 
