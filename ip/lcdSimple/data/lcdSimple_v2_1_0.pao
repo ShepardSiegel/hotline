@@ -1,0 +1,32 @@
+# lcdSimple_v2_1_0.pao
+
+lib nf10_axis_converter_v1_00_a all
+lib nf10_oped_v1_11_a nf10_oped.v verilog
+
+lib nf10_oped_v1_11_a oped/xilinx_v5_pcie_wrapper.v verilog
+lib nf10_oped_v1_11_a oped/mkTLPSM.v verilog
+lib nf10_oped_v1_11_a oped/mkPktFork.v verilog
+lib nf10_oped_v1_11_a oped/mkPktMerge.v verilog
+lib nf10_oped_v1_11_a oped/mkOCCP.v verilog
+lib nf10_oped_v1_11_a oped/mkWCIS2A4LM.v verilog
+lib nf10_oped_v1_11_a oped/mkOPED_v5.v verilog
+lib nf10_oped_v1_11_a oped/mkSMAdapter4B.v verilog
+lib nf10_oped_v1_11_a oped/mkBiasWorker4B.v verilog
+lib nf10_oped_v1_11_a oped/mkAXISDWorker4B.v verilog
+
+lib nf10_oped_v1_11_a util/FIFO2.v verilog
+lib nf10_oped_v1_11_a util/arSRLFIFO.v verilog
+lib nf10_oped_v1_11_a util/arSRLFIFOD.v verilog
+lib nf10_oped_v1_11_a util/BRAM2.v verilog
+lib nf10_oped_v1_11_a util/FIFO1.v verilog
+lib nf10_oped_v1_11_a util/FIFO10.v verilog
+lib nf10_oped_v1_11_a util/ResetToBool.v verilog
+lib nf10_oped_v1_11_a util/SizedFIFO.v verilog
+lib nf10_oped_v1_11_a util/SyncResetA.v verilog
+lib nf10_oped_v1_11_a util/SyncRegister.v verilog
+lib nf10_oped_v1_11_a util/MakeResetA.v verilog
+lib nf10_oped_v1_11_a util/SyncBit.v verilog
+lib nf10_oped_v1_11_a util/SyncHandshake.v verilog
+lib nf10_oped_v1_11_a util/SyncFIFO.v verilog
+lib nf10_oped_v1_11_a util/FIFO20.v verilog
+
