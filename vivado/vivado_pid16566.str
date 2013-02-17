@@ -1,0 +1,328 @@
+select (PAResourceAtoH.GettingStartedView_OPEN_PROJECT, "Open Project"); // I (JPanel, aM) [02/17 03:41:14]
+select (null, "/home/shep/projects/hotline/vivado/hkp1/hkp1.xpr"); // aj (ao, aM) [02/17 03:41:16]
+// ui.b.c.bS[ui.aM]:  Open Project : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: open_project /home/shep/projects/hotline/vivado/hkp1/hkp1.xpr
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Scanning sources...Finished scanning sources
+dismissDialog (" Open Project "); // bS (aM) [02/17 03:41:19]
+select (PAResourceAtoH.DesignStateGadget_SHOW_WARNING_AND_ERROR_MESSAGES_IN_MESSAGES, "234 warnings"); // I (JPanel, aM) [02/17 03:41:23]
+select (PAResourceItoP.MsgView_INFORMATION_MESSAGES, null, false, true); // i (JPanel, aM): FALSE [02/17 03:41:23]
+selectTree (PAResourceItoP.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-350] instance 'ftop' of module 'mkFTop_kc705' requires 29 connections, but only 22 given [/home/shep/projects/hotline/rtl/fpgaTop.v:236]]", 1, false, false, false, false, false); // M (JViewport, aM) [02/17 03:41:51]
+// ui.b.c.bS[ui.aM]:  Open Synthesized Design : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: open_run synth_1 -name netlist_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Design is defaulting to impl run constrset: constrs_1Design is defaulting to synth run part: xc7k325tffg900-2
+// Device: addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Netlist 29-17] Analyzing 43 Unisim elements for replacementINFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Project 1-111] Unisim Transformation Summary:  A total of 15 instances were transformed.  IOBUF => IOBUF (OBUFT, IBUF): 1 instances  RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 14 instances
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Phase 0 | Netlist Checksum: 961312d2
+// Device: addNotify
+// Device: addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: open_run: Time (s): cpu = 00:00:30 ; elapsed = 00:00:16 . Memory (MB): peak = 3466.332 ; gain = 713.938
+// Device: addNotify
+// Device: addNotify
+// Device: addNotify
+dismissDialog (" Open Synthesized Design "); // bS (aM) [02/17 03:46:31]
+// GraphicalView (componentResized): java.awt.Dimension[width=1529,height=806]
+// GraphicalView (componentResized): java.awt.Dimension[width=1545,height=822]
+// GraphicalView (componentResized): java.awt.Dimension[width=1545,height=822]
+selectTree (PAResourceItoP.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3332] Sequential element (\\cmdAddrV_reg[21] ) is unused and will be removed from module mkHCrtCompleter2Axi.]", 219, false, false, false, false, false); // M (JViewport, aM) [02/17 03:46:52]
+// Device: addNotify
+// ui.b.D.k[ui.aM]: Find: addNotify
+select (RDIResource.BaseDialog_CANCEL, " Cancel "); // b (JPanel, k) [02/17 03:47:15]
+// Device: addNotify
+// Device: addNotify
+// GraphicalView (componentResized): java.awt.Dimension[width=1544,height=965]
+selectTree (PAResourceItoP.NetlistTreeView_NETLIST, "[fpgaTop]", 0, false, false, false, false, false); // bm (JViewport, aM) [02/17 03:56:36]
+selectTab (null, "Properties", 1); // a (JPanel, aM) [02/17 03:57:08]
+selectTab (null, "Statistics", 2); // a (JPanel, aM) [02/17 03:57:09]
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Synthesis Settings]", 14, false, false, false, false, false); // u (t, aM) [02/17 03:57:11]
+// Project Settings: addNotify
+select (null, "Cancel"); // JButton (ButtonPanel, i) [02/17 03:57:38]
+select (PAResourceCommand.PACommandNames_SCHEMATIC, null); // ax (CommandBar, aM) [02/17 03:58:18]
+selectTree (PAResourceItoP.NetlistTreeView_NETLIST, "[fpgaTop]", 0, false, false, false, false, false); // bm (JViewport, aM) [02/17 03:58:20]
+// GraphicalView (componentResized): java.awt.Dimension[width=1336,height=950]
+// GraphicalView (componentResized): java.awt.Dimension[width=1351,height=965]
+// GraphicalView (componentResized): java.awt.Dimension[width=1351,height=965]
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Synthesized Design]", 16, false, false, false, false, false); // u (t, aM) [02/17 04:09:02]
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Synthesized Design]", 16, false, false, false, false, false); // u (t, aM) [02/17 04:09:03]
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Synthesized Design]", 16, false, false, false, false, false); // u (t, aM) [02/17 04:09:04]
+// GraphicalView (componentResized): java.awt.Dimension[width=1617,height=965]
+// GraphicalView (componentResized): java.awt.Dimension[width=1842,height=965]
+selectTree (PAResourceItoP.NetlistTreeView_NETLIST, "[fpgaTop]", 0, false, false, false, false, false); // bm (JViewport, aM) [02/17 04:09:29]
+selectTree (PAResourceItoP.NetlistTreeView_NETLIST, "[fpgaTop, ftop (mkFTop_kc705)]", 3, false, false, false, false, false); // bm (JViewport, aM) [02/17 04:09:29]
+selectTree (PAResourceItoP.NetlistTreeView_NETLIST, "[fpgaTop, ftop (mkFTop_kc705), gmac (mkGMAC)]", 8, false, false, false, false, false); // bm (JViewport, aM) [02/17 04:09:34]
+select (PAResourceItoP.MainMenuMgr_TOOLS, "Tools"); // af (CommandMenuBar, aM) [02/17 04:10:09]
+dismissMenu (PAResourceItoP.MainMenuMgr_TOOLS, "Tools"); // af (CommandMenuBar, aM) [02/17 04:10:10]
+select (PAResourceItoP.MainMenuMgr_WINDOW, "Window"); // af (CommandMenuBar, aM) [02/17 04:10:10]
+select (PAResourceCommand.PACommandNames_DEBUG_WINDOW, "Debug"); // aj (JPopupMenu, aM) [02/17 04:10:13]
+dismissMenu (PAResourceItoP.MainMenuMgr_WINDOW, "Window"); // af (CommandMenuBar, aM) [02/17 04:10:13]
+select (PAResourceCommand.PACommandNames_CHIPSCOPE_WIZARD, "Set up Debug..."); // aj (ao, aM) [02/17 04:10:18]
+// ui.b.c.bS[ui.b.a.g]:  Tracing Clock Domain : addNotify
+select (null, "Next >"); // JButton (ButtonPanel, g) [02/17 04:10:20]
+dismissDialog (" Tracing Clock Domain "); // bS (g) [02/17 04:10:20]
+select (PAResourceAtoH.ChipscopeWizard_ADD_REMOVE_NETS, "Add/Remove Nets..."); // b (JPanel, g) [02/17 04:10:21]
+// ui.b.k.a[ui.aM]: Add/Remove Nets: addNotify
+select (PAResourceAtoH.FindAndPickDialog_FIND, "Find"); // b (JPanel, a) [02/17 04:10:32]
+select (null, "OK"); // JButton (JPanel, K) [02/17 04:10:34]
+select (PAResourceAtoH.FindAndPickDialog_FIND, "Find"); // b (JPanel, a) [02/17 04:10:39]
+select (PAResourceAtoH.FindAndPickDialog_FIND, "Find"); // b (JPanel, a) [02/17 04:10:55]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/gmac/rxRS_rxOperateS/WILL_FIRE_RL_rxRS_end_frame]", 12, false, false, false, false, false); // i (JViewport, a) [02/17 04:11:02]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/gmac/rxRS_rxOperateS/WILL_FIRE_RL_rxRS_end_frame]", 12, false, true, false, false, false); // i (JViewport, a) - CONTROL KEY DOWN [02/17 04:11:11]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/gmac/rxRS_rxOperateS/WILL_FIRE_RL_rxRS_end_frame]", 12, false, true, false, false, false); // i (JViewport, a) - CONTROL KEY DOWN [02/17 04:11:19]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/gmac/rxRS_rxOperateS/WILL_FIRE_RL_rxRS_end_frame]", 12, false, true, false, false, false); // i (JViewport, a) - CONTROL KEY DOWN [02/17 04:11:21]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/gmac/rxRS_rxOperateS/WILL_FIRE_RL_rxRS_end_frame]", 12, false, true, false, false, false); // i (JViewport, a) - CONTROL KEY DOWN [02/17 04:11:21]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/gmac/rxRS_rxOperateS/WILL_FIRE_RL_rxRS_end_frame]", 12, false, true, false, false, false); // i (JViewport, a) - CONTROL KEY DOWN [02/17 04:11:29]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/gmac/rxRS_rxOperateS/WILL_FIRE_RL_rxRS_end_frame]", 12, false, true, false, false, false); // i (JViewport, a) - CONTROL KEY DOWN [02/17 04:11:30]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/gmac/rxRS_rxOperateS/WILL_FIRE_RL_rxRS_end_frame]", 12, false, true, false, false, false); // i (JViewport, a) - CONTROL KEY DOWN [02/17 04:11:30]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/gmac/rxRS_rxOperateS/WILL_FIRE_RL_rxRS_end_frame]", 12, false, true, false, false, false); // i (JViewport, a) - CONTROL KEY DOWN [02/17 04:11:31]
+select (PAResourceAtoH.FindAndPickDialog_MOVE_RIGHT, null); // x (NullPanel, a) [02/17 04:11:34]
+select (PAResourceAtoH.FindAndPickDialog_FIND, "Find"); // b (JPanel, a) [02/17 04:12:17]
+select (null, "OK"); // JButton (JPanel, K) [02/17 04:12:20]
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, a) [02/17 04:12:20]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/l2P/l2RxF/D]", 0, false, false, false, false, false); // i (JViewport, a) [02/17 04:12:21]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/l2P/l2RxF/dDoutReg]", 2, false, false, false, false, false); // i (JViewport, a) [02/17 04:12:31]
+select (PAResourceAtoH.FindAndPickDialog_MOVE_RIGHT, null); // x (NullPanel, a) [02/17 04:12:51]
+select (PAResourceAtoH.FindAndPickDialog_FIND, "Find"); // b (JPanel, a) [02/17 04:13:15]
+// ui.b.c.bS[ui.b.a.g]:  Tracing Clock Domain : addNotify
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, a) [02/17 04:13:15]
+dismissDialog ("Add/Remove Nets"); // a (aM) [02/17 04:13:15]
+dismissDialog (" Tracing Clock Domain "); // bS (g) [02/17 04:13:15]
+select (PAResourceAtoH.ChipscopeWizard_ADD_REMOVE_NETS, "Add/Remove Nets..."); // b (JPanel, g) [02/17 04:13:20]
+// ui.b.k.a[ui.aM]: Add/Remove Nets: addNotify
+select (PAResourceAtoH.FindAndPickDialog_FIND, "Find"); // b (JPanel, a) [02/17 04:13:27]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/l2P/igPtr]", 0, false, false, false, false, false); // i (JViewport, a) [02/17 04:13:30]
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, a) [02/17 04:13:32]
+// ui.b.c.bS[ui.b.a.g]:  Tracing Clock Domain : addNotify
+dismissDialog ("Add/Remove Nets"); // a (aM) [02/17 04:13:32]
+dismissDialog (" Tracing Clock Domain "); // bS (g) [02/17 04:13:32]
+select (PAResourceAtoH.ChipscopeWizard_ADD_REMOVE_NETS, "Add/Remove Nets..."); // b (JPanel, g) [02/17 04:13:40]
+// ui.b.k.a[ui.aM]: Add/Remove Nets: addNotify
+select (PAResourceAtoH.FindAndPickDialog_FIND, "Find"); // b (JPanel, a) [02/17 04:13:47]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/l2P/igDA]", 0, false, false, false, false, false); // i (JViewport, a) [02/17 04:13:49]
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, a) [02/17 04:13:50]
+// ui.b.c.bS[ui.b.a.g]:  Tracing Clock Domain : addNotify
+dismissDialog ("Add/Remove Nets"); // a (aM) [02/17 04:13:51]
+dismissDialog (" Tracing Clock Domain "); // bS (g) [02/17 04:13:51]
+select (PAResourceAtoH.ChipscopeWizard_ADD_REMOVE_NETS, "Add/Remove Nets..."); // b (JPanel, g) [02/17 04:13:52]
+// ui.b.k.a[ui.aM]: Add/Remove Nets: addNotify
+select (PAResourceAtoH.FindAndPickDialog_FIND, "Find"); // b (JPanel, a) [02/17 04:14:05]
+select (null, "OK"); // JButton (JPanel, K) [02/17 04:14:06]
+select (null, "OK"); // JButton (JPanel, K) [02/17 04:14:10]
+// ui.b.c.bS[ui.b.a.g]:  Tracing Clock Domain : addNotify
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, a) [02/17 04:14:18]
+dismissDialog ("Add/Remove Nets"); // a (aM) [02/17 04:14:18]
+dismissDialog (" Tracing Clock Domain "); // bS (g) [02/17 04:14:18]
+select (PAResourceAtoH.ChipscopeWizard_ADD_REMOVE_NETS, "Add/Remove Nets..."); // b (JPanel, g) [02/17 04:14:20]
+// ui.b.k.a[ui.aM]: Add/Remove Nets: addNotify
+select (PAResourceAtoH.FindAndPickDialog_FIND, "Find"); // b (JPanel, a) [02/17 04:14:25]
+select (null, "OK"); // JButton (JPanel, K) [02/17 04:14:26]
+select (PAResourceAtoH.FindAndPickDialog_FIND, "Find"); // b (JPanel, a) [02/17 04:14:29]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/l2P/egPtr_D_IN]", 0, false, false, false, false, false); // i (JViewport, a) [02/17 04:14:35]
+select (PAResourceAtoH.FindAndPickDialog_MOVE_RIGHT, null); // x (NullPanel, a) [02/17 04:14:37]
+select (PAResourceAtoH.FindAndPickDialog_FIND, "Find"); // b (JPanel, a) [02/17 04:15:04]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/l2P/MUX_l2TxF_enq_1__VAL_10]", 3, false, false, false, false, false); // i (JViewport, a) [02/17 04:15:16]
+selectTree (PAResourceAtoH.FindAndPickDialog_FOUND_ITEMS_TREE, "[hkp1, ftop/l2P/l2TxF/data1_reg]", 1, false, false, false, false, false); // i (JViewport, a) [02/17 04:15:17]
+select (PAResourceAtoH.FindAndPickDialog_MOVE_RIGHT, null); // x (NullPanel, a) [02/17 04:15:32]
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, a) [02/17 04:15:34]
+// ui.b.c.bS[ui.b.a.g]:  Tracing Clock Domain : addNotify
+dismissDialog ("Add/Remove Nets"); // a (aM) [02/17 04:15:34]
+dismissDialog (" Tracing Clock Domain "); // bS (g) [02/17 04:15:34]
+select (null, "Next >"); // JButton (ButtonPanel, g) [02/17 04:15:40]
+select (null, "Finish"); // JButton (ButtonPanel, g) [02/17 04:15:44]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: create_debug_core u_ila_0 labtools_ila_v2
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0]
+// ui.b.c.bS[ui.b.a.g]:  Set up Debug : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property C_TRIGIN_EN false [get_debug_cores u_ila_0]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: create_debug_core u_ila_1 labtools_ila_v2
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_1]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property C_TRIGIN_EN false [get_debug_cores u_ila_1]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property C_TRIGOUT_EN false [get_debug_cores u_ila_1]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property port_width 1 [get_debug_ports u_ila_0/CLK]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: connect_debug_port u_ila_0/CLK [get_nets [list ftop/gmac/n_1739_rxClk_BUFR ]]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property port_width 1 [get_debug_ports u_ila_1/CLK]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: connect_debug_port u_ila_1/CLK [get_nets [list ftop/sys1_clk_O ]]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property port_width 1 [get_debug_ports u_ila_0/PROBE0]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: connect_debug_port u_ila_0/PROBE0 [get_nets [list ftop/gmac/rxRS_rxOperateS/WILL_FIRE_RL_rxRS_end_frame ]]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property port_width 10 [get_debug_ports u_ila_1/PROBE0]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: connect_debug_port u_ila_1/PROBE0 [get_nets [list {ftop/l2P/l2TxF/data1_reg[0]} {ftop/l2P/l2TxF/data1_reg[1]} {ftop/l2P/l2TxF/data1_reg[2]} {ftop/l2P/l2TxF/data1_reg[3]} {ftop/l2P/l2TxF/data1_reg[4]} {ftop/l2P/l2TxF/data1_reg[5]} {ftop/l2P/l2TxF/data1_reg[6]} {ftop/l2P/l2TxF/data1_reg[7]} {ftop/l2P/l2TxF/data1_reg[8]} {ftop/l2P/l2TxF/data1_reg[9]} ]]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: create_debug_port u_ila_1 PROBE
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property port_width 10 [get_debug_ports u_ila_1/PROBE1]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: connect_debug_port u_ila_1/PROBE1 [get_nets [list {ftop/l2P/l2RxF/dDoutReg[0]} {ftop/l2P/l2RxF/dDoutReg[1]} {ftop/l2P/l2RxF/dDoutReg[2]} {ftop/l2P/l2RxF/dDoutReg[3]} {ftop/l2P/l2RxF/dDoutReg[4]} {ftop/l2P/l2RxF/dDoutReg[5]} {ftop/l2P/l2RxF/dDoutReg[6]} {ftop/l2P/l2RxF/dDoutReg[7]} {ftop/l2P/l2RxF/dDoutReg[8]} {ftop/l2P/l2RxF/dDoutReg[9]} ]]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: create_debug_port u_ila_1 PROBE
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property port_width 3 [get_debug_ports u_ila_1/PROBE2]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: connect_debug_port u_ila_1/PROBE2 [get_nets [list {ftop/l2P/egPtr_D_IN[1]} {ftop/l2P/egPtr_D_IN[2]} {ftop/l2P/egPtr_D_IN[3]} ]]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: create_debug_port u_ila_1 PROBE
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property port_width 1 [get_debug_ports u_ila_1/PROBE3]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: connect_debug_port u_ila_1/PROBE3 [get_nets [list ftop/crt2axi/crtCmdF/WILL_FIRE_RL_cmd_crh ]]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: create_debug_port u_ila_1 PROBE
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property port_width 1 [get_debug_ports u_ila_1/PROBE4]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: connect_debug_port u_ila_1/PROBE4 [get_nets [list ftop/crt2axi/crtCmdF/WILL_FIRE_RL_cmd_nop ]]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: create_debug_port u_ila_1 PROBE
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property port_width 1 [get_debug_ports u_ila_1/PROBE5]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: connect_debug_port u_ila_1/PROBE5 [get_nets [list ftop/crt2axi/crtCmdF/WILL_FIRE_RL_cmd_read ]]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: create_debug_port u_ila_1 PROBE
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property port_width 1 [get_debug_ports u_ila_1/PROBE6]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: connect_debug_port u_ila_1/PROBE6 [get_nets [list ftop/crt2axi/crtCmdF/WILL_FIRE_RL_cmd_write ]]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: create_debug_port u_ila_1 PROBE
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property port_width 1 [get_debug_ports u_ila_1/PROBE7]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: connect_debug_port u_ila_1/PROBE7 [get_nets [list ftop/l2P/igSAF/WILL_FIRE_RL_l2_ingress_header ]]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: create_debug_port u_ila_1 PROBE
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property port_width 1 [get_debug_ports u_ila_1/PROBE8]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: connect_debug_port u_ila_1/PROBE8 [get_nets [list ftop/crt2axi/crtRespF/WILL_FIRE_RL_rsp_nop ]]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: create_debug_port u_ila_1 PROBE
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property port_width 1 [get_debug_ports u_ila_1/PROBE9]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: connect_debug_port u_ila_1/PROBE9 [get_nets [list ftop/crt2axi/a4l_a4rdResp_fifof/WILL_FIRE_RL_rsp_read ]]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: create_debug_port u_ila_1 PROBE
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property port_width 1 [get_debug_ports u_ila_1/PROBE10]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: connect_debug_port u_ila_1/PROBE10 [get_nets [list ftop/crt2axi/a4l_a4wrResp_fifof/WILL_FIRE_RL_rsp_write ]]
+dismissDialog (" Set up Debug "); // bS (g) [02/17 04:15:54]
+dismissDialog (" Set up Debug "); // bS (g) [02/17 04:15:54]
+// GraphicalView (componentResized): java.awt.Dimension[width=1495,height=950]
+// GraphicalView (componentResized): java.awt.Dimension[width=1510,height=965]
+// GraphicalView (componentResized): java.awt.Dimension[width=1510,height=965]
+selectTab (PAResourceAtoH.DebugView_DEBUG_CORES, "Debug Cores", 1); // a (a, aM) [02/17 04:16:05]
+selectTable (PAResourceAtoH.ChipscopeTreePanel_CHIPSCOPE_TREE_TABLE, "u_ila_0 (labtools_ila_v2),", 1, false, false, false, false, false); // d (JViewport, aM) [02/17 04:16:16]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property C_DATA_DEPTH 4096 [get_debug_cores u_ila_0]
+selectTable (PAResourceAtoH.ChipscopeTreePanel_CHIPSCOPE_TREE_TABLE, "u_ila_1 (labtools_ila_v2),", 4, false, false, false, false, false); // d (JViewport, aM) [02/17 04:16:35]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property C_DATA_DEPTH 4096 [get_debug_cores u_ila_1]
+selectTable (PAResourceAtoH.ChipscopeTreePanel_CHIPSCOPE_TREE_TABLE, "CLK (1),", 2, false, false, false, false, false); // d (JViewport, aM) [02/17 04:16:43]
+selectTable (PAResourceAtoH.ChipscopeTreePanel_CHIPSCOPE_TREE_TABLE, "CLK (1),", 2, false, false, false, false, false); // d (JViewport, aM) [02/17 04:16:45]
+selectTable (PAResourceAtoH.ChipscopeTreePanel_CHIPSCOPE_TREE_TABLE, "CLK (1),", 2, false, false, false, false, false); // d (JViewport, aM) [02/17 04:16:48]
+selectTable (PAResourceAtoH.ChipscopeTreePanel_CHIPSCOPE_TREE_TABLE, "u_ila_1 (labtools_ila_v2),", 4, false, false, false, false, false); // d (JViewport, aM) [02/17 04:16:50]
+selectTable (PAResourceAtoH.ChipscopeTreePanel_CHIPSCOPE_TREE_TABLE, "PROBE0 (10),", 6, false, false, false, false, false); // d (JViewport, aM) [02/17 04:16:51]
+selectTable (PAResourceAtoH.ChipscopeTreePanel_CHIPSCOPE_TREE_TABLE, "CLK (1),", 5, false, false, false, false, false); // d (JViewport, aM) [02/17 04:16:52]
+selectTable (PAResourceAtoH.ChipscopeTreePanel_CHIPSCOPE_TREE_TABLE, "CLK (1),", 5, false, false, false, false, false); // d (JViewport, aM) [02/17 04:16:54]
+selectTable (PAResourceAtoH.ChipscopeTreePanel_CHIPSCOPE_TREE_TABLE, "CLK (1),", 5, false, false, false, false, false); // d (JViewport, aM) [02/17 04:16:55]
+selectTable (PAResourceAtoH.ChipscopeTreePanel_CHIPSCOPE_TREE_TABLE, "CLK (1),", 5, false, false, false, false, false); // d (JViewport, aM) [02/17 04:16:57]
+selectTable (PAResourceAtoH.ChipscopeTreePanel_CHIPSCOPE_TREE_TABLE, "u_ila_0 (labtools_ila_v2),", 1, false, false, false, false, false); // d (JViewport, aM) [02/17 04:16:58]
+selectTable (PAResourceAtoH.ChipscopeTreePanel_CHIPSCOPE_TREE_TABLE, "u_ila_0 (labtools_ila_v2),", 1, false, false, false, true, false); // d (JViewport, aM) - RIGHT MOUSE BUTTON [02/17 04:16:59]
+select (RDIResourceCommand.RDICommands_DELETE, "Delete"); // aj (ao, aM) [02/17 04:17:00]
+// ui.b.f[ui.aM]: Confirm Delete: addNotify
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, f) [02/17 04:17:01]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: delete_debug_core [get_debug_cores {u_ila_0 }]
+dismissDialog ("Confirm Delete"); // f (aM) [02/17 04:17:02]
+select (PAResourceItoP.MainMenuMgr_WINDOW, "Window"); // af (CommandMenuBar, aM) [02/17 04:17:14]
+select (PAResourceCommand.PACommandNames_DEBUG_WINDOW, "Debug"); // aj (JPopupMenu, aM) [02/17 04:17:15]
+dismissMenu (PAResourceItoP.MainMenuMgr_WINDOW, "Window"); // af (CommandMenuBar, aM) [02/17 04:17:15]
+selectTab (PAResourceAtoH.DebugView_DEBUG_NETS, "Debug Nets", 0); // a (a, aM) [02/17 04:17:17]
+selectTab (PAResourceAtoH.DebugView_DEBUG_CORES, "Debug Cores", 1); // a (a, aM) [02/17 04:17:18]
+selectTab (PAResourceAtoH.DebugView_DEBUG_CORES, "Debug Cores", 1); // a (a, aM) [02/17 04:17:25]
+selectTable (PAResourceAtoH.ChipscopeTreePanel_CHIPSCOPE_TREE_TABLE, "dbg_hub (labtools_xsdbmasterlib_v2),", 0, false, false, false, false, false); // d (JViewport, aM) [02/17 04:17:28]
+select (PAResourceCommand.PACommandNames_IMPLEMENT_DEBUG_CORE, "Implement Debug Cores"); // aj (ao, aM) [02/17 04:17:34]
+// ui.b.c.bS[ui.aM]:  Save Design : addNotify
+select (null, "OK"); // JButton (JPanel, J) [02/17 04:17:36]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: save_constraints
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Project 1-96] Target constrs file set to '/home/shep/projects/hotline/constrs/fpgaTop.xdc' for the 'constrs_1' constraints set.
+// ui.b.c.bS[ui.aM]:  Implement Debug Core : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: implement_debug_core
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Common 17-81] Feature available: AnalyzerINFO: [Chipscope 16-98] Generating IP xilinx.com:ip:labtools_xsdb_master_lib:2.0 for dbg_hub_CV.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Chipscope 16-78] labtools_xsdbmasterlib_v2 netlist file is './.Xil/Vivado-16566-ar-cms520/dbg_hub_CV_1/dbg_hub_CV_0.edn'.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Parsing EDIF File [./.Xil/Vivado-16566-ar-cms520/dbg_hub_CV_1/dbg_hub_CV_0.edn]Finished Parsing EDIF File [./.Xil/Vivado-16566-ar-cms520/dbg_hub_CV_1/dbg_hub_CV_0.edn]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Netlist 29-17] Analyzing 6 Unisim elements for replacementINFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Replacing black box 'dbg_hub' with implemented instance
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Chipscope 16-98] Generating IP xilinx.com:ip:ila:2.1 for u_ila_1_CV.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Chipscope 16-78] labtools_ila_v2 netlist file is './.Xil/Vivado-16566-ar-cms520/u_ila_1_CV_2/u_ila_1_CV_1.edn'.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Parsing EDIF File [./.Xil/Vivado-16566-ar-cms520/u_ila_1_CV_2/u_ila_1_CV_1.edn]Finished Parsing EDIF File [./.Xil/Vivado-16566-ar-cms520/u_ila_1_CV_2/u_ila_1_CV_1.edn]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Netlist 29-17] Analyzing 125 Unisim elements for replacementINFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Replacing black box 'u_ila_1' with implemented instance
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Common 17-14] Message 'Constraints 18-549' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_limit to change the current settings.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: implement_debug_core: Time (s): cpu = 00:05:08 ; elapsed = 00:05:09 . Memory (MB): peak = 3478.336 ; gain = 4.000
+dismissDialog (" Implement Debug Core "); // bS (aM) [02/17 04:22:47]
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Run Implementation]", 19, false, false, false, false, false); // u (t, aM) [02/17 04:23:05]
+// ui.b.c.bS[ui.aM]:  Resetting Runs : addNotify
+select (null, "OK"); // JButton (JPanel, J) [02/17 04:23:09]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: reset_run impl_1
+// ui.b.c.bS[ui.aM]:  Starting Implementation : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_runs impl_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Writing XDEF routing.Writing XDEF routing logical nets.Writing XDEF routing special nets.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Write XDEF Complete: Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.10 . Memory (MB): peak = 3478.336 ; gain = 0.000
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: [Sun Feb 17 16:23:11 2013] Launched impl_1...Run output will be captured here: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/runme.log
+dismissDialog (" Starting Implementation "); // bS (aM) [02/17 04:23:12]
+selectTab (PAResourceItoP.ProjectSummaryUtilizationPanel_TABLE, "Table", 1); // f (e, aM) [02/17 04:23:34]
+selectTab (PAResourceItoP.ProjectSummaryUtilizationPanel_GRAPH, "Graph", 0); // f (e, aM) [02/17 04:23:41]
+selectTab (PAResourceItoP.ProjectSummaryUtilizationPanel_TABLE, "Table", 1); // f (e, aM) [02/17 04:23:44]
+// ui.b.w.M[ui.aM]: Implementation Completed: addNotify
+select (PAResourceCommand.PACommandNames_RUN_BITGEN, "Generate Bitstream"); // a (JPanel, M) [02/17 04:25:42]
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, M) [02/17 04:25:43]
+dismissDialog ("Implementation Completed"); // M (aM) [02/17 04:25:43]
+// ui.b.c.bS[ui.aM]:  Generate Bitstream : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_runs impl_1 -to_step write_bitstream
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: [Sun Feb 17 16:25:43 2013] Launched impl_1...Run output will be captured here: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/runme.log
+dismissDialog (" Generate Bitstream "); // bS (aM) [02/17 04:25:44]
+// ui.b.w.M[ui.aM]: Bitstream Generation Completed: addNotify
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, M) [02/17 04:26:37]
+// ui.views.I.d[ui.aM]: Vivado: addNotify
+select (PAResourceAtoH.ClosePlanner_YES, "Yes"); // b (JPanel, d) [02/17 04:26:39]
+// ui.b.c.bS[ui.aM]:  Open Implemented Design : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: close_design
+dismissDialog ("Vivado"); // d (aM) [02/17 04:26:40]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: open_run impl_1
+// Device: addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Netlist 29-17] Analyzing 280 Unisim elements for replacementINFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Parsing XDC File [/home/shep/projects/hotline/vivado/.Xil/Vivado-16566-ar-cms520/dcp/fpgaTop.xdc]Finished Parsing XDC File [/home/shep/projects/hotline/vivado/.Xil/Vivado-16566-ar-cms520/dcp/fpgaTop.xdc]Reading XDEF placement.Reading XDEF routing.
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Read XDEF File: Time (s): cpu = 00:00:00.30 ; elapsed = 00:00:00.29 . Memory (MB): peak = 3478.336 ; gain = 0.000
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Restoring placement.Restored 1727 out of 1727 XDEF sites from archive | CPU: 0.850000 secs | Memory: 11.953941 MB |
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Project 1-111] Unisim Transformation Summary:  A total of 248 instances were transformed.  CFGLUT5 => CFGLUT5 (SRLC32E, SRL16E): 84 instances  IOBUF => IOBUF (OBUFT, IBUF): 1 instances  RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 20 instances  WIRE => IBUF: 143 instances
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Phase 0 | Netlist Checksum: 14fbf672
+// Device: addNotify
+// Device: addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: open_run: Time (s): cpu = 00:00:18 ; elapsed = 00:00:12 . Memory (MB): peak = 3546.438 ; gain = 68.102
+// Device: addNotify
+// Device: addNotify
+// Device: addNotify
+dismissDialog (" Open Implemented Design "); // bS (aM) [02/17 04:26:54]
+selectTab (PAResourceItoP.ProjectSummaryUtilizationPanel_TABLE, "Table", 1); // f (e, aM) [02/17 04:26:58]
+selectTab (PAResourceItoP.ProjectSummaryUtilizationGadget_POST_IMPLEMENTATION, "Post-Implementation", 1); // b (JPanel, aM) [02/17 04:27:02]
+selectTab (PAResourceItoP.ProjectSummaryUtilizationPanel_TABLE, "Table", 1); // f (e, aM) [02/17 04:27:04]
+selectTab (PAResourceItoP.ProjectSummaryUtilizationPanel_GRAPH, "Graph", 0); // f (e, aM) [02/17 04:27:11]
+selectTab (PAResourceItoP.ProjectSummaryUtilizationGadget_POST_SYNTHESIS, "Post-Synthesis", 0); // b (JPanel, aM) [02/17 04:27:13]
+selectTab (PAResourceItoP.ProjectSummaryUtilizationGadget_POST_IMPLEMENTATION, "Post-Implementation", 1); // b (JPanel, aM) [02/17 04:27:18]
+selectTab (PAResourceItoP.ProjectSummaryUtilizationPanel_TABLE, "Table", 1); // f (e, aM) [02/17 04:27:19]
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Launch iMPACT]", 33, false, false, false, false, false); // u (t, aM) [02/17 04:27:24]
+// ui.b.c.bS[ui.aM]:  Launch iMPACT : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_impact 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Chipscope 16-8] Launching iMPACT with command: impact -intstyle pa -mode bscan -port auto -autoassign -b /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/fpgaTop.bit
+dismissDialog (" Launch iMPACT "); // bS (aM) [02/17 04:27:27]
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Session]", 32, false, false, false, false, false); // u (t, aM) [02/17 04:28:28]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: open_hw
+select (PAResourceCommand.PACommandNames_OPEN_TARGET, "Open Recent Hardware Target"); // I (JPanel, aM) [02/17 04:28:30]
+select (PAResourceCommand.PACommandNames_OPEN_TARGET, "Open Recent Hardware Target"); // I (JPanel, aM) [02/17 04:28:33]
+select (PAResourceCommand.PACommandNames_OPEN_TARGET, "Open Recent Hardware Target"); // I (JPanel, aM) [02/17 04:28:40]
+select (PAResourceCommand.PACommandNames_OPEN_TARGET, "Open Recent Hardware Target"); // I (JPanel, aM) [02/17 04:28:41]
+select (PAResourceCommand.PACommandNames_OPEN_TARGET, "Open Recent Hardware Target"); // I (JPanel, aM) [02/17 04:28:41]
+select (PAResourceCommand.PACommandNames_OPEN_TARGET_WIZARD, "Open New Hardware Target"); // I (JPanel, aM) [02/17 04:28:43]
+select (null, "Next >"); // JButton (ButtonPanel, S) [02/17 04:28:45]
+// ui.b.c.bS[ui.b.m.S]:  Open Server : addNotify
+// ui.b.c.bn[ui.aM]: Unable to Connect: addNotify
+dismissDialog (" Open Server "); // bS (S) [02/17 04:28:48]
+select (RDIResource.BaseDialog_CANCEL, " Cancel "); // b (JPanel, bn) [02/17 04:28:56]
+select (null, "Next >"); // JButton (ButtonPanel, S) [02/17 04:28:56]
+dismissDialog ("Unable to Connect"); // bn (aM) [02/17 04:28:56]
+selectComboBox (PAResourceItoP.OpenTargetWizard_SERVER, "localhost:50001", 0); // c (JPanel, S) [02/17 04:28:58]
+// ui.b.c.bS[ui.b.m.S]:  Open Server : addNotify
+// ui.b.c.bn[ui.aM]: Unable to Connect: addNotify
+dismissDialog (" Open Server "); // bS (S) [02/17 04:29:00]
+select (RDIResource.MessageWithOptionDialog_DONT_SHOW_THIS_DIALOG_AGAIN, "Don't show this dialog again", true, false); // i (JPanel, bn): TRUE [02/17 04:29:04]
+select (RDIResource.MessageWithOptionDialog_DONT_SHOW_THIS_DIALOG_AGAIN, "Don't show this dialog again", false, true); // i (JPanel, bn): FALSE [02/17 04:29:07]
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, bn) [02/17 04:29:08]
+select (null, "Next >"); // JButton (ButtonPanel, S) [02/17 04:29:08]
+dismissDialog ("Unable to Connect"); // bn (aM) [02/17 04:29:08]
+select (null, "< Back"); // JButton (ButtonPanel, S) [02/17 04:29:10]
+select (null, "Cancel"); // JButton (ButtonPanel, S) [02/17 04:29:11]
+dismissDialog (" Open Server "); // bS (S) [02/17 04:29:11]
+dismissDialog (" Open Server "); // bS (S) [02/17 04:29:11]
+select (PAResourceCommand.PACommandNames_OPEN_TARGET, "Open Recent Hardware Target"); // I (JPanel, aM) [02/17 04:29:14]
+select (PAResourceCommand.PACommandNames_OPEN_TARGET, "Open Recent Hardware Target"); // I (JPanel, aM) [02/17 04:29:39]
+select (PAResourceCommand.PACommandNames_OPEN_TARGET, "Open Recent Hardware Target"); // I (JPanel, aM) [02/17 04:29:40]
+select (PAResourceCommand.PACommandNames_OPEN_TARGET_WIZARD, "Open New Hardware Target"); // I (JPanel, aM) [02/17 04:29:41]
+select (null, "Next >"); // JButton (ButtonPanel, S) [02/17 04:29:48]
+// ui.b.c.bS[ui.b.m.S]:  Open Server : addNotify
+// ui.b.c.bn[ui.aM]: Unable to Connect: addNotify
+dismissDialog (" Open Server "); // bS (S) [02/17 04:29:52]
+select (RDIResource.BaseDialog_CANCEL, " Cancel "); // b (JPanel, bn) [02/17 04:29:53]
+select (null, "Next >"); // JButton (ButtonPanel, S) [02/17 04:29:54]
+dismissDialog ("Unable to Connect"); // bn (aM) [02/17 04:29:54]
+select (null, "Cancel"); // JButton (ButtonPanel, S) [02/17 04:29:56]
+dismissDialog (" Open Server "); // bS (S) [02/17 04:29:56]
+select (PAResourceCommand.PACommandNames_OPEN_TARGET_WIZARD, "Open New Hardware Target"); // I (JPanel, aM) [02/17 04:31:05]
+select (null, "Cancel"); // JButton (ButtonPanel, S) [02/17 04:31:06]

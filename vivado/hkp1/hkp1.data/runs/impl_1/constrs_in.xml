@@ -10,7 +10,14 @@
         <Attr Name="UsedIn" Val="implementation"/>
       </FileInfo>
     </File>
+    <File Path="$PDATADIR/constrs_1/designprops.xml">
+      <FileInfo SFType="CompatPartsDb"/>
+    </File>
+    <File Path="$PDATADIR/constrs_1/usercols.xml">
+      <FileInfo SFType="UserColsDb"/>
+    </File>
     <Config>
+      <Option Name="TargetConstrsFile" Val="$PPRDIR/../../constrs/fpgaTop.xdc"/>
       <Option Name="ConstrsType" Val="XDC"/>
     </Config>
   </FileSet>

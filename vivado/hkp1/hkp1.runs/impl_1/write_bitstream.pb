@@ -6,7 +6,7 @@ P
 L
 -Analyzing %s Unisim elements for replacement
 17*netlist2
-186Z29-17
+280Z29-17
 O
 2Unisim Transformation completed in %s CPU seconds
 28*netlist2
@@ -46,11 +46,11 @@ C/opt/Xilinx/Vivado/2013.1/data/parts/xilinx/kintex7/ConfigModes.xmlZ21-14
 œ
 Parsing XDC File [%s]
 179*designutils2f
-d/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/.Xil/Vivado-14856-ar-cms520/dcp/fpgaTop.xdcZ20-179
+d/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/.Xil/Vivado-17786-ar-cms520/dcp/fpgaTop.xdcZ20-179
 ¥
 Finished Parsing XDC File [%s]
 178*designutils2f
-d/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/.Xil/Vivado-14856-ar-cms520/dcp/fpgaTop.xdcZ20-178
+d/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/.Xil/Vivado-17786-ar-cms520/dcp/fpgaTop.xdcZ20-178
 6
 Reading XDEF placement.
 206*designutilsZ20-206
@@ -61,43 +61,43 @@ d/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/.Xil/Vivado-14856-ar-c
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2
 Read XDEF File: 2
-00:00:00.152
-00:00:00.152	
-766.2932
-2.125Z17-268
+00:00:00.292
+00:00:00.292	
+781.5742
+2.000Z17-268
 3
 Restoring placement.
 754*designutilsZ20-754
-•
+–
 ORestored %s out of %s XDEF sites from archive | CPU: %s secs | Memory: %s MB |
 403*designutils2
-11022
-11022
+17272
+17272
 
-0.4300002
-
-7.326553Z20-403
-™
+0.8500002
+	12.748482Z20-403
+Î
 !Unisim Transformation Summary:
-%s111*project2Ü
-Ù  A total of 158 instances were transformed.
+%s111*project2‘
+Ž  A total of 248 instances were transformed.
+  CFGLUT5 => CFGLUT5 (SRLC32E, SRL16E): 84 instances
   IOBUF => IOBUF (OBUFT, IBUF): 1 instances
-  RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 14 instances
+  RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 20 instances
   WIRE => IBUF: 143 instances
 Z1-111
 1
-%Phase 0 | Netlist Checksum: 5c5670e9
+%Phase 0 | Netlist Checksum: 14fbf672
 *common
 ¥
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2
 read_checkpoint: 2
 
-00:00:132
+00:00:142
 
-00:00:132	
-770.2932	
-621.391Z17-268
+00:00:142	
+788.5742	
+639.672Z17-268
 w
 @Attempting to get a license for feature '%s' and/or device '%s'
 308*common2
@@ -152,12 +152,12 @@ I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2
 write_bitstream: 2
 
-00:00:302
+00:00:322
 
-00:00:302
+00:00:312
 
-1107.1882	
-336.895Z17-268
+1126.3442	
+337.770Z17-268
 
 
 End Record

@@ -180,8 +180,8 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
 
   // Paint the LCD when the iic sequence is done...
   rule init_lcd (lcdNeedsInit && iicDone);
-    Vector#(16,Bit#(8)) text1 = lcdLine("Next Leaf Atlas ");
-    Vector#(16,Bit#(8)) text2 = lcdLine("L2-IIC inited OK");
+    Vector#(16,Bit#(8)) text1 = lcdLine("Atomic Rules LLC");
+    Vector#(16,Bit#(8)) text2 = lcdLine("Hotline CRT Test");
     lcd_ctrl.setLine1(text1);
     lcd_ctrl.setLine2(text2);
     lcdNeedsInit <= False;

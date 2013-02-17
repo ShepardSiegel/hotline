@@ -1,0 +1,7 @@
+select (PAResourceAtoH.GettingStartedView_OPEN_PROJECT, "Open Project"); // I (JPanel, aM) [02/17 05:20:34]
+select (null, "/home/shep/projects/hotline/vivado/hkp1/hkp1.xpr"); // aj (ao, aM) [02/17 05:20:37]
+// ui.b.c.bS[ui.aM]:  Open Project : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: open_project /home/shep/projects/hotline/vivado/hkp1/hkp1.xpr
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Scanning sources...Finished scanning sources
+dismissDialog (" Open Project "); // bS (aM) [02/17 05:20:40]
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 15, false, false, false, false, false); // u (t, aM) [02/17 05:20:47]

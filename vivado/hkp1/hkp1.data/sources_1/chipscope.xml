@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<ChipScope Version="1" Minor="3">
+	<Core Id="u_ila_1" Type="labtools_ila_v2">
+		<CoreStatus isImpl="1" isFromHDL="0" srcNetlist="cs/u_ila_1_1/u_ila_1.edn" srcXdc="cs/u_ila_1_1/u_ila_1.xdc"/>
+		<CoreParams Id="DebugCoreParams">
+			<Option Id="CDATADEPTH">4096</Option>
+			<Option Id="CTRIGINEN">0</Option>
+			<Option Id="CTRIGOUTEN">0</Option>
+		</CoreParams>
+		<Port Type="CLK" Index="0" Width="1">
+			<PortParams Id="DebugPortParams">
+			</PortParams>
+			<Channel Index="0" Net="ftop/sys1_clk_O"/>
+		</Port>
+		<Port Type="PROBE" Index="0" Width="10">
+			<PortParams Id="DebugPortParams">
+			</PortParams>
+			<Channel Index="0" Net="ftop/l2P/l2TxF/data1_reg[0]"/>
+			<Channel Index="1" Net="ftop/l2P/l2TxF/data1_reg[1]"/>
+			<Channel Index="2" Net="ftop/l2P/l2TxF/data1_reg[2]"/>
+			<Channel Index="3" Net="ftop/l2P/l2TxF/data1_reg[3]"/>
+			<Channel Index="4" Net="ftop/l2P/l2TxF/data1_reg[4]"/>
+			<Channel Index="5" Net="ftop/l2P/l2TxF/data1_reg[5]"/>
+			<Channel Index="6" Net="ftop/l2P/l2TxF/data1_reg[6]"/>
+			<Channel Index="7" Net="ftop/l2P/l2TxF/data1_reg[7]"/>
+			<Channel Index="8" Net="ftop/l2P/l2TxF/data1_reg[8]"/>
+			<Channel Index="9" Net="ftop/l2P/l2TxF/data1_reg[9]"/>
+		</Port>
+		<Port Type="PROBE" Index="1" Width="10">
+			<PortParams Id="DebugPortParams">
+			</PortParams>
+			<Channel Index="0" Net="ftop/l2P/l2RxF/dDoutReg[0]"/>
+			<Channel Index="1" Net="ftop/l2P/l2RxF/dDoutReg[1]"/>
+			<Channel Index="2" Net="ftop/l2P/l2RxF/dDoutReg[2]"/>
+			<Channel Index="3" Net="ftop/l2P/l2RxF/dDoutReg[3]"/>
+			<Channel Index="4" Net="ftop/l2P/l2RxF/dDoutReg[4]"/>
+			<Channel Index="5" Net="ftop/l2P/l2RxF/dDoutReg[5]"/>
+			<Channel Index="6" Net="ftop/l2P/l2RxF/dDoutReg[6]"/>
+			<Channel Index="7" Net="ftop/l2P/l2RxF/dDoutReg[7]"/>
+			<Channel Index="8" Net="ftop/l2P/l2RxF/dDoutReg[8]"/>
+			<Channel Index="9" Net="ftop/l2P/l2RxF/dDoutReg[9]"/>
+		</Port>
+		<Port Type="PROBE" Index="2" Width="3">
+			<PortParams Id="DebugPortParams">
+			</PortParams>
+			<Channel Index="0" Net="ftop/l2P/egPtr_D_IN[1]"/>
+			<Channel Index="1" Net="ftop/l2P/egPtr_D_IN[2]"/>
+			<Channel Index="2" Net="ftop/l2P/egPtr_D_IN[3]"/>
+		</Port>
+		<Port Type="PROBE" Index="3" Width="1">
+			<PortParams Id="DebugPortParams">
+			</PortParams>
+			<Channel Index="0" Net="ftop/crt2axi/crtCmdF/WILL_FIRE_RL_cmd_crh"/>
+		</Port>
+		<Port Type="PROBE" Index="4" Width="1">
+			<PortParams Id="DebugPortParams">
+			</PortParams>
+			<Channel Index="0" Net="ftop/crt2axi/crtCmdF/WILL_FIRE_RL_cmd_nop"/>
+		</Port>
+		<Port Type="PROBE" Index="5" Width="1">
+			<PortParams Id="DebugPortParams">
+			</PortParams>
+			<Channel Index="0" Net="ftop/crt2axi/crtCmdF/WILL_FIRE_RL_cmd_read"/>
+		</Port>
+		<Port Type="PROBE" Index="6" Width="1">
+			<PortParams Id="DebugPortParams">
+			</PortParams>
+			<Channel Index="0" Net="ftop/crt2axi/crtCmdF/WILL_FIRE_RL_cmd_write"/>
+		</Port>
+		<Port Type="PROBE" Index="7" Width="1">
+			<PortParams Id="DebugPortParams">
+			</PortParams>
+			<Channel Index="0" Net="ftop/l2P/igSAF/WILL_FIRE_RL_l2_ingress_header"/>
+		</Port>
+		<Port Type="PROBE" Index="8" Width="1">
+			<PortParams Id="DebugPortParams">
+			</PortParams>
+			<Channel Index="0" Net="ftop/crt2axi/crtRespF/WILL_FIRE_RL_rsp_nop"/>
+		</Port>
+		<Port Type="PROBE" Index="9" Width="1">
+			<PortParams Id="DebugPortParams">
+			</PortParams>
+			<Channel Index="0" Net="ftop/crt2axi/a4l_a4rdResp_fifof/WILL_FIRE_RL_rsp_read"/>
+		</Port>
+		<Port Type="PROBE" Index="10" Width="1">
+			<PortParams Id="DebugPortParams">
+			</PortParams>
+			<Channel Index="0" Net="ftop/crt2axi/a4l_a4wrResp_fifof/WILL_FIRE_RL_rsp_write"/>
+		</Port>
+	</Core>
+	<Core Id="dbg_hub" Type="labtools_xsdbmasterlib_v2">
+		<CoreStatus isImpl="1" isFromHDL="0" srcNetlist="cs/dbg_hub_2/dbg_hub.edn" srcXdc="cs/dbg_hub_2/dbg_hub.xdc"/>
+		<CoreParams Id="DebugCoreParams">
+			<Option Id="CUSERSCANCHAIN">1</Option>
+		</CoreParams>
+		<Port Type="XSDB_CLK_I" Index="0" Width="1">
+			<PortParams Id="DebugPortParams">
+			</PortParams>
+		</Port>
+	</Core>
+	<UnassignedNets>
+	</UnassignedNets>
+</ChipScope>
+

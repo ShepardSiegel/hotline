@@ -48,14 +48,14 @@ Phase %s%s
 101*constraints2
 1.1 2 
 Build Netlist & NodeGraph (MT)Z18-101
-²
+³
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2
 Netlist sorting complete. 2
-00:00:00.012
+00:00:00.032
 00:00:00.012	
-957.7972
-0.000Z17-268
+998.5392
+12.574Z17-268
 C
 7Phase 1.1 Build Netlist & NodeGraph (MT) | Checksum: 0
 *common
@@ -63,7 +63,7 @@ v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:40 ; elapsed = 00:00:28 . Memory (MB): peak = 1167.965 ; gain = 210.168
+]Time (s): cpu = 00:00:41 ; elapsed = 00:00:28 . Memory (MB): peak = 1196.164 ; gain = 210.199
 2
 &Phase 1 Build RT Design | Checksum: 0
 *common
@@ -71,7 +71,7 @@ v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:40 ; elapsed = 00:00:28 . Memory (MB): peak = 1167.965 ; gain = 210.168
+]Time (s): cpu = 00:00:41 ; elapsed = 00:00:28 . Memory (MB): peak = 1196.164 ; gain = 210.199
 I
 
 Phase %s%s
@@ -85,21 +85,21 @@ Phase %s%s
 2.1 2
 Create TimerZ18-101
 8
-,Phase 2.1 Create Timer | Checksum: 6636ddb8
+,Phase 2.1 Create Timer | Checksum: 23957840
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:40 ; elapsed = 00:00:28 . Memory (MB): peak = 1167.965 ; gain = 210.168
+]Time (s): cpu = 00:00:41 ; elapsed = 00:00:28 . Memory (MB): peak = 1196.164 ; gain = 210.199
 Q
 3Estimated Global Vertical Wire Utilization = %s %%
 23*route2
-0.12Z35-23
+0.43Z35-23
 S
 5Estimated Global Horizontal Wire Utilization = %s %%
 22*route2
-0.22Z35-22
+0.45Z35-22
 E
 
 Phase %s%s
@@ -109,7 +109,7 @@ Phase %s%s
 <
 Design has %s routable nets.
 92*route2
-3563Z35-249
+6299Z35-249
 ?
 #Restored %s nets from the routeDb.
 95*route2
@@ -119,13 +119,13 @@ E
 94*route2
 0Z35-251
 ;
-/Phase 2.2 Restore Routing | Checksum: 6636ddb8
+/Phase 2.2 Restore Routing | Checksum: 23957840
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:40 ; elapsed = 00:00:28 . Memory (MB): peak = 1175.996 ; gain = 218.199
+]Time (s): cpu = 00:00:41 ; elapsed = 00:00:28 . Memory (MB): peak = 1204.164 ; gain = 218.199
 I
 
 Phase %s%s
@@ -133,13 +133,13 @@ Phase %s%s
 2.3 2
 Special Net RoutingZ18-101
 ?
-3Phase 2.3 Special Net Routing | Checksum: 55559024
+3Phase 2.3 Special Net Routing | Checksum: 35040a16
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:40 ; elapsed = 00:00:28 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:41 ; elapsed = 00:00:29 . Memory (MB): peak = 1209.164 ; gain = 223.199
 M
 
 Phase %s%s
@@ -147,13 +147,13 @@ Phase %s%s
 2.4 2
 Local Clock Net RoutingZ18-101
 C
-7Phase 2.4 Local Clock Net Routing | Checksum: 55559024
+7Phase 2.4 Local Clock Net Routing | Checksum: 3b0206b7
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:40 ; elapsed = 00:00:28 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:41 ; elapsed = 00:00:29 . Memory (MB): peak = 1209.164 ; gain = 223.199
 C
 
 Phase %s%s
@@ -174,33 +174,33 @@ Phase %s%s
 2.5.1.1 2
 Hold BudgetingZ18-101
 >
-2Phase 2.5.1.1 Hold Budgeting | Checksum: 55559024
+2Phase 2.5.1.1 Hold Budgeting | Checksum: 3b0206b7
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:42 ; elapsed = 00:00:29 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:44 ; elapsed = 00:00:30 . Memory (MB): peak = 1209.164 ; gain = 223.199
 I
-=Phase 2.5.1 Update timing with NCN CRPR | Checksum: 55559024
+=Phase 2.5.1 Update timing with NCN CRPR | Checksum: 3b0206b7
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:42 ; elapsed = 00:00:29 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:44 ; elapsed = 00:00:30 . Memory (MB): peak = 1209.164 ; gain = 223.199
 9
--Phase 2.5 Update Timing | Checksum: 55559024
+-Phase 2.5 Update Timing | Checksum: 3b0206b7
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:42 ; elapsed = 00:00:29 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:44 ; elapsed = 00:00:30 . Memory (MB): peak = 1209.164 ; gain = 223.199
 l
 Estimated Timing Summary %s
 57*route28
-6| WNS=0.812  | TNS=0      | WHS=-0.505 | THS=-168   |
+6| WNS=0.664  | TNS=0      | WHS=-0.484 | THS=-154   |
 Z35-57
 ?
 
@@ -209,21 +209,21 @@ Phase %s%s
 2.6 2
 	BudgetingZ18-101
 5
-)Phase 2.6 Budgeting | Checksum: 55559024
+)Phase 2.6 Budgeting | Checksum: 3b0206b7
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:43 ; elapsed = 00:00:30 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:47 ; elapsed = 00:00:31 . Memory (MB): peak = 1209.164 ; gain = 223.199
 ?
-3Phase 2 Router Initialization | Checksum: 55559024
+3Phase 2 Router Initialization | Checksum: 3b0206b7
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:43 ; elapsed = 00:00:30 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:47 ; elapsed = 00:00:31 . Memory (MB): peak = 1209.164 ; gain = 223.199
 C
 
 Phase %s%s
@@ -231,13 +231,13 @@ Phase %s%s
 3 2
 Initial RoutingZ18-101
 9
--Phase 3 Initial Routing | Checksum: 9c501701
+-Phase 3 Initial Routing | Checksum: 120e27c6
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:44 ; elapsed = 00:00:30 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:48 ; elapsed = 00:00:31 . Memory (MB): peak = 1209.164 ; gain = 223.199
 F
 
 Phase %s%s
@@ -257,17 +257,17 @@ Phase %s%s
 4.1.1 2
 Update TimingZ18-101
 ;
-/Phase 4.1.1 Update Timing | Checksum: 89a37a02
+/Phase 4.1.1 Update Timing | Checksum: 87f673a6
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:48 ; elapsed = 00:00:31 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:54 ; elapsed = 00:00:34 . Memory (MB): peak = 1210.164 ; gain = 224.199
 l
 Estimated Timing Summary %s
 57*route28
-6| WNS=0.901  | TNS=0      | WHS=N/A    | THS=N/A    |
+6| WNS=0.726  | TNS=0      | WHS=N/A    | THS=N/A    |
 Z35-57
 L
 
@@ -276,29 +276,29 @@ Phase %s%s
 4.1.2 2
 collectNewHoldAndFixZ18-101
 B
-6Phase 4.1.2 collectNewHoldAndFix | Checksum: 89a37a02
+6Phase 4.1.2 collectNewHoldAndFix | Checksum: 87f673a6
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:48 ; elapsed = 00:00:31 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:54 ; elapsed = 00:00:34 . Memory (MB): peak = 1210.164 ; gain = 224.199
 >
-2Phase 4.1 Global Iteration 0 | Checksum: 89a37a02
+2Phase 4.1 Global Iteration 0 | Checksum: 87f673a6
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:48 ; elapsed = 00:00:31 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:54 ; elapsed = 00:00:34 . Memory (MB): peak = 1210.164 ; gain = 224.199
 <
-0Phase 4 Rip-up And Reroute | Checksum: 89a37a02
+0Phase 4 Rip-up And Reroute | Checksum: 87f673a6
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:48 ; elapsed = 00:00:31 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:54 ; elapsed = 00:00:34 . Memory (MB): peak = 1210.164 ; gain = 224.199
 A
 
 Phase %s%s
@@ -312,26 +312,26 @@ Phase %s%s
 5.1 2
 Update TimingZ18-101
 9
--Phase 5.1 Update Timing | Checksum: 89a37a02
+-Phase 5.1 Update Timing | Checksum: 87f673a6
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:48 ; elapsed = 00:00:31 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:55 ; elapsed = 00:00:34 . Memory (MB): peak = 1210.164 ; gain = 224.199
 l
 Estimated Timing Summary %s
 57*route28
-6| WNS=0.931  | TNS=0      | WHS=N/A    | THS=N/A    |
+6| WNS=0.739  | TNS=0      | WHS=N/A    | THS=N/A    |
 Z35-57
 7
-+Phase 5 Delay CleanUp | Checksum: 89a37a02
++Phase 5 Delay CleanUp | Checksum: 87f673a6
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:48 ; elapsed = 00:00:31 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:55 ; elapsed = 00:00:34 . Memory (MB): peak = 1210.164 ; gain = 224.199
 A
 
 Phase %s%s
@@ -351,34 +351,34 @@ Phase %s%s
 6.1.1 2
 Update TimingZ18-101
 ;
-/Phase 6.1.1 Update Timing | Checksum: 89a37a02
+/Phase 6.1.1 Update Timing | Checksum: 87f673a6
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:49 ; elapsed = 00:00:32 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:56 ; elapsed = 00:00:35 . Memory (MB): peak = 1210.164 ; gain = 224.199
 l
 Estimated Timing Summary %s
 57*route28
-6| WNS=0.931  | TNS=0      | WHS=-0.283 | THS=-2.4   |
+6| WNS=0.739  | TNS=0      | WHS=-0.256 | THS=-1.98  |
 Z35-57
 >
-2Phase 6.1 Full Hold Analysis | Checksum: 89a37a02
+2Phase 6.1 Full Hold Analysis | Checksum: 87f673a6
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:49 ; elapsed = 00:00:32 . Memory (MB): peak = 1183.996 ; gain = 226.199
+]Time (s): cpu = 00:00:56 ; elapsed = 00:00:35 . Memory (MB): peak = 1210.164 ; gain = 224.199
 7
-+Phase 6 Post Hold Fix | Checksum: f1196754
++Phase 6 Post Hold Fix | Checksum: 6f411a52
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:49 ; elapsed = 00:00:32 . Memory (MB): peak = 1185.996 ; gain = 228.199
+]Time (s): cpu = 00:00:57 ; elapsed = 00:00:35 . Memory (MB): peak = 1212.195 ; gain = 226.230
 I
 
 Phase %s%s
@@ -386,13 +386,13 @@ Phase %s%s
 7 2
 Verifying routed netsZ18-101
 ?
-3Phase 7 Verifying routed nets | Checksum: f1196754
+3Phase 7 Verifying routed nets | Checksum: 6f411a52
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:49 ; elapsed = 00:00:32 . Memory (MB): peak = 1188.996 ; gain = 231.199
+]Time (s): cpu = 00:00:57 ; elapsed = 00:00:35 . Memory (MB): peak = 1215.195 ; gain = 229.230
 E
 
 Phase %s%s
@@ -400,13 +400,13 @@ Phase %s%s
 8 2
 Depositing RoutesZ18-101
 ;
-/Phase 8 Depositing Routes | Checksum: 6c3605b9
+/Phase 8 Depositing Routes | Checksum: 48423b5b
 *common
 v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:49 ; elapsed = 00:00:32 . Memory (MB): peak = 1188.996 ; gain = 231.199
+]Time (s): cpu = 00:00:57 ; elapsed = 00:00:35 . Memory (MB): peak = 1215.195 ; gain = 229.230
 F
 
 Phase %s%s
@@ -416,7 +416,7 @@ Phase %s%s
 o
 Post Routing Timing Summary %s
 20*route28
-6| WNS=0.928  | TNS=0.000  | WHS=0.069  | THS=0.000  |
+6| WNS=0.727  | TNS=0.000  | WHS=0.056  | THS=0.000  |
 Z35-20
 =
 'The design met the timing requirement.
@@ -428,7 +428,7 @@ v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:52 ; elapsed = 00:00:33 . Memory (MB): peak = 1188.996 ; gain = 231.199
+]Time (s): cpu = 00:01:00 ; elapsed = 00:00:37 . Memory (MB): peak = 1215.195 ; gain = 229.230
 4
 Router Completed Successfully
 16*routeZ35-16
@@ -439,7 +439,7 @@ v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:52 ; elapsed = 00:00:33 . Memory (MB): peak = 1188.996 ; gain = 231.199
+]Time (s): cpu = 00:01:00 ; elapsed = 00:00:37 . Memory (MB): peak = 1215.195 ; gain = 229.230
 j
 QWebTalk data collection is enabled (User setting is ON. Install Setting is ON.).
 118*projectZ1-118
@@ -450,7 +450,7 @@ v
 
 %s
 *constraints2_
-]Time (s): cpu = 00:00:52 ; elapsed = 00:00:33 . Memory (MB): peak = 1188.996 ; gain = 231.199
+]Time (s): cpu = 00:01:01 ; elapsed = 00:00:37 . Memory (MB): peak = 1215.195 ; gain = 229.230
 ?
 Releasing license: %s
 83*common2
@@ -471,12 +471,12 @@ I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2
 route_design: 2
 
-00:00:522
+00:01:012
 
-00:00:342
+00:00:382
 
-1188.9962	
-231.199Z17-268
+1215.1952	
+229.230Z17-268
 5
 Running DRC with %s threads
 24*drc2
@@ -512,10 +512,10 @@ A
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2
 Write XDEF Complete: 2
-00:00:00.432
-00:00:00.432
+00:00:00.692
+00:00:00.692
 
-1188.9962
+1215.1952
 0.000Z17-268
 
 

@@ -4,6 +4,7 @@
 	<FileSet Dir="sources_1" File="fileset.xml"/>
 	<FileSet Dir="constrs_1" File="fileset.xml"/>
 	<FileSet Dir="sim_1" File="fileset.xml"/>
+	<HWSession Dir="hw" File="hwsession_1.xml"/>
 	<RunSet Dir="runs" File="runs.xml"/>
 	<DefaultLaunch Dir="$PRUNDIR"/>
 	<Config>
