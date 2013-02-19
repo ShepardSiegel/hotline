@@ -1,0 +1,97 @@
+select (PAResourceAtoH.GettingStartedView_CREATE_NEW_PROJECT, "Create New Project"); // I (JPanel, aM) [02/18 04:42:51]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/18 04:42:53]
+setText (PAResourceItoP.ProjectNameChooser_PROJECT_NAME, "hkp1"); // ac (JPanel, a) [02/18 04:43:00]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/18 04:43:00]
+select (PAResourceItoP.NewProjectWizard_DO_NOT_SPECIFY_SOURCES_AT_THIS_TIME, "Do not specify sources at this time", false, true); // i (U, a): FALSE [02/18 04:43:02]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/18 04:43:03]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/18 04:43:04]
+select (null, "OK"); // JButton (JPanel, K) [02/18 04:43:37]
+String[] filenames31467 = {"/home/shep/projects/hotline/rtl/fpgaTop.v", "/home/shep/projects/hotline/rtl/mkA4LS.v", "/home/shep/projects/hotline/rtl/mkCRC32.v", "/home/shep/projects/hotline/rtl/mkFTop_kc705.v", "/home/shep/projects/hotline/rtl/mkGMAC.v", "/home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v", "/home/shep/projects/hotline/rtl/mkHCrt_TB1.v", "/home/shep/projects/hotline/rtl/mkL2Proc.v", "/home/shep/projects/hotline/rtl/mkLCDController.v", "/home/shep/projects/hotline/rtl/mkQABSMF.v", "/home/shep/projects/hotline/rtl/mkQABSMF3.v"};
+setFileChooser (filenames31467); //  [02/18 04:43:47]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/18 04:43:54]
+String[] filenames16706 = {"/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v", "/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/MakeResetA.v", "/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/ResetInverter.v", "/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v", "/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/TriState.v"};
+setFileChooser (filenames16706); //  [02/18 04:44:31]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/18 04:44:33]
+String[] filenames29306 = {"/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v", "/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncBit.v", "/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v", "/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v"};
+setFileChooser (filenames29306); //  [02/18 04:45:00]
+select (PAResourceQtoZ.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files..."); // b (JPanel, a) [02/18 04:45:02]
+setFileChooser ("/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v"); //  [02/18 04:45:09]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/18 04:45:12]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/18 04:45:17]
+select (PAResourceAtoH.ConstraintsChooserPanel_ADD_FILES, "Add Files..."); // b (JPanel, a) [02/18 04:45:18]
+setFileChooser ("/home/shep/projects/hotline/constrs/fpgaTop.xdc"); //  [02/18 04:45:31]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/18 04:45:32]
+select (PAResourceItoP.PartChooser_BOARDS, "Boards"); // s (q, a): TRUE [02/18 04:45:34]
+selectTable (PAResourceItoP.PartChooser_BOARDS, "Kintex-7 KC705 Evaluation Platform,xc7k325tffg900-2,900,500,203800,407600,445,840,16,16,0,0,1,10,0,85,85,0.97,0.97,1.03,C,0", 2, false, false, false, false, false); // D (JViewport, a) [02/18 04:45:36]
+select (null, "Next >"); // JButton (ButtonPanel, a) [02/18 04:45:39]
+// ui.b.c.bS[ui.b.w.a.a]:  Create Project : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: create_project hkp1 /home/shep/projects/hotline/vivado/hkp1 -part xc7k325tffg900-2
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property board xilinx.com:kintex7:kc705:1.0 [current_project]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: add_files -fileset constrs_1 -norecurse /home/shep/projects/hotline/constrs/fpgaTop.xdc
+select (null, "Finish"); // JButton (ButtonPanel, a) [02/18 04:45:44]
+dismissDialog (" Create Project "); // bS (a) [02/18 04:45:44]
+dismissDialog (" Create Project "); // bS (a) [02/18 04:45:44]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sources_1update_compile_order -fileset sources_1update_compile_order -fileset sim_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sources_1
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 15, false, false, false, false, false); // u (t, aM) [02/18 04:45:50]
+// ui.b.c.bS[ui.aM]:  Starting Synthesis : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_runs synth_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: [Mon Feb 18 16:45:50 2013] Launched synth_1...Run output will be captured here: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/synth_1/runme.log
+dismissDialog (" Starting Synthesis "); // bS (aM) [02/18 04:45:51]
+select (PAResourceQtoZ.StateMonitor_CANCEL, "Cancel"); // b (s, aM) [02/18 04:46:14]
+select (null, "Delete Files"); // JButton (JPanel, J) [02/18 04:46:16]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: reset_run synth_1
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v)]", 4, false, false, false, false, false); // o (r, aM) [02/18 04:46:18]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, fpgaTop (fpgaTop.v)]", 4, false, false, false, true, false); // o (r, aM) - RIGHT MOUSE BUTTON [02/18 04:46:19]
+select (PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // ah (ao, aM) [02/18 04:46:20]
+select (PAResourceCommand.PACommandNames_SET_AS_TOP, "Set as Top"); // aj (ao, aM) [02/18 04:46:20]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property top fpgaTop [current_fileset]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property top_lib {} [current_fileset]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property top_file {} [current_fileset]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sources_1
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mkHCrt_TB1 (mkHCrt_TB1.v)]", 2, false, false, false, false, false); // o (r, aM) [02/18 04:46:29]
+// ui.b.f.f.ay[ui.aM]: Remove Sources: addNotify
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, ay) [02/18 04:46:33]
+dismissDialog ("Remove Sources"); // ay (aM) [02/18 04:46:33]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: remove_files /home/shep/projects/hotline/rtl/mkHCrt_TB1.v
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: set_property target_constrs_file /home/shep/projects/hotline/constrs/fpgaTop.xdc [current_fileset -constrset]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mkQABSMF3 (mkQABSMF3.v)]", 3, false, false, false, false, false); // o (r, aM) [02/18 04:46:37]
+// ui.b.f.f.ay[ui.aM]: Remove Sources: addNotify
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, ay) [02/18 04:46:39]
+dismissDialog ("Remove Sources"); // ay (aM) [02/18 04:46:39]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: remove_files /home/shep/projects/hotline/rtl/mkQABSMF3.v
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sim_1
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mkQABSMF (mkQABSMF.v)]", 3, false, false, false, false, false); // o (r, aM) [02/18 04:46:42]
+// ui.b.f.f.ay[ui.aM]: Remove Sources: addNotify
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, ay) [02/18 04:46:43]
+dismissDialog ("Remove Sources"); // ay (aM) [02/18 04:46:43]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: remove_files /home/shep/projects/hotline/rtl/mkQABSMF.v
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sim_1
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 15, false, false, false, false, false); // u (t, aM) [02/18 04:46:49]
+// ui.b.c.bS[ui.aM]:  Starting Synthesis : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_runs synth_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: [Mon Feb 18 16:46:49 2013] Launched synth_1...Run output will be captured here: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/synth_1/runme.log
+dismissDialog (" Starting Synthesis "); // bS (aM) [02/18 04:46:49]
+// ui.b.w.M[ui.aM]: Synthesis Completed: addNotify
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, M) [02/18 04:48:55]
+// ui.b.c.bS[ui.aM]:  Starting Implementation : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_runs impl_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: [Mon Feb 18 16:48:55 2013] Launched impl_1...Run output will be captured here: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/runme.log
+dismissDialog (" Starting Implementation "); // bS (aM) [02/18 04:48:56]
+selectTab (PAResourceItoP.ProjectSummaryUtilizationPanel_TABLE, "Table", 1); // f (e, aM) [02/18 04:49:51]
+selectTab (PAResourceItoP.ProjectSummaryUtilizationPanel_GRAPH, "Graph", 0); // f (e, aM) [02/18 04:49:55]
+// ui.b.w.M[ui.aM]: Implementation Completed: addNotify
+select (PAResourceCommand.PACommandNames_RUN_BITGEN, "Generate Bitstream"); // a (JPanel, M) [02/18 04:50:09]
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, M) [02/18 04:50:09]
+dismissDialog ("Implementation Completed"); // M (aM) [02/18 04:50:10]
+// ui.b.c.bS[ui.aM]:  Generate Bitstream : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_runs impl_1 -to_step write_bitstream
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: [Mon Feb 18 16:50:10 2013] Launched impl_1...Run output will be captured here: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/runme.log
+dismissDialog (" Generate Bitstream "); // bS (aM) [02/18 04:50:11]
+// ui.b.w.M[ui.aM]: Bitstream Generation Completed: addNotify
+select (PAResourceCommand.PACommandNames_LAUNCH_IMPACT, "Launch iMPACT"); // a (JPanel, M) [02/18 04:51:01]
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, M) [02/18 04:51:02]
+// ui.b.c.bS[ui.aM]:  Launch iMPACT : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_impact 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Chipscope 16-8] Launching iMPACT with command: impact -intstyle pa -mode bscan -port auto -autoassign -b /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/fpgaTop.bit
+dismissDialog (" Launch iMPACT "); // bS (aM) [02/18 04:51:05]

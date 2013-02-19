@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# Vivado v2012.4 (64-bit)
+# Build 222254 by xbuild on Tue Dec 18 05:17:28 MST 2012
+# Start of session at: Mon Feb 18 17:21:49 2013
+# Process ID: 13146
+# Log file: /home/shep/projects/hotline/vivado/vivado.log
+# Journal file: /home/shep/projects/hotline/vivado/vivado.jou
+#-----------------------------------------------------------
+source "/home/shep/.Xilinx/Vivado/init.tcl"
+start_gui

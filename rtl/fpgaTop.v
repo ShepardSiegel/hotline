@@ -226,6 +226,67 @@ assign gpix_n = 1'b0;     // 0 on J14
 assign gpiy_p = 1'b0;     // 0 on J11
 assign gpiy_n = 1'b0;     // 0 on J12
 
+assign i2c_rstb   = 1'b1;   // Not Reset
+
+(* IOB="TRUE" *) reg        hdmir_de;
+(* IOB="TRUE" *) reg        hdmir_hs;
+(* IOB="TRUE" *) reg        hdmir_vs;
+(* IOB="TRUE" *) reg [15:0] hdmir_data;
+
+reg [3:0] vsel;
+reg mux_de, mux_hs, mux_vs;
+reg [23:0] mux_data;
+reg [11:0] hcnt, vcnt, fcnt;
+reg htc, ha, hs, va, vs;
+reg [11:0] px, py, dx, dy;
+reg box;
+
+
+always@(posedge sys2_clk) begin
+  vsel <= dipsw_r;
+  htc  <= (hcnt==2198) ? 1 : 0;
+  hcnt <= (htc==1'b1) ? 0 : hcnt + 1;
+  if (htc==1'b1&&vcnt==1124) fcnt <= fcnt + 1;
+  if (htc==1'b1) begin vcnt <= (vcnt==1124) ? 0 : vcnt + 1; end
+  if      (htc==1'b1)  ha <= 1'b1;
+  else if (hcnt==1919) ha <= 1'b0;
+  if      (hcnt==2007) hs <= 1'b1;
+  else if (hcnt==2051) hs <= 1'b0;
+  if      (htc==1'b1 && vcnt==1124) va <= 1'b1;
+  else if (htc==1'b1 && vcnt==1079) va <= 1'b0;
+  if      (htc==1'b1 && vcnt==1083) vs <= 1'b1;
+  else if (htc==1'b1 && vcnt==1088) vs <= 1'b0; 
+  
+  box <= (hcnt>127&&hcnt<256&&vcnt>127&&vcnt<256);
+
+  mux_de <= (ha&&va); 
+  mux_hs <= hs;
+  mux_vs <= vs;
+ 
+ case (vsel)
+   4'h0: mux_data <= {8'h80,hcnt[7:0]};
+   4'h1: mux_data <= {8'h80,vcnt[7:0]};
+   4'h2: mux_data <= {8'h80,hcnt[8:1]};
+   4'h3: mux_data <= {8'h80,vcnt[8:1]};
+   4'h4: mux_data <= {8'h80,hcnt[9:2]};
+   4'h5: mux_data <= {8'h80,vcnt[9:2]};
+   4'h6: mux_data <= {8'h80,hcnt[10:3]};
+   4'h7: mux_data <= {8'h80,vcnt[10:3]};
+   4'h8: mux_data <= box ? {8'h80,vcnt[7:0]} : {8'h80,hcnt[7:0]};
+   4'h9: mux_data <= box ? {8'h80,fcnt[7:0]} : {8'h80,hcnt[7:0]};
+ endcase
+
+  hdmir_de   <= mux_de;     // Output IOB Flops...
+  hdmir_hs   <= mux_hs;
+  hdmir_vs   <= mux_vs;
+  hdmir_data <= mux_data;
+end
+
+assign hdmiout_clk = !sys2_clk;
+assign hdmiout_de   = hdmir_de;
+assign hdmiout_hs   = hdmir_hs;
+assign hdmiout_vs   = hdmir_vs;
+assign hdmiout_data = hdmir_data;
 
 (* IOB="TRUE" *) reg [3:0]  dipsw_r;
 always@(posedge sys0_clk) begin
@@ -245,8 +306,8 @@ end
   .lcd_rs             (lcd_rs),
   .lcd_rw             (lcd_rw),
 
-  .i2cpad_SCL         (i2c_scl),
-  .i2cpad_SDA         (i2c_sda),
+  .i2cpad_scl         (i2c_scl),
+  .i2cpad_sda         (i2c_sda),
 
   .gmii_rstn          (gmii_rstn),
   .gmii_tx_txd        (gmii_txd),

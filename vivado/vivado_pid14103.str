@@ -1,0 +1,26 @@
+// ui.b.c.bS[ui.aM]:  Sourcing Tcl script 'hkp1Create.tcl' : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: source hkp1Create.tcl
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: # start_gui# create_project hkp1 /home/shep/projects/hotline/vivado/hkp1 -part xc7k325tffg900-2
+dismissDialog (" Sourcing Tcl script 'hkp1Create.tcl' "); // bS (aM) [02/18 05:37:50]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sim_1
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 23, false, false, false, false, false); // u (t, aM) [02/18 05:37:58]
+// ui.b.c.bS[ui.aM]:  Starting Synthesis : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: reset_run impl_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_runs synth_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: [Mon Feb 18 17:37:59 2013] Launched synth_1...Run output will be captured here: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/synth_1/runme.log
+dismissDialog (" Starting Synthesis "); // bS (aM) [02/18 05:37:59]
+// ui.b.c.bS[ui.aM]:  Starting Implementation : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_runs impl_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: [Mon Feb 18 17:39:56 2013] Launched impl_1...Run output will be captured here: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/runme.log
+dismissDialog (" Starting Implementation "); // bS (aM) [02/18 05:39:57]
+// ui.b.c.bS[ui.aM]:  Generate Bitstream : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_runs impl_1 -to_step write_bitstream
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: [Mon Feb 18 17:41:08 2013] Launched impl_1...Run output will be captured here: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/runme.log
+dismissDialog (" Generate Bitstream "); // bS (aM) [02/18 05:41:09]
+// ui.b.w.M[ui.aM]: Bitstream Generation Completed: addNotify
+select (PAResourceCommand.PACommandNames_LAUNCH_IMPACT, "Launch iMPACT"); // a (JPanel, M) [02/18 05:43:47]
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, M) [02/18 05:43:48]
+// ui.b.c.bS[ui.aM]:  Launch iMPACT : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_impact 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Chipscope 16-8] Launching iMPACT with command: impact -intstyle pa -mode bscan -port auto -autoassign -b /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/fpgaTop.bit
+dismissDialog (" Launch iMPACT "); // bS (aM) [02/18 05:43:51]

@@ -1,0 +1,11 @@
+// ui.b.c.bS[ui.aM]:  Sourcing Tcl script 'hkp1Create.tcl' : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: source hkp1Create.tcl
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: # start_gui# create_project hkp1 /home/shep/projects/hotline/vivado/hkp1 -part xc7k325tffg900-2
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: missing close-bracket    while executing"set_property board xilinx.com:kintex7:kc705:1.0 [current_projectadd_files -norecurse {/home/shep/projects/hotline/rtl/fpgaTop.v /home/shep/projects/h..."    (file "hkp1Create.tcl" line 3)
+dismissDialog (" Sourcing Tcl script 'hkp1Create.tcl' "); // bS (aM) [02/18 05:04:43]
+selectTab (null, "Tcl Console", 0); // FrameContainer (ContainerContainer, aM) [02/18 05:04:55]
+selectTab (null, "Messages", 1); // FrameContainer (ContainerContainer, aM) [02/18 05:05:03]
+selectTab (null, "Log", 2); // FrameContainer (ContainerContainer, aM) [02/18 05:05:04]
+selectTab (null, "Reports", 3); // FrameContainer (ContainerContainer, aM) [02/18 05:05:05]
+selectTab (null, "Design Runs", 4); // FrameContainer (ContainerContainer, aM) [02/18 05:05:05]
+selectTab (null, "Tcl Console", 0); // FrameContainer (ContainerContainer, aM) [02/18 05:05:07]

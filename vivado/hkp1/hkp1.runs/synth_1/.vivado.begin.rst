@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="shep" Host="ar-cms520" Pid="14398">
-    </Process>
-</ProcessHandle>

@@ -1,0 +1,49 @@
+// ui.b.c.bS[ui.aM]:  Sourcing Tcl script 'hkp1Create.tcl' : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: source hkp1Create.tcl
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: # start_gui# create_project hkp1 /home/shep/projects/hotline/vivado/hkp1 -part xc7k325tffg900-2
+dismissDialog (" Sourcing Tcl script 'hkp1Create.tcl' "); // bS (aM) [02/18 05:06:40]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: update_compile_order -fileset sim_1
+selectTab (null, "Tcl Console", 0); // FrameContainer (ContainerContainer, aM) [02/18 05:06:46]
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 15, false, false, false, false, false); // u (t, aM) [02/18 05:06:53]
+// ui.b.c.bS[ui.aM]:  Starting Synthesis : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_runs synth_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: [Mon Feb 18 17:06:54 2013] Launched synth_1...Run output will be captured here: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/synth_1/runme.log
+dismissDialog (" Starting Synthesis "); // bS (aM) [02/18 05:06:54]
+// ui.b.w.M[ui.aM]: Synthesis Completed: addNotify
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, M) [02/18 05:08:59]
+// ui.b.c.bS[ui.aM]:  Starting Implementation : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_runs impl_1
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: [Mon Feb 18 17:09:00 2013] Launched impl_1...Run output will be captured here: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/runme.log
+dismissDialog (" Starting Implementation "); // bS (aM) [02/18 05:09:00]
+// ui.b.w.M[ui.aM]: Implementation Completed: addNotify
+select (PAResourceCommand.PACommandNames_RUN_BITGEN, "Generate Bitstream"); // a (JPanel, M) [02/18 05:10:30]
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, M) [02/18 05:10:31]
+dismissDialog ("Implementation Completed"); // M (aM) [02/18 05:10:31]
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_runs impl_1 -to_step write_bitstream
+// ui.b.c.bS[ui.aM]:  Generate Bitstream : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: [Mon Feb 18 17:10:31 2013] Launched impl_1...Run output will be captured here: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/runme.log
+dismissDialog (" Generate Bitstream "); // bS (aM) [02/18 05:10:32]
+// ui.b.w.M[ui.aM]: Bitstream Generation Completed: addNotify
+select (PAResourceCommand.PACommandNames_LAUNCH_IMPACT, "Launch iMPACT"); // a (JPanel, M) [02/18 05:13:48]
+select (RDIResource.BaseDialog_OK, " OK "); // b (JPanel, M) [02/18 05:13:48]
+// ui.b.c.bS[ui.aM]:  Launch iMPACT : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: launch_impact 
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Chipscope 16-8] Launching iMPACT with command: impact -intstyle pa -mode bscan -port auto -autoassign -b /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/fpgaTop.bit
+dismissDialog (" Launch iMPACT "); // bS (aM) [02/18 05:13:52]
+selectTree (PAResourceAtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Open Implemented Design]", 20, false, false, false, false, false); // u (t, aM) [02/18 05:15:42]
+// ui.b.c.bS[ui.aM]:  Open Implemented Design : addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: open_run impl_1
+// Device: addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Netlist 29-17] Analyzing 186 Unisim elements for replacementINFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Read XDEF File: Time (s): cpu = 00:00:00.15 ; elapsed = 00:00:00.15 . Memory (MB): peak = 3271.520 ; gain = 4.000
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Restoring placement.Restored 1105 out of 1105 XDEF sites from archive | CPU: 0.430000 secs | Memory: 7.606621 MB |
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: INFO: [Project 1-111] Unisim Transformation Summary:  A total of 158 instances were transformed.  IOBUF => IOBUF (OBUFT, IBUF): 1 instances  RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 14 instances  WIRE => IBUF: 143 instances
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: Phase 0 | Netlist Checksum: af1dc006
+// Device: addNotify
+// Device: addNotify
+// ui.views.cg[javax.swing.JPanel]: TclConsoleView: open_run: Time (s): cpu = 00:00:29 ; elapsed = 00:00:16 . Memory (MB): peak = 3520.984 ; gain = 796.574
+// Device: addNotify
+// Device: addNotify
+// Device: addNotify
+dismissDialog (" Open Implemented Design "); // bS (aM) [02/18 05:16:00]
+selectTree (PAResourceItoP.NetlistTreeView_NETLIST, "[fpgaTop]", 0, false, false, false, false, false); // bm (JViewport, aM) [02/18 05:16:02]

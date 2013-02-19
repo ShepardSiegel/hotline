@@ -329,7 +329,7 @@ module mkHCrt_TB1 (Empty);
   MACAddress uAddr = 48'h00_0A_35_02_60_80;   // Atomic Rules KC705 #1
 
   rule l2_gen_header (gpPtr<15 && !gpPDU);
-    gpPtr <= (gpPtr==15) ? gpPtr : gpPtr+1;
+    gpPtr <= (gpPtr==14) ? 0 : gpPtr+1;
     case (gpPtr)
       0              : action gpDA<=unpack(uAddr);  gpSA<=unpack(sAddr); endaction     // Setup
       1,2,3,4,5,6    : action l2GenF.enq(tagged ValidNotEOP gpDA[5]); gpDA <= rotateR(gpDA); endaction  // Send DA
@@ -340,8 +340,22 @@ module mkHCrt_TB1 (Empty);
   endrule
 
   rule l2_gen_payload (gqPtr<8 && gpPDU); // L2 Egress PDU / Payload move to MAC
-    gqPtr <= (gqPtr==15) ? gqPtr : gqPtr+1;
+    gqPtr <= (gqPtr==7) ? 0 : gqPtr+1;
 
+    // Read 2
+    case (gqPtr)
+      0:  l2GenF.enq(tagged ValidNotEOP 8'h20);  // Read Req
+      1:  l2GenF.enq(tagged ValidNotEOP 8'hFF);
+      2:  l2GenF.enq(tagged ValidNotEOP 8'h01);  // 1 DW Read Request (ADL is for resp)
+      3:  l2GenF.enq(tagged ValidNotEOP 8'h80);  // Last Dword
+      4:  l2GenF.enq(tagged ValidNotEOP 8'h10);  // Addr 0000_0004
+      5:  l2GenF.enq(tagged ValidNotEOP 8'h00);
+      6:  l2GenF.enq(tagged ValidNotEOP 8'h00);
+      7:  action l2GenF.enq(tagged ValidEOP    8'h00); gpPDU<=False; endaction
+
+    endcase
+
+    /*
     // Read
     case (gqPtr)
       0:  l2GenF.enq(tagged ValidNotEOP 8'h20);  // Read Req
@@ -354,6 +368,7 @@ module mkHCrt_TB1 (Empty);
       6:  l2GenF.enq(tagged ValidNotEOP 8'h00);
       7:  l2GenF.enq(tagged ValidEOP    8'h00);
     endcase
+    */
     
    /*
     // Write
