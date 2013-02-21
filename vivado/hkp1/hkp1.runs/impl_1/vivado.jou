@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# Vivado v2012.4 (64-bit)
+# Build 222254 by xbuild on Tue Dec 18 05:17:28 MST 2012
+# Start of session at: Wed Feb 20 20:37:02 2013
+# Process ID: 13565
+# Log file: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/fpgaTop.rdi
+# Journal file: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source -notrace "/home/shep/.Xilinx/Vivado/init.tcl"
+source fpgaTop.tcl -notrace

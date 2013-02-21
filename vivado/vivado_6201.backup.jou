@@ -1,0 +1,29 @@
+#-----------------------------------------------------------
+# Vivado v2012.4 (64-bit)
+# Build 222254 by xbuild on Tue Dec 18 05:17:28 MST 2012
+# Start of session at: Wed Feb 20 09:23:16 2013
+# Process ID: 4183
+# Log file: /home/shep/projects/hotline/vivado/vivado.log
+# Journal file: /home/shep/projects/hotline/vivado/vivado.jou
+#-----------------------------------------------------------
+source "/home/shep/.Xilinx/Vivado/init.tcl"
+start_gui
+open_project /home/shep/projects/hotline/vivado/hkp1/hkp1.xpr
+launch_impact 
+connect_hw_server -host localhost -port 50001
+current_hw_target [get_hw_targets */digilent_plugin/SN:210203338864]
+open_hw_target
+current_hw_device [lindex [get_hw_devices] 0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices] 0]
+set_property PROGRAM.FILE {/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/fpgaTop.bit} [lindex [get_hw_devices] 0]
+set_property PROBES.FILE {/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/debug_nets.ltx} [lindex [get_hw_devices] 0]
+refresh_hw_device [lindex [get_hw_devices] 0]
+set_property CONTROL.TRIGGER_POSITION 128 [get_hw_ilas hw_ila_1]
+set_property COMPARE_VALUE.0 eq1'b1 [get_hw_probes ftop/l2P/igL2Hdr]
+run_hw_ila hw_ila_1
+wait_on_hw_ila -timeout 0 hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+set_property COMPARE_VALUE.0 eq1'bX [get_hw_probes ftop/l2P/igL2Hdr]
+run_hw_ila hw_ila_1 -trigger_now 1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]

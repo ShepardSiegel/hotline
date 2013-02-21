@@ -18,10 +18,10 @@ import GetPut       ::*;
 import Vector       ::*;
 
 typedef enum {
-  NOP      = 4'h0,
-  Write    = 4'h1,
-  Read     = 4'h2,
-  Response = 4'h3
+  NOP      = 2'h0,
+  Write    = 2'h1,
+  Read     = 2'h2,
+  Response = 2'h3
 } HCrtMesgType deriving (Bits, Eq);
 
 typedef enum {
@@ -88,8 +88,12 @@ typedef union tagged {
 // HCrt commands are received on crtS0.request; HCrt responses are sent back on crtS0.response
 // And A4LMIfc is provided directly
 
-// This implementation processes 32b (1 DWORD) per cycle. It has no expliict notion of HCrt framing.
+// This implementation processes 32b (1 DWORD) per cycle. It has no explict notion of HCrt framing.
 // Commands arriving are assumed correct to the protocol. 
+// Certain datagram layers, such as Ethernet L2, may pad the inbound command requets with extra octets.
+// This layer, not the datagram layer, can best understand how to consume excess input that is appended
+// to messages. (e.g. Ethernet 64B minimum frame size). We have added logic to consume these extra cells
+// added to the end of a compliant HCrt command request.
 
 // TODO: Retransmittimg response when tag match received; Need a solution that works well
 // for bulk reads. Perhaps consider a "Recyle Buffer"?
@@ -123,8 +127,8 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   Reg#(TagCRH)              cmdCRH        <- mkReg(tagged Invalid);
   Reg#(Bool)                cmdIsLast     <- mkReg(False);  // Indicates LAST command of message
   Reg#(Bool)                cmdIsDO       <- mkReg(False);  // True when command is a Discovery Operation (DO) 
-  Reg#(UInt#(2))            cmdAdrRemain  <- mkReg(0);
-  Reg#(UInt#(12))           cmdAdlRemain  <- mkReg(0);
+  Reg#(UInt#(2))            cmdAdrRemain  <- mkReg(0);      // Number of DWORDs, 1 or 2, of Address that remain
+  Reg#(UInt#(12))           cmdAdlRemain  <- mkReg(0);      // Number of DWORDs, not incl CRH or Addr, that remain
   Reg#(UInt#(12))           rspAdlRemain  <- mkReg(0);
   Reg#(Maybe#(Bit#(4)))     lastTag       <- mkReg(tagged Invalid);  // The last tag captured (valid or not)
   FIFO#(QABS)               respBufferF   <- mkSizedFIFO(respBufSize/4);
@@ -132,30 +136,34 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   Reg#(Bool)                rspActive     <- mkReg(False); 
   Reg#(UInt#(32))           sizInitRespB  <- mkReg(0);      // Size in Bytes of the Initiator Resposne Buffer
   Reg#(Vector#(2,Bit#(32))) cmdAddrV      <- mkRegU;
+  Reg#(Bool)                crtBusy       <- mkReg(False);  // Used to enforce sequential command-response w/o overlap
 
   Bit#(32) targAdvert = fromInteger(respBufSize);
 
   // Fire and take a new CRH DWORD...
-  rule cmd_crh (cmdCRH matches tagged Invalid .crh);
-    let x = crtCmdF.first; crtCmdF.deq;
-    HCrtMesgType cmt = unpack(x[5:4]); // Decide what kind of message this is
-    TagCRH t = ?;
-    case (cmt)
-      NOP:      action t = (tagged NOP      unpack(x)); cmdAdlRemain<=unpack(x[27:16]); endaction
-      Write:    action t = (tagged Write    unpack(x)); cmdAdlRemain<=unpack(x[27:16]); endaction
-      Read:     action t = (tagged Read     unpack(x)); endaction
-      Response: action modFaulted<=True; endaction // Completer does not expect a Response
-    endcase
-    cmdCRH <= t; // update state variable
-    cmdAdrRemain <= unpack(x[6]) ? 2 : 1;
-    cmdIsLast  <= unpack(x[31]);
-    modActive <= True;
+  rule cmd_crh (cmdCRH matches tagged Invalid .crh &&& !crtBusy);
+    let x = crtCmdF.first; crtCmdF.deq;   // Dequeue the new CRH Dword
+    if (x!=0) begin                       // CRH DWORDs are never 0; chomp until non-zero
+      HCrtMesgType cmt = unpack(x[5:4]);  // Decide what kind of message this is
+      TagCRH t = ?;
+      case (cmt)
+        NOP:      action t = (tagged NOP      unpack(x)); cmdAdlRemain<=unpack(x[27:16]); endaction
+        Write:    action t = (tagged Write    unpack(x)); cmdAdlRemain<=unpack(x[27:16]); endaction
+        Read:     action t = (tagged Read     unpack(x)); endaction
+        Response: action modFaulted<=True; endaction // Completer does not expect a Response
+      endcase
+      cmdCRH <= t; // update state variable
+      cmdAdrRemain <= unpack(x[6]) ? 2 : 1;
+      cmdIsLast    <= unpack(x[31]);
+      modActive    <= True;
+      crtBusy      <= True;
+    end
   endrule
 
   // Rule to process NOP Command Requests, consume ADL DWORDs of Initiator Advertisement
   rule cmd_nop (cmdCRH matches tagged NOP .n &&& rspCRH matches tagged Invalid);
     let x = crtCmdF.first; crtCmdF.deq;
-    cmdAdlRemain <= cmdAdlRemain - 1;
+    cmdAdlRemain <= (cmdAdlRemain>0) ? cmdAdlRemain-1 : 0;
     if (cmdAdlRemain==2) sizInitRespB <= unpack(x);
     if (cmdAdlRemain==1) begin
       cmdCRH <= tagged Invalid;
@@ -180,18 +188,26 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     QABS resp = qabsFromDword(data, isEOM);
     crtRespF.enq(resp);
     //if (!cmdIsDO) respBufferF.enq(resp);
-    if (isEOM) rspCRH <= tagged Invalid;
-    if (isEOM) cmdIsDO <= False;
+      if (isEOM) begin 
+        rspCRH    <= tagged Invalid;
+        cmdIsDO   <= False;
+        cmdIsLast <= False;
+        crtBusy   <= False;
+      end
     modActive <= True;
   endrule
 
 
   // Rule to process Write Command Requests, consume ADL DWORDs of Write Data
+  // This rule first fires 1 or 2 times to capture the 32 or 64 bit address.
+  // Once cmdAdrRemains==0, it fires ADL times to capture the write data
   rule cmd_write (cmdCRH matches tagged Write .n &&& rspCRH matches tagged Invalid);
     let x = crtCmdF.first; crtCmdF.deq;
-    cmdAdrRemain <= (cmdAdrRemain==0) ? 0 : cmdAdrRemain - 1;
+    // Write Address Processing...
+    cmdAdrRemain <= (cmdAdrRemain==0) ? 0 : cmdAdrRemain-1;
     if (cmdAdrRemain>0) cmdAddrV <= shiftInAtN(cmdAddrV, x);  // LS 32b first when 64b Addr
-    cmdAdlRemain <= (cmdAdlRemain==0) ? cmdAdlRemain - 1 : cmdAdlRemain;
+    // Write Data Processing...
+    cmdAdlRemain <= (cmdAdrRemain!=0) ? cmdAdlRemain : (cmdAdlRemain>0) ? cmdAdlRemain-1 : 0;
     // commitWrite if the lastTag is Valid and the tags dont match OR if the lastTag is Invalid OR a Discovery Op...
     Bool commitWrite = ((isValid(lastTag) && n.c0.tag!=fromMaybe(?,lastTag)) || !isValid(lastTag) || n.c0.isDO);
     if (cmdAdrRemain==0 && cmdAdlRemain==1) begin
@@ -221,7 +237,11 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     crtRespF.enq(resp);
     //if (!cmdIsDO) respBufferF.enq(resp);
     rspCRH <= tagged Invalid;
-    if (isEOM) cmdIsDO <= False;
+    if (isEOM) begin
+      cmdIsDO   <= False;
+      cmdIsLast <= False;
+      crtBusy   <= False;
+    end
     modActive <= True;
   endrule
 
@@ -266,12 +286,15 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     QABS resp = qabsFromDword(data, isEOM);
     crtRespF.enq(resp);
     //if (!cmdIsDO) respBufferF.enq(resp);
-    if (isEOM) $display("[%0d]: %m: Hcrt rsp_read got data:%0x", $time, data);
-    if (isEOM) rspCRH  <= tagged Invalid;
-    if (isEOM) cmdIsDO <= False;
+      if (isEOM) begin
+        $display("[%0d]: %m: Hcrt rsp_read got data:%0x", $time, data);
+        rspCRH    <= tagged Invalid;
+        cmdIsDO   <= False;
+        cmdIsLast <= False;
+        crtBusy   <= False;
+      end
     modActive <= True;
   endrule
-
 
   interface Server crtS0;  // Facing the HCrt Packet Side
     interface request  = toPut(crtCmdF);
@@ -339,19 +362,26 @@ module mkHCrt_TB1 (Empty);
     endcase
   endrule
 
-  rule l2_gen_payload (gqPtr<8 && gpPDU); // L2 Egress PDU / Payload move to MAC
-    gqPtr <= (gqPtr==7) ? 0 : gqPtr+1;
+  rule l2_gen_payload (gqPtr<15 && gpPDU); // L2 Egress PDU / Payload move to MAC
+    gqPtr <= (gqPtr==14) ? 0 : gqPtr+1;
 
     // Read 2
     case (gqPtr)
-      0:  l2GenF.enq(tagged ValidNotEOP 8'h20);  // Read Req
+      0:  l2GenF.enq(tagged ValidNotEOP 8'hA0);  // Read Req DO
       1:  l2GenF.enq(tagged ValidNotEOP 8'hFF);
       2:  l2GenF.enq(tagged ValidNotEOP 8'h01);  // 1 DW Read Request (ADL is for resp)
       3:  l2GenF.enq(tagged ValidNotEOP 8'h80);  // Last Dword
       4:  l2GenF.enq(tagged ValidNotEOP 8'h10);  // Addr 0000_0004
       5:  l2GenF.enq(tagged ValidNotEOP 8'h00);
       6:  l2GenF.enq(tagged ValidNotEOP 8'h00);
-      7:  action l2GenF.enq(tagged ValidEOP    8'h00); gpPDU<=False; endaction
+      7:  l2GenF.enq(tagged ValidEOP    8'h00);
+      8:  noAction;
+      9:  noAction;
+      10: noAction;
+      11: noAction;
+      12: noAction;
+      13: noAction;
+      14: gpPDU<=False; 
 
     endcase
 

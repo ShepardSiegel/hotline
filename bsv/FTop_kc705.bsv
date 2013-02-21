@@ -128,6 +128,9 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
     $finish;
   endrule
 
+  /*
+  TODO: Read KC705 MAC address correctly from IIC EEPROM...
+
   rule read_iiceeprom_req ((macAddrCnt<1023) && !macAddrRead);
     if (!selEepromOK) begin
       i2cC.user.request(True, truncate(8'hE8>>1), 8'h08, 8'h08); // write to E8 with 0x08 select EEPROM bus 3 on U49
@@ -152,9 +155,11 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
     l2P.macAddr(unpack(uAddr));
   endrule
 
+  */
+
 
   // Wait for 2^28 before starting off the show...
-  rule iic_go_set (unpack(cycleCount[28]) && !iicGo && !iicDone && macAddrRead);  
+  rule iic_go_set (unpack(cycleCount[28]) && !iicGo && !iicDone);  
     iicGo <= True;
   endrule
 
@@ -165,7 +170,6 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
     iicrom.portA.request.put(BRAMRequest {write:False, responseOnWrite:False, address:pack(iicPtr), datain:0});
     iicPtr <= iicPtr + 1;
     if (iicPtr==(14+57-1)) begin
-    //if (iicPtr==(57-1)) begin
       iicGo   <= False;
       iicDone <= True;
     end
@@ -181,7 +185,7 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
   // Paint the LCD when the iic sequence is done...
   rule init_lcd (lcdNeedsInit && iicDone);
     Vector#(16,Bit#(8)) text1 = lcdLine("Atomic Rules LLC");
-    Vector#(16,Bit#(8)) text2 = lcdLine("Hotline CRT Test");
+    Vector#(16,Bit#(8)) text2 = lcdLine("HotlineCRT Ready");
     lcd_ctrl.setLine1(text1);
     lcd_ctrl.setLine2(text2);
     lcdNeedsInit <= False;

@@ -7,6 +7,11 @@ Identify -inferir
 identifyMPM 
 assignFile -p 1 -file "/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/fpgaTop.bit"
 Program -p 1 
+Program -p 1 
+Program -p 1 
+Program -p 1 
+Program -p 1 
+Program -p 1 
 setMode -bs
 setMode -bs
 deleteDevice -position 1
