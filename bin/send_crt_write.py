@@ -22,7 +22,7 @@ def main(argv):
  #p.dst  = 'FF:FF:FF:FF:FF:FF'   # Broadcast
   p.type = 0xF052                # EtherType CRT
   #p.payload = '\x00\xFF\x02\x80\x42\x00\x00\x00\x00\x00\x00\x00'             # 12B NOP
-  p.payload = '\x10\xFF\x01\x80\x04\x00\x00\x00\xFE\xCA\xEF\xBE'    # 12B Write 0x4 with 0xBEEFCAFE
+  p.payload = '\x90\xFF\x01\x80\x04\x00\x00\x00\xFE\xCA\xEF\xBE'    # 12B Write 0x4 with 0xBEEFCAFE
   #p.payload = '\x00\x0A\x00\x00\x2F\x07\x00\x00\x00\x4C'                     # 10B Read 0x24
   print 'Sending packet...'
   r = srp1(p, iface='eth1')
