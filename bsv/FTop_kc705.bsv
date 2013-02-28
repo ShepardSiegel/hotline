@@ -8,6 +8,7 @@ import A4LS           ::*;
 import E8023          ::*;
 import GMAC           ::*;
 import HCrt           ::*;
+import L2HCrt         ::*;
 import I2C            ::*;
 import LCDController  ::*;
 import L2Proc         ::*;
@@ -69,14 +70,19 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
   LCDController   lcd_ctrl     <- mkLCDController(    clocked_by sys0_clk, reset_by sys0_rst);
   Reg#(Bool)      lcdNeedsInit <- mkReg(True ,        clocked_by sys0_clk, reset_by sys0_rst);
   IDELAYCTRL      idc          <- mkMYIDELAYCTRL(1,   clocked_by sys0_clk, reset_by sys0_rst);
+  A4L_Es          a4ls         <- mkA4LS(True,                  clocked_by sys1_clk, reset_by sys1_rst);
+
+`ifdef NO_L2HCRT
   GMACIfc         gmac         <- mkGMAC(gmii_rx_clk, sys1_clk, clocked_by sys1_clk, reset_by sys1_rst);
   MDIO            mdi          <- mkMDIO(6,                     clocked_by sys1_clk, reset_by sys1_rst);
   L2ProcIfc       l2P          <- mkL2Proc(                     clocked_by sys1_clk, reset_by sys1_rst);
   HCrtCompleter2AxiIfc crt2axi <- mkHCrtCompleter2Axi(          clocked_by sys1_clk, reset_by sys1_rst);
-  A4L_Em          a4lm         <- mkA4MtoEm(crt2axi.axiM0,      clocked_by sys1_clk, reset_by sys1_rst); // make the crt2axi Expliict on the AXI side
-  A4L_Es          a4ls         <- mkA4LS(True,                  clocked_by sys1_clk, reset_by sys1_rst);
+  A4L_Em          a4lm         <- mkA4MtoEm(crt2axi.axiM0,      clocked_by sys1_clk, reset_by sys1_rst); 
   ABS2QABSIfc     l2qc         <- mkABS2QABS(                   clocked_by sys1_clk, reset_by sys1_rst);
   QABS2ABSIfc     qcl2         <- mkQABS2ABS(                   clocked_by sys1_clk, reset_by sys1_rst);
+`endif
+  L2HCrtIfc       l2hcrt       <- mkQABS2ABS(                   clocked_by sys1_clk, reset_by sys1_rst);
+  // TODO Axi Output
  
 
   //ReadOnly#(Bit#(1)) eLed <- mkNullCrossingWire(noClock, pack(swap.eoptog));
@@ -100,15 +106,18 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
   //mkConnection(l2P.server.response, gmac.tx);
 
   // Loop4 - Add HCrt <-> AXI  all in 125 MHz Gbe Domain
-  mkConnection(gmac.rx,  l2P.server.request); 
-  mkConnection(l2P.client.request, l2qc.putSerial);
-  mkConnection(l2qc.getDword, crt2axi.crtS0.request);
+  //mkConnection(gmac.rx,  l2P.server.request); 
+  //mkConnection(l2P.client.request, l2qc.putSerial);
+  //mkConnection(l2qc.getDword, crt2axi.crtS0.request);
   // middle
-  mkConnection(crt2axi.crtS0.response, qcl2.putVector);
-  mkConnection(qcl2.getSerial, l2P.client.response);
-  mkConnection(l2P.server.response, gmac.tx);
+  //mkConnection(crt2axi.crtS0.response, qcl2.putVector);
+  //mkConnection(qcl2.getSerial, l2P.client.response);
+  //mkConnection(l2P.server.response, gmac.tx);
 
-  mkConnection(a4lm, a4ls);
+  //mkConnection(a4lm, a4ls);
+
+
+  
 
   BRAM_Configure cfg = defaultValue;
     cfg.memorySize = 1024;  // Number of DWORD entries in 4KB ROM
