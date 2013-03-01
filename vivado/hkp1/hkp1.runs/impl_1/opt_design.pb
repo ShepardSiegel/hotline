@@ -29,7 +29,7 @@ Starting %s Task
 103*constraints2
 Logic OptimizationZ18-103
 4
-(Logic Optimization | Checksum: 3c89a9ed
+(Logic Optimization | Checksum: 746212c7
 *common
 <
 
@@ -43,13 +43,13 @@ Phase %s%s
 49*opt2
 0Z31-49
 2
-&Phase 1 Retarget | Checksum: 0fd8d33d
+&Phase 1 Retarget | Checksum: e0cbab0d
 *common
 y
 
 %s
 *constraints2b
-`Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.07 . Memory (MB): peak = 620.770 ; gain = 0.000
+`Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.07 . Memory (MB): peak = 621.270 ; gain = 0.000
 H
 
 Phase %s%s
@@ -61,13 +61,13 @@ Phase %s%s
 10*opt2
 71Z31-10
 >
-2Phase 2 Constant Propagation | Checksum: c224ed79
+2Phase 2 Constant Propagation | Checksum: 67c2c0e2
 *common
 y
 
 %s
 *constraints2b
-`Time (s): cpu = 00:00:00.22 ; elapsed = 00:00:00.22 . Memory (MB): peak = 620.770 ; gain = 0.000
+`Time (s): cpu = 00:00:00.23 ; elapsed = 00:00:00.23 . Memory (MB): peak = 621.270 ; gain = 0.000
 9
 
 Phase %s%s
@@ -77,27 +77,27 @@ Phase %s%s
 ;
  Eliminated %s unconnected nets.
 12*opt2
-249Z31-12
-;
+217Z31-12
+:
 !Eliminated %s unconnected cells.
-11*opt2
-32Z31-11
+11*opt2
+1Z31-11
 /
-#Phase 3 Sweep | Checksum: 20354d21
+#Phase 3 Sweep | Checksum: d089aae3
 *common
 y
 
 %s
 *constraints2b
-`Time (s): cpu = 00:00:00.29 ; elapsed = 00:00:00.29 . Memory (MB): peak = 620.770 ; gain = 0.000
+`Time (s): cpu = 00:00:00.29 ; elapsed = 00:00:00.30 . Memory (MB): peak = 621.270 ; gain = 0.000
 @
-4Ending Logic Optimization Task | Checksum: 20354d21
+4Ending Logic Optimization Task | Checksum: d089aae3
 *common
 y
 
 %s
 *constraints2b
-`Time (s): cpu = 00:00:00.29 ; elapsed = 00:00:00.29 . Memory (MB): peak = 620.770 ; gain = 0.000
+`Time (s): cpu = 00:00:00.29 ; elapsed = 00:00:00.30 . Memory (MB): peak = 621.270 ; gain = 0.000
 <
 %Done setting XDC timing constraints.
 35*timingZ38-35
@@ -122,10 +122,10 @@ I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2
 opt_design: 2
 
-00:00:052
+00:00:062
 
 00:00:052	
-622.7702
+623.2702
 83.750Z17-268
 4
 Writing XDEF routing.
@@ -142,7 +142,7 @@ I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 Write XDEF Complete: 2
 00:00:00.092
 00:00:00.092	
-623.7702
+624.2702
 1.000Z17-268
 
 

@@ -49,9 +49,11 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
                      Clock gmii_rx_clk)(FTop_kc705Ifc);    // 125 MHz GMII RX Clock from Marvell Phy
 
   Reset           sys0_rst     <- mkAsyncReset(16, sys0_rstn, sys0_clk);
-  Clock           sys1_clki    <- mkClockIBUFDS_GTE2(True, sys1_clkp, sys1_clkn);
-  Clock           sys1_clk     <- mkClockBUFG(clocked_by sys1_clki);
-  Reset           sys1_rst     <- mkAsyncReset(1, sys0_rst, sys1_clk);
+
+  //Clock           sys1_clki    <- mkClockIBUFDS_GTE2(True, sys1_clkp, sys1_clkn);
+  //Clock           sys1_clk     <- mkClockBUFG(clocked_by sys1_clki);
+  //Reset           sys1_rst     <- mkAsyncReset(1, sys0_rst, sys1_clk);
+
   Reg#(Bit#(32))  cycleCount   <- mkReg(0 ,           clocked_by sys0_clk, reset_by sys0_rst);
   I2C             i2cC         <- mkI2C(666 ,         clocked_by sys0_clk, reset_by sys0_rst); // 200MHz/(100KHz*3) 
 
@@ -70,7 +72,7 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
   LCDController   lcd_ctrl     <- mkLCDController(    clocked_by sys0_clk, reset_by sys0_rst);
   Reg#(Bool)      lcdNeedsInit <- mkReg(True ,        clocked_by sys0_clk, reset_by sys0_rst);
   IDELAYCTRL      idc          <- mkMYIDELAYCTRL(1,   clocked_by sys0_clk, reset_by sys0_rst);
-  A4L_Es          a4ls         <- mkA4LS(True,                  clocked_by sys1_clk, reset_by sys1_rst);
+
 
 `ifdef NO_L2HCRT
   GMACIfc         gmac         <- mkGMAC(gmii_rx_clk, sys1_clk, clocked_by sys1_clk, reset_by sys1_rst);
@@ -81,43 +83,18 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
   ABS2QABSIfc     l2qc         <- mkABS2QABS(                   clocked_by sys1_clk, reset_by sys1_rst);
   QABS2ABSIfc     qcl2         <- mkQABS2ABS(                   clocked_by sys1_clk, reset_by sys1_rst);
 `endif
-  L2HCrtIfc       l2hcrt       <- mkQABS2ABS(                   clocked_by sys1_clk, reset_by sys1_rst);
-  // TODO Axi Output
+  L2HCrtIfc       l2hcrt       <- mkL2HCrt(sys0_clk,sys0_rst,sys1_clkp,sys1_clkn,gmii_rx_clk);
+  Clock           sys1_clk     = l2hcrt.e125Clk;
+  Reset           sys1_rst     = l2hcrt.gmii_rstn;
+  A4L_Es          a4ls         <- mkA4LS(True,                  clocked_by sys1_clk, reset_by sys1_rst);
  
-
-  //ReadOnly#(Bit#(1)) eLed <- mkNullCrossingWire(noClock, pack(swap.eoptog));
-  Bit#(1) eLed = 1'b0;
-
-  rule gmacOperate;
-    gmac.txOperate;
-    gmac.rxOperate;
-  endrule
-
-  // Loop1 - GMAC Loopback Works
-  //mkConnection(gmac.rx, gmac.tx);
-
-  // Loop2 - GMAC Loopback with Swap works
-  //mkConnection(gmac.rx,  swap.in);
-  //mkConnection(swap.out, gmac.tx);
-
-  // Loop3 - GMAC<->L2P with Payload Loopback works
-  //mkConnection(gmac.rx,  l2P.server.request);  // Loop3
-  //mkConnection(l2P.client.request, l2P.client.response);
-  //mkConnection(l2P.server.response, gmac.tx);
-
-  // Loop4 - Add HCrt <-> AXI  all in 125 MHz Gbe Domain
-  //mkConnection(gmac.rx,  l2P.server.request); 
-  //mkConnection(l2P.client.request, l2qc.putSerial);
-  //mkConnection(l2qc.getDword, crt2axi.crtS0.request);
-  // middle
-  //mkConnection(crt2axi.crtS0.response, qcl2.putVector);
-  //mkConnection(qcl2.getSerial, l2P.client.response);
-  //mkConnection(l2P.server.response, gmac.tx);
-
+  mkConnection(l2hcrt.axi, a4ls);
   //mkConnection(a4lm, a4ls);
 
 
   
+  //ReadOnly#(Bit#(1)) eLed <- mkNullCrossingWire(noClock, pack(swap.eoptog));
+  Bit#(1) eLed = 1'b0;
 
   BRAM_Configure cfg = defaultValue;
     cfg.memorySize = 1024;  // Number of DWORD entries in 4KB ROM
@@ -163,9 +140,7 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
   rule assign_mac;
     l2P.macAddr(unpack(uAddr));
   endrule
-
   */
-
 
   // Wait for 2^28 before starting off the show...
   rule iic_go_set (unpack(cycleCount[28]) && !iicGo && !iicDone);  
@@ -194,7 +169,7 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
   // Paint the LCD when the iic sequence is done...
   rule init_lcd (lcdNeedsInit && iicDone);
     Vector#(16,Bit#(8)) text1 = lcdLine("Atomic Rules LLC");
-    Vector#(16,Bit#(8)) text2 = lcdLine("HotlineCRT Ready");
+    Vector#(16,Bit#(8)) text2 = lcdLine("HCRT 2013.03.01a");
     lcd_ctrl.setLine1(text1);
     lcd_ctrl.setLine2(text2);
     lcdNeedsInit <= False;
@@ -210,9 +185,9 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
   interface I2C_Pins i2cpad = i2cC.i2c;
   interface LCD lcd = lcd_ctrl.ifc;
   interface Reset       gmii_rstn   = sys1_rst;
-  interface GMII_RS     gmii        = gmac.gmii;
-  interface Clock       rxclkBnd    = gmac.rxclkBnd;
-  interface MDIO_Pads   mdio        = mdi.mdio;
+  interface GMII_RS     gmii        = l2hcrt.gmii;
+  interface Clock       rxclkBnd    = l2hcrt.rxclkBnd;
+  interface MDIO_Pads   mdio        = l2hcrt.mdio;
 
 endmodule
 

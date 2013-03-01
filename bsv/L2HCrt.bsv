@@ -21,6 +21,7 @@ import Vector         ::*;
 (* always_ready *)
 interface L2HCrtIfc;
   interface A4L_Em    axi;
+  interface Clock     e125Clk;
   interface Reset     gmii_rstn;    // GMII Reset driven out to Phy
   interface Clock     rxclkBnd;     // GMII RX Clock (provided here for BSV interface rules)  
   interface GMII_RS   gmii;         // The GMII link RX/TX
@@ -60,6 +61,7 @@ module mkL2HCrt#(Clock sys0_clk , Reset sys0_rst,
   mkConnection(l2P.server.response, gmac.tx);
 
   interface A4L_Em      axi         = a4lm;
+  interface Clock       e125Clk     = sys1_clk;
   interface Reset       gmii_rstn   = sys1_rst;
   interface GMII_RS     gmii        = gmac.gmii;
   interface Clock       rxclkBnd    = gmac.rxclkBnd;

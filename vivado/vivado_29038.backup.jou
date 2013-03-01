@@ -1,0 +1,26 @@
+#-----------------------------------------------------------
+# Vivado v2012.4 (64-bit)
+# Build 222254 by xbuild on Tue Dec 18 05:17:28 MST 2012
+# Start of session at: Fri Mar  1 09:57:45 2013
+# Process ID: 12018
+# Log file: /home/shep/projects/hotline/vivado/vivado.log
+# Journal file: /home/shep/projects/hotline/vivado/vivado.jou
+#-----------------------------------------------------------
+source "/home/shep/.Xilinx/Vivado/init.tcl"
+start_gui
+open_project /home/shep/projects/hotline/vivado/hkp1/hkp1.xpr
+update_compile_order -fileset sources_1
+reset_run impl_1
+reset_run synth_1
+launch_runs synth_1
+wait_on_run synth_1
+add_files -norecurse /home/shep/projects/hotline/rtl/mkL2HCrt.v
+update_compile_order -fileset sources_1
+reset_run impl_1
+reset_run synth_1
+launch_runs synth_1
+wait_on_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream
+wait_on_run impl_1

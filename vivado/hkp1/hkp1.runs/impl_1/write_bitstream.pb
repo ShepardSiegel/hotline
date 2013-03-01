@@ -42,11 +42,11 @@ E/opt/Xilinx/14.4/ISE_DS/PlanAhead/data/./parts/xilinx/kintex7/drc.xmlZ23-17
 £
 Parsing XDC File [%s]
 179*designutils2m
-k/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/.Xil/Vivado-13565-ar-cms520/dcp/fpgaTop_routed.xdcZ20-179
+k/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/.Xil/Vivado-29521-ar-cms520/dcp/fpgaTop_routed.xdcZ20-179
 ¬
 Finished Parsing XDC File [%s]
 178*designutils2m
-k/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/.Xil/Vivado-13565-ar-cms520/dcp/fpgaTop_routed.xdcZ20-178
+k/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/.Xil/Vivado-29521-ar-cms520/dcp/fpgaTop_routed.xdcZ20-178
 6
 Reading XDEF placement.
 206*designutilsZ20-206
@@ -57,7 +57,7 @@ k/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/.Xil/Vivado-13565-ar-c
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2
 Read XDEF File: 2
-00:00:00.132
+00:00:00.142
 00:00:00.142	
 539.0202
 0.000Z17-268
@@ -67,12 +67,12 @@ I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 •
 ORestored %s out of %s XDEF sites from archive | CPU: %s secs | Memory: %s MB |
 403*designutils2
-12062
-12062
+11582
+11582
 
 0.4200002
 
-7.677544Z20-403
+7.561813Z20-403
 í
 !Unisim Transformation Summary:
 %s111*project2°
@@ -81,7 +81,7 @@ ORestored %s out of %s XDEF sites from archive | CPU: %s secs | Memory: %s MB |
   WIRE => IBUF: 139 instances
 Z1-111
 1
-%Phase 0 | Netlist Checksum: bd2c399c
+%Phase 0 | Netlist Checksum: 773e5d90
 *common
 ¥
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
@@ -147,11 +147,11 @@ I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2
 write_bitstream: 2
 
-00:00:342
+00:00:352
 
-00:00:332	
-849.0982	
-310.078Z17-268
+00:00:342	
+850.0982	
+311.078Z17-268
 
 
 End Record
