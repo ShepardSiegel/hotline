@@ -74,7 +74,6 @@ module mkL2Proc (L2ProcIfc);
       11 :action
              let sa = pack(shiftInAt0(igSR, b)); // Capure ingress SA (12th Octet)
              igSA  <= sa;
-             igSAF.enq(sa);
           endaction
       13 :action
             igTyp <= {pack(igSR[0]), b};  // Capure ingress EtherType (14th Octet)
@@ -82,8 +81,10 @@ module mkL2Proc (L2ProcIfc);
           endaction
     endcase
     Bit#(16) et = {pack(igSR[0]),b};
-    igPDU <= ((igDA==bAddr) || (igDA==uMAddr))  // Dest address matches broadcast or unicast MAC address
-          && (igPtr==13 && et==16'hF052);       // EtherType matches 
+    Bool isForHCrt = ((igDA==bAddr) || (igDA==uMAddr))  // Dest address matches broadcast or unicast MAC address
+                  && (igPtr==13 && et==16'hF052);       // EtherType matches 
+    igPDU <= isForHCrt;
+    if (isForHCrt) igSAF.enq(igSA); // Only Enq SA for response if this is for HCrt
   endrule
 
   rule l2_ingress_payload (!igL2Hdr);  // L2 Ingress Payload Processing...
