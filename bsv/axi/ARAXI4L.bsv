@@ -1,5 +1,5 @@
 // ARAXI4L Atomic Rules - AXI4-Lite Implementation
-// Copyright (c) 2010,2011 Atomic Rules LLC - ALL RIGHTS RESERVED
+// Copyright (c) 2010,2011,2012,2013 Atomic Rules LLC - ALL RIGHTS RESERVED
 
 package ARAXI4L;
 
@@ -82,84 +82,84 @@ endinstance
 
 (* always_ready *)
 interface A4L_Em;  // AXI4-Lite Explicit Master
-  (* prefix="", result="AWVALID" *)        method Bit#(1)  mAWVALID;     // (AW) Write Address Channel...
-  (* prefix="", enable="AWREADY" *)        method Action   sAWREADY;
-  (* prefix="", result="AWADDR"  *)        method Bit#(32) mAWADDR;
-  (* prefix="", result="AWPROT"  *)        method Bit#(3)  mAWPROT;
+  (* prefix="", result="awvalid" *)        method Bit#(1)  mAWVALID;     // (AW) Write Address Channel...
+  (* prefix="", enable="awready" *)        method Action   sAWREADY;
+  (* prefix="", result="awaddr"  *)        method Bit#(32) mAWADDR;
+  (* prefix="", result="awprot"  *)        method Bit#(3)  mAWPROT;
 
-  (* prefix="", result="WVALID"  *)        method Bit#(1)  mWVALID;      // (W) Write Data Channel...
-  (* prefix="", enable="WREADY"  *)        method Action   sWREADY;
-  (* prefix="", result="WDATA"   *)        method Bit#(32) mWDATA;
-  (* prefix="", result="WSTRB"   *)        method Bit#(4)  mWSTRB;
+  (* prefix="", result="wvalid"  *)        method Bit#(1)  mWVALID;      // (W) Write Data Channel...
+  (* prefix="", enable="wready"  *)        method Action   sWREADY;
+  (* prefix="", result="wdata"   *)        method Bit#(32) mWDATA;
+  (* prefix="", result="wstrb"   *)        method Bit#(4)  mWSTRB;
 
-  (* prefix="", enable="BVALID"  *)        method Action   sBVALID;      // (B) Write Response Channel...
-  (* prefix="", result="BREADY"  *)        method Bit#(1)  mBREADY;
-  (* prefix="", always_enabled   *)        method Action   sBRESP        ((* port="BRESP" *) Bit#(2)  arg_wresp);
+  (* prefix="", enable="bvalid"  *)        method Action   sBVALID;      // (B) Write Response Channel...
+  (* prefix="", result="bready"  *)        method Bit#(1)  mBREADY;
+  (* prefix="", always_enabled   *)        method Action   sBRESP        ((* port="bresp" *) Bit#(2)  arg_wresp);
 
-  (* prefix="", result="ARVALID" *)        method Bit#(1)  mARVALID;     // (AR) Read Address Channel...
-  (* prefix="", enable="ARREADY" *)        method Action   sARREADY;
-  (* prefix="", result="ARADDR"  *)        method Bit#(32) mARADDR;
-  (* prefix="", result="ARPROT"  *)        method Bit#(3)  mARPROT;
+  (* prefix="", result="arvalid" *)        method Bit#(1)  mARVALID;     // (AR) Read Address Channel...
+  (* prefix="", enable="arready" *)        method Action   sARREADY;
+  (* prefix="", result="araddr"  *)        method Bit#(32) mARADDR;
+  (* prefix="", result="arprot"  *)        method Bit#(3)  mARPROT;
 
-  (* prefix="", enable="RVALID"  *)        method Action   sRVALID;      // (R) Read Response Channel...
-  (* prefix="", result="RREADY"  *)        method Bit#(1)  mRREADY;
-  (* prefix="", always_enabled   *)        method Action   sRDATA        ((* port="RDATA" *) Bit#(32) arg_rdata);
-  (* prefix="", always_enabled   *)        method Action   sRRESP        ((* port="RRESP" *) Bit#(2)  arg_rresp);
+  (* prefix="", enable="rvalid"  *)        method Action   sRVALID;      // (R) Read Response Channel...
+  (* prefix="", result="rready"  *)        method Bit#(1)  mRREADY;
+  (* prefix="", always_enabled   *)        method Action   sRDATA        ((* port="rdata" *) Bit#(32) arg_rdata);
+  (* prefix="", always_enabled   *)        method Action   sRRESP        ((* port="rresp" *) Bit#(2)  arg_rresp);
 endinterface
 
 (* always_ready *)
 interface A4L_Es;  // AXI4-Lite Explicit Slave
-  (* prefix="", enable="AWVALID" *)        method Action   mAWVALID;     // (AW) Write Address Channel...
-  (* prefix="", result="AWREADY" *)        method Bit#(1)  sAWREADY;
-  (* prefix="", always_enabled   *)        method Action   mAWADDR       ((* port="AWADDR" *) Bit#(32) arg_waddr);
-  (* prefix="", always_enabled   *)        method Action   mAWPROT       ((* port="AWPROT" *) Bit#(3)  arg_wprot);
+  (* prefix="", enable="awvalid" *)        method Action   mAWVALID;     // (AW) Write Address Channel...
+  (* prefix="", result="awready" *)        method Bit#(1)  sAWREADY;
+  (* prefix="", always_enabled   *)        method Action   mAWADDR       ((* port="awaddr" *) Bit#(32) arg_waddr);
+  (* prefix="", always_enabled   *)        method Action   mAWPROT       ((* port="awprot" *) Bit#(3)  arg_wprot);
 
-  (* prefix="", enable="WVALID"  *)        method Action   mWVALID;      // (W) Write Data Channel...
-  (* prefix="", result="WREADY"  *)        method Bit#(1)  sWREADY;
-  (* prefix="", always_enabled   *)        method Action   mWDATA        ((* port="WDATA" *) Bit#(32) arg_wdata);
-  (* prefix="", always_enabled   *)        method Action   mWSTRB        ((* port="WSTRB" *) Bit#(4)  arg_wstrb);
+  (* prefix="", enable="wvalid"  *)        method Action   mWVALID;      // (W) Write Data Channel...
+  (* prefix="", result="wready"  *)        method Bit#(1)  sWREADY;
+  (* prefix="", always_enabled   *)        method Action   mWDATA        ((* port="wdata" *) Bit#(32) arg_wdata);
+  (* prefix="", always_enabled   *)        method Action   mWSTRB        ((* port="wstrb" *) Bit#(4)  arg_wstrb);
 
-  (* prefix="", result="BVALID"  *)        method Bit#(1)  sBVALID;      // (B) Write Response Channel...
-  (* prefix="", enable="BREADY"  *)        method Action   mBREADY;
-  (* prefix="", result="BRESP"   *)        method Bit#(2)  sBRESP;
+  (* prefix="", result="bvalid"  *)        method Bit#(1)  sBVALID;      // (B) Write Response Channel...
+  (* prefix="", enable="bready"  *)        method Action   mBREADY;
+  (* prefix="", result="bresp"   *)        method Bit#(2)  sBRESP;
 
-  (* prefix="", enable="ARVALID" *)        method Action   mARVALID;     // (AR) Read Address Channel...
-  (* prefix="", result="ARREADY" *)        method Bit#(1)  sARREADY;
-  (* prefix="", always_enabled   *)        method Action   mARADDR       ((* port="ARADDR" *) Bit#(32) arg_raddr);
-  (* prefix="", always_enabled   *)        method Action   mARPROT       ((* port="ARPROT" *) Bit#(3)  arg_rprot);
+  (* prefix="", enable="arvalid" *)        method Action   mARVALID;     // (AR) Read Address Channel...
+  (* prefix="", result="arready" *)        method Bit#(1)  sARREADY;
+  (* prefix="", always_enabled   *)        method Action   mARADDR       ((* port="araddr" *) Bit#(32) arg_raddr);
+  (* prefix="", always_enabled   *)        method Action   mARPROT       ((* port="arprot" *) Bit#(3)  arg_rprot);
 
-  (* prefix="", result="RVALID"  *)        method Bit#(1)  sRVALID;      // (R) Read Response Channel...
-  (* prefix="", enable="RREADY"  *)        method Action   mRREADY;
-  (* prefix="", result="RDATA"   *)        method Bit#(32) sRDATA;
-  (* prefix="", result="RRESP"   *)        method Bit#(2)  sRRESP;
+  (* prefix="", result="rvalid"  *)        method Bit#(1)  sRVALID;      // (R) Read Response Channel...
+  (* prefix="", enable="rready"  *)        method Action   mRREADY;
+  (* prefix="", result="rdata"   *)        method Bit#(32) sRDATA;
+  (* prefix="", result="rresp"   *)        method Bit#(2)  sRRESP;
 endinterface
 
 
 (* always_ready *)
 interface A4L_Eo;  // AXI4-Lite Explicit Observer
-  (* prefix="", enable="AWVALID" *)        method Action   mAWVALID;     // (AW) Write Address Channel...
-  (* prefix="", enable="AWREADY" *)        method Action   sAWREADY;
-  (* prefix="", always_enabled   *)        method Action   mAWADDR       ((* port="AWADDR" *) Bit#(32) arg_waddr);
-  (* prefix="", always_enabled   *)        method Action   mAWPROT       ((* port="AWPROT" *) Bit#(3)  arg_wprot);
+  (* prefix="", enable="awvalid" *)        method Action   mAWVALID;     // (AW) Write Address Channel...
+  (* prefix="", enable="awready" *)        method Action   sAWREADY;
+  (* prefix="", always_enabled   *)        method Action   mAWADDR       ((* port="awaddr" *) Bit#(32) arg_waddr);
+  (* prefix="", always_enabled   *)        method Action   mAWPROT       ((* port="awprot" *) Bit#(3)  arg_wprot);
 
-  (* prefix="", enable="WVALID"  *)        method Action   mWVALID;      // (W) Write Data Channel...
-  (* prefix="", enable="WREADY"  *)        method Action   sWREADY;
-  (* prefix="", always_enabled   *)        method Action   mWDATA        ((* port="WDATA" *) Bit#(32) arg_wdata);
-  (* prefix="", always_enabled   *)        method Action   mWSTRB        ((* port="WSTRB" *) Bit#(4)  arg_wstrb);
+  (* prefix="", enable="wvalid"  *)        method Action   mWVALID;      // (W) Write Data Channel...
+  (* prefix="", enable="wready"  *)        method Action   sWREADY;
+  (* prefix="", always_enabled   *)        method Action   mWDATA        ((* port="wdata" *) Bit#(32) arg_wdata);
+  (* prefix="", always_enabled   *)        method Action   mWSTRB        ((* port="wstrb" *) Bit#(4)  arg_wstrb);
 
-  (* prefix="", enable="BVALID"  *)        method Action   sBVALID;      // (B) Write Response Channel...
-  (* prefix="", enable="BREADY"  *)        method Action   mBREADY;
-  (* prefix="", always_enabled   *)        method Action   sBRESP        ((* port="BRESP" *) Bit#(2)  arg_wresp);
+  (* prefix="", enable="bvalid"  *)        method Action   sBVALID;      // (B) Write Response Channel...
+  (* prefix="", enable="bready"  *)        method Action   mBREADY;
+  (* prefix="", always_enabled   *)        method Action   sBRESP        ((* port="bresp" *) Bit#(2)  arg_wresp);
 
-  (* prefix="", enable="ARVALID" *)        method Action   mARVALID;     // (AR) Read Address Channel...
-  (* prefix="", enable="ARREADY" *)        method Action   sARREADY;
-  (* prefix="", always_enabled   *)        method Action   mARADDR       ((* port="ARADDR" *) Bit#(32) arg_raddr);
-  (* prefix="", always_enabled   *)        method Action   mARPROT       ((* port="ARPROT" *) Bit#(3)  arg_rprot);
+  (* prefix="", enable="arvalid" *)        method Action   mARVALID;     // (AR) Read Address Channel...
+  (* prefix="", enable="arready" *)        method Action   sARREADY;
+  (* prefix="", always_enabled   *)        method Action   mARADDR       ((* port="araddr" *) Bit#(32) arg_raddr);
+  (* prefix="", always_enabled   *)        method Action   mARPROT       ((* port="arprot" *) Bit#(3)  arg_rprot);
 
-  (* prefix="", result="RVALID"  *)        method Action   sRVALID;      // (R) Read Response Channel...
-  (* prefix="", enable="RREADY"  *)        method Action   mRREADY;
-  (* prefix="", always_enabled   *)        method Action   sRDATA        ((* port="RDATA" *) Bit#(32) arg_rdata);
-  (* prefix="", always_enabled   *)        method Action   sRRESP        ((* port="RRESP" *) Bit#(2)  arg_rresp);
+  (* prefix="", result="rvalid"  *)        method Action   sRVALID;      // (R) Read Response Channel...
+  (* prefix="", enable="rready"  *)        method Action   mRREADY;
+  (* prefix="", always_enabled   *)        method Action   sRDATA        ((* port="rdata" *) Bit#(32) arg_rdata);
+  (* prefix="", always_enabled   *)        method Action   sRRESP        ((* port="rresp" *) Bit#(2)  arg_rresp);
 endinterface
 
 
