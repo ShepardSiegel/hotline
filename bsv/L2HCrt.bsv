@@ -20,12 +20,13 @@ import Vector         ::*;
 
 (* always_ready *)
 interface L2HCrtIfc;
-  interface A4L_Em    axi;
-  interface Clock     e125Clk;
+  interface A4L_Em    m_axi;        // "m_axi" will be prefix for RTL signature
+  interface Clock     m_axi_aclk;
+  interface Reset     m_axi_aresetn;
   interface Reset     gmii_rstn;    // GMII Reset driven out to Phy
   interface Clock     rxclkBnd;     // GMII RX Clock (provided here for BSV interface rules)  
   interface GMII_RS   gmii;         // The GMII link RX/TX
-  interface MDIO_Pads mdio;         // The MDIO pads
+//interface MDIO_Pads mdio;         // The MDIO pads
 endinterface
 
 (* synthesize, no_default_clock, no_default_reset, clock_prefix="", reset_prefix="" *)
@@ -38,7 +39,7 @@ module mkL2HCrt#(Clock sys0_clk , Reset sys0_rst,
   Reset           sys1_rst     <- mkAsyncReset(1, sys0_rst, sys1_clk);
 
   GMACIfc         gmac         <- mkGMAC(gmii_rx_clk, sys1_clk, clocked_by sys1_clk, reset_by sys1_rst);
-  MDIO            mdi          <- mkMDIO(6,                     clocked_by sys1_clk, reset_by sys1_rst);
+//MDIO            mdi          <- mkMDIO(6,                     clocked_by sys1_clk, reset_by sys1_rst);
   L2ProcIfc       l2P          <- mkL2Proc(                     clocked_by sys1_clk, reset_by sys1_rst);
   ABS2QABSIfc     l2qc         <- mkABS2QABS(                   clocked_by sys1_clk, reset_by sys1_rst);
   QABS2ABSIfc     qcl2         <- mkQABS2ABS(                   clocked_by sys1_clk, reset_by sys1_rst);
@@ -60,11 +61,12 @@ module mkL2HCrt#(Clock sys0_clk , Reset sys0_rst,
   mkConnection(qcl2.getSerial, l2P.client.response);
   mkConnection(l2P.server.response, gmac.tx);
 
-  interface A4L_Em      axi         = a4lm;
-  interface Clock       e125Clk     = sys1_clk;
-  interface Reset       gmii_rstn   = sys1_rst;
-  interface GMII_RS     gmii        = gmac.gmii;
-  interface Clock       rxclkBnd    = gmac.rxclkBnd;
-  interface MDIO_Pads   mdio        = mdi.mdio;
+  interface A4L_Em     m_axi         = a4lm;
+  interface Clock      m_axi_aclk    = sys1_clk;
+  interface Reset      m_axi_aresetn = sys1_rst;
+  interface Reset      gmii_rstn     = sys1_rst;
+  interface GMII_RS    gmii          = gmac.gmii;
+  interface Clock      rxclkBnd      = gmac.rxclkBnd;
+//interface MDIO_Pads  mdio          = mdi.mdio;
 
 endmodule

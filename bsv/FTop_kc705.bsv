@@ -12,7 +12,7 @@ import L2HCrt         ::*;
 import I2C            ::*;
 import LCDController  ::*;
 import L2Proc         ::*;
-import MDIO           ::*;
+//import MDIO           ::*;
 import XilinxCells    ::*;
 import XilinxExtra    ::*;
 
@@ -40,7 +40,7 @@ interface FTop_kc705Ifc;
   interface Reset     gmii_rstn;    // GMII Reset driven out to Phy
   interface Clock     rxclkBnd;     // GMII RX Clock (provided here for BSV interface rules)  
   interface GMII_RS   gmii;         // The GMII link RX/TX
-  interface MDIO_Pads mdio;         // The MDIO pads
+//interface MDIO_Pads mdio;         // The MDIO pads
 endinterface
 
 (* synthesize, no_default_clock, no_default_reset, clock_prefix="", reset_prefix="" *)
@@ -84,11 +84,11 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
   QABS2ABSIfc     qcl2         <- mkQABS2ABS(                   clocked_by sys1_clk, reset_by sys1_rst);
 `endif
   L2HCrtIfc       l2hcrt       <- mkL2HCrt(sys0_clk,sys0_rst,sys1_clkp,sys1_clkn,gmii_rx_clk);
-  Clock           sys1_clk     = l2hcrt.e125Clk;
+  Clock           sys1_clk     = l2hcrt.m_axi_aclk;
   Reset           sys1_rst     = l2hcrt.gmii_rstn;
-  A4L_Es          a4ls         <- mkA4LS(True,                  clocked_by sys1_clk, reset_by sys1_rst);
+  A4LSIfc         a4ls         <- mkA4LS(True,                  clocked_by sys1_clk, reset_by sys1_rst);
  
-  mkConnection(l2hcrt.axi, a4ls);
+  mkConnection(l2hcrt.m_axi, a4ls.s_axi);
   //mkConnection(a4lm, a4ls);
 
 
@@ -187,7 +187,7 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
   interface Reset       gmii_rstn   = sys1_rst;
   interface GMII_RS     gmii        = l2hcrt.gmii;
   interface Clock       rxclkBnd    = l2hcrt.rxclkBnd;
-  interface MDIO_Pads   mdio        = l2hcrt.mdio;
+//interface MDIO_Pads   mdio        = l2hcrt.mdio;
 
 endmodule
 

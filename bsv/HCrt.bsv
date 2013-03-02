@@ -333,7 +333,7 @@ module mkHCrt_TB1 (Empty);
   L2ProcIfc            l2P        <- mkL2Proc;
   HCrtCompleter2AxiIfc crt2axi    <- mkHCrtCompleter2Axi;
   A4L_Em               a4lm       <- mkA4MtoEm(crt2axi.axiM0); // make the crt2axi Expliict on the AXI side
-  A4L_Es               a4ls       <- mkA4LS(True);
+  A4LSIfc              a4ls       <- mkA4LS(True);
   Reg#(UInt#(16))      cycleCount <- mkReg(0);
 
   // Generate L2 packet
@@ -471,7 +471,7 @@ module mkHCrt_TB1 (Empty);
 
 
 
-  mkConnection(a4lm, a4ls);
+  mkConnection(a4lm, a4ls.s_axi);
 
   rule advance_cycleCount;
     cycleCount <= cycleCount + 1;

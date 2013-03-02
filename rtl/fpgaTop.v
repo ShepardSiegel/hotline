@@ -293,7 +293,9 @@ always@(posedge sys0_clk) begin
   dipsw_r <= dipsw;
 end
 
+`define USE_IPI_BD
 
+`ifdef USE_MKFTOP
  mkFTop_kc705 ftop(
   .sys0_clk           (sys0_clk),
   .sys0_rstn          (!sys0_rst),    // Inverted to make reset rstn active-low
@@ -329,6 +331,28 @@ end
 //	.hdmi_hs          (hdmi_hs),
 //	.hdmi_vs          (hdmi_vs)
 );
+`elsif USE_IPI_BD
+
+ design_1 d1_i(
+  .sys0_clk           (sys0_clk),
+  .sys0_rstn          (!sys0_rst),    // Inverted to make reset rstn active-low
+  .sys1_clkp          (sys1_clkp),
+  .sys1_clkn          (sys1_clkn),
+
+  .gmii_rstn          (gmii_rstn),
+  .gmii_tx_txd        (gmii_txd),
+  .gmii_tx_tx_en      (gmii_tx_en),
+  .gmii_tx_tx_er      (gmii_tx_er),
+  .gmii_rx_rxd_i      (gmii_rxd),
+  .gmii_rx_rx_dv_i    (gmii_rx_dv),
+  .gmii_rx_rx_er_i    (gmii_rx_er),
+  .gmii_tx_tx_clk     (gmii_gtx_clk),
+  .gmii_rx_clk        (gmii_rx_clk),
+  .mdio_mdc           (mdio_mdc),
+  .mdio_mdd           (mdio_mdd)
+);
+
+`endif
 
 
 

@@ -15,5 +15,6 @@ Directory Structure
 - obj/ Compiler and Simulator artifacts
 - rtl/ RTL source and intermediate codes
 - sim/ Simulator artifacts
+- tcl/ Tcl scripts
 - vivado/ Vivado projects
 
