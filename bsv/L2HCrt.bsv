@@ -24,7 +24,7 @@ interface L2HCrtIfc;
   interface Clock     m_axi_aclk;
   interface Reset     m_axi_aresetn;
   interface Reset     gmii_rstn;    // GMII Reset driven out to Phy
-  interface Clock     rxclkBnd;     // GMII RX Clock (provided here for BSV interface rules)  
+  interface Clock     rxclk_ModBnd; // GMII RX Clock (provided here for BSV module-bounds interface rules)  
   interface GMII_RS   gmii;         // The GMII link RX/TX
 //interface MDIO_Pads mdio;         // The MDIO pads
 endinterface
@@ -66,7 +66,7 @@ module mkL2HCrt#(Clock sys0_clk , Reset sys0_rst,
   interface Reset      m_axi_aresetn = sys1_rst;
   interface Reset      gmii_rstn     = sys1_rst;
   interface GMII_RS    gmii          = gmac.gmii;
-  interface Clock      rxclkBnd      = gmac.rxclkBnd;
+  interface Clock      rxclk_ModBnd  = gmac.rxclk_ModBnd;
 //interface MDIO_Pads  mdio          = mdi.mdio;
 
 endmodule

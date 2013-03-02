@@ -26,9 +26,9 @@ import XilinxExtra       ::*;
 
 (* always_enabled, always_ready *)
 interface GMII_RX_RS;                            // FPGA provides to PHY
-  method    Action      rxd  (Bit#(8) i);
-  method    Action      rx_dv(Bit#(1) i);
-  method    Action      rx_er(Bit#(1) i);
+  (* prefix="" *) method    Action      rxd  ((* port="rxd"   *) Bit#(8) i);
+  (* prefix="" *) method    Action      rx_dv((* port="rx_dv" *) Bit#(1) i);
+  (* prefix="" *) method    Action      rx_er((* port="rx_er" *) Bit#(1) i);
 endinterface: GMII_RX_RS
 
 (* always_enabled, always_ready *)
@@ -40,10 +40,10 @@ endinterface: GMII_RX_PCS
 
 (* always_enabled, always_ready *)
 interface GMII_TX_RS;                            // FPGA provides to PHY
-  interface Clock       tx_clk;
+  interface Clock       gtx_clk;
   method    Bit#(8)     txd;
-  method    Bit#(1)     tx_en;
-  method    Bit#(1)     tx_er;
+  (* result="tx_en" *) method    Bit#(1)     tx_en;
+  (* result="tx_er" *) method    Bit#(1)     tx_er;
 endinterface: GMII_TX_RS
 
 (* always_enabled, always_ready *)
@@ -55,18 +55,18 @@ endinterface :GMII_TX_PCS
 
 (* always_enabled, always_ready *)
 interface GMII_RS;  // GMII_RS is the bottom of the MAC facing the top of the PHY...
-  interface GMII_RX_RS  rx;
-  interface GMII_TX_RS  tx;
-  method    Action      col   (Bit#(1) i);
-  method    Action      crs   (Bit#(1) i);
-  method    Action      intr  (Bit#(1) i);
-  method    Bit#(1)     led;
+  (* prefix="" *) interface GMII_RX_RS  rx;
+  (* prefix="" *) interface GMII_TX_RS  tx;
+  (* prefix="" *) method    Action      col   ((* port="col" *) Bit#(1) i);
+  (* prefix="" *) method    Action      crs   ((* port="crs" *) Bit#(1) i);
+  (* prefix="" *) method    Action      intr  ((* port="int" *) Bit#(1) i);
+  (* prefix="" *) method    Bit#(1)     led;
 endinterface: GMII_RS
 
 (* always_enabled, always_ready *)
 interface GMII_PCS; // GMII_PCS is the top of the PHY facing the MAC...
-  interface GMII_RX_PCS rx;
-  interface GMII_TX_PCS tx;
+  (* prefix="" *) interface GMII_RX_PCS rx;
+  (* prefix="" *) interface GMII_TX_PCS tx;
   method    Bit#(1)     col;
   method    Bit#(1)     crs;
   method    Bit#(1)     intr;
@@ -89,7 +89,7 @@ endinterface
 
 interface GMACIfc;
   interface GMII_RS     gmii;
-  interface Clock       rxclkBnd; 
+  interface Clock       rxclk_ModBnd; 
   //interface Reset       gmii_rstn;
   interface Get#(ABS)   rx;
   interface Put#(ABS)   tx;
@@ -165,7 +165,7 @@ module mkGMAC#(Clock rxClk, Clock txClk)(GMACIfc);
     method Action intr (Bit#(1) i) = intr_cc.send(i);
     method Bit#(1) led = pack(gmacLED);
   endinterface
-  interface Clock rxclkBnd  = rxClk_BUFR;  // Need to provide this clock at the BSV module bounds (not physically used)
+  interface Clock rxclk_ModBnd  = rxClk_BUFR;  // Need to provide this clock at the BSV module bounds (not physically used)
   //interface Reset gmii_rstn = phyReset;    // Active-Low reset passed up and out to PHY
   method Bool phyInterrupt = !unpack(intr_cc.read);  // Make Interrupt active-high
 endmodule: mkGMAC 
@@ -391,10 +391,10 @@ module mkTxRSAsync#(Clock txClk) (TxRSIfc);
   method  Action  txOperate = txOperateD._write(True);
   method  Bool txUnderFlow = unpack(unfBit.read);
   interface GMII_TX_RS gmii;
-    interface Clock   tx_clk = iobTxClk;
-    method    Bit#(8) txd    = iobTxData.q;
-    method    Bit#(1) tx_en  = iobTxEna.q;
-    method    Bit#(1) tx_er  = iobTxErr.q;
+    interface Clock   gtx_clk = iobTxClk;    // The 1GbE TX clock FPGA->PHY is called "GTX_CLK"
+    method    Bit#(8) txd     = iobTxData.q;
+    method    Bit#(1) tx_en   = iobTxEna.q;
+    method    Bit#(1) tx_er   = iobTxErr.q;
   endinterface: gmii
 endmodule: mkTxRSAsync
 

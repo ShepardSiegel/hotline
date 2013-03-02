@@ -35,7 +35,7 @@ create_clock -period 6.400 -name sys2_clkp -waveform {0.000 3.200} [get_ports sy
 set_property PACKAGE_PIN AB7 [get_ports sys0_rst]
 set_property IOSTANDARD LVCMOS15 [get_ports sys0_rst]
 
-## GbE GMII and MDIO...
+## GbE GMII...
 set_property PACKAGE_PIN N27 [get_ports {gmii_txd[0]}]
 set_property PACKAGE_PIN N25 [get_ports {gmii_txd[1]}]
 set_property PACKAGE_PIN M29 [get_ports {gmii_txd[2]}]
@@ -44,10 +44,10 @@ set_property PACKAGE_PIN J26 [get_ports {gmii_txd[4]}]
 set_property PACKAGE_PIN K26 [get_ports {gmii_txd[5]}]
 set_property PACKAGE_PIN L30 [get_ports {gmii_txd[6]}]
 set_property PACKAGE_PIN J28 [get_ports {gmii_txd[7]}]
-set_property PACKAGE_PIN M27 [get_ports gmii_tx_en]
-set_property PACKAGE_PIN N29 [get_ports gmii_tx_er]
-set_property PACKAGE_PIN K30 [get_ports gmii_gtx_clk]
-#set_property PACKAGE_PIN M28 [get_ports gmii_tx_clk]  # output from PHY only in 10,100 Mb modes; not used 1Gb
+set_property PACKAGE_PIN M27 [get_ports  gmii_tx_en]
+set_property PACKAGE_PIN N29 [get_ports  gmii_tx_er] 
+set_property PACKAGE_PIN K30 [get_ports  gmii_gtx_clk]  ;# gtx_clk is 125MHz TX source-sync for TX data
+#set_property PACKAGE_PIN M28 [get_ports gmii_tx_clk]   ;# output from PHY only in 10,100 Mb modes; not used 1Gb
 set_property PACKAGE_PIN U30 [get_ports {gmii_rxd[0]}]
 set_property PACKAGE_PIN U25 [get_ports {gmii_rxd[1]}]
 set_property PACKAGE_PIN T25 [get_ports {gmii_rxd[2]}]
@@ -56,16 +56,17 @@ set_property PACKAGE_PIN R19 [get_ports {gmii_rxd[4]}]
 set_property PACKAGE_PIN T27 [get_ports {gmii_rxd[5]}]
 set_property PACKAGE_PIN T26 [get_ports {gmii_rxd[6]}]
 set_property PACKAGE_PIN T28 [get_ports {gmii_rxd[7]}]
-set_property PACKAGE_PIN R28 [get_ports gmii_rx_dv]
-set_property PACKAGE_PIN V26 [get_ports gmii_rx_er]
-set_property PACKAGE_PIN U27 [get_ports gmii_rx_clk]
-set_property PACKAGE_PIN W19 [get_ports gmii_col]
-set_property PACKAGE_PIN R30 [get_ports gmii_crs]
-set_property PACKAGE_PIN N30 [get_ports gmii_intr]
-set_property PACKAGE_PIN L20 [get_ports gmii_rstn]
+set_property PACKAGE_PIN R28 [get_ports  gmii_rx_dv]
+set_property PACKAGE_PIN V26 [get_ports  gmii_rx_er]
+set_property PACKAGE_PIN U27 [get_ports  gmii_rx_clk]
+set_property PACKAGE_PIN W19 [get_ports  gmii_col]
+set_property PACKAGE_PIN R30 [get_ports  gmii_crs]
+set_property PACKAGE_PIN N30 [get_ports  gmii_intr]
+set_property PACKAGE_PIN L20 [get_ports  gmii_rstn]
+set_property IOSTANDARD LVCMOS25 [get_ports gmii_*]
+## GbE MDIO...
 set_property PACKAGE_PIN R23 [get_ports mdio_mdc]
 set_property PACKAGE_PIN J21 [get_ports mdio_mdd]
-set_property IOSTANDARD LVCMOS25 [get_ports gmii_*]
 set_property IOSTANDARD LVCMOS25 [get_ports mdio_*]
 
 # GMII Rx Timing Constraints ...

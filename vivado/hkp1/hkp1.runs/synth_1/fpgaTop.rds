@@ -1,8 +1,8 @@
 #-----------------------------------------------------------
 # Vivado v2012.4 (64-bit)
 # Build 222254 by xbuild on Tue Dec 18 05:17:28 MST 2012
-# Start of session at: Sat Mar  2 13:41:20 2013
-# Process ID: 16204
+# Start of session at: Sat Mar  2 16:07:08 2013
+# Process ID: 19841
 # Log file: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/synth_1/fpgaTop.rds
 # Journal file: /home/shep/projects/hotline/vivado/hkp1/hkp1.runs/synth_1/vivado.jou
 #-----------------------------------------------------------
@@ -313,7 +313,7 @@ WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la03_n
 WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la04_n
 WARNING: [Synth 8-3331] design fpgaTop has unconnected port fmch_la05_n
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 50 times and further instances of the messages will be disabled. Use the Tcl command set_msg_limit to change the current settings.
-finished Rtl Elaboration : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 468.645 ; gain = 354.258
+finished Rtl Elaboration : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 468.645 ; gain = 354.258
 -------> Message [Synth 8-3331] suppressed 135 times
 Report Check Netlist: 
 -----+-----------------+------+--------+------+-----------------
@@ -321,9 +321,9 @@ Report Check Netlist:
 -----+-----------------+------+--------+------+-----------------
 1    |multi_driven_nets|     0|       0|Passed|Multi driven nets
 -----+-----------------+------+--------+------+-----------------
-WARNING: [Synth 8-3295] tying undriven pin ftop:gmii_col_i to constant 0
-WARNING: [Synth 8-3295] tying undriven pin ftop:gmii_crs_i to constant 0
-WARNING: [Synth 8-3295] tying undriven pin ftop:gmii_intr_i to constant 0
+WARNING: [Synth 8-3295] tying undriven pin ftop:gmii_col to constant 0
+WARNING: [Synth 8-3295] tying undriven pin ftop:gmii_crs to constant 0
+WARNING: [Synth 8-3295] tying undriven pin ftop:gmii_int to constant 0
 INFO: [Netlist 29-17] Analyzing 14 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 Loading clock regions from /opt/Xilinx/14.4/ISE_DS/PlanAhead/data/parts/xilinx/kintex7/kintex7/xc7k325t/ClockRegion.xml
@@ -345,9 +345,9 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   IBUFGDS => IBUFDS: 2 instances
   IODELAY => IDELAYE2: 1 instances
 
-Phase 0 | Netlist Checksum: 6e9d5a67
+Phase 0 | Netlist Checksum: a7dbbc6d
 Using Xilinx IP in: /opt/Xilinx/14.4/ISE_DS/ISE/coregen/ip/xilinx/primary/com/xilinx/ip
-starting synthesize : Time (s): cpu = 00:00:35 ; elapsed = 00:00:35 . Memory (MB): peak = 572.707 ; gain = 458.320
+starting synthesize : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 572.707 ; gain = 458.320
 INFO: [Synth 8-638] synthesizing module 'fpgaTop' [/home/shep/projects/hotline/rtl/fpgaTop.v:5]
 INFO: [Synth 8-638] synthesizing module 'IBUFGDS' [/opt/Xilinx/14.4/ISE_DS/PlanAhead/scripts/rt/data/unisim_comp.v:11172]
 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
@@ -548,7 +548,7 @@ WARNING: [Synth 8-350] instance 'ftop' of module 'mkFTop_kc705' requires 27 conn
 INFO: [Synth 8-155] case statement is not full and has no default [/home/shep/projects/hotline/rtl/fpgaTop.v:266]
 WARNING: [Synth 8-3848] Net mdio_mdc in module/entity fpgaTop does not have driver.
 INFO: [Synth 8-256] done synthesizing module 'fpgaTop' (27#27) [/home/shep/projects/hotline/rtl/fpgaTop.v:5]
-finished synthesize : Time (s): cpu = 00:00:47 ; elapsed = 00:00:47 . Memory (MB): peak = 682.863 ; gain = 568.477
+finished synthesize : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 682.863 ; gain = 568.477
 
 ---------------------------------------------------------------------------------
 Applying 'set_property' XDC Constraints...
@@ -583,13 +583,13 @@ Detailed RTL Component Info :
 	   3 Input     32 Bit       Adders := 1     
 	   2 Input     24 Bit       Adders := 1     
 	   2 Input     12 Bit       Adders := 3     
-	   3 Input     10 Bit       Adders := 1     
 	   2 Input     10 Bit       Adders := 1     
+	   3 Input     10 Bit       Adders := 1     
 	   2 Input      8 Bit       Adders := 1     
 	   2 Input      5 Bit       Adders := 3     
 	   2 Input      4 Bit       Adders := 12    
-	   3 Input      3 Bit       Adders := 1     
 	   2 Input      3 Bit       Adders := 1     
+	   3 Input      3 Bit       Adders := 1     
 	   2 Input      2 Bit       Adders := 13    
 	   2 Input      1 Bit       Adders := 2     
 +---XORs : 
@@ -627,49 +627,49 @@ Detailed RTL Component Info :
 	               64 Bit         RAMs := 1     
 +---Muxes : 
 	   2 Input     48 Bit        Muxes := 2     
-	   5 Input     40 Bit        Muxes := 1     
 	   4 Input     40 Bit        Muxes := 1     
-	   2 Input     36 Bit        Muxes := 2     
+	   5 Input     40 Bit        Muxes := 1     
 	   4 Input     36 Bit        Muxes := 2     
+	   2 Input     36 Bit        Muxes := 2     
 	   5 Input     35 Bit        Muxes := 1     
 	   2 Input     35 Bit        Muxes := 3     
 	   4 Input     35 Bit        Muxes := 2     
 	   4 Input     34 Bit        Muxes := 4     
 	   2 Input     34 Bit        Muxes := 1     
-	   5 Input     32 Bit        Muxes := 1     
 	   2 Input     32 Bit        Muxes := 25    
-	   8 Input     24 Bit        Muxes := 1     
-	   5 Input     24 Bit        Muxes := 1     
+	   5 Input     32 Bit        Muxes := 1     
 	   2 Input     24 Bit        Muxes := 1     
+	   5 Input     24 Bit        Muxes := 1     
+	   8 Input     24 Bit        Muxes := 1     
 	   2 Input     19 Bit        Muxes := 1     
 	   2 Input     16 Bit        Muxes := 2     
-	   4 Input     12 Bit        Muxes := 1     
 	   2 Input     12 Bit        Muxes := 1     
+	   4 Input     12 Bit        Muxes := 1     
 	   2 Input     10 Bit        Muxes := 8     
-	  16 Input      8 Bit        Muxes := 2     
-	  27 Input      8 Bit        Muxes := 1     
-	 140 Input      8 Bit        Muxes := 1     
-	   2 Input      8 Bit        Muxes := 3     
-	   5 Input      8 Bit        Muxes := 2     
 	   4 Input      8 Bit        Muxes := 2     
+	 140 Input      8 Bit        Muxes := 1     
+	  27 Input      8 Bit        Muxes := 1     
+	   5 Input      8 Bit        Muxes := 2     
+	  16 Input      8 Bit        Muxes := 2     
+	   2 Input      8 Bit        Muxes := 3     
 	   2 Input      7 Bit        Muxes := 2     
 	   2 Input      5 Bit        Muxes := 2     
-	  11 Input      4 Bit        Muxes := 2     
 	   7 Input      4 Bit        Muxes := 6     
-	   2 Input      4 Bit        Muxes := 8     
 	   5 Input      4 Bit        Muxes := 1     
+	  11 Input      4 Bit        Muxes := 2     
 	  12 Input      4 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 8     
 	   6 Input      3 Bit        Muxes := 1     
 	   2 Input      3 Bit        Muxes := 1     
 	   4 Input      2 Bit        Muxes := 3     
-	   3 Input      2 Bit        Muxes := 1     
 	   2 Input      2 Bit        Muxes := 12    
-	   4 Input      1 Bit        Muxes := 4     
+	   3 Input      2 Bit        Muxes := 1     
 	   2 Input      1 Bit        Muxes := 108   
-	   3 Input      1 Bit        Muxes := 1     
-	   5 Input      1 Bit        Muxes := 4     
-	   7 Input      1 Bit        Muxes := 30    
 	  11 Input      1 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 1     
+	   7 Input      1 Bit        Muxes := 30    
+	   5 Input      1 Bit        Muxes := 4     
+	   4 Input      1 Bit        Muxes := 4     
 
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -696,30 +696,25 @@ Detailed RTL Component Info :
 	   2 Input      1 Bit        Muxes := 3     
 	   3 Input      1 Bit        Muxes := 1     
 	  11 Input      1 Bit        Muxes := 1     
+Module FIFO2__parameterized4 
+Detailed RTL Component Info : 
++---Registers : 
+	               40 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module Counter__parameterized0 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     32 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 2     
 Module SyncResetA__parameterized2 
 Detailed RTL Component Info : 
 +---Registers : 
 	               16 Bit    Registers := 1     
-Module SyncFIFO__parameterized0 
-Detailed RTL Component Info : 
-+---XORs : 
-	   2 Input      5 Bit         XORs := 4     
-+---Registers : 
-	               10 Bit    Registers := 1     
-	                6 Bit    Registers := 3     
-	                5 Bit    Registers := 4     
-	                1 Bit    Registers := 2     
-+---Muxes : 
-	   2 Input      1 Bit        Muxes := 2     
-Module FIFO2__parameterized1 
-Detailed RTL Component Info : 
-+---Registers : 
-	               34 Bit    Registers := 2     
-	                1 Bit    Registers := 2     
-+---Muxes : 
-	   2 Input      1 Bit        Muxes := 3     
-Module TriState 
-Detailed RTL Component Info : 
 Module SizedFIFO__parameterized2 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -737,118 +732,6 @@ Detailed RTL Component Info :
 	   5 Input      1 Bit        Muxes := 1     
 	   7 Input      1 Bit        Muxes := 7     
 	   2 Input      1 Bit        Muxes := 5     
-Module BRAM1Load 
-Detailed RTL Component Info : 
-+---Registers : 
-	               32 Bit    Registers := 1     
-+---RAMs : 
-	              32K Bit         RAMs := 1     
-Module FIFO2__parameterized0 
-Detailed RTL Component Info : 
-+---Registers : 
-	               36 Bit    Registers := 2     
-	                1 Bit    Registers := 2     
-+---Muxes : 
-	   2 Input      1 Bit        Muxes := 3     
-Module mkCRC32 
-Detailed RTL Component Info : 
-+---XORs : 
-	   2 Input     32 Bit         XORs := 1     
-+---Registers : 
-	               32 Bit    Registers := 1     
-+---Muxes : 
-	   2 Input     32 Bit        Muxes := 9     
-Module ResetInverter 
-Detailed RTL Component Info : 
-Module SyncBit 
-Detailed RTL Component Info : 
-+---Registers : 
-	                1 Bit    Registers := 3     
-Module mkFTop_kc705 
-Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input     10 Bit       Adders := 1     
-	   2 Input      4 Bit       Adders := 2     
-	   3 Input      3 Bit       Adders := 1     
-+---XORs : 
-	   2 Input      3 Bit         XORs := 1     
-+---Registers : 
-	               10 Bit    Registers := 1     
-	                8 Bit    Registers := 2     
-	                7 Bit    Registers := 1     
-	                4 Bit    Registers := 2     
-	                3 Bit    Registers := 1     
-	                2 Bit    Registers := 1     
-	                1 Bit    Registers := 17    
-+---Muxes : 
-	   2 Input     24 Bit        Muxes := 1     
-	   2 Input      7 Bit        Muxes := 1     
-	   2 Input      4 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 6     
-Module SizedFIFO__parameterized1 
-Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input      1 Bit       Adders := 2     
-+---Registers : 
-	               32 Bit    Registers := 1     
-	                1 Bit    Registers := 3     
-+---RAMs : 
-	               64 Bit         RAMs := 1     
-+---Muxes : 
-	   5 Input     32 Bit        Muxes := 1     
-	   5 Input      1 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 3     
-	   7 Input      1 Bit        Muxes := 9     
-Module mkHCrtCompleter2Axi 
-Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input     12 Bit       Adders := 1     
-	   2 Input      2 Bit       Adders := 7     
-+---Registers : 
-	               64 Bit    Registers := 1     
-	               36 Bit    Registers := 2     
-	               35 Bit    Registers := 6     
-	               12 Bit    Registers := 1     
-	                5 Bit    Registers := 1     
-	                2 Bit    Registers := 4     
-	                1 Bit    Registers := 3     
-+---Muxes : 
-	   4 Input     40 Bit        Muxes := 1     
-	   2 Input     36 Bit        Muxes := 2     
-	   4 Input     36 Bit        Muxes := 2     
-	   2 Input     35 Bit        Muxes := 3     
-	   4 Input     35 Bit        Muxes := 2     
-	   5 Input     35 Bit        Muxes := 1     
-	   4 Input     34 Bit        Muxes := 2     
-	   2 Input     32 Bit        Muxes := 4     
-	   4 Input     12 Bit        Muxes := 1     
-	   2 Input      7 Bit        Muxes := 1     
-	   2 Input      5 Bit        Muxes := 1     
-	   2 Input      4 Bit        Muxes := 1     
-	   2 Input      2 Bit        Muxes := 5     
-	   3 Input      2 Bit        Muxes := 1     
-	   4 Input      1 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 11    
-Module MakeResetA 
-Detailed RTL Component Info : 
-+---Registers : 
-	                1 Bit    Registers := 1     
-Module mkL2Proc 
-Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input      4 Bit       Adders := 2     
-+---Registers : 
-	               48 Bit    Registers := 5     
-	               40 Bit    Registers := 1     
-	                4 Bit    Registers := 2     
-	                1 Bit    Registers := 5     
-+---Muxes : 
-	   2 Input     48 Bit        Muxes := 2     
-	   2 Input     10 Bit        Muxes := 1     
-	   4 Input      8 Bit        Muxes := 1     
-	   2 Input      2 Bit        Muxes := 1     
-	   4 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 6     
 Module Counter 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -857,121 +740,6 @@ Detailed RTL Component Info :
 	               10 Bit    Registers := 1     
 +---Muxes : 
 	   2 Input     10 Bit        Muxes := 2     
-Module mkGMAC 
-Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input     12 Bit       Adders := 1     
-	   2 Input      5 Bit       Adders := 2     
-	   2 Input      4 Bit       Adders := 1     
-	   2 Input      3 Bit       Adders := 1     
-+---Registers : 
-	               48 Bit    Registers := 1     
-	               12 Bit    Registers := 1     
-	                8 Bit    Registers := 2     
-	                6 Bit    Registers := 1     
-	                5 Bit    Registers := 2     
-	                4 Bit    Registers := 1     
-	                3 Bit    Registers := 1     
-	                1 Bit    Registers := 15    
-+---Muxes : 
-	   2 Input     10 Bit        Muxes := 3     
-	   5 Input      8 Bit        Muxes := 1     
-	   2 Input      8 Bit        Muxes := 3     
-	   2 Input      5 Bit        Muxes := 1     
-	   2 Input      3 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 10    
-Module mkL2HCrt 
-Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input      2 Bit       Adders := 2     
-+---Registers : 
-	               30 Bit    Registers := 1     
-	                2 Bit    Registers := 2     
-+---Muxes : 
-	   2 Input     10 Bit        Muxes := 2     
-	   4 Input      8 Bit        Muxes := 1     
-	   2 Input      2 Bit        Muxes := 2     
-	   4 Input      1 Bit        Muxes := 3     
-Module FIFO2__parameterized2 
-Detailed RTL Component Info : 
-+---Registers : 
-	                2 Bit    Registers := 2     
-	                1 Bit    Registers := 2     
-+---Muxes : 
-	   2 Input      1 Bit        Muxes := 3     
-Module SyncFIFO 
-Detailed RTL Component Info : 
-+---XORs : 
-	   2 Input      4 Bit         XORs := 4     
-+---Registers : 
-	               10 Bit    Registers := 1     
-	                5 Bit    Registers := 2     
-	                4 Bit    Registers := 4     
-	                1 Bit    Registers := 2     
-+---Muxes : 
-	   2 Input      1 Bit        Muxes := 2     
-Module SizedFIFO__parameterized0 
-Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input      4 Bit       Adders := 2     
-+---Registers : 
-	                8 Bit    Registers := 1     
-	                4 Bit    Registers := 1     
-	                1 Bit    Registers := 3     
-+---RAMs : 
-	              120 Bit         RAMs := 1     
-+---Muxes : 
-	   5 Input      8 Bit        Muxes := 1     
-	   7 Input      4 Bit        Muxes := 2     
-	   2 Input      4 Bit        Muxes := 2     
-	   5 Input      1 Bit        Muxes := 1     
-	   7 Input      1 Bit        Muxes := 7     
-	   2 Input      1 Bit        Muxes := 5     
-Module mkA4LS 
-Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input      2 Bit       Adders := 4     
-+---Registers : 
-	               34 Bit    Registers := 2     
-	               32 Bit    Registers := 4     
-	                8 Bit    Registers := 4     
-	                2 Bit    Registers := 4     
-+---Muxes : 
-	   2 Input     34 Bit        Muxes := 1     
-	   4 Input     34 Bit        Muxes := 2     
-	   2 Input     32 Bit        Muxes := 1     
-	   6 Input      3 Bit        Muxes := 1     
-	   4 Input      2 Bit        Muxes := 1     
-	   2 Input      2 Bit        Muxes := 3     
-	   2 Input      1 Bit        Muxes := 2     
-Module FIFO2__parameterized6 
-Detailed RTL Component Info : 
-+---Registers : 
-	               48 Bit    Registers := 2     
-	                1 Bit    Registers := 2     
-+---Muxes : 
-	   2 Input      1 Bit        Muxes := 3     
-Module SizedFIFO 
-Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input      4 Bit       Adders := 2     
-+---Registers : 
-	               24 Bit    Registers := 1     
-	                4 Bit    Registers := 1     
-	                1 Bit    Registers := 3     
-+---RAMs : 
-	              360 Bit         RAMs := 1     
-+---Muxes : 
-	   5 Input     24 Bit        Muxes := 1     
-	   7 Input      4 Bit        Muxes := 2     
-	   2 Input      4 Bit        Muxes := 2     
-	   5 Input      1 Bit        Muxes := 1     
-	   7 Input      1 Bit        Muxes := 7     
-	   2 Input      1 Bit        Muxes := 5     
-Module SyncResetA__parameterized0 
-Detailed RTL Component Info : 
-+---Registers : 
-	                8 Bit    Registers := 1     
 Module FIFO2__parameterized3 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -979,6 +747,34 @@ Detailed RTL Component Info :
 	                1 Bit    Registers := 2     
 +---Muxes : 
 	   2 Input      1 Bit        Muxes := 3     
+Module FIFO2 
+Detailed RTL Component Info : 
++---Registers : 
+	               35 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module SyncBit 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 3     
+Module FIFO2__parameterized1 
+Detailed RTL Component Info : 
++---Registers : 
+	               34 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module BRAM1Load 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
++---RAMs : 
+	              32K Bit         RAMs := 1     
+Module SyncResetA__parameterized0 
+Detailed RTL Component Info : 
++---Registers : 
+	                8 Bit    Registers := 1     
 Module mkLCDController 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -1004,36 +800,6 @@ Detailed RTL Component Info :
 	  12 Input      4 Bit        Muxes := 1     
 	  11 Input      4 Bit        Muxes := 2     
 	   4 Input      2 Bit        Muxes := 1     
-Module SyncResetA 
-Detailed RTL Component Info : 
-+---Registers : 
-	                2 Bit    Registers := 1     
-Module FIFO2__parameterized4 
-Detailed RTL Component Info : 
-+---Registers : 
-	               40 Bit    Registers := 2     
-	                1 Bit    Registers := 2     
-+---Muxes : 
-	   2 Input      1 Bit        Muxes := 3     
-Module FIFO2 
-Detailed RTL Component Info : 
-+---Registers : 
-	               35 Bit    Registers := 2     
-	                1 Bit    Registers := 2     
-+---Muxes : 
-	   2 Input      1 Bit        Muxes := 3     
-Module SyncResetA__parameterized1 
-Detailed RTL Component Info : 
-+---Registers : 
-	                1 Bit    Registers := 1     
-Module Counter__parameterized0 
-Detailed RTL Component Info : 
-+---Adders : 
-	   3 Input     32 Bit       Adders := 1     
-+---Registers : 
-	               32 Bit    Registers := 1     
-+---Muxes : 
-	   2 Input     32 Bit        Muxes := 2     
 Module FIFO2__parameterized5 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -1041,6 +807,240 @@ Detailed RTL Component Info :
 	                1 Bit    Registers := 2     
 +---Muxes : 
 	   2 Input      1 Bit        Muxes := 3     
+Module SizedFIFO__parameterized1 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      1 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---RAMs : 
+	               64 Bit         RAMs := 1     
++---Muxes : 
+	   5 Input     32 Bit        Muxes := 1     
+	   5 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 3     
+	   7 Input      1 Bit        Muxes := 9     
+Module mkCRC32 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 9     
+Module SyncResetA 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 1     
+Module MakeResetA 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+Module FIFO2__parameterized0 
+Detailed RTL Component Info : 
++---Registers : 
+	               36 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module mkL2HCrt 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      2 Bit       Adders := 2     
++---Registers : 
+	               30 Bit    Registers := 1     
+	                2 Bit    Registers := 2     
++---Muxes : 
+	   2 Input     10 Bit        Muxes := 2     
+	   4 Input      8 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 2     
+	   4 Input      1 Bit        Muxes := 3     
+Module ResetInverter 
+Detailed RTL Component Info : 
+Module SyncFIFO__parameterized0 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      5 Bit         XORs := 4     
++---Registers : 
+	               10 Bit    Registers := 1     
+	                6 Bit    Registers := 3     
+	                5 Bit    Registers := 4     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 2     
+Module SizedFIFO__parameterized0 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 2     
++---Registers : 
+	                8 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---RAMs : 
+	              120 Bit         RAMs := 1     
++---Muxes : 
+	   5 Input      8 Bit        Muxes := 1     
+	   7 Input      4 Bit        Muxes := 2     
+	   2 Input      4 Bit        Muxes := 2     
+	   5 Input      1 Bit        Muxes := 1     
+	   7 Input      1 Bit        Muxes := 7     
+	   2 Input      1 Bit        Muxes := 5     
+Module FIFO2__parameterized2 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module mkA4LS 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      2 Bit       Adders := 4     
++---Registers : 
+	               34 Bit    Registers := 2     
+	               32 Bit    Registers := 4     
+	                8 Bit    Registers := 4     
+	                2 Bit    Registers := 4     
++---Muxes : 
+	   2 Input     34 Bit        Muxes := 1     
+	   4 Input     34 Bit        Muxes := 2     
+	   2 Input     32 Bit        Muxes := 1     
+	   6 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 2     
+Module mkGMAC 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     12 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 1     
++---Registers : 
+	               48 Bit    Registers := 1     
+	               12 Bit    Registers := 1     
+	                8 Bit    Registers := 2     
+	                6 Bit    Registers := 1     
+	                5 Bit    Registers := 2     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 15    
++---Muxes : 
+	   2 Input     10 Bit        Muxes := 3     
+	   5 Input      8 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 3     
+	   2 Input      5 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 10    
+Module SizedFIFO 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 2     
++---Registers : 
+	               24 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---RAMs : 
+	              360 Bit         RAMs := 1     
++---Muxes : 
+	   5 Input     24 Bit        Muxes := 1     
+	   7 Input      4 Bit        Muxes := 2     
+	   2 Input      4 Bit        Muxes := 2     
+	   5 Input      1 Bit        Muxes := 1     
+	   7 Input      1 Bit        Muxes := 7     
+	   2 Input      1 Bit        Muxes := 5     
+Module mkFTop_kc705 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 2     
+	   3 Input      3 Bit       Adders := 1     
++---XORs : 
+	   2 Input      3 Bit         XORs := 1     
++---Registers : 
+	               10 Bit    Registers := 1     
+	                8 Bit    Registers := 2     
+	                7 Bit    Registers := 1     
+	                4 Bit    Registers := 2     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 17    
++---Muxes : 
+	   2 Input     24 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 6     
+Module SyncResetA__parameterized1 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+Module TriState 
+Detailed RTL Component Info : 
+Module mkL2Proc 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 2     
++---Registers : 
+	               48 Bit    Registers := 5     
+	               40 Bit    Registers := 1     
+	                4 Bit    Registers := 2     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   2 Input     48 Bit        Muxes := 2     
+	   2 Input     10 Bit        Muxes := 1     
+	   4 Input      8 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 6     
+Module SyncFIFO 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      4 Bit         XORs := 4     
++---Registers : 
+	               10 Bit    Registers := 1     
+	                5 Bit    Registers := 2     
+	                4 Bit    Registers := 4     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 2     
+Module FIFO2__parameterized6 
+Detailed RTL Component Info : 
++---Registers : 
+	               48 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module mkHCrtCompleter2Axi 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     12 Bit       Adders := 1     
+	   2 Input      2 Bit       Adders := 7     
++---Registers : 
+	               64 Bit    Registers := 1     
+	               36 Bit    Registers := 2     
+	               35 Bit    Registers := 6     
+	               12 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                2 Bit    Registers := 4     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   4 Input     40 Bit        Muxes := 1     
+	   2 Input     36 Bit        Muxes := 2     
+	   4 Input     36 Bit        Muxes := 2     
+	   5 Input     35 Bit        Muxes := 1     
+	   4 Input     35 Bit        Muxes := 2     
+	   2 Input     35 Bit        Muxes := 3     
+	   4 Input     34 Bit        Muxes := 2     
+	   2 Input     32 Bit        Muxes := 4     
+	   4 Input     12 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 5     
+	   4 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 11    
 
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics
@@ -1105,7 +1105,7 @@ WARNING: [Synth 8-3848] Net iicrom_serverAdapter_s1_D_IN0 in module/entity parti
 -------> Message [Synth 8-3332] suppressed 14 times
 -------> Message [Synth 8-3331] suppressed 135 times
 ---------------------------------------------------------------------------------
-Finished Cross Boundary Optimization : Time (s): cpu = 00:00:54 ; elapsed = 00:00:55 . Memory (MB): peak = 682.863 ; gain = 568.477
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:54 ; elapsed = 00:00:54 . Memory (MB): peak = 682.863 ; gain = 568.477
 ---------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------
@@ -1167,7 +1167,7 @@ Start Timing Optimization
 Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:59 ; elapsed = 00:01:00 . Memory (MB): peak = 682.863 ; gain = 568.477
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:59 ; elapsed = 00:00:59 . Memory (MB): peak = 682.863 ; gain = 568.477
 ---------------------------------------------------------------------------------
 
 info: (0) optimizing 'ftop/i2cC_rPlayIndex/\q_state_reg[9] /D' (path group default) @ 1346.0ps(1/1) (0 secs)
@@ -1212,7 +1212,7 @@ Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:05 ; elapsed = 00:01:05 . Memory (MB): peak = 682.863 ; gain = 568.477
+Finished IO Insertion : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 682.863 ; gain = 568.477
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1226,7 +1226,7 @@ Report Check Netlist:
 Start renaming generated instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:05 ; elapsed = 00:01:05 . Memory (MB): peak = 682.863 ; gain = 568.477
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 682.863 ; gain = 568.477
 ---------------------------------------------------------------------------------
 
 
@@ -1234,7 +1234,7 @@ Finished Renaming Generated Instances : Time (s): cpu = 00:01:05 ; elapsed = 00:
 Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:05 ; elapsed = 00:01:06 . Memory (MB): peak = 682.863 ; gain = 568.477
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 682.863 ; gain = 568.477
 ---------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------
@@ -1272,12 +1272,12 @@ Report Cell Usage:
 6    |IDELAYCTRL |    1
 7    |INV        |    1
 8    |IODELAY    |    1
-9    |LUT1       |  141
-10   |LUT2       |  149
-11   |LUT3       |  243
-12   |LUT4       |  245
-13   |LUT5       |  577
-14   |LUT6       | 1241
+9    |LUT1       |  142
+10   |LUT2       |  147
+11   |LUT3       |  241
+12   |LUT4       |  244
+13   |LUT5       |  576
+14   |LUT6       | 1243
 15   |MUXF7      |   49
 16   |ODDR_1     |   11
 17   |RAM32M     |   12
@@ -1301,8 +1301,8 @@ Report Instance Areas:
 -----+------------------------------------+--------------------------+-----
      |Instance                            |Module                    |Cells
 -----+------------------------------------+--------------------------+-----
-1    |top                                 |                          | 5066
-2    |  ftop                              |mkFTop_kc705              | 4813
+1    |top                                 |                          | 5063
+2    |  ftop                              |mkFTop_kc705              | 4810
 3    |    idc_idcRst                      |MakeResetA                |    8
 4    |      rstSync                       |SyncResetA_11             |    5
 5    |    i2cC_rPrescaler                 |Counter__parameterized0   |  156
@@ -1311,7 +1311,7 @@ Report Instance Areas:
 8    |      a4l_a4wrData_fifof            |FIFO2__parameterized0     |  120
 9    |      a4l_a4wrAddr_fifof            |FIFO2_10                  |  109
 10   |    iicrom_serverAdapter_outDataCore|SizedFIFO__parameterized1 |   92
-11   |    lcd_ctrl                        |mkLCDController           |  724
+11   |    lcd_ctrl                        |mkLCDController           |  721
 12   |    iicrom_memory                   |BRAM1Load                 |    5
 13   |    i2cC_fResponse                  |SizedFIFO__parameterized0 |   13
 14   |    i2cC_rPlayIndex                 |Counter                   |   82
@@ -1345,10 +1345,10 @@ Report Instance Areas:
 42   |    sys0_rst                        |SyncResetA__parameterized2|   20
 -----+------------------------------------+--------------------------+-----
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:05 ; elapsed = 00:01:06 . Memory (MB): peak = 682.863 ; gain = 568.477
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 682.863 ; gain = 568.477
 ---------------------------------------------------------------------------------
 
-Synthesis finished with 0 errors, 0 critical warnings and 149 warnings.Synthesis Optimization Complete:  : Time (s): cpu = 00:01:05 ; elapsed = 00:01:06 . Memory (MB): peak = 682.863 ; gain = 568.477
+Synthesis finished with 0 errors, 0 critical warnings and 149 warnings.Synthesis Optimization Complete:  : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 682.863 ; gain = 568.477
 INFO: [Netlist 29-17] Analyzing 1454 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-111] Unisim Transformation Summary:
@@ -1363,12 +1363,12 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   IODELAY => IDELAYE2: 1 instances
   RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 12 instances
 
-Phase 0 | Netlist Checksum: 98f488cb
+Phase 0 | Netlist Checksum: 8ce7e4b9
 INFO: [Common 17-83] Releasing license: Synthesis
 308 Infos, 59 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:07 ; elapsed = 00:01:08 . Memory (MB): peak = 756.895 ; gain = 601.156
+synth_design: Time (s): cpu = 00:01:06 ; elapsed = 00:01:07 . Memory (MB): peak = 756.895 ; gain = 600.156
 # write_checkpoint fpgaTop.dcp
 # report_utilization -file fpgaTop_utilization_synth.rpt -pb fpgaTop_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.07 . Memory (MB): peak = 756.895 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Sat Mar  2 13:42:31 2013...
+report_utilization: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.06 . Memory (MB): peak = 756.895 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Sat Mar  2 16:08:19 2013...

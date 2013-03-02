@@ -38,7 +38,7 @@ interface FTop_kc705Ifc;
   interface I2C_Pins  i2cpad;
   interface LCD       lcd;
   interface Reset     gmii_rstn;    // GMII Reset driven out to Phy
-  interface Clock     rxclkBnd;     // GMII RX Clock (provided here for BSV interface rules)  
+  interface Clock     rxclk_ModBnd; // GMII RX Clock (provided here for BSV module-bouds interface rules)  
   interface GMII_RS   gmii;         // The GMII link RX/TX
 //interface MDIO_Pads mdio;         // The MDIO pads
 endinterface
@@ -169,7 +169,7 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
   // Paint the LCD when the iic sequence is done...
   rule init_lcd (lcdNeedsInit && iicDone);
     Vector#(16,Bit#(8)) text1 = lcdLine("Atomic Rules LLC");
-    Vector#(16,Bit#(8)) text2 = lcdLine("HCRT 2013.03.01a");
+    Vector#(16,Bit#(8)) text2 = lcdLine("HCrt 2013.03.02a");
     lcd_ctrl.setLine1(text1);
     lcd_ctrl.setLine2(text2);
     lcdNeedsInit <= False;
@@ -184,10 +184,10 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
   endmethod
   interface I2C_Pins i2cpad = i2cC.i2c;
   interface LCD lcd = lcd_ctrl.ifc;
-  interface Reset       gmii_rstn   = sys1_rst;
-  interface GMII_RS     gmii        = l2hcrt.gmii;
-  interface Clock       rxclkBnd    = l2hcrt.rxclkBnd;
-//interface MDIO_Pads   mdio        = l2hcrt.mdio;
+  interface Reset       gmii_rstn    = sys1_rst;
+  interface GMII_RS     gmii         = l2hcrt.gmii;
+  interface Clock       rxclk_ModBnd = l2hcrt.rxclk_ModBnd;
+//interface MDIO_Pads   mdio         = l2hcrt.mdio;
 
 endmodule
 

@@ -314,13 +314,13 @@ end
   .i2cpad_sda         (i2c_sda),
 
   .gmii_rstn          (gmii_rstn),
-  .gmii_tx_txd        (gmii_txd),
-  .gmii_tx_tx_en      (gmii_tx_en),
-  .gmii_tx_tx_er      (gmii_tx_er),
-  .gmii_rx_rxd_i      (gmii_rxd),
-  .gmii_rx_rx_dv_i    (gmii_rx_dv),
-  .gmii_rx_rx_er_i    (gmii_rx_er),
-  .gmii_tx_tx_clk     (gmii_gtx_clk),
+  .gmii_txd           (gmii_txd),
+  .gmii_tx_en         (gmii_tx_en),
+  .gmii_tx_er         (gmii_tx_er),
+  .gmii_rxd           (gmii_rxd),
+  .gmii_rx_dv         (gmii_rx_dv),
+  .gmii_rx_er         (gmii_rx_er),
+  .gmii_gtx_clk       (gmii_gtx_clk),
   .gmii_rx_clk        (gmii_rx_clk)
 //.mdio_mdc           (mdio_mdc),
 //.mdio_mdd           (mdio_mdd)
@@ -342,13 +342,13 @@ end
   .sys1_clkn          (sys1_clkn),
 
   .gmii_rstn          (gmii_rstn),
-  .gmii_tx_txd        (gmii_txd),
-  .gmii_tx_tx_en      (gmii_tx_en),
-  .gmii_tx_tx_er      (gmii_tx_er),
-  .gmii_rx_rxd_i      (gmii_rxd),
-  .gmii_rx_rx_dv_i    (gmii_rx_dv),
-  .gmii_rx_rx_er_i    (gmii_rx_er),
-  .gmii_tx_tx_clk     (gmii_gtx_clk),
+  .gmii_txd           (gmii_txd),
+  .gmii_tx_en         (gmii_tx_en),
+  .gmii_tx_er         (gmii_tx_er),
+  .gmii_rxd           (gmii_rxd),
+  .gmii_rx_dv         (gmii_rx_dv),
+  .gmii_rx_er         (gmii_rx_er),
+  .gmii_gtx_clk       (gmii_gtx_clk),
   .gmii_rx_clk        (gmii_rx_clk)
 //.mdio_mdc           (mdio_mdc),
 //.mdio_mdd           (mdio_mdd)
