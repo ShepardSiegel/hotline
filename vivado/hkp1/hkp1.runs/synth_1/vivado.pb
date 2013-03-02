@@ -46,7 +46,7 @@ b
 xc7k325tZ17-349
 à
 %s*synth2y
-wstarting Rtl Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 180.145 ; gain = 65.789
+wstarting Rtl Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 180.176 ; gain = 65.789
 
 t
 synthesizing module '%s'638*oasys2	
@@ -101,7 +101,7 @@ I
 synthesizing module '%s'638*oasys2
 mkFTop_kc70522
 ./home/shep/projects/hotline/rtl/mkFTop_kc705.v2
-3128@Z8-638
+3108@Z8-638
 t
 synthesizing module '%s'638*oasys2
 mkA4LS2,
@@ -155,17 +155,17 @@ A
 ?HDL ADVISOR - Pragma %s detected. Simulation mismatch may occur3412*oasys2
 parallel_case2,
 (/home/shep/projects/hotline/rtl/mkA4LS.v2
-9648@Z8-3536
+9678@Z8-3536
 §
 ?HDL ADVISOR - Pragma %s detected. Simulation mismatch may occur3412*oasys2
 parallel_case2,
 (/home/shep/projects/hotline/rtl/mkA4LS.v2
-9908@Z8-3536
+9938@Z8-3536
 •
 ?HDL ADVISOR - Pragma %s detected. Simulation mismatch may occur3412*oasys2
 parallel_case2,
 (/home/shep/projects/hotline/rtl/mkA4LS.v2
-10248@Z8-3536
+10278@Z8-3536
 å
 %done synthesizing module '%s' (%s#%s)256*oasys2
 mkA4LS2
@@ -463,7 +463,7 @@ x
 
 mkL2HCrt2.
 */home/shep/projects/hotline/rtl/mkL2HCrt.v2
-9708@Z8-638
+9698@Z8-638
 é
 synthesizing module '%s'638*oasys2
 mkHCrtCompleter2Axi29
@@ -910,86 +910,6 @@ A
 */home/shep/projects/hotline/rtl/mkL2Proc.v2
 1128@Z8-256
 í
-synthesizing module '%s'638*oasys2
-FIFO2__parameterized72<
-8/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v2
-518@Z8-638
-@
-%s*synth21
-/	Parameter width bound to: 27 - type: integer 
-
-A
-%s*synth22
-0	Parameter guarded bound to: 1 - type: integer 
-
-´
-%done synthesizing module '%s' (%s#%s)256*oasys2
-FIFO2__parameterized72
-222
-272<
-8/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v2
-518@Z8-256
-í
-synthesizing module '%s'638*oasys2
-FIFO2__parameterized82<
-8/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v2
-518@Z8-638
-@
-%s*synth21
-/	Parameter width bound to: 17 - type: integer 
-
-A
-%s*synth22
-0	Parameter guarded bound to: 1 - type: integer 
-
-´
-%done synthesizing module '%s' (%s#%s)256*oasys2
-FIFO2__parameterized82
-222
-272<
-8/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v2
-518@Z8-256
-ñ
-synthesizing module '%s'638*oasys2
-Counter__parameterized12>
-:/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v2
-478@Z8-638
-?
-%s*synth20
-.	Parameter width bound to: 8 - type: integer 
-
-8
-%s*synth2)
-'	Parameter init bound to: 8'b00000000 
-
-Ø
-%done synthesizing module '%s' (%s#%s)256*oasys2
-Counter__parameterized12
-222
-272>
-:/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v2
-478@Z8-256
-ñ
-synthesizing module '%s'638*oasys2
-Counter__parameterized22>
-:/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v2
-478@Z8-638
-?
-%s*synth20
-.	Parameter width bound to: 4 - type: integer 
-
-4
-%s*synth2%
-#	Parameter init bound to: 4'b0110 
-
-Ø
-%done synthesizing module '%s' (%s#%s)256*oasys2
-Counter__parameterized22
-222
-272>
-:/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v2
-478@Z8-256
-í
 synthesizing module '%s'638*oasys2
 IBUFDS_GTE22C
 ?/opt/Xilinx/14.4/ISE_DS/PlanAhead/scripts/rt/data/unisim_comp.v2	
@@ -1036,7 +956,7 @@ B
 242
 272.
 */home/shep/projects/hotline/rtl/mkL2HCrt.v2
-9708@Z8-256
+9698@Z8-256
 Ö
 synthesizing module '%s'638*oasys2
 mkLCDController25
@@ -1106,26 +1026,31 @@ C
 	iicTG_reg2
 mkFTop_kc70522
 ./home/shep/projects/hotline/rtl/mkFTop_kc705.v2
-8448@Z8-3888
+8398@Z8-3888
 ô
 %done synthesizing module '%s' (%s#%s)256*oasys2
 mkFTop_kc7052
 262
 2722
 ./home/shep/projects/hotline/rtl/mkFTop_kc705.v2
-3128@Z8-256
+3108@Z8-256
 æ
 Ginstance '%s' of module '%s' requires %s connections, but only %s given350*oasys2
 ftop2
 mkFTop_kc7052
-292
-222-
+272
+202-
 )/home/shep/projects/hotline/rtl/fpgaTop.v2
-2978@Z8-350
+3018@Z8-350
 Ä
 -case statement is not full and has no default155*oasys2-
 )/home/shep/projects/hotline/rtl/fpgaTop.v2
 2668@Z8-155
+`
+0Net %s in module/entity %s does not have driver.3422*oasys2
+
+mdio_mdc2	
+fpgaTopZ8-3848
 ç
 %done synthesizing module '%s' (%s#%s)256*oasys2	
 fpgaTop2
@@ -1133,6 +1058,11 @@ Ginstance '%s' of module '%s' requires %s connections, but only %s given350*
 272-
 )/home/shep/projects/hotline/rtl/fpgaTop.v2
 58@Z8-256
+Q
+!design %s has unconnected port %s3331*oasys2	
+fpgaTop2
+
+mdio_mdcZ8-3331
 O
 !design %s has unconnected port %s3331*oasys2	
 fpgaTop2
@@ -1150,6 +1080,11 @@ Q
 fpgaTop2
 
 i2c_rstbZ8-3331
+Q
+!design %s has unconnected port %s3331*oasys2	
+fpgaTop2
+
+mdio_mddZ8-3331
 Q
 !design %s has unconnected port %s3331*oasys2	
 fpgaTop2
@@ -1328,14 +1263,6 @@ T
 !design %s has unconnected port %s3331*oasys2	
 fpgaTop2
 fmch_la05_nZ8-3331
-T
-!design %s has unconnected port %s3331*oasys2	
-fpgaTop2
-fmch_la06_nZ8-3331
-T
-!design %s has unconnected port %s3331*oasys2	
-fpgaTop2
-fmch_la07_nZ8-3331
 Ø
 ÅMessage '%s' appears more than %s times and has been disabled. User can change this message limit to see more message instances.
 14*common2
@@ -1343,11 +1270,11 @@ T
 50Z17-14
 â
 %s*synth2z
-xfinished Rtl Elaboration : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 470.613 ; gain = 356.258
+xfinished Rtl Elaboration : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 468.645 ; gain = 354.258
 
 F
 %s*synth27
-5-------> Message [Synth 8-3331] suppressed 133 times
+5-------> Message [Synth 8-3331] suppressed 135 times
 
 (
 %s*synth2
@@ -1454,11 +1381,11 @@ o  A total of 3 instances were transformed.
   IODELAY => IDELAYE2: 1 instances
 Z1-111
 1
-%Phase 0 | Netlist Checksum: 57571422
+%Phase 0 | Netlist Checksum: 6e9d5a67
 *common
 Ñ
 %s*synth2u
-sstarting synthesize : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 574.707 ; gain = 460.352
+sstarting synthesize : Time (s): cpu = 00:00:35 ; elapsed = 00:00:35 . Memory (MB): peak = 572.707 ; gain = 458.320
 
 t
 synthesizing module '%s'638*oasys2	
@@ -1513,7 +1440,7 @@ I
 synthesizing module '%s'638*oasys2
 mkFTop_kc70522
 ./home/shep/projects/hotline/rtl/mkFTop_kc705.v2
-3128@Z8-638
+3108@Z8-638
 t
 synthesizing module '%s'638*oasys2
 mkA4LS2,
@@ -1567,17 +1494,17 @@ A
 ?HDL ADVISOR - Pragma %s detected. Simulation mismatch may occur3412*oasys2
 parallel_case2,
 (/home/shep/projects/hotline/rtl/mkA4LS.v2
-9648@Z8-3536
+9678@Z8-3536
 §
 ?HDL ADVISOR - Pragma %s detected. Simulation mismatch may occur3412*oasys2
 parallel_case2,
 (/home/shep/projects/hotline/rtl/mkA4LS.v2
-9908@Z8-3536
+9938@Z8-3536
 •
 ?HDL ADVISOR - Pragma %s detected. Simulation mismatch may occur3412*oasys2
 parallel_case2,
 (/home/shep/projects/hotline/rtl/mkA4LS.v2
-10248@Z8-3536
+10278@Z8-3536
 å
 %done synthesizing module '%s' (%s#%s)256*oasys2
 mkA4LS2
@@ -1875,7 +1802,7 @@ x
 
 mkL2HCrt2.
 */home/shep/projects/hotline/rtl/mkL2HCrt.v2
-9708@Z8-638
+9698@Z8-638
 é
 synthesizing module '%s'638*oasys2
 mkHCrtCompleter2Axi29
@@ -2331,86 +2258,6 @@ A
 */home/shep/projects/hotline/rtl/mkL2Proc.v2
 1128@Z8-256
 í
-synthesizing module '%s'638*oasys2
-FIFO2__parameterized72<
-8/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v2
-518@Z8-638
-@
-%s*synth21
-/	Parameter width bound to: 27 - type: integer 
-
-A
-%s*synth22
-0	Parameter guarded bound to: 1 - type: integer 
-
-´
-%done synthesizing module '%s' (%s#%s)256*oasys2
-FIFO2__parameterized72
-222
-272<
-8/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v2
-518@Z8-256
-í
-synthesizing module '%s'638*oasys2
-FIFO2__parameterized82<
-8/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v2
-518@Z8-638
-@
-%s*synth21
-/	Parameter width bound to: 17 - type: integer 
-
-A
-%s*synth22
-0	Parameter guarded bound to: 1 - type: integer 
-
-´
-%done synthesizing module '%s' (%s#%s)256*oasys2
-FIFO2__parameterized82
-222
-272<
-8/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v2
-518@Z8-256
-ñ
-synthesizing module '%s'638*oasys2
-Counter__parameterized12>
-:/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v2
-478@Z8-638
-?
-%s*synth20
-.	Parameter width bound to: 8 - type: integer 
-
-8
-%s*synth2)
-'	Parameter init bound to: 8'b00000000 
-
-Ø
-%done synthesizing module '%s' (%s#%s)256*oasys2
-Counter__parameterized12
-222
-272>
-:/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v2
-478@Z8-256
-ñ
-synthesizing module '%s'638*oasys2
-Counter__parameterized22>
-:/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v2
-478@Z8-638
-?
-%s*synth20
-.	Parameter width bound to: 4 - type: integer 
-
-4
-%s*synth2%
-#	Parameter init bound to: 4'b0110 
-
-Ø
-%done synthesizing module '%s' (%s#%s)256*oasys2
-Counter__parameterized22
-222
-272>
-:/opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v2
-478@Z8-256
-í
 synthesizing module '%s'638*oasys2
 IBUFDS_GTE22C
 ?/opt/Xilinx/14.4/ISE_DS/PlanAhead/scripts/rt/data/unisim_comp.v2	
@@ -2457,7 +2304,7 @@ B
 242
 272.
 */home/shep/projects/hotline/rtl/mkL2HCrt.v2
-9708@Z8-256
+9698@Z8-256
 Ö
 synthesizing module '%s'638*oasys2
 mkLCDController25
@@ -2527,26 +2374,31 @@ C
 	iicTG_reg2
 mkFTop_kc70522
 ./home/shep/projects/hotline/rtl/mkFTop_kc705.v2
-8448@Z8-3888
+8398@Z8-3888
 ô
 %done synthesizing module '%s' (%s#%s)256*oasys2
 mkFTop_kc7052
 262
 2722
 ./home/shep/projects/hotline/rtl/mkFTop_kc705.v2
-3128@Z8-256
+3108@Z8-256
 æ
 Ginstance '%s' of module '%s' requires %s connections, but only %s given350*oasys2
 ftop2
 mkFTop_kc7052
-292
-222-
+272
+202-
 )/home/shep/projects/hotline/rtl/fpgaTop.v2
-2978@Z8-350
+3018@Z8-350
 Ä
 -case statement is not full and has no default155*oasys2-
 )/home/shep/projects/hotline/rtl/fpgaTop.v2
 2668@Z8-155
+`
+0Net %s in module/entity %s does not have driver.3422*oasys2
+
+mdio_mdc2	
+fpgaTopZ8-3848
 ç
 %done synthesizing module '%s' (%s#%s)256*oasys2	
 fpgaTop2
@@ -2556,11 +2408,11 @@ Ginstance '%s' of module '%s' requires %s connections, but only %s given350*
 58@Z8-256
 Ñ
 %s*synth2u
-sfinished synthesize : Time (s): cpu = 00:00:48 ; elapsed = 00:00:49 . Memory (MB): peak = 684.812 ; gain = 570.457
+sfinished synthesize : Time (s): cpu = 00:00:47 ; elapsed = 00:00:47 . Memory (MB): peak = 682.863 ; gain = 568.477
 
 £
 %s*synth2ì
-êFinished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:49 ; elapsed = 00:00:50 . Memory (MB): peak = 684.812 ; gain = 570.457
+êFinished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 682.863 ; gain = 568.477
 
 )
 %s*synth2
@@ -2590,7 +2442,7 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ü
 %s*synth2è
-åFinished Loading Part and Timing Information : Time (s): cpu = 00:00:55 ; elapsed = 00:00:55 . Memory (MB): peak = 684.812 ; gain = 570.457
+åFinished Loading Part and Timing Information : Time (s): cpu = 00:00:53 ; elapsed = 00:00:54 . Memory (MB): peak = 682.863 ; gain = 568.477
 
 0
 %s*synth2!
@@ -2614,11 +2466,11 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ?
 %s*synth20
-.	   2 Input     10 Bit       Adders := 1     
+.	   3 Input     10 Bit       Adders := 1     
 
 ?
 %s*synth20
-.	   3 Input     10 Bit       Adders := 1     
+.	   2 Input     10 Bit       Adders := 1     
 
 ?
 %s*synth20
@@ -2626,15 +2478,7 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ?
 %s*synth20
-.	   3 Input      8 Bit       Adders := 1     
-
-?
-%s*synth20
 .	   2 Input      5 Bit       Adders := 3     
-
-?
-%s*synth20
-.	   3 Input      4 Bit       Adders := 1     
 
 ?
 %s*synth20
@@ -2718,19 +2562,11 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ?
 %s*synth20
-.	               27 Bit    Registers := 2     
-
-?
-%s*synth20
 .	               24 Bit    Registers := 3     
 
 ?
 %s*synth20
-.	               17 Bit    Registers := 2     
-
-?
-%s*synth20
-.	               16 Bit    Registers := 3     
+.	               16 Bit    Registers := 2     
 
 ?
 %s*synth20
@@ -2742,7 +2578,7 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ?
 %s*synth20
-.	                8 Bit    Registers := 14    
+.	                8 Bit    Registers := 13    
 
 ?
 %s*synth20
@@ -2754,11 +2590,11 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ?
 %s*synth20
-.	                5 Bit    Registers := 12    
+.	                5 Bit    Registers := 10    
 
 ?
 %s*synth20
-.	                4 Bit    Registers := 20    
+.	                4 Bit    Registers := 19    
 
 ?
 %s*synth20
@@ -2770,7 +2606,7 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ?
 %s*synth20
-.	                1 Bit    Registers := 167   
+.	                1 Bit    Registers := 142   
 
 
 %s*synth2
@@ -2822,11 +2658,11 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ?
 %s*synth20
-.	   2 Input     35 Bit        Muxes := 3     
+.	   5 Input     35 Bit        Muxes := 1     
 
 ?
 %s*synth20
-.	   5 Input     35 Bit        Muxes := 1     
+.	   2 Input     35 Bit        Muxes := 3     
 
 ?
 %s*synth20
@@ -2842,15 +2678,15 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ?
 %s*synth20
-.	   2 Input     32 Bit        Muxes := 25    
-
-?
-%s*synth20
 .	   5 Input     32 Bit        Muxes := 1     
 
 ?
 %s*synth20
-.	   2 Input     24 Bit        Muxes := 1     
+.	   2 Input     32 Bit        Muxes := 25    
+
+?
+%s*synth20
+.	   8 Input     24 Bit        Muxes := 1     
 
 ?
 %s*synth20
@@ -2858,7 +2694,7 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ?
 %s*synth20
-.	   8 Input     24 Bit        Muxes := 1     
+.	   2 Input     24 Bit        Muxes := 1     
 
 ?
 %s*synth20
@@ -2882,11 +2718,7 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ?
 %s*synth20
-.	   4 Input      8 Bit        Muxes := 2     
-
-?
-%s*synth20
-.	   2 Input      8 Bit        Muxes := 5     
+.	  16 Input      8 Bit        Muxes := 2     
 
 ?
 %s*synth20
@@ -2894,15 +2726,19 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ?
 %s*synth20
-.	  16 Input      8 Bit        Muxes := 2     
-
-?
-%s*synth20
 .	 140 Input      8 Bit        Muxes := 1     
 
 ?
 %s*synth20
+.	   2 Input      8 Bit        Muxes := 3     
+
+?
+%s*synth20
 .	   5 Input      8 Bit        Muxes := 2     
+
+?
+%s*synth20
+.	   4 Input      8 Bit        Muxes := 2     
 
 ?
 %s*synth20
@@ -2914,23 +2750,23 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ?
 %s*synth20
-.	   5 Input      4 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	  12 Input      4 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      4 Bit        Muxes := 10    
-
-?
-%s*synth20
 .	  11 Input      4 Bit        Muxes := 2     
 
 ?
 %s*synth20
 .	   7 Input      4 Bit        Muxes := 6     
+
+?
+%s*synth20
+.	   2 Input      4 Bit        Muxes := 8     
+
+?
+%s*synth20
+.	   5 Input      4 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	  12 Input      4 Bit        Muxes := 1     
 
 ?
 %s*synth20
@@ -2946,27 +2782,19 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ?
 %s*synth20
-.	   2 Input      2 Bit        Muxes := 12    
-
-?
-%s*synth20
 .	   3 Input      2 Bit        Muxes := 1     
 
 ?
 %s*synth20
-.	   7 Input      1 Bit        Muxes := 30    
+.	   2 Input      2 Bit        Muxes := 12    
 
 ?
 %s*synth20
-.	   5 Input      1 Bit        Muxes := 4     
+.	   4 Input      1 Bit        Muxes := 4     
 
 ?
 %s*synth20
-.	   2 Input      1 Bit        Muxes := 114   
-
-?
-%s*synth20
-.	  11 Input      1 Bit        Muxes := 1     
+.	   2 Input      1 Bit        Muxes := 108   
 
 ?
 %s*synth20
@@ -2974,7 +2802,15 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ?
 %s*synth20
-.	   4 Input      1 Bit        Muxes := 4     
+.	   5 Input      1 Bit        Muxes := 4     
+
+?
+%s*synth20
+.	   7 Input      1 Bit        Muxes := 30    
+
+?
+%s*synth20
+.	  11 Input      1 Bit        Muxes := 1     
 
 4
 %s*synth2%
@@ -3048,6 +2884,1026 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 %s*synth20
 .	  11 Input      1 Bit        Muxes := 1     
 
+4
+%s*synth2%
+#Module SyncResetA__parameterized2 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               16 Bit    Registers := 1     
+
+2
+%s*synth2#
+!Module SyncFIFO__parameterized0 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+
+%s*synth2
++---XORs : 
+
+?
+%s*synth20
+.	   2 Input      5 Bit         XORs := 4     
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               10 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                6 Bit    Registers := 3     
+
+?
+%s*synth20
+.	                5 Bit    Registers := 4     
+
+?
+%s*synth20
+.	                1 Bit    Registers := 2     
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   2 Input      1 Bit        Muxes := 2     
+
+/
+%s*synth2 
+Module FIFO2__parameterized1 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               34 Bit    Registers := 2     
+
+?
+%s*synth20
+.	                1 Bit    Registers := 2     
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   2 Input      1 Bit        Muxes := 3     
+
+"
+%s*synth2
+Module TriState 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+3
+%s*synth2$
+"Module SizedFIFO__parameterized2 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+
+%s*synth2
++---Adders : 
+
+?
+%s*synth20
+.	   2 Input      4 Bit       Adders := 2     
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               40 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                4 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                1 Bit    Registers := 3     
+
+
+%s*synth2
++---RAMs : 
+
+?
+%s*synth20
+.	              600 Bit         RAMs := 1     
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   5 Input     40 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   7 Input      4 Bit        Muxes := 2     
+
+?
+%s*synth20
+.	   2 Input      4 Bit        Muxes := 2     
+
+?
+%s*synth20
+.	   5 Input      1 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   7 Input      1 Bit        Muxes := 7     
+
+?
+%s*synth20
+.	   2 Input      1 Bit        Muxes := 5     
+
+#
+%s*synth2
+Module BRAM1Load 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               32 Bit    Registers := 1     
+
+
+%s*synth2
++---RAMs : 
+
+?
+%s*synth20
+.	              32K Bit         RAMs := 1     
+
+/
+%s*synth2 
+Module FIFO2__parameterized0 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               36 Bit    Registers := 2     
+
+?
+%s*synth20
+.	                1 Bit    Registers := 2     
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   2 Input      1 Bit        Muxes := 3     
+
+!
+%s*synth2
+Module mkCRC32 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+
+%s*synth2
++---XORs : 
+
+?
+%s*synth20
+.	   2 Input     32 Bit         XORs := 1     
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               32 Bit    Registers := 1     
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   2 Input     32 Bit        Muxes := 9     
+
+'
+%s*synth2
+Module ResetInverter 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+!
+%s*synth2
+Module SyncBit 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	                1 Bit    Registers := 3     
+
+&
+%s*synth2
+Module mkFTop_kc705 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+
+%s*synth2
++---Adders : 
+
+?
+%s*synth20
+.	   2 Input     10 Bit       Adders := 1     
+
+?
+%s*synth20
+.	   2 Input      4 Bit       Adders := 2     
+
+?
+%s*synth20
+.	   3 Input      3 Bit       Adders := 1     
+
+
+%s*synth2
++---XORs : 
+
+?
+%s*synth20
+.	   2 Input      3 Bit         XORs := 1     
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               10 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                8 Bit    Registers := 2     
+
+?
+%s*synth20
+.	                7 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                4 Bit    Registers := 2     
+
+?
+%s*synth20
+.	                3 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                2 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                1 Bit    Registers := 17    
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   2 Input     24 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      7 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      4 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      1 Bit        Muxes := 6     
+
+3
+%s*synth2$
+"Module SizedFIFO__parameterized1 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+
+%s*synth2
++---Adders : 
+
+?
+%s*synth20
+.	   2 Input      1 Bit       Adders := 2     
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               32 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                1 Bit    Registers := 3     
+
+
+%s*synth2
++---RAMs : 
+
+?
+%s*synth20
+.	               64 Bit         RAMs := 1     
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   5 Input     32 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   5 Input      1 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      1 Bit        Muxes := 3     
+
+?
+%s*synth20
+.	   7 Input      1 Bit        Muxes := 9     
+
+-
+%s*synth2
+Module mkHCrtCompleter2Axi 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+
+%s*synth2
++---Adders : 
+
+?
+%s*synth20
+.	   2 Input     12 Bit       Adders := 1     
+
+?
+%s*synth20
+.	   2 Input      2 Bit       Adders := 7     
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               64 Bit    Registers := 1     
+
+?
+%s*synth20
+.	               36 Bit    Registers := 2     
+
+?
+%s*synth20
+.	               35 Bit    Registers := 6     
+
+?
+%s*synth20
+.	               12 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                5 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                2 Bit    Registers := 4     
+
+?
+%s*synth20
+.	                1 Bit    Registers := 3     
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   4 Input     40 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input     36 Bit        Muxes := 2     
+
+?
+%s*synth20
+.	   4 Input     36 Bit        Muxes := 2     
+
+?
+%s*synth20
+.	   2 Input     35 Bit        Muxes := 3     
+
+?
+%s*synth20
+.	   4 Input     35 Bit        Muxes := 2     
+
+?
+%s*synth20
+.	   5 Input     35 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   4 Input     34 Bit        Muxes := 2     
+
+?
+%s*synth20
+.	   2 Input     32 Bit        Muxes := 4     
+
+?
+%s*synth20
+.	   4 Input     12 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      7 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      5 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      4 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      2 Bit        Muxes := 5     
+
+?
+%s*synth20
+.	   3 Input      2 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   4 Input      1 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      1 Bit        Muxes := 11    
+
+$
+%s*synth2
+Module MakeResetA 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	                1 Bit    Registers := 1     
+
+"
+%s*synth2
+Module mkL2Proc 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+
+%s*synth2
++---Adders : 
+
+?
+%s*synth20
+.	   2 Input      4 Bit       Adders := 2     
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               48 Bit    Registers := 5     
+
+?
+%s*synth20
+.	               40 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                4 Bit    Registers := 2     
+
+?
+%s*synth20
+.	                1 Bit    Registers := 5     
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   2 Input     48 Bit        Muxes := 2     
+
+?
+%s*synth20
+.	   2 Input     10 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   4 Input      8 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      2 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   4 Input      2 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      1 Bit        Muxes := 6     
+
+!
+%s*synth2
+Module Counter 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+
+%s*synth2
++---Adders : 
+
+?
+%s*synth20
+.	   3 Input     10 Bit       Adders := 1     
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               10 Bit    Registers := 1     
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   2 Input     10 Bit        Muxes := 2     
+
+ 
+%s*synth2
+Module mkGMAC 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+
+%s*synth2
++---Adders : 
+
+?
+%s*synth20
+.	   2 Input     12 Bit       Adders := 1     
+
+?
+%s*synth20
+.	   2 Input      5 Bit       Adders := 2     
+
+?
+%s*synth20
+.	   2 Input      4 Bit       Adders := 1     
+
+?
+%s*synth20
+.	   2 Input      3 Bit       Adders := 1     
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               48 Bit    Registers := 1     
+
+?
+%s*synth20
+.	               12 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                8 Bit    Registers := 2     
+
+?
+%s*synth20
+.	                6 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                5 Bit    Registers := 2     
+
+?
+%s*synth20
+.	                4 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                3 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                1 Bit    Registers := 15    
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   2 Input     10 Bit        Muxes := 3     
+
+?
+%s*synth20
+.	   5 Input      8 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      8 Bit        Muxes := 3     
+
+?
+%s*synth20
+.	   2 Input      5 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      3 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      1 Bit        Muxes := 10    
+
+"
+%s*synth2
+Module mkL2HCrt 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+
+%s*synth2
++---Adders : 
+
+?
+%s*synth20
+.	   2 Input      2 Bit       Adders := 2     
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               30 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                2 Bit    Registers := 2     
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   2 Input     10 Bit        Muxes := 2     
+
+?
+%s*synth20
+.	   4 Input      8 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      2 Bit        Muxes := 2     
+
+?
+%s*synth20
+.	   4 Input      1 Bit        Muxes := 3     
+
+/
+%s*synth2 
+Module FIFO2__parameterized2 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	                2 Bit    Registers := 2     
+
+?
+%s*synth20
+.	                1 Bit    Registers := 2     
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   2 Input      1 Bit        Muxes := 3     
+
+"
+%s*synth2
+Module SyncFIFO 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+
+%s*synth2
++---XORs : 
+
+?
+%s*synth20
+.	   2 Input      4 Bit         XORs := 4     
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               10 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                5 Bit    Registers := 2     
+
+?
+%s*synth20
+.	                4 Bit    Registers := 4     
+
+?
+%s*synth20
+.	                1 Bit    Registers := 2     
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   2 Input      1 Bit        Muxes := 2     
+
+3
+%s*synth2$
+"Module SizedFIFO__parameterized0 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+
+%s*synth2
++---Adders : 
+
+?
+%s*synth20
+.	   2 Input      4 Bit       Adders := 2     
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	                8 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                4 Bit    Registers := 1     
+
+?
+%s*synth20
+.	                1 Bit    Registers := 3     
+
+
+%s*synth2
++---RAMs : 
+
+?
+%s*synth20
+.	              120 Bit         RAMs := 1     
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   5 Input      8 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   7 Input      4 Bit        Muxes := 2     
+
+?
+%s*synth20
+.	   2 Input      4 Bit        Muxes := 2     
+
+?
+%s*synth20
+.	   5 Input      1 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   7 Input      1 Bit        Muxes := 7     
+
+?
+%s*synth20
+.	   2 Input      1 Bit        Muxes := 5     
+
+ 
+%s*synth2
+Module mkA4LS 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+
+%s*synth2
++---Adders : 
+
+?
+%s*synth20
+.	   2 Input      2 Bit       Adders := 4     
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               34 Bit    Registers := 2     
+
+?
+%s*synth20
+.	               32 Bit    Registers := 4     
+
+?
+%s*synth20
+.	                8 Bit    Registers := 4     
+
+?
+%s*synth20
+.	                2 Bit    Registers := 4     
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   2 Input     34 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   4 Input     34 Bit        Muxes := 2     
+
+?
+%s*synth20
+.	   2 Input     32 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   6 Input      3 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   4 Input      2 Bit        Muxes := 1     
+
+?
+%s*synth20
+.	   2 Input      2 Bit        Muxes := 3     
+
+?
+%s*synth20
+.	   2 Input      1 Bit        Muxes := 2     
+
+/
+%s*synth2 
+Module FIFO2__parameterized6 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               48 Bit    Registers := 2     
+
+?
+%s*synth20
+.	                1 Bit    Registers := 2     
+
+
+%s*synth2
++---Muxes : 
+
+?
+%s*synth20
+.	   2 Input      1 Bit        Muxes := 3     
+
 #
 %s*synth2
 Module SizedFIFO 
@@ -3118,7 +3974,7 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 4
 %s*synth2%
-#Module SyncResetA__parameterized1 
+#Module SyncResetA__parameterized0 
 
 0
 %s*synth2!
@@ -3130,63 +3986,7 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 
 ?
 %s*synth20
-.	                1 Bit    Registers := 1     
-
-1
-%s*synth2"
- Module Counter__parameterized2 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-
-%s*synth2
-+---Adders : 
-
-?
-%s*synth20
-.	   3 Input      4 Bit       Adders := 1     
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	                4 Bit    Registers := 1     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input      4 Bit        Muxes := 2     
-
-#
-%s*synth2
-Module BRAM1Load 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               32 Bit    Registers := 1     
-
-
-%s*synth2
-+---RAMs : 
-
-?
-%s*synth20
-.	              32K Bit         RAMs := 1     
+.	                8 Bit    Registers := 1     
 
 /
 %s*synth2 
@@ -3215,222 +4015,6 @@ BRAMs: 890 (col length: RAMB8 0 RAMB16 0 RAMB18 140 RAMB36 70)
 ?
 %s*synth20
 .	   2 Input      1 Bit        Muxes := 3     
-
-$
-%s*synth2
-Module MakeResetA 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	                1 Bit    Registers := 1     
-
-/
-%s*synth2 
-Module FIFO2__parameterized8 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               17 Bit    Registers := 2     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 2     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 3     
-
-"
-%s*synth2
-Module SyncFIFO 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-
-%s*synth2
-+---XORs : 
-
-?
-%s*synth20
-.	   2 Input      4 Bit         XORs := 4     
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               10 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                5 Bit    Registers := 2     
-
-?
-%s*synth20
-.	                4 Bit    Registers := 4     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 2     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 2     
-
-/
-%s*synth2 
-Module FIFO2__parameterized6 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               48 Bit    Registers := 2     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 2     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 3     
-
-1
-%s*synth2"
- Module Counter__parameterized1 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-
-%s*synth2
-+---Adders : 
-
-?
-%s*synth20
-.	   3 Input      8 Bit       Adders := 1     
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	                8 Bit    Registers := 1     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input      8 Bit        Muxes := 2     
-
-3
-%s*synth2$
-"Module SizedFIFO__parameterized0 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-
-%s*synth2
-+---Adders : 
-
-?
-%s*synth20
-.	   2 Input      4 Bit       Adders := 2     
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	                8 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                4 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 3     
-
-
-%s*synth2
-+---RAMs : 
-
-?
-%s*synth20
-.	              120 Bit         RAMs := 1     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   5 Input      8 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   7 Input      4 Bit        Muxes := 2     
-
-?
-%s*synth20
-.	   2 Input      4 Bit        Muxes := 2     
-
-?
-%s*synth20
-.	   5 Input      1 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   7 Input      1 Bit        Muxes := 7     
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 5     
 
 )
 %s*synth2
@@ -3532,9 +4116,9 @@ $
 %s*synth20
 .	   4 Input      2 Bit        Muxes := 1     
 
-/
-%s*synth2 
-Module FIFO2__parameterized2 
+$
+%s*synth2
+Module SyncResetA 
 
 0
 %s*synth2!
@@ -3546,7 +4130,23 @@ $
 
 ?
 %s*synth20
-.	                2 Bit    Registers := 2     
+.	                2 Bit    Registers := 1     
+
+/
+%s*synth2 
+Module FIFO2__parameterized4 
+
+0
+%s*synth2!
+Detailed RTL Component Info : 
+
+"
+%s*synth2
++---Registers : 
+
+?
+%s*synth20
+.	               40 Bit    Registers := 2     
 
 ?
 %s*synth20
@@ -3559,42 +4159,6 @@ $
 ?
 %s*synth20
 .	   2 Input      1 Bit        Muxes := 3     
-
-/
-%s*synth2 
-Module FIFO2__parameterized5 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               10 Bit    Registers := 2     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 2     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 3     
-
-'
-%s*synth2
-Module ResetInverter 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
 
 
 %s*synth2
@@ -3626,7 +4190,7 @@ $
 
 4
 %s*synth2%
-#Module SyncResetA__parameterized0 
+#Module SyncResetA__parameterized1 
 
 0
 %s*synth2!
@@ -3638,7 +4202,7 @@ $
 
 ?
 %s*synth20
-.	                8 Bit    Registers := 1     
+.	                1 Bit    Registers := 1     
 
 1
 %s*synth2"
@@ -3672,417 +4236,9 @@ $
 %s*synth20
 .	   2 Input     32 Bit        Muxes := 2     
 
-$
-%s*synth2
-Module SyncResetA 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	                2 Bit    Registers := 1     
-
-3
-%s*synth2$
-"Module SizedFIFO__parameterized1 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-
-%s*synth2
-+---Adders : 
-
-?
-%s*synth20
-.	   2 Input      1 Bit       Adders := 2     
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               32 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 3     
-
-
-%s*synth2
-+---RAMs : 
-
-?
-%s*synth20
-.	               64 Bit         RAMs := 1     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   5 Input     32 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   5 Input      1 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 3     
-
-?
-%s*synth20
-.	   7 Input      1 Bit        Muxes := 9     
-
-3
-%s*synth2$
-"Module SizedFIFO__parameterized2 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-
-%s*synth2
-+---Adders : 
-
-?
-%s*synth20
-.	   2 Input      4 Bit       Adders := 2     
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               40 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                4 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 3     
-
-
-%s*synth2
-+---RAMs : 
-
-?
-%s*synth20
-.	              600 Bit         RAMs := 1     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   5 Input     40 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   7 Input      4 Bit        Muxes := 2     
-
-?
-%s*synth20
-.	   2 Input      4 Bit        Muxes := 2     
-
-?
-%s*synth20
-.	   5 Input      1 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   7 Input      1 Bit        Muxes := 7     
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 5     
-
-4
-%s*synth2%
-#Module SyncResetA__parameterized2 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               16 Bit    Registers := 1     
-
-"
-%s*synth2
-Module mkL2HCrt 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-
-%s*synth2
-+---Adders : 
-
-?
-%s*synth20
-.	   2 Input      2 Bit       Adders := 2     
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               30 Bit    Registers := 1     
-
-?
-%s*synth20
-.	               16 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                5 Bit    Registers := 2     
-
-?
-%s*synth20
-.	                2 Bit    Registers := 2     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 21    
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input     10 Bit        Muxes := 2     
-
-?
-%s*synth20
-.	   4 Input      8 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      2 Bit        Muxes := 2     
-
-?
-%s*synth20
-.	   4 Input      1 Bit        Muxes := 3     
-
-&
-%s*synth2
-Module mkFTop_kc705 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-
-%s*synth2
-+---Adders : 
-
-?
-%s*synth20
-.	   2 Input     10 Bit       Adders := 1     
-
-?
-%s*synth20
-.	   2 Input      4 Bit       Adders := 2     
-
-?
-%s*synth20
-.	   3 Input      3 Bit       Adders := 1     
-
-
-%s*synth2
-+---XORs : 
-
-?
-%s*synth20
-.	   2 Input      3 Bit         XORs := 1     
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               10 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                8 Bit    Registers := 2     
-
-?
-%s*synth20
-.	                7 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                4 Bit    Registers := 2     
-
-?
-%s*synth20
-.	                3 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                2 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 17    
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input     24 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      7 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      4 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 6     
-
-"
-%s*synth2
-Module mkL2Proc 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-
-%s*synth2
-+---Adders : 
-
-?
-%s*synth20
-.	   2 Input      4 Bit       Adders := 2     
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               48 Bit    Registers := 5     
-
-?
-%s*synth20
-.	               40 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                4 Bit    Registers := 2     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 5     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input     48 Bit        Muxes := 2     
-
-?
-%s*synth20
-.	   2 Input     10 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   4 Input      8 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      2 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   4 Input      2 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 6     
-
-2
-%s*synth2#
-!Module SyncFIFO__parameterized0 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-
-%s*synth2
-+---XORs : 
-
-?
-%s*synth20
-.	   2 Input      5 Bit         XORs := 4     
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               10 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                6 Bit    Registers := 3     
-
-?
-%s*synth20
-.	                5 Bit    Registers := 4     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 2     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 2     
-
 /
 %s*synth2 
-Module FIFO2__parameterized1 
+Module FIFO2__parameterized5 
 
 0
 %s*synth2!
@@ -4094,7 +4250,7 @@ $
 
 ?
 %s*synth20
-.	               34 Bit    Registers := 2     
+.	               10 Bit    Registers := 2     
 
 ?
 %s*synth20
@@ -4107,489 +4263,37 @@ $
 ?
 %s*synth20
 .	   2 Input      1 Bit        Muxes := 3     
-
-/
-%s*synth2 
-Module FIFO2__parameterized0 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               36 Bit    Registers := 2     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 2     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 3     
-
-!
-%s*synth2
-Module SyncBit 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	                1 Bit    Registers := 3     
-
-"
-%s*synth2
-Module TriState 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
--
-%s*synth2
-Module mkHCrtCompleter2Axi 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-
-%s*synth2
-+---Adders : 
-
-?
-%s*synth20
-.	   2 Input     12 Bit       Adders := 1     
-
-?
-%s*synth20
-.	   2 Input      2 Bit       Adders := 7     
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               64 Bit    Registers := 1     
-
-?
-%s*synth20
-.	               36 Bit    Registers := 2     
-
-?
-%s*synth20
-.	               35 Bit    Registers := 6     
-
-?
-%s*synth20
-.	               12 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                5 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                2 Bit    Registers := 4     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 3     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   4 Input     40 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input     36 Bit        Muxes := 2     
-
-?
-%s*synth20
-.	   4 Input     36 Bit        Muxes := 2     
-
-?
-%s*synth20
-.	   4 Input     35 Bit        Muxes := 2     
-
-?
-%s*synth20
-.	   5 Input     35 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input     35 Bit        Muxes := 3     
-
-?
-%s*synth20
-.	   4 Input     34 Bit        Muxes := 2     
-
-?
-%s*synth20
-.	   2 Input     32 Bit        Muxes := 4     
-
-?
-%s*synth20
-.	   4 Input     12 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      7 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      5 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      4 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   3 Input      2 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      2 Bit        Muxes := 5     
-
-?
-%s*synth20
-.	   4 Input      1 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 11    
-
-!
-%s*synth2
-Module mkCRC32 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-
-%s*synth2
-+---XORs : 
-
-?
-%s*synth20
-.	   2 Input     32 Bit         XORs := 1     
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               32 Bit    Registers := 1     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input     32 Bit        Muxes := 9     
-
- 
-%s*synth2
-Module mkA4LS 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-
-%s*synth2
-+---Adders : 
-
-?
-%s*synth20
-.	   2 Input      2 Bit       Adders := 4     
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               34 Bit    Registers := 2     
-
-?
-%s*synth20
-.	               32 Bit    Registers := 4     
-
-?
-%s*synth20
-.	                8 Bit    Registers := 4     
-
-?
-%s*synth20
-.	                2 Bit    Registers := 4     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input     34 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   4 Input     34 Bit        Muxes := 2     
-
-?
-%s*synth20
-.	   2 Input     32 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   6 Input      3 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   4 Input      2 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      2 Bit        Muxes := 3     
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 2     
-
- 
-%s*synth2
-Module mkGMAC 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-
-%s*synth2
-+---Adders : 
-
-?
-%s*synth20
-.	   2 Input     12 Bit       Adders := 1     
-
-?
-%s*synth20
-.	   2 Input      5 Bit       Adders := 2     
-
-?
-%s*synth20
-.	   2 Input      4 Bit       Adders := 1     
-
-?
-%s*synth20
-.	   2 Input      3 Bit       Adders := 1     
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               48 Bit    Registers := 1     
-
-?
-%s*synth20
-.	               12 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                8 Bit    Registers := 2     
-
-?
-%s*synth20
-.	                6 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                5 Bit    Registers := 2     
-
-?
-%s*synth20
-.	                4 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                3 Bit    Registers := 1     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 15    
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input     10 Bit        Muxes := 3     
-
-?
-%s*synth20
-.	   5 Input      8 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      8 Bit        Muxes := 3     
-
-?
-%s*synth20
-.	   2 Input      5 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      3 Bit        Muxes := 1     
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 10    
-
-/
-%s*synth2 
-Module FIFO2__parameterized7 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               27 Bit    Registers := 2     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 2     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 3     
-
-/
-%s*synth2 
-Module FIFO2__parameterized4 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               40 Bit    Registers := 2     
-
-?
-%s*synth20
-.	                1 Bit    Registers := 2     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input      1 Bit        Muxes := 3     
-
-!
-%s*synth2
-Module Counter 
-
-0
-%s*synth2!
-Detailed RTL Component Info : 
-
-
-%s*synth2
-+---Adders : 
-
-?
-%s*synth20
-.	   3 Input     10 Bit       Adders := 1     
-
-"
-%s*synth2
-+---Registers : 
-
-?
-%s*synth20
-.	               10 Bit    Registers := 1     
-
-
-%s*synth2
-+---Muxes : 
-
-?
-%s*synth20
-.	   2 Input     10 Bit        Muxes := 2     
 
 î
 ESequential element (%s) is unused and will be removed from module %s.3332*oasys2(
 &\a4l_a4rdAddr_fifof/data1_reg_reg[34] 2
 
-reg__307Z8-3332
+reg__273Z8-3332
 î
 ESequential element (%s) is unused and will be removed from module %s.3332*oasys2(
 &\a4l_a4rdAddr_fifof/data1_reg_reg[33] 2
 
-reg__307Z8-3332
+reg__273Z8-3332
 î
 ESequential element (%s) is unused and will be removed from module %s.3332*oasys2(
 &\a4l_a4rdAddr_fifof/data1_reg_reg[32] 2
 
-reg__307Z8-3332
+reg__273Z8-3332
 î
 ESequential element (%s) is unused and will be removed from module %s.3332*oasys2(
 &\a4l_a4rdAddr_fifof/data0_reg_reg[34] 2
 
-reg__306Z8-3332
+reg__272Z8-3332
 î
 ESequential element (%s) is unused and will be removed from module %s.3332*oasys2(
 &\a4l_a4rdAddr_fifof/data0_reg_reg[33] 2
 
-reg__306Z8-3332
+reg__272Z8-3332
 î
 ESequential element (%s) is unused and will be removed from module %s.3332*oasys2(
 &\a4l_a4rdAddr_fifof/data0_reg_reg[32] 2
 
-reg__306Z8-3332
+reg__272Z8-3332
 í
 ESequential element (%s) is unused and will be removed from module %s.3332*oasys2(
 &\a4l_a4wrAddr_fifof/data1_reg_reg[34] 2
@@ -4777,7 +4481,7 @@ w
 	partitionZ8-3848
 F
 %s*synth27
-5-------> Message [Synth 8-3332] suppressed 138 times
+5-------> Message [Synth 8-3332] suppressed 122 times
 
 E
 %s*synth26
@@ -4785,11 +4489,11 @@ E
 
 F
 %s*synth27
-5-------> Message [Synth 8-3331] suppressed 133 times
+5-------> Message [Synth 8-3331] suppressed 135 times
 
 ó
 %s*synth2á
-ÑFinished Cross Boundary Optimization : Time (s): cpu = 00:00:56 ; elapsed = 00:00:56 . Memory (MB): peak = 684.812 ; gain = 570.457
+ÑFinished Cross Boundary Optimization : Time (s): cpu = 00:00:54 ; elapsed = 00:00:55 . Memory (MB): peak = 682.863 ; gain = 568.477
 
 ì
 %s*synth2É
@@ -4885,10 +4589,6 @@ x
 6propagating constant %s across sequential element (%s)3333*oasys2
 02"
  ftop/l2hcrt/l2P/\uMAddr_reg[47] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data1_reg_reg[26] Z8-3333
 y
 6propagating constant %s across sequential element (%s)3333*oasys2
 02#
@@ -4929,162 +4629,29 @@ f
 6propagating constant %s across sequential element (%s)3333*oasys2
 02
 ftop/iicTG_regZ8-3333
-Ñ
+l
 6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[17] Z8-3333
-Ñ
+02
+\hdmir_data_reg[14] Z8-3333
+l
 6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[14] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[11] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[16] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[15] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[13] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[12] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[10] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[18] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[26] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[25] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[24] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[23] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[22] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[21] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[20] Z8-3333
-Ñ
-6propagating constant %s across sequential element (%s)3333*oasys2
-02.
-,ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[19] Z8-3333
-É
-6propagating constant %s across sequential element (%s)3333*oasys2
-02-
-+ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[9] Z8-3333
-É
-6propagating constant %s across sequential element (%s)3333*oasys2
-02-
-+ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[8] Z8-3333
-É
-6propagating constant %s across sequential element (%s)3333*oasys2
-02-
-+ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[7] Z8-3333
-É
-6propagating constant %s across sequential element (%s)3333*oasys2
-02-
-+ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[6] Z8-3333
-É
-6propagating constant %s across sequential element (%s)3333*oasys2
-02-
-+ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[5] Z8-3333
-É
-6propagating constant %s across sequential element (%s)3333*oasys2
-02-
-+ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[4] Z8-3333
-É
-6propagating constant %s across sequential element (%s)3333*oasys2
-02-
-+ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[3] Z8-3333
-É
-6propagating constant %s across sequential element (%s)3333*oasys2
-02-
-+ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[1] Z8-3333
-É
-6propagating constant %s across sequential element (%s)3333*oasys2
-02-
-+ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[2] Z8-3333
-É
-6propagating constant %s across sequential element (%s)3333*oasys2
-02-
-+ftop/l2hcrt/mdi_fRequest/\data0_reg_reg[0] Z8-3333
-y
-6propagating constant %s across sequential element (%s)3333*oasys2
-02#
-!ftop/l2hcrt/\mdi_rRegAddr_reg[1] Z8-3333
-|
-6propagating constant %s across sequential element (%s)3333*oasys2
-02&
-$ftop/l2hcrt/\mdi_rWriteData_reg[14] Z8-3333
-|
-6propagating constant %s across sequential element (%s)3333*oasys2
-02&
-$ftop/l2hcrt/\mdi_rWriteData_reg[11] Z8-3333
-y
-6propagating constant %s across sequential element (%s)3333*oasys2
-02#
-!ftop/l2hcrt/\mdi_rRegAddr_reg[0] Z8-3333
-|
-6propagating constant %s across sequential element (%s)3333*oasys2
-02&
-$ftop/l2hcrt/\mdi_rWriteData_reg[15] Z8-3333
-|
-6propagating constant %s across sequential element (%s)3333*oasys2
-02&
-$ftop/l2hcrt/\mdi_rWriteData_reg[13] Z8-3333
-|
-6propagating constant %s across sequential element (%s)3333*oasys2
-02&
-$ftop/l2hcrt/\mdi_rWriteData_reg[12] Z8-3333
-Ø
-ÅMessage '%s' appears more than %s times and has been disabled. User can change this message limit to see more message instances.
-14*common2
-Synth 8-33332
-50Z17-14
-E
-%s*synth26
-4-------> Message [Synth 8-3333] suppressed 65 times
+12
+\hdmir_data_reg[15] Z8-3333
+D
+%s*synth25
+3-------> Message [Synth 8-3333] suppressed 7 times
 
 F
 %s*synth27
-5-------> Message [Synth 8-3332] suppressed 583 times
+5-------> Message [Synth 8-3332] suppressed 448 times
 
 ã
 %s*synth2|
-zFinished Area Optimization : Time (s): cpu = 00:01:00 ; elapsed = 00:01:01 . Memory (MB): peak = 684.812 ; gain = 570.457
+zFinished Area Optimization : Time (s): cpu = 00:00:58 ; elapsed = 00:00:59 . Memory (MB): peak = 682.863 ; gain = 568.477
 
 õ
 %s*synth2ã
-àFinished Applying XDC Timing Constraints : Time (s): cpu = 00:01:01 ; elapsed = 00:01:01 . Memory (MB): peak = 684.812 ; gain = 570.457
+àFinished Applying XDC Timing Constraints : Time (s): cpu = 00:00:59 ; elapsed = 00:01:00 . Memory (MB): peak = 682.863 ; gain = 568.477
 
 ~
 %s*synth2o
@@ -5116,7 +4683,7 @@ Ainfo: done optimizing sub-critical range for path group default.
 
 ç
 %s*synth2~
-|Finished Timing Optimization : Time (s): cpu = 00:01:02 ; elapsed = 00:01:03 . Memory (MB): peak = 684.812 ; gain = 570.457
+|Finished Timing Optimization : Time (s): cpu = 00:01:00 ; elapsed = 00:01:01 . Memory (MB): peak = 682.863 ; gain = 568.477
 
 E
 %s*synth26
@@ -5128,11 +4695,11 @@ E
 
 å
 %s*synth2}
-{Finished Technology Mapping : Time (s): cpu = 00:01:05 ; elapsed = 00:01:06 . Memory (MB): peak = 684.812 ; gain = 570.457
+{Finished Technology Mapping : Time (s): cpu = 00:01:03 ; elapsed = 00:01:04 . Memory (MB): peak = 682.863 ; gain = 568.477
 
 Ü
 %s*synth2w
-uFinished IO Insertion : Time (s): cpu = 00:01:06 ; elapsed = 00:01:07 . Memory (MB): peak = 684.812 ; gain = 570.457
+uFinished IO Insertion : Time (s): cpu = 00:01:05 ; elapsed = 00:01:05 . Memory (MB): peak = 682.863 ; gain = 568.477
 
 (
 %s*synth2
@@ -5160,11 +4727,11 @@ A-----+-----------------+------+--------+------+-----------------
 
 ò
 %s*synth2à
-ÖFinished Renaming Generated Instances : Time (s): cpu = 00:01:06 ; elapsed = 00:01:07 . Memory (MB): peak = 684.812 ; gain = 570.457
+ÖFinished Renaming Generated Instances : Time (s): cpu = 00:01:05 ; elapsed = 00:01:05 . Memory (MB): peak = 682.863 ; gain = 568.477
 
 ï
 %s*synth2Ö
-ÇFinished Rebuilding User Hierarchy : Time (s): cpu = 00:01:07 ; elapsed = 00:01:07 . Memory (MB): peak = 684.812 ; gain = 570.457
+ÇFinished Rebuilding User Hierarchy : Time (s): cpu = 00:01:05 ; elapsed = 00:01:06 . Memory (MB): peak = 682.863 ; gain = 568.477
 
 ì
 %s*synth2É
@@ -5272,7 +4839,7 @@ R-------------------------------------------------------------------------------
 
 )
 %s*synth2
-7    |INV        |    2
+7    |INV        |    1
 
 )
 %s*synth2
@@ -5368,11 +4935,11 @@ R-------------------------------------------------------------------------------
 
 )
 %s*synth2
-31   |OBUF       |   54
+31   |OBUF       |   53
 
 )
 %s*synth2
-32   |OBUFT      |    2
+32   |OBUFT      |    1
 
 )
 %s*synth2
@@ -5396,7 +4963,7 @@ L-----+------------------------------------+--------------------------+-----
 
 ]
 %s*synth2N
-L1    |top                                 |                          | 5069
+L1    |top                                 |                          | 5066
 
 ]
 %s*synth2N
@@ -5568,11 +5135,11 @@ L-----+------------------------------------+--------------------------+-----
 
 î
 %s*synth2Ñ
-ÅFinished Writing Synthesis Report : Time (s): cpu = 00:01:07 ; elapsed = 00:01:07 . Memory (MB): peak = 684.812 ; gain = 570.457
+ÅFinished Writing Synthesis Report : Time (s): cpu = 00:01:05 ; elapsed = 00:01:06 . Memory (MB): peak = 682.863 ; gain = 568.477
 
 €
 %s*synth2À
-»Synthesis finished with 0 errors, 0 critical warnings and 146 warnings.Synthesis Optimization Complete:  : Time (s): cpu = 00:01:07 ; elapsed = 00:01:07 . Memory (MB): peak = 684.812 ; gain = 570.457
+»Synthesis finished with 0 errors, 0 critical warnings and 149 warnings.Synthesis Optimization Complete:  : Time (s): cpu = 00:01:05 ; elapsed = 00:01:06 . Memory (MB): peak = 682.863 ; gain = 568.477
 
 M
 -Analyzing %s Unisim elements for replacement
@@ -5585,19 +5152,19 @@ O
 º
 !Unisim Transformation Summary:
 %s111*project2ˇ
-¸  A total of 1444 instances were transformed.
+¸  A total of 1443 instances were transformed.
   FD => FDCE: 470 instances
   FDC => FDCE: 69 instances
   FDE => FDCE: 780 instances
   FDR => FDRE: 103 instances
   FDS => FDSE: 5 instances
   IBUFGDS => IBUFDS: 2 instances
-  INV => LUT1: 2 instances
+  INV => LUT1: 1 instances
   IODELAY => IDELAYE2: 1 instances
   RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 12 instances
 Z1-111
 1
-%Phase 0 | Netlist Checksum: 17ce4288
+%Phase 0 | Netlist Checksum: 98f488cb
 *common
 :
 Releasing license: %s
@@ -5606,8 +5173,8 @@ Z1-111
 w
 G%s Infos, %s Warnings, %s Critical Warnings and %s Errors encountered.
 28*	vivadotcl2
-3572
-572
+3082
+592
 02
 0Z4-41
 C
@@ -5619,16 +5186,16 @@ I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2
 synth_design: 2
 
-00:01:082
+00:01:072
 
-00:01:092	
-756.8442	
-600.137Z17-268
+00:01:082	
+756.8952	
+601.156Z17-268
 Å
-ureport_utilization: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.07 . Memory (MB): peak = 756.844 ; gain = 0.000
+ureport_utilization: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.07 . Memory (MB): peak = 756.895 ; gain = 0.000
 *common
 S
 Exiting %s at %s...
 206*common2
 Vivado2
-Fri Mar  1 14:55:41 2013Z17-206
+Sat Mar  2 13:42:31 2013Z17-206

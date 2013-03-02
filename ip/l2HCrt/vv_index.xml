@@ -5,7 +5,7 @@
 	<IP>
 		<VLNV value="atomicrules.com:hotline:mkL2HCrt:1.0">
 		</VLNV>
-		<DisplayName value="AR Hotline CRT Ethernet to AXI4L-M Bridge">
+		<DisplayName value="AR Hotline Ethernet AXI4-M Bridge">
 		</DisplayName>
 		<Description value="mkL2HCrt_v1_0">
 		</Description>

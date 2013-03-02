@@ -3,9 +3,9 @@
 	<Repository value="/home/shep/projects/hotline/ip/a4ls">
 	</Repository>
 	<IP>
-		<VLNV value="atomicrules.com:hotline:mkA4LS:1.0">
+		<VLNV value="(none):user:mkA4LS:1.0">
 		</VLNV>
-		<DisplayName value="AR Hotline AXI4L Slave">
+		<DisplayName value="mkA4LS_v1_0">
 		</DisplayName>
 		<Description value="mkA4LS_v1_0">
 		</Description>
@@ -31,10 +31,6 @@
 			<Interface value="AXI4">
 			</Interface>
 		</Interfaces>
-		<VendorDisplayName value="Atomic Rules LLC">
-		</VendorDisplayName>
-		<VendorURL value="http://www.atomicrules.com">
-		</VendorURL>
 	</IP>
 </Index>
 

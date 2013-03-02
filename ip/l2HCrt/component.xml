@@ -217,7 +217,6 @@
     </spirit:busInterface>
     <spirit:busInterface>
       <spirit:name>gmii</spirit:name>
-      <spirit:displayName>gmii</spirit:displayName>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="gmii" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="gmii_rtl" spirit:version="1.0"/>
       <spirit:master/>
@@ -230,6 +229,46 @@
             <spirit:name>gmii_rx_clk</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>gmii_tx</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="gmii" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="gmii_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TXD</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>gmii_tx_txd</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TX_EN</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>gmii_tx_tx_en</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TX_ER</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>gmii_tx_tx_er</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TX_CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>gmii_tx_tx_clk</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
         <spirit:portMap>
           <spirit:logicalPort>
             <spirit:name>RX_ER</spirit:name>
@@ -240,26 +279,10 @@
         </spirit:portMap>
         <spirit:portMap>
           <spirit:logicalPort>
-            <spirit:name>GTX_CLK</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>gmii_tx_tx_clk</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-        <spirit:portMap>
-          <spirit:logicalPort>
             <spirit:name>CRS</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
             <spirit:name>gmii_crs_i</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>TX_EN</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>gmii_tx_tx_en</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -288,18 +311,10 @@
         </spirit:portMap>
         <spirit:portMap>
           <spirit:logicalPort>
-            <spirit:name>TXD</spirit:name>
+            <spirit:name>RX_CLK</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>gmii_tx_txd</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>TX_ER</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>gmii_tx_tx_er</spirit:name>
+            <spirit:name>gmii_rx_clk</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
@@ -400,32 +415,6 @@
         <spirit:name>gmii_rx_clk</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>mdi_tMDD_IO</spirit:name>
-        <spirit:wire>
-          <spirit:direction>inout</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>mdi_tMDC_IO</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
@@ -930,11 +919,6 @@
         <spirit:logicalName>work</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/TriState.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:logicalName>work</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/mkL2Proc.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:logicalName>work</spirit:logicalName>
@@ -950,12 +934,17 @@
         <spirit:logicalName>work</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/Counter.v</spirit:name>
+        <spirit:name>hdl/TriState.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:logicalName>work</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/MakeResetA.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:logicalName>work</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/Counter.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:logicalName>work</spirit:logicalName>
       </spirit:file>
@@ -1003,11 +992,6 @@
         <spirit:logicalName>work</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/TriState.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:logicalName>work</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/mkL2Proc.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:logicalName>work</spirit:logicalName>
@@ -1023,12 +1007,17 @@
         <spirit:logicalName>work</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/Counter.v</spirit:name>
+        <spirit:name>hdl/TriState.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:logicalName>work</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/MakeResetA.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:logicalName>work</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/Counter.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:logicalName>work</spirit:logicalName>
       </spirit:file>
@@ -1061,10 +1050,10 @@
       <xilinx:taxonomies>
         <xilinx:taxonomy>/BaseIP</xilinx:taxonomy>
       </xilinx:taxonomies>
-      <xilinx:displayName>AR Hotline CRT Ethernet to AXI4L-M Bridge</xilinx:displayName>
+      <xilinx:displayName>AR Hotline Ethernet AXI4-M Bridge</xilinx:displayName>
       <xilinx:vendorDisplayName>Atomic Rules LLC</xilinx:vendorDisplayName>
       <xilinx:vendorURL>http://www.atomicrules.com</xilinx:vendorURL>
-      <xilinx:coreCreationDateTime>2013-03-02T11:45:09</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2013-03-02T14:13:38</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2013.1.0</xilinx:xilinxVersion>

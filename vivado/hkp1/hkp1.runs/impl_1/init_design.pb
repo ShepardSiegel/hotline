@@ -42,11 +42,11 @@ E/opt/Xilinx/14.4/ISE_DS/PlanAhead/data/./parts/xilinx/kintex7/drc.xmlZ23-17
 œ
 Parsing XDC File [%s]
 179*designutils2f
-d/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/.Xil/Vivado-29283-ar-cms520/dcp/fpgaTop.xdcZ20-179
+d/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/.Xil/Vivado-16301-ar-cms520/dcp/fpgaTop.xdcZ20-179
 ¥
 Finished Parsing XDC File [%s]
 178*designutils2f
-d/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/.Xil/Vivado-29283-ar-cms520/dcp/fpgaTop.xdcZ20-178
+d/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/.Xil/Vivado-16301-ar-cms520/dcp/fpgaTop.xdcZ20-178
 Î
 !Unisim Transformation Summary:
 %s111*project2‘
@@ -54,7 +54,7 @@ d/home/shep/projects/hotline/vivado/hkp1/hkp1.runs/impl_1/.Xil/Vivado-29283-ar-c
   RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 12 instances
 Z1-111
 1
-%Phase 0 | Netlist Checksum: 94fa3f2b
+%Phase 0 | Netlist Checksum: 3c89ad47
 *common
 ¥
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
@@ -64,8 +64,8 @@ I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 00:00:072
 
 00:00:072	
-539.5202	
-382.781Z17-268
+539.0202	
+383.281Z17-268
 g
 Parsing XDC File [%s]
 179*designutils21

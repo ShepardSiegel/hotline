@@ -640,10 +640,10 @@
       <xilinx:taxonomies>
         <xilinx:taxonomy>/BaseIP</xilinx:taxonomy>
       </xilinx:taxonomies>
-      <xilinx:displayName>AR Hotline AXI4L-Slave</xilinx:displayName>
+      <xilinx:displayName>AR Hotline AXI4L Slave</xilinx:displayName>
       <xilinx:vendorDisplayName>Atomic Rules LLC</xilinx:vendorDisplayName>
-      <xilinx:vendorURL>http://www.atomicules.com</xilinx:vendorURL>
-      <xilinx:coreCreationDateTime>2013-03-02T11:45:09</xilinx:coreCreationDateTime>
+      <xilinx:vendorURL>http://www.atomicrules.com</xilinx:vendorURL>
+      <xilinx:coreCreationDateTime>2013-03-02T14:13:37</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2013.1.0</xilinx:xilinxVersion>

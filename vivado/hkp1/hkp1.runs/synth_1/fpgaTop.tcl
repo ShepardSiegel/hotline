@@ -13,12 +13,12 @@ read_verilog {
   /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/ResetInverter.v
   /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v
   /home/shep/projects/hotline/rtl/mkCRC32.v
-  /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/TriState.v
-  /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v
   /home/shep/projects/hotline/rtl/mkL2Proc.v
   /home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v
   /home/shep/projects/hotline/rtl/mkGMAC.v
+  /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/TriState.v
   /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/MakeResetA.v
+  /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v
   /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v
   /home/shep/projects/hotline/rtl/mkLCDController.v
   /home/shep/projects/hotline/rtl/mkL2HCrt.v

@@ -293,7 +293,9 @@ always@(posedge sys0_clk) begin
   dipsw_r <= dipsw;
 end
 
-`define USE_IPI_BD
+`define USE_MKFTOP
+//`define USE_IPI_BD
+
 
 `ifdef USE_MKFTOP
  mkFTop_kc705 ftop(
@@ -319,9 +321,9 @@ end
   .gmii_rx_rx_dv_i    (gmii_rx_dv),
   .gmii_rx_rx_er_i    (gmii_rx_er),
   .gmii_tx_tx_clk     (gmii_gtx_clk),
-  .gmii_rx_clk        (gmii_rx_clk),
-  .mdio_mdc           (mdio_mdc),
-  .mdio_mdd           (mdio_mdd)
+  .gmii_rx_clk        (gmii_rx_clk)
+//.mdio_mdc           (mdio_mdc),
+//.mdio_mdd           (mdio_mdd)
 
 //	.i2c_rstb         (i2c_rstb),
 //
@@ -347,9 +349,9 @@ end
   .gmii_rx_rx_dv_i    (gmii_rx_dv),
   .gmii_rx_rx_er_i    (gmii_rx_er),
   .gmii_tx_tx_clk     (gmii_gtx_clk),
-  .gmii_rx_clk        (gmii_rx_clk),
-  .mdio_mdc           (mdio_mdc),
-  .mdio_mdd           (mdio_mdd)
+  .gmii_rx_clk        (gmii_rx_clk)
+//.mdio_mdc           (mdio_mdc),
+//.mdio_mdd           (mdio_mdd)
 );
 
 `endif
