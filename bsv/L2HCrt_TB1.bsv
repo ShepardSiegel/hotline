@@ -178,7 +178,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   endrule
 
   // Rule to respond to NOP Command Requests...
-  rule rsp_nop (rspCRH matches tagged RespNOP .n &&& crtBusy);
+  rule rsp_nop (rspCRH matches tagged RespNOP .n);
     Bool isEOM = rspActive && rspAdlRemain==1;
     rspActive    <= isEOM ? False : (rspAdlRemain!=1);
     rspAdlRemain <= (rspActive) ? rspAdlRemain-1 : n.adl;
@@ -227,7 +227,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   endrule
 
   // Rule to respond to Write Command Requests...
-  rule rsp_write (rspCRH matches tagged RespWrite .n &&& crtBusy);
+  rule rsp_write (rspCRH matches tagged RespWrite .n);
     Bool isEOM = True;
     // TODO: Write Response Processing Here
     let awr = a4l.f.wrResp.first; //TODO: look at AXI write response code (assume OKAY for now)
@@ -274,7 +274,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   endrule
 
   // Rule to respond to Read Command Requests...
-  rule rsp_read (rspCRH matches tagged RespRead .n &&& crtBusy);
+  rule rsp_read (rspCRH matches tagged RespRead .n);
     Bool isEOM = rspActive && rspAdlRemain==1;
     rspActive    <= isEOM ? False : (rspAdlRemain!=1);
     rspAdlRemain <= (rspActive) ? rspAdlRemain-1 : n.adl;
@@ -305,6 +305,27 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   method Bool isFaulted = modFaulted;
 endmodule
 
+/*
+// This is an easy (lazy) way of doing an asyc CP-side client interface...
+// We simply take the lean sync implementation as-is; and attach two async FIFOs to
+// the CP-facing side so they can be in their own clock domain. 
+
+module mkHCrtAdapterAsync#(Clock cpClock, Reset cpReset) (HCrtAdapterIfc);
+  HCrtAdapterIfc              crt       <- mkHCrtAdapterSync;
+  SyncFIFOIfc#(CpReq)        cpReqAF   <- mkSyncFIFOFromCC(4, cpClock); 
+  SyncFIFOIfc#(CpReadResp)   cpRespAF  <- mkSyncFIFOToCC(  4, cpClock, cpReset); 
+
+  mkConnection(crt.client.request, toPut(cpReqAF));
+  mkConnection(toGet(cpRespAF), crt.client.response);
+
+  interface Server server = crt.server;  // Facing the Ethernet L2 directly
+
+  interface Client client;  // Facing the Control Plane through Async FIFOs
+    interface request  = toGet(cpReqAF);
+    interface response = toPut(cpRespAF);
+  endinterface
+endmodule
+*/
 
 (* synthesize *)
 module mkHCrt_TB1 (Empty);
@@ -320,19 +341,13 @@ module mkHCrt_TB1 (Empty);
   FIFO#(QABS)          rspF       <- mkFIFO; // Response FIFO Completer-to-Requestor
 
 
-  Vector#(10, Bit#(32)) cmdVector = ?;
+  Vector#(4, Bit#(32)) cmdVector = ?;
   cmdVector[0] = 32'h8001_FFA0;
   cmdVector[1] = 32'h0000_0010;
   cmdVector[2] = 32'h8001_FFA0;
-  cmdVector[3] = 32'h0000_0024;
-  cmdVector[4] = 32'h8001_FFA0;
-  cmdVector[5] = 32'h0000_0000;
-  cmdVector[6] = 32'h8001_FFA0;
-  cmdVector[7] = 32'h0000_0004;
-  cmdVector[8] = 32'h8001_FFA0;
-  cmdVector[9] = 32'h0000_0024;
+  cmdVector[3] = 32'h0000_0010;
 
-  rule produce_commands (cmdCount<10);
+  rule produce_commands (cmdCount<4);
     cmdCount <= cmdCount + 1;
     cmdF.enq(cmdVector[cmdCount]);
   endrule
@@ -344,6 +359,164 @@ module mkHCrt_TB1 (Empty);
     let qb = rspF.first;  rspF.deq;
     rspCount <= rspCount + 1;
   endrule
+
+  mkConnection(a4lm, a4ls.s_axi);
+
+  rule advance_cycleCount;
+    cycleCount <= cycleCount + 1;
+  endrule
+
+  rule terminate (cycleCount==400);
+    $display("[%0d]: %m: Terminate rule fired in cycle:%0d", $time, cycleCount);
+    $finish;
+  endrule
+
+endmodule
+
+
+(* synthesize *)
+module mkHCrt_L2TB1 (Empty);
+
+  L2ProcIfc            l2P        <- mkL2Proc;
+  HCrtCompleter2AxiIfc crt2axi    <- mkHCrtCompleter2Axi;
+  A4L_Em               a4lm       <- mkA4MtoEm(crt2axi.axiM0); // make the crt2axi Expliict on the AXI side
+  A4LSIfc              a4ls       <- mkA4LS(True);
+  Reg#(UInt#(16))      cycleCount <- mkReg(0);
+
+  // Generate L2 packet
+  Reg#(UInt#(4))      gpPtr       <- mkReg(0); // Egress Byte/Octet Counter
+  Reg#(UInt#(4))      gqPtr       <- mkReg(0);
+  Reg#(Bool)          gpL2Hdr     <- mkReg(True);   // Egress L2 Header
+  Reg#(Vector#(6,Bit#(8))) gpDA   <- mkRegU;        // Egress Destination Address
+  Reg#(Vector#(6,Bit#(8))) gpSA   <- mkRegU;        // Egress Destination Address
+  Reg#(Bool)          gpPDU       <- mkReg(False);  // Egress Protocol Data Unit (PDU)
+  FIFO#(ABS)          l2GenF      <- mkFIFO;        // TX to   Ethernet Layer 2 MAC
+  
+  FIFO#(ABS)         l2ConsumeF   <- mkFIFO;
+  Reg#(UInt#(16))    consumeCnt   <- mkReg(0);
+
+  MACAddress sAddr = 48'hA0_36_FA_25_3E_A5;   // A real Ettus N210 MAC Addr
+  MACAddress uAddr = 48'h00_0A_35_02_60_80;   // Atomic Rules KC705 #1
+
+  rule l2_gen_header (gpPtr<15 && !gpPDU);
+    gpPtr <= (gpPtr==14) ? 0 : gpPtr+1;
+    case (gpPtr)
+      0              : action gpDA<=unpack(uAddr);  gpSA<=unpack(sAddr); endaction     // Setup
+      1,2,3,4,5,6    : action l2GenF.enq(tagged ValidNotEOP gpDA[5]); gpDA <= rotateR(gpDA); endaction  // Send DA
+      7,8,9,10,11,12 : action l2GenF.enq(tagged ValidNotEOP gpSA[5]); gpSA <= rotateR(gpSA); endaction  // Send SA
+      13 :        l2GenF.enq(tagged ValidNotEOP 8'hF0);
+      14 : action l2GenF.enq(tagged ValidNotEOP 8'h52); gpPDU<=True; endaction
+    endcase
+  endrule
+
+  rule l2_gen_payload (gqPtr<15 && gpPDU); // L2 Egress PDU / Payload move to MAC
+    gqPtr <= (gqPtr==14) ? 0 : gqPtr+1;
+
+    // Read 2
+    case (gqPtr)
+      0:  l2GenF.enq(tagged ValidNotEOP 8'hA0);  // Read Req DO
+      1:  l2GenF.enq(tagged ValidNotEOP 8'hFF);
+      2:  l2GenF.enq(tagged ValidNotEOP 8'h01);  // 1 DW Read Request (ADL is for resp)
+      3:  l2GenF.enq(tagged ValidNotEOP 8'h80);  // Last Dword
+      4:  l2GenF.enq(tagged ValidNotEOP 8'h10);  // Addr 0000_0004
+      5:  l2GenF.enq(tagged ValidNotEOP 8'h00);
+      6:  l2GenF.enq(tagged ValidNotEOP 8'h00);
+      7:  l2GenF.enq(tagged ValidEOP    8'h00);
+      8:  noAction;
+      9:  noAction;
+      10: noAction;
+      11: noAction;
+      12: noAction;
+      13: noAction;
+      14: gpPDU<=False; 
+
+    endcase
+
+    /*
+    // Read
+    case (gqPtr)
+      0:  l2GenF.enq(tagged ValidNotEOP 8'h20);  // Read Req
+      1:  l2GenF.enq(tagged ValidNotEOP 8'hFF);
+      2:  l2GenF.enq(tagged ValidNotEOP 8'h01);  // 1 DW Read Request (ADL is for resp)
+      3:  l2GenF.enq(tagged ValidNotEOP 8'h80);  // Last Dword
+
+      4:  l2GenF.enq(tagged ValidNotEOP 8'h10);  // Addr 0000_0004
+      5:  l2GenF.enq(tagged ValidNotEOP 8'h00);
+      6:  l2GenF.enq(tagged ValidNotEOP 8'h00);
+      7:  l2GenF.enq(tagged ValidEOP    8'h00);
+    endcase
+    */
+    
+   /*
+    // Write
+    case (gqPtr)
+      0:  l2GenF.enq(tagged ValidNotEOP 8'h10);  // Write Req
+      1:  l2GenF.enq(tagged ValidNotEOP 8'hFF);
+      2:  l2GenF.enq(tagged ValidNotEOP 8'h01);  // 1 DW follow Addr
+      3:  l2GenF.enq(tagged ValidNotEOP 8'h80);  // Last Dword
+
+      4:  l2GenF.enq(tagged ValidNotEOP 8'h04);  // Addr 0000_0004
+      5:  l2GenF.enq(tagged ValidNotEOP 8'h00);
+      6:  l2GenF.enq(tagged ValidNotEOP 8'h00);
+      7:  l2GenF.enq(tagged ValidNotEOP 8'h00);
+
+      8:  l2GenF.enq(tagged ValidNotEOP 8'hFE);  // Data BEEF_CAFE
+      9:  l2GenF.enq(tagged ValidNotEOP 8'hCA);
+      10: l2GenF.enq(tagged ValidNotEOP 8'hEF);
+      11: l2GenF.enq(tagged ValidEOP    8'hBE);
+    endcase
+    */
+    
+    /*  NOP
+    // NOP
+    case (gqPtr)
+      0: l2GenF.enq(tagged ValidNotEOP 8'h00);  // NOP
+      1: l2GenF.enq(tagged ValidNotEOP 8'hFF);
+      2: l2GenF.enq(tagged ValidNotEOP 8'h02);  // 2 DW follow
+      3: l2GenF.enq(tagged ValidNotEOP 8'h80);  // Last Dword
+
+      4: l2GenF.enq(tagged ValidNotEOP 8'h42);
+      5: l2GenF.enq(tagged ValidNotEOP 8'h00);
+      6: l2GenF.enq(tagged ValidNotEOP 8'h00);
+      7: l2GenF.enq(tagged ValidNotEOP 8'h00);
+
+      8: l2GenF.enq(tagged ValidNotEOP 8'h00);
+      9: l2GenF.enq(tagged ValidNotEOP 8'h00);
+      10:l2GenF.enq(tagged ValidNotEOP 8'h00);
+
+      11: action
+         l2GenF.enq(tagged ValidEOP 8'h00);
+         //gpPtr <= 0;
+         //gqPtr <= 0;
+         //gpPDU <= False;
+         endaction
+    endcase
+    */
+
+
+  endrule
+
+  mkConnection(toGet(l2GenF), l2P.server.request);
+
+  // Get#(ABS) -> Put#(Bit#(32)
+  ABS2QABSIfc     l2qc <- mkABS2QABS;
+  mkConnection(l2P.client.request, l2qc.putSerial);
+  mkConnection(l2qc.getDword, crt2axi.crtS0.request);
+
+  // Get#(QABS0 -> Put#(ABS)
+  QABS2ABSIfc     qcl2 <- mkQABS2ABS;
+  mkConnection(crt2axi.crtS0.response, qcl2.putVector);
+  mkConnection(qcl2.getSerial, l2P.client.response);
+  mkConnection(l2P.server.response, toPut(l2ConsumeF));
+
+  rule chomp_l2;
+    let bs = l2ConsumeF.first;  l2ConsumeF.deq;
+    consumeCnt <= consumeCnt + 1;
+    //$display("[%0d]: %m: Consumed %0d Byte with value %0x in cycle:%0d", $time, consumeCnt, getData(bs), cycleCount);
+  endrule
+
+
+
 
   mkConnection(a4lm, a4ls.s_axi);
 

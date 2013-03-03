@@ -1,10 +1,14 @@
 
 GTKWave Analyzer v3.3.43 (w)1999-2012 BSI
 
-Interpreter id is gtkwave_8712
+Interpreter id is gtkwave_9670
 
 GTKWave Analyzer v3.3.43 (w)1999-2012 BSI
 
 [0] start time.
 [4005] end time.
-Exiting.
+[0] start time.
+[4005] end time.
+GTKWAVE | Reloading waveform...
+GTKWAVE | ...waveform reloaded
+WM Destroy
