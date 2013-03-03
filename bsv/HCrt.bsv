@@ -330,6 +330,53 @@ endmodule
 (* synthesize *)
 module mkHCrt_TB1 (Empty);
 
+  HCrtCompleter2AxiIfc crt2axi     <- mkHCrtCompleter2Axi;
+  A4L_Em               a4lm        <- mkA4MtoEm(crt2axi.axiM0);
+  A4LSIfc              a4ls        <- mkA4LS(True);
+  Reg#(UInt#(16))      cycleCount  <- mkReg(0);
+  Reg#(UInt#(16))      cmdCount    <- mkReg(0);
+  Reg#(UInt#(16))      rspCount    <- mkReg(0);
+
+  FIFO#(Bit#(32))      cmdF       <- mkFIFO; // Command  FIFO Requestor-to-Completer
+  FIFO#(QABS)          rspF       <- mkFIFO; // Response FIFO Completer-to-Requestor
+
+
+  Vector#(4, Bit#(32)) cmdVector = ?;
+  cmdVector[0] = 32'h8001_FFA0;
+  cmdVector[1] = 32'h0000_0010;
+  cmdVector[2] = 32'h8001_FFA0;
+  cmdVector[3] = 32'h0000_0010;
+
+  rule produce_commands (cmdCount<4);
+    cmdCount <= cmdCount + 1;
+    cmdF.enq(cmdVector[cmdCount]);
+  endrule
+
+  mkConnection(toGet(cmdF), crt2axi.crtS0.request);
+  mkConnection(crt2axi.crtS0.response, toPut(rspF));
+
+  rule chomp_rsp;
+    let qb = rspF.first;  rspF.deq;
+    rspCount <= rspCount + 1;
+  endrule
+
+  mkConnection(a4lm, a4ls.s_axi);
+
+  rule advance_cycleCount;
+    cycleCount <= cycleCount + 1;
+  endrule
+
+  rule terminate (cycleCount==400);
+    $display("[%0d]: %m: Terminate rule fired in cycle:%0d", $time, cycleCount);
+    $finish;
+  endrule
+
+endmodule
+
+
+(* synthesize *)
+module mkHCrt_L2TB1 (Empty);
+
   L2ProcIfc            l2P        <- mkL2Proc;
   HCrtCompleter2AxiIfc crt2axi    <- mkHCrtCompleter2Axi;
   A4L_Em               a4lm       <- mkA4MtoEm(crt2axi.axiM0); // make the crt2axi Expliict on the AXI side
