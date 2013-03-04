@@ -1,0 +1,90 @@
+#-----------------------------------------------------------
+# Vivado v2013.1.0 (64-bit)
+# Build 237167 by xbuild on Tue Feb 12 21:40:19 MST 2013
+# Start of session at: Mon Mar  4 16:30:34 2013
+# Process ID: 9050
+# Log file: /home/shep/projects/hotline/vivado/vivado.log
+# Journal file: /home/shep/projects/hotline/vivado/vivado.jou
+#-----------------------------------------------------------
+source "/home/shep/.Xilinx/Vivado/init.tcl"
+start_gui
+source ../tcl/create_hkp2.tcl
+source create_a4ls.tcl
+source create_l2HCrt.tcl
+create_bd_design "design_1"
+startgroup
+create_bd_cell -type ip -vlnv atomicrules.com:hotline:mkA4LS:1.0 mkA4LS_1
+endgroup
+startgroup
+create_bd_cell -type ip -vlnv atomicrules.com:hotline:mkL2HCrt:1.0 mkL2HCrt_1
+endgroup
+startgroup
+create_bd_port -dir I -type clk sys0_clk
+set_property CONFIG.FREQ_HZ 200000000 [ get_bd_ports /sys0_clk]
+connect_bd_net [get_bd_ports /sys0_clk] [get_bd_pins /mkL2HCrt_1/sys0_clk]
+endgroup
+startgroup
+create_bd_port -dir I -type rst sys0_rst
+connect_bd_net [get_bd_ports /sys0_rst] [get_bd_pins /mkL2HCrt_1/sys0_rst]
+endgroup
+startgroup
+create_bd_port -dir I -type clk sys1_clkp
+set_property CONFIG.FREQ_HZ 125000000 [ get_bd_ports /sys1_clkp]
+connect_bd_net [get_bd_ports /sys1_clkp] [get_bd_pins /mkL2HCrt_1/sys1_clkp]
+endgroup
+startgroup
+create_bd_port -dir I -type clk sys1_clkn
+set_property CONFIG.FREQ_HZ 125000000 [ get_bd_ports /sys1_clkn]
+connect_bd_net [get_bd_ports /sys1_clkn] [get_bd_pins /mkL2HCrt_1/sys1_clkn]
+endgroup
+connect_bd_intf_net [get_bd_intf_pins /mkL2HCrt_1/m_axi] [get_bd_intf_pins /mkA4LS_1/s_axi]
+connect_bd_net [get_bd_pins /mkL2HCrt_1/m_axi_aclk] [get_bd_pins /mkA4LS_1/s_axi_aclk]
+connect_bd_net [get_bd_pins /mkL2HCrt_1/m_axi_aresetn] [get_bd_pins /mkA4LS_1/s_axi_aresetn]
+startgroup
+create_bd_port -dir O gmii_rstn
+connect_bd_net [get_bd_ports /gmii_rstn] [get_bd_pins /mkL2HCrt_1/gmii_rstn]
+endgroup
+startgroup
+create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gmii_rtl:1.0 gmii
+connect_bd_intf_net [get_bd_intf_ports /gmii] [get_bd_intf_pins /mkL2HCrt_1/gmii]
+endgroup
+regenerate_bd_layout
+save_bd_design
+add_files -norecurse /home/shep/projects/hotline/rtl/fpgaTop.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+update_compile_order -fileset sources_1
+add_files -fileset constrs_1 -norecurse /home/shep/projects/hotline/constrs/fpgaTop.xdc
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top fpgaTop [current_fileset]
+set_property top_lib {} [current_fileset]
+set_property top_file {} [current_fileset]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sources_1
+reset_run impl_1
+launch_runs synth_1
+wait_on_run synth_1
+reset_run impl_1
+reset_run synth_1
+launch_runs synth_1
+wait_on_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream
+wait_on_run impl_1
+open_run impl_1
+launch_impact 
+open_bd_design {/home/shep/projects/hotline/vivado/hkp2/hkp2.srcs/sources_1/bd/design_1/design_1.bd}
+open_bd_design {/home/shep/projects/hotline/vivado/hkp2/hkp2.srcs/sources_1/bd/design_1/design_1.bd}
+regenerate_bd_layout
+set_property location {2 466 -2} [get_bd_cells /mkA4LS_1]
+set_property location {587 157} [get_bd_ports /gmii_rstn]
+regenerate_bd_layout
+set_property location {2 453 -1} [get_bd_cells /mkA4LS_1]
+set_property location {588 209} [get_bd_ports /gmii_rstn]
+set_property location {586 171} [get_bd_ports /gmii_rstn]
+set_property location {590 182} [get_bd_ports /gmii_rstn]
+save_bd_design
+close_bd_design [get_bd_designs design_1]

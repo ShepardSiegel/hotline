@@ -293,14 +293,14 @@ always@(posedge sys0_clk) begin
   dipsw_r <= dipsw;
 end
 
-`define USE_MKFTOP
-//`define USE_IPI_BD
+//`define USE_MKFTOP
+`define USE_IPI_BD
 
 
 `ifdef USE_MKFTOP
  mkFTop_kc705 ftop(
   .sys0_clk           (sys0_clk),
-  .sys0_rstn          (!sys0_rst),    // Inverted to make reset rstn active-low
+  .sys0_rst           (!sys0_rst),    // Inverted to make reset rstn active-low
   .sys1_clkp          (sys1_clkp),
   .sys1_clkn          (sys1_clkn),
 
@@ -335,9 +335,11 @@ end
 );
 `elsif USE_IPI_BD
 
+IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset is active-high
+
  design_1 d1_i(
   .sys0_clk           (sys0_clk),
-  .sys0_rstn          (!sys0_rst),    // Inverted to make reset rstn active-low
+  .sys0_rst           (!sys0_rst),    // Inverted to make reset rstn active-low
   .sys1_clkp          (sys1_clkp),
   .sys1_clkn          (sys1_clkn),
 
