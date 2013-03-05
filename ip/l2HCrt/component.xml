@@ -1037,7 +1037,7 @@
       <xilinx:displayName>AR Hotline Ethernet to AXI4-Lite Bridge</xilinx:displayName>
       <xilinx:vendorDisplayName>Atomic Rules LLC</xilinx:vendorDisplayName>
       <xilinx:vendorURL>http://www.atomicrules.com</xilinx:vendorURL>
-      <xilinx:coreCreationDateTime>2013-03-04T17:01:24</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2013-03-05T16:11:21</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2013.1.0</xilinx:xilinxVersion>

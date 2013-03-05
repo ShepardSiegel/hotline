@@ -1,2 +1,0 @@
-setText (RDIResource.CommandsInput_TYPE_TCL_COMMAND_HERE, "help update_ip_catalog", true); // j (I, aM) [03/04 05:20:02]
-// ui.views.cg[javax.swing.JPanel]: TclConsoleView: help update_ip_catalog

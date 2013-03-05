@@ -211,7 +211,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_RESET</spirit:name>
-          <spirit:value spirit:format="string" spirit:resolve="immediate" spirit:id="BUSIFPARAM_VALUE.S_AXI_SIGNAL_CLOCK.ASSOCIATED_RESET">s_axi_signal_reset</spirit:value>
+          <spirit:value spirit:format="string" spirit:resolve="immediate" spirit:id="BUSIFPARAM_VALUE.S_AXI_SIGNAL_CLOCK.ASSOCIATED_RESET">s_axi_aresetn</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -222,7 +222,7 @@
       <spirit:addressBlock>
         <spirit:name>reg0</spirit:name>
         <spirit:baseAddress spirit:format="bitString" spirit:resolve="user" spirit:bitStringLength="32">0</spirit:baseAddress>
-        <spirit:range spirit:format="long" spirit:resolve="user">4294967296</spirit:range>
+        <spirit:range spirit:format="long" spirit:resolve="user">4096</spirit:range>
         <spirit:width spirit:format="long" spirit:resolve="user">32</spirit:width>
         <spirit:usage>register</spirit:usage>
       </spirit:addressBlock>
@@ -643,7 +643,7 @@
       <xilinx:displayName>AR Hotline AXI4-Lite Slave</xilinx:displayName>
       <xilinx:vendorDisplayName>Atomic Rules LLC</xilinx:vendorDisplayName>
       <xilinx:vendorURL>http://www.atomicrules.com</xilinx:vendorURL>
-      <xilinx:coreCreationDateTime>2013-03-04T17:01:24</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2013-03-05T16:11:21</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2013.1.0</xilinx:xilinxVersion>
