@@ -83,7 +83,7 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
   ABS2QABSIfc     l2qc         <- mkABS2QABS(                   clocked_by sys1_clk, reset_by sys1_rst);
   QABS2ABSIfc     qcl2         <- mkQABS2ABS(                   clocked_by sys1_clk, reset_by sys1_rst);
 `endif
-  L2HCrtIfc       l2hcrt       <- mkL2HCrt(sys0_clk,sys0_rst,sys1_clkp,sys1_clkn,gmii_rx_clk);
+  L2HCrtIfc       l2hcrt       <- mkL2HCrt(sys0_rst,sys1_clkp,sys1_clkn,gmii_rx_clk);
   Clock           sys1_clk     = l2hcrt.m_axi_aclk;
   Reset           sys1_rst     = l2hcrt.gmii_rstn;
   A4LSIfc         a4ls         <- mkA4LS(True,                  clocked_by sys1_clk, reset_by sys1_rst);

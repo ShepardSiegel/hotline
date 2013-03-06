@@ -23,6 +23,9 @@ set_property value {s_axi_aresetn} [ipx::get_bus_parameter ASSOCIATED_RESET [ipx
 ipx::save_core [ipx::current_core]
 
 set_property ip_repo_paths  /home/shep/projects/hotline/ip/a4ls [current_fileset]
+
+# TODO: Remove unneeded earlier save_core
+# This next save_core is the one that really matters; all the prior ones are bug workarounds for 2013.1.beta
 ipx::save_core [ipx::current_core]
 
 update_ip_catalog -rebuild

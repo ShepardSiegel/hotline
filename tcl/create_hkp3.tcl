@@ -25,8 +25,8 @@ set_property top_lib {} [current_fileset]
 set_property top_file {} [current_fileset]
 
 puts "make a bitstream"
-reset_run impl_1
-launch_runs synth_1
-launch_runs impl_1
-launch_runs impl_1 -to_step write_bitstream
-open_run impl_1
+#reset_run impl_1
+#launch_runs synth_1
+#launch_runs impl_1
+#launch_runs impl_1 -to_step write_bitstream
+#open_run impl_1

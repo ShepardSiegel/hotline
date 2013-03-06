@@ -30,8 +30,13 @@ ipx::save_core [ipx::current_core]
 
 ipx::infer_bus_interfaces {{xilinx.com:interface:gmii:1.0}} [ipx::current_core]
 ipx::save_core [ipx::current_core]
+ipx::infer_bus_interfaces {{xilinx.com:interface:diff_clock:1.0}} [ipx::current_core]
+ipx::save_core [ipx::current_core]
 
 set_property ip_repo_paths  {/home/shep/projects/hotline/ip/a4ls /home/shep/projects/hotline/ip/l2HCrt} [current_fileset]
+
+# TODO: Remove unneeded earlier save_core
+# This next save_core is the one that really matters; all the prior ones are bug workarounds for 2013.1.beta
 ipx::save_core [ipx::current_core]
 
 update_ip_catalog -rebuild

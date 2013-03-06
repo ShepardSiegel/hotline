@@ -338,10 +338,9 @@ end
 IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset is active-high
 
  design_1 d1_i(
-  .sys0_clk           (sys0_clk),
-  .sys0_rst           (!sys0_rst),    // Inverted to make reset rstn active-low
-  .sys1_clkp          (sys1_clkp),
-  .sys1_clkn          (sys1_clkn),
+  .sys1_rstn          (!sys0_rst),    // Inverted to make reset rstn active-low
+  .sys1_clk_p          (sys1_clkp),
+  .sys1_clk_n          (sys1_clkn),
 
   .gmii_rstn          (gmii_rstn),
   .gmii_txd           (gmii_txd),

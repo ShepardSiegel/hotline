@@ -30,13 +30,14 @@ interface L2HCrtIfc;
 endinterface
 
 (* synthesize, no_default_clock, no_default_reset, clock_prefix="", reset_prefix="" *)
-module mkL2HCrt#(Clock sys0_clk , Reset sys0_rst,
-                 Clock sys1_clkp, Clock sys1_clkn,          // 125 MHz Ethernet XO Reference
-                 Clock gmii_rx_clk)(L2HCrtIfc);    // 125 MHz GMII RX Clock from Marvell Phy
+module mkL2HCrt#( Reset sys1_rstn,                     // Active-Low reset used to make sys1_rst and reset this module
+                  Clock sys1_clk_p, Clock sys1_clk_n,  // 125 MHz Ethernet XO Reference
+                  Clock gmii_rx_clk)                   // 125 MHz GMII RX Clock from Marvell Phy
+                  (L2HCrtIfc);                         // Interface provided
 
-  Clock           sys1_clki    <- mkClockIBUFDS_GTE2(True, sys1_clkp, sys1_clkn);
+  Clock           sys1_clki    <- mkClockIBUFDS_GTE2(True, sys1_clk_p, sys1_clk_n);
   Clock           sys1_clk     <- mkClockBUFG(clocked_by sys1_clki);
-  Reset           sys1_rst     <- mkAsyncReset(1, sys0_rst, sys1_clk);
+  Reset           sys1_rst     <- mkAsyncReset(1, sys1_rstn, sys1_clk); // Note sys1_rstn is the reset input
 
   GMACIfc         gmac         <- mkGMAC(gmii_rx_clk, sys1_clk, clocked_by sys1_clk, reset_by sys1_rst);
 //MDIO            mdi          <- mkMDIO(6,                     clocked_by sys1_clk, reset_by sys1_rst);

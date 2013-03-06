@@ -27,16 +27,11 @@ current_bd_instance
 
 # Create interface ports
 create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gmii_rtl:1.0 gmii
+create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 sys1
 
 # Create ports
 set gmii_rstn [ create_bd_port -dir O -type rst gmii_rstn ]
-set sys0_clk [ create_bd_port -dir I -type clk sys0_clk ]
-set_property -dict [ list CONFIG.FREQ_HZ {200000000}  ] $sys0_clk
-set sys0_rst [ create_bd_port -dir I -type rst sys0_rst ]
-set sys1_clkp [ create_bd_port -dir I -type clk sys1_clkp ]
-set_property -dict [ list CONFIG.FREQ_HZ {125000000}  ] $sys1_clkp
-set sys1_clkn [ create_bd_port -dir I -type clk sys1_clkn ]
-set_property -dict [ list CONFIG.FREQ_HZ {125000000}  ] $sys1_clkn
+set sys1_rstn [ create_bd_port -dir I sys1_rstn ]
 
 # Create instance: mkA4LS_1, and set properties
 set mkA4LS_1 [ create_bd_cell -type ip -vlnv atomicrules.com:hotline:mkA4LS:1.0 mkA4LS_1 ]
@@ -56,15 +51,13 @@ connect_bd_intf_net -intf_net mkl2hcrt_1_m_axi [get_bd_intf_pins /mkL2HCrt_1/m_a
 connect_bd_intf_net -intf_net axi_interconnect_1_m00_axi [get_bd_intf_pins /axi_interconnect_1/M00_AXI] [get_bd_intf_pins /mkA4LS_2/s_axi]
 connect_bd_intf_net -intf_net axi_interconnect_1_m01_axi [get_bd_intf_pins /axi_interconnect_1/M01_AXI] [get_bd_intf_pins /mkA4LS_1/s_axi]
 connect_bd_intf_net -intf_net mkl2hcrt_1_gmii [get_bd_intf_ports /gmii] [get_bd_intf_pins /mkL2HCrt_1/gmii]
+connect_bd_intf_net -intf_net sys1_1 [get_bd_intf_ports /sys1] [get_bd_intf_pins /mkL2HCrt_1/sys1]
 
 # Create port connections
 connect_bd_net -net mkl2hcrt_1_m_axi_aclk [get_bd_pins /mkL2HCrt_1/m_axi_aclk] [get_bd_pins /mkA4LS_2/s_axi_aclk] [get_bd_pins /axi_interconnect_1/ACLK] [get_bd_pins /axi_interconnect_1/M00_ACLK] [get_bd_pins /axi_interconnect_1/M01_ACLK] [get_bd_pins /mkA4LS_1/s_axi_aclk] [get_bd_pins /axi_interconnect_1/S00_ACLK]
 connect_bd_net -net mkl2hcrt_1_m_axi_aresetn [get_bd_pins /mkL2HCrt_1/m_axi_aresetn] [get_bd_pins /axi_interconnect_1/ARESETN] [get_bd_pins /axi_interconnect_1/S00_ARESETN] [get_bd_pins /axi_interconnect_1/M00_ARESETN] [get_bd_pins /axi_interconnect_1/M01_ARESETN] [get_bd_pins /mkA4LS_2/s_axi_aresetn] [get_bd_pins /mkA4LS_1/s_axi_aresetn]
 connect_bd_net -net mkl2hcrt_1_gmii_rstn [get_bd_ports /gmii_rstn] [get_bd_pins /mkL2HCrt_1/gmii_rstn]
-connect_bd_net -net sys0_clk_1 [get_bd_ports /sys0_clk] [get_bd_pins /mkL2HCrt_1/sys0_clk]
-connect_bd_net -net sys0_rst_1 [get_bd_ports /sys0_rst] [get_bd_pins /mkL2HCrt_1/sys0_rst]
-connect_bd_net -net sys1_clkp_1 [get_bd_ports /sys1_clkp] [get_bd_pins /mkL2HCrt_1/sys1_clkp]
-connect_bd_net -net sys1_clkn_1 [get_bd_ports /sys1_clkn] [get_bd_pins /mkL2HCrt_1/sys1_clkn]
+connect_bd_net -net sys1_rstn_1 [get_bd_ports /sys1_rstn] [get_bd_pins /mkL2HCrt_1/sys1_rstn]
 
 # Create address segments
 create_bd_addr_seg -range 0x1000 -offset 0x10000000 [get_bd_addr_spaces /mkL2HCrt_1/m_axi] [get_bd_addr_segs /mkA4LS_1/s_axi/reg0] SEG1
@@ -72,5 +65,3 @@ create_bd_addr_seg -range 0x1000 -offset 0x10010000 [get_bd_addr_spaces /mkL2HCr
 
 regenerate_bd_layout
 save_bd_design
-
-generate_target  {synthesis simulation implementation}  [get_files  /home/shep/projects/hotline/vivado/hkp3/hkp3.srcs/sources_1/bd/design_1/design_1.bd]
