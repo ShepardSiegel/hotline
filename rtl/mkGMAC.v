@@ -1032,6 +1032,7 @@ module mkGMAC(CLK_rxClk,
   BUFIO gmii_rx_clk(.I(gmii_rxc_dly_DATAOUT), .O(gmii_rx_clk_O));
 
   // submodule gmii_rxc_dly
+  (* IODELAY_GROUP = "IDG_GMII" *)
   IODELAY #(.IDELAY_TYPE("FIXED"),
 	    .IDELAY_VALUE(32'd0),
 	    .DELAY_SRC("I"),

@@ -13,21 +13,21 @@ module fpgaTop (
   input  wire        sys2_clkp,      // sys2 Clock +  SI570  VXO
   input  wire        sys2_clkn,      // sys2 Clock -
 
-//output wire [13:0] DDR3_addr,      // DDR3 SO-DIMM...
-//output wire [2:0]  DDR3_ba,
-//output wire        DDR3_cas_n,
-//output wire [0:0]  DDR3_ck_n,
-//output wire [0:0]  DDR3_ck_p,
-//output wire [0:0]  DDR3_cke,
-//output wire [0:0]  DDR3_cs_n,
-//output wire [7:0]  DDR3_dm,
-//inout  wire [63:0] DDR3_dq,
-//inout  wire [7:0]  DDR3_dqs_n,
-//inout  wire [7:0]  DDR3_dqs_p,
-//output wire [0:0]  DDR3_odt,
-//output wire        DDR3_ras_n,
-//output wire        DDR3_reset_n,
-//output wire        DDR3_we_n,
+  output wire [13:0] DDR3_addr,      // DDR3 SO-DIMM...
+  output wire [2:0]  DDR3_ba,
+  output wire        DDR3_cas_n,
+  output wire [0:0]  DDR3_ck_n,
+  output wire [0:0]  DDR3_ck_p,
+  output wire [0:0]  DDR3_cke,
+  output wire [0:0]  DDR3_cs_n,
+  output wire [7:0]  DDR3_dm,
+  inout  wire [63:0] DDR3_dq,
+  inout  wire [7:0]  DDR3_dqs_n,
+  inout  wire [7:0]  DDR3_dqs_p,
+  output wire [0:0]  DDR3_odt,
+  output wire        DDR3_ras_n,
+  output wire        DDR3_reset_n,
+  output wire        DDR3_we_n,
 
   output wire [7:0]  gmii_txd,       // Alaska GMII...
   output wire        gmii_tx_en,
@@ -210,10 +210,6 @@ module fpgaTop (
 
 );
 
-// 200 MHz XO buf is in MIG on this design...
-wire sys0_clk, sys0_clki;
-IBUFGDS sys0_bufi(.O(sys0_clki),.I(sys0_clkp),.IB(sys0_clkn));
-BUFG    sys0_bufg(.O(sys0_clk), .I(sys0_clki));
 
 // Input from SI570...
 wire sys2_clk;
@@ -294,10 +290,17 @@ always@(posedge sys0_clk) begin
 end
 
 //`define USE_MKFTOP
-`define USE_IPI_BD
+//`define USE_IPI_BD
+`define USE_IPIMIG_BD
 
 
 `ifdef USE_MKFTOP
+
+// 200 MHz XO buf is in MIG on this design...
+wire sys0_clk, sys0_clki;
+IBUFGDS sys0_bufi(.O(sys0_clki),.I(sys0_clkp),.IB(sys0_clkn));
+BUFG    sys0_bufg(.O(sys0_clk), .I(sys0_clki));
+
  mkFTop_kc705 ftop(
   .sys0_clk           (sys0_clk),
   .sys0_rst           (!sys0_rst),    // Inverted to make reset rstn active-low
@@ -335,6 +338,11 @@ end
 );
 `elsif USE_IPI_BD
 
+// 200 MHz XO buf is in MIG on this design...
+wire sys0_clk, sys0_clki;
+IBUFGDS sys0_bufi(.O(sys0_clki),.I(sys0_clkp),.IB(sys0_clkn));
+BUFG    sys0_bufg(.O(sys0_clk), .I(sys0_clki));
+
 IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset is active-high
 
  design_1 d1_i(
@@ -342,6 +350,72 @@ IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset 
   .sys1_clk_p          (sys1_clkp),
   .sys1_clk_n          (sys1_clkn),
 
+  .gmii_rstn          (gmii_rstn),
+  .gmii_txd           (gmii_txd),
+  .gmii_tx_en         (gmii_tx_en),
+  .gmii_tx_er         (gmii_tx_er),
+  .gmii_rxd           (gmii_rxd),
+  .gmii_rx_dv         (gmii_rx_dv),
+  .gmii_rx_er         (gmii_rx_er),
+  .gmii_gtx_clk       (gmii_gtx_clk),
+  .gmii_rx_clk        (gmii_rx_clk)
+//.mdio_mdc           (mdio_mdc),
+//.mdio_mdd           (mdio_mdd)
+);
+
+`elsif USE_IPIMIG_BD
+
+wire sys0_clk;  // 200 MHz driven out from MIG
+
+wire init_calib_complete;
+reg aresetn;
+always@(posedge sys0_clk) begin
+  aresetn <= !init_calib_complete;
+end
+
+assign led = {6'b111000, init_calib_complete, sys0_rst};
+
+(* IODELAY_GROUP = "IDG_GMII" *) 
+IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset is active-high
+
+
+
+ design_1 d1_i(
+  .SYS_CLK_clk_n      (sys0_clkn),   // Route the clock directly in
+  .SYS_CLK_clk_p      (sys0_clkp),
+  .sys0_clk           (sys0_clk),    // 200 MHz outout from MIG
+  .sys_rst            (!sys0_rst),   // active-low reset to MIG (Default is RST_ACT_LOW=1 for sys_rst)
+  .sys1_rstn          (!sys0_rst),   // Inverted to make reset rstn active-low
+  .sys1_clk_p         (sys1_clkp),
+  .sys1_clk_n         (sys1_clkn),
+
+  .aresetn        (aresetn),
+
+
+  // 15 DDR3
+  .DDR3_addr      (DDR3_addr),
+  .DDR3_ba        (DDR3_ba),
+  .DDR3_cas_n     (DDR3_cas_n),
+  .DDR3_ck_n      (DDR3_ck_n),  // TODO: Understand the funny \^ prefix usage for 5 DDR3 signals
+  .DDR3_ck_p      (DDR3_ck_p),
+  .DDR3_cke       (DDR3_cke),
+  .DDR3_cs_n      (DDR3_cs_n),
+  .DDR3_odt       (DDR3_odt),
+  .DDR3_dm        (DDR3_dm),
+  .DDR3_dq        (DDR3_dq),
+  .DDR3_dqs_n     (DDR3_dqs_n),
+  .DDR3_dqs_p     (DDR3_dqs_p),
+  .DDR3_ras_n     (DDR3_ras_n),
+  .DDR3_reset_n   (DDR3_reset_n),
+  .DDR3_we_n      (DDR3_we_n),
+//.DDR3_ck_n      (\^DDR3_ck_n ),
+//.DDR3_ck_p      (\^DDR3_ck_p ),
+//.DDR3_cke       (\^DDR3_cke ),
+//.DDR3_cs_n      (\^DDR3_cs_n ),
+//.DDR3_odt       (\^DDR3_odt ),
+  .init_calib_complete (init_calib_complete),
+
+   // 9 GMII
   .gmii_rstn          (gmii_rstn),
   .gmii_txd           (gmii_txd),
   .gmii_tx_en         (gmii_tx_en),

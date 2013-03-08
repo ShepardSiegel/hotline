@@ -23,7 +23,8 @@ set_property PACKAGE_PIN K28 [get_ports sys2_clkp]
 set_property PACKAGE_PIN K29 [get_ports sys2_clkn]
 set_property IOSTANDARD LVDS_25 [get_ports sys2_clkp]
 set_property IOSTANDARD LVDS_25 [get_ports sys2_clkn]
-create_clock -period 6.400 -name sys2_clkp -waveform {0.000 3.200} [get_ports sys2_clkp]
+create_clock -period 6.734 -name sys2_clkp -waveform {0.000 3.367} [get_ports sys2_clkp] ;# 148.5 MHz
+#create_clock -period 6.400 -name sys2_clkp -waveform {0.000 3.200} [get_ports sys2_clkp] ;# 156.25 MHz
 
 # User SMA Inputs J11, J12
 #set_property PACKAGE_PIN L25        [get_ports sys3_clkp]
@@ -321,6 +322,9 @@ set_property PACKAGE_PIN Y30 [get_ports fmcl_la32_p]
 #set_property PACKAGE_PIN AC30 [get_ports fmcl_la33_n]
 #set_property PACKAGE_PIN AC29 [get_ports fmcl_la33_p]
 set_property IOSTANDARD LVCMOS25 [get_ports fmcl_*]
+
+# System level DDR3 DCI slave banks...
+set_property DCI_CASCADE {32 34} [get_iobanks 33] 
 
 # Null Sync clock domain crossing...
 #set_false_path -from [get_pins {dipsw_r_reg*/C}] -to [get_pins {vsel_reg*/D}]
