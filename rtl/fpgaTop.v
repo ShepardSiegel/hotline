@@ -291,7 +291,8 @@ end
 
 //`define USE_MKFTOP
 //`define USE_IPI_BD
-`define USE_IPIMIG_BD
+//`define USE_IPIMIG_BD
+`define USE_HKP5E
 
 
 `ifdef USE_MKFTOP
@@ -366,9 +367,9 @@ IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset 
 `elsif USE_IPIMIG_BD
 
 wire sys0_clk;  // 200 MHz driven out from MIG
-
 wire init_calib_complete;
 reg aresetn;
+
 always@(posedge sys0_clk) begin
   aresetn <= !init_calib_complete;
 end
@@ -377,8 +378,6 @@ assign led = {6'b111000, init_calib_complete, sys0_rst};
 
 (* IODELAY_GROUP = "IDG_GMII" *) 
 IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset is active-high
-
-
 
  design_1 d1_i(
   .SYS_CLK_clk_n      (sys0_clkn),   // Route the clock directly in
@@ -390,7 +389,6 @@ IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset 
   .sys1_clk_n         (sys1_clkn),
 
   .aresetn        (aresetn),
-
 
   // 15 DDR3
   .DDR3_addr      (DDR3_addr),
@@ -427,6 +425,130 @@ IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset 
   .gmii_rx_clk        (gmii_rx_clk)
 //.mdio_mdc           (mdio_mdc),
 //.mdio_mdd           (mdio_mdd)
+);
+
+`elsif USE_HKP5E
+
+wire sys0_clk;  // 200 MHz driven out from MIG
+wire init_calib_complete;
+reg aresetn;
+always@(posedge sys0_clk) begin
+  aresetn <= !init_calib_complete;
+end
+
+assign led = {6'b111000, init_calib_complete, sys0_rst};
+
+(* IODELAY_GROUP = "IDG_GMII" *) 
+IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset is active-high
+
+wire [15:0] vid_io_in_data, vid_io_out_data;
+wire vid_io_in_active_video, vid_io_in_clk, vid_io_in_field, vid_io_in_hblank, vid_io_in_hsync, vid_io_in_rst, vid_io_in_vblank, vid_io_in_vsync, vid_io_out_active_video, vid_io_out_clk, vid_io_out_field, vid_io_out_hblank, vid_io_out_hsync, vid_io_out_rst, vid_io_out_vblank, vid_io_out_vsync, vtiming_in_active_video, vtiming_in_field, vtiming_in_hblank, vtiming_in_hsync, vtiming_in_vblank, vtiming_in_vsync, mm2s_fsync, s2mm_fsync;      
+
+
+assign vid_io_in_data         = 0;
+assign vid_io_in_active_video = 0;
+assign vid_io_in_clk          = 0;
+assign vid_io_in_field        = 0;
+assign vid_io_in_hblank       = 0;
+assign vid_io_in_hsync        = 0;
+assign vid_io_in_rst          = 0;
+assign vid_io_in_vblank       = 0;
+assign vid_io_in_vsync        = 0;
+
+//vid_io_out_data;
+//vid_io_out_active_video,
+//vid_io_out_clk,
+//vid_io_out_field vid_io_out_hblank,
+//vid_io_out_hsync,
+//vid_io_out_rst,
+//vid_io_out_vblank,
+//vid_io_out_vsync,
+
+assign vtiming_in_active_video = 0;
+assign vtiming_in_field        = 0;
+assign vtiming_in_hblank       = 0;
+assign vtiming_in_hsync        = 0;
+assign vtiming_in_vblank       = 0;
+assign vtiming_in_vsync        = 0;
+assign mm2s_fsync              = 0;
+assign s2mm_fsync              = 0; 
+
+ design_1 d1_i(
+  .SYS_CLK_clk_n      (sys0_clkn),   // Route the clock directly in
+  .SYS_CLK_clk_p      (sys0_clkp),
+  .sys0_clk           (sys0_clk),    // 200 MHz outout from MIG
+  .sys_rst            (!sys0_rst),   // active-low reset to MIG (Default is RST_ACT_LOW=1 for sys_rst)
+  .sys1_rstn          (!sys0_rst),   // Inverted to make reset rstn active-low
+  .sys1_clk_p         (sys1_clkp),
+  .sys1_clk_n         (sys1_clkn),
+
+  .aresetn        (aresetn),   // released after init_calib
+
+
+  // 15 DDR3
+  .DDR3_addr      (DDR3_addr),
+  .DDR3_ba        (DDR3_ba),
+  .DDR3_cas_n     (DDR3_cas_n),
+  .DDR3_ck_n      (DDR3_ck_n),  // TODO: Understand the funny \^ prefix usage for 5 DDR3 signals
+  .DDR3_ck_p      (DDR3_ck_p),
+  .DDR3_cke       (DDR3_cke),
+  .DDR3_cs_n      (DDR3_cs_n),
+  .DDR3_odt       (DDR3_odt),
+  .DDR3_dm        (DDR3_dm),
+  .DDR3_dq        (DDR3_dq),
+  .DDR3_dqs_n     (DDR3_dqs_n),
+  .DDR3_dqs_p     (DDR3_dqs_p),
+  .DDR3_ras_n     (DDR3_ras_n),
+  .DDR3_reset_n   (DDR3_reset_n),
+  .DDR3_we_n      (DDR3_we_n),
+//.DDR3_ck_n      (\^DDR3_ck_n ),
+//.DDR3_ck_p      (\^DDR3_ck_p ),
+//.DDR3_cke       (\^DDR3_cke ),
+//.DDR3_cs_n      (\^DDR3_cs_n ),
+//.DDR3_odt       (\^DDR3_odt ),
+  .init_calib_complete (init_calib_complete),
+
+   // 9 GMII
+  .gmii_rstn          (gmii_rstn),
+  .gmii_txd           (gmii_txd),
+  .gmii_tx_en         (gmii_tx_en),
+  .gmii_tx_er         (gmii_tx_er),
+  .gmii_rxd           (gmii_rxd),
+  .gmii_rx_dv         (gmii_rx_dv),
+  .gmii_rx_er         (gmii_rx_er),
+  .gmii_gtx_clk       (gmii_gtx_clk),
+  .gmii_rx_clk        (gmii_rx_clk),
+//.mdio_mdc           (mdio_mdc),
+//.mdio_mdd           (mdio_mdd)
+//
+  .vid_io_in_active_video   (vid_io_in_active_video),      
+  .vid_io_in_clk            (vid_io_in_clk),
+  .vid_io_in_data           (vid_io_in_data),
+  .vid_io_in_field          (vid_io_in_field),
+  .vid_io_in_hblank         (vid_io_in_hblank),
+  .vid_io_in_hsync          (vid_io_in_hsync),
+  .vid_io_in_rst            (vid_io_in_rst),
+  .vid_io_in_vblank         (vid_io_in_vblank),
+  .vid_io_in_vsync          (vid_io_in_vsync),
+
+  .mm2s_fsync               (mm2s_fsync),
+  .s2mm_fsync               (s2mm_fsync),      
+  .vid_io_out_active_video  (vid_io_out_active_video),
+  .vid_io_out_clk           (vid_io_out_clk),
+  .vid_io_out_data          (vid_io_out_data),
+  .vid_io_out_field         (vid_io_out_field),
+  .vid_io_out_hblank        (vid_io_out_hblank),
+  .vid_io_out_hsync         (vid_io_out_hsync),
+  .vid_io_out_rst           (vid_io_out_rst),
+  .vid_io_out_vblank        (vid_io_out_vblank),
+  .vid_io_out_vsync         (vid_io_out_vsync),
+  .vtiming_in_active_video  (vtiming_in_active_video),
+  .vtiming_in_field         (vtiming_in_field),
+  .vtiming_in_hblank        (vtiming_in_hblank),
+  .vtiming_in_hsync         (vtiming_in_hsync),
+  .vtiming_in_vblank        (vtiming_in_vblank),
+  .vtiming_in_vsync         (vtiming_in_vsync)
+
 );
 
 `endif

@@ -50,7 +50,9 @@ set vid_io_out_clk [ create_bd_port -dir I vid_io_out_clk ]
 set mm2s_fsync [ create_bd_port -dir I mm2s_fsync ]
 set s2mm_fsync [ create_bd_port -dir I s2mm_fsync ]
 set vid_io_in_rst [ create_bd_port -dir I -type rst vid_io_in_rst ]
+set_property -dict [ list CONFIG.POLARITY {ACTIVE_HIGH}  ] $vid_io_in_rst
 set vid_io_out_rst [ create_bd_port -dir I -type rst vid_io_out_rst ]
+set_property -dict [ list CONFIG.POLARITY {ACTIVE_HIGH}  ] $vid_io_out_rst
 
 # Create instance: mkA4LS_1, and set properties
 set mkA4LS_1 [ create_bd_cell -type ip -vlnv atomicrules.com:hotline:mkA4LS:1.0 mkA4LS_1 ]
@@ -60,14 +62,15 @@ set mkL2HCrt_1 [ create_bd_cell -type ip -vlnv atomicrules.com:hotline:mkL2HCrt:
 
 # Create instance: mig_1, and set properties
 set mig_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:1.9.a mig_1 ]
-set folder [pwd]
-set mig_file [glob $folder/mig*.prj]
-if { [file exists "$mig_file"] == 1 } { 
-   set str_mig_folder [get_property IP_DIR [ get_ips [ get_property CONFIG.Component_Name $mig_1 ] ] ]
-   puts "Copying <$mig_file> to <$str_mig_folder//home/shep/projects/hotline/data/mig_100MHz_16B.prj>..."
-   file copy $mig_file "$str_mig_folder//home/shep/projects/hotline/data/mig_100MHz_16B.prj"
-}
-set_property -dict [ list CONFIG.XML_INPUT_FILE {/home/shep/projects/hotline/data/mig_100MHz_16B.prj}  ] $mig_1
+#set folder [pwd]
+#set mig_file [glob $folder/mig*.prj]
+#if { [file exists "$mig_file"] == 1 } { 
+#   set str_mig_folder [get_property IP_DIR [ get_ips [ get_property CONFIG.Component_Name $mig_1 ] ] ]
+#   puts "Copying <$mig_file> to <$str_mig_folder//home/shep/projects/hotline/data/mig_100MHz_16B.prj>..."
+#   file copy $mig_file "$str_mig_folder//home/shep/projects/hotline/data/mig_100MHz_16B.prj"
+#}
+puts "FIXME using 8B (64b) DDR800 MIG"
+set_property -dict [ list CONFIG.XML_INPUT_FILE {/home/shep/projects/hotline/data/mig_100MHz_8B.prj}  ] $mig_1
 
 # Create instance: axi_interconnect_1, and set properties
 set axi_interconnect_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.0 axi_interconnect_1 ]
@@ -78,7 +81,7 @@ set mkA4LS_2 [ create_bd_cell -type ip -vlnv atomicrules.com:hotline:mkA4LS:1.0 
 
 # Create instance: axi_vdma_1, and set properties
 set axi_vdma_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_vdma:6.0 axi_vdma_1 ]
-set_property -dict [ list CONFIG.c_m_axis_mm2s_tdata_width {16} CONFIG.c_num_fstores {3} CONFIG.c_use_mm2s_fsync {1} CONFIG.c_use_s2mm_fsync {1} CONFIG.c_mm2s_genlock_mode {1} CONFIG.c_s2mm_genlock_mode {1} CONFIG.c_include_s2mm {1}  ] $axi_vdma_1
+set_property -dict [ list CONFIG.c_num_fstores {3} CONFIG.c_use_mm2s_fsync {1} CONFIG.c_use_s2mm_fsync {1} CONFIG.c_mm2s_genlock_mode {1} CONFIG.c_s2mm_genlock_mode {1} CONFIG.c_include_s2mm {1}  ] $axi_vdma_1
 
 # Create instance: axi_interconnect_2, and set properties
 set axi_interconnect_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.0 axi_interconnect_2 ]
@@ -92,6 +95,10 @@ set_property -dict [ list CONFIG.C_S_AXIS_VIDEO_FORMAT {0}  ] $v_axi4s_vid_out_1
 set v_vid_in_axi4s_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_vid_in_axi4s:3.0 v_vid_in_axi4s_1 ]
 set_property -dict [ list CONFIG.C_M_AXIS_VIDEO_FORMAT {0}  ] $v_vid_in_axi4s_1
 
+# Create instance: xlconstant_1, and set properties
+set xlconstant_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.0 xlconstant_1 ]
+set_property -dict [ list CONFIG.CONST_WIDTH {6} CONFIG.CONST_VAL {0}  ] $xlconstant_1
+
 # Create interface connections
 connect_bd_intf_net -intf_net mkl2hcrt_1_m_axi [get_bd_intf_pins /mkL2HCrt_1/m_axi] [get_bd_intf_pins /axi_interconnect_1/S00_AXI]
 connect_bd_intf_net -intf_net axi_interconnect_1_m00_axi [get_bd_intf_pins /mkA4LS_1/s_axi] [get_bd_intf_pins /axi_interconnect_1/M00_AXI]
@@ -100,15 +107,15 @@ connect_bd_intf_net -intf_net axi_interconnect_1_m02_axi [get_bd_intf_pins /axi_
 connect_bd_intf_net -intf_net s00_axi_1 [get_bd_intf_pins /axi_interconnect_2/S00_AXI] [get_bd_intf_pins /axi_vdma_1/M_AXI_MM2S]
 connect_bd_intf_net -intf_net s01_axi_1 [get_bd_intf_pins /axi_interconnect_2/S01_AXI] [get_bd_intf_pins /axi_vdma_1/M_AXI_S2MM]
 connect_bd_intf_net -intf_net axi_interconnect_2_m00_axi [get_bd_intf_pins /mig_1/S_AXI] [get_bd_intf_pins /axi_interconnect_2/M00_AXI]
+connect_bd_intf_net -intf_net axi_vdma_1_m_axis_mm2s [get_bd_intf_pins /axi_vdma_1/M_AXIS_MM2S] [get_bd_intf_pins /v_axi4s_vid_out_1/video_in]
+connect_bd_intf_net -intf_net v_vid_in_axi4s_1_video_out [get_bd_intf_pins /axi_vdma_1/S_AXIS_S2MM] [get_bd_intf_pins /v_vid_in_axi4s_1/video_out]
 connect_bd_intf_net -intf_net mkl2hcrt_1_gmii [get_bd_intf_ports /gmii] [get_bd_intf_pins /mkL2HCrt_1/gmii]
 connect_bd_intf_net -intf_net sys1_1 [get_bd_intf_ports /sys1] [get_bd_intf_pins /mkL2HCrt_1/sys1]
 connect_bd_intf_net -intf_net sys_clk_1 [get_bd_intf_ports /SYS_CLK] [get_bd_intf_pins /mig_1/SYS_CLK]
 connect_bd_intf_net -intf_net mig_1_ddr3 [get_bd_intf_ports /DDR3] [get_bd_intf_pins /mig_1/DDR3]
-connect_bd_intf_net -intf_net axi_vdma_1_m_axis_mm2s [get_bd_intf_pins /axi_vdma_1/M_AXIS_MM2S] [get_bd_intf_pins /v_axi4s_vid_out_1/video_in]
 connect_bd_intf_net -intf_net v_axi4s_vid_out_1_vid_io_out [get_bd_intf_ports /vid_io_out] [get_bd_intf_pins /v_axi4s_vid_out_1/vid_io_out]
 connect_bd_intf_net -intf_net vtiming_in_1 [get_bd_intf_ports /vtiming_in] [get_bd_intf_pins /v_axi4s_vid_out_1/vtiming_in]
 connect_bd_intf_net -intf_net vid_io_in_1 [get_bd_intf_ports /vid_io_in] [get_bd_intf_pins /v_vid_in_axi4s_1/vid_io_in]
-connect_bd_intf_net -intf_net v_vid_in_axi4s_1_video_out [get_bd_intf_pins /axi_vdma_1/S_AXIS_S2MM] [get_bd_intf_pins /v_vid_in_axi4s_1/video_out]
 
 # Create port connections
 connect_bd_net -net mkl2hcrt_1_gmii_rstn [get_bd_ports /gmii_rstn] [get_bd_pins /mkL2HCrt_1/gmii_rstn]
@@ -125,6 +132,7 @@ connect_bd_net -net mm2s_fsync_1 [get_bd_ports /mm2s_fsync] [get_bd_pins /axi_vd
 connect_bd_net -net s2mm_fsync_1 [get_bd_ports /s2mm_fsync] [get_bd_pins /axi_vdma_1/s2mm_fsync]
 connect_bd_net -net rst_1 [get_bd_ports /vid_io_in_rst] [get_bd_pins /v_vid_in_axi4s_1/rst]
 connect_bd_net -net rst_2 [get_bd_ports /vid_io_out_rst] [get_bd_pins /v_axi4s_vid_out_1/rst]
+connect_bd_net -net xlconstant_1_const [get_bd_pins /xlconstant_1/const] [get_bd_pins /axi_vdma_1/mm2s_frame_ptr_in] [get_bd_pins /axi_vdma_1/s2mm_frame_ptr_in]
 
 # Create address segments
 create_bd_addr_seg -range 0x1000 -offset 0x0 [get_bd_addr_spaces /mkL2HCrt_1/m_axi] [get_bd_addr_segs /mkA4LS_1/s_axi/reg0] SEG2
