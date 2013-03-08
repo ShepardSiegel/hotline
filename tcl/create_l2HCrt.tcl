@@ -1,5 +1,5 @@
 #
-# Create a4ls 
+# Create l2HCrt
 #
 
 ipx::infer_core {/home/shep/projects/hotline/ip/l2HCrt}
