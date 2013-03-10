@@ -29,10 +29,10 @@ Extended FPGA Options:
 Controller Options :
    Memory                        : DDR3_SDRAM
    Interface                     : AXI
-   Design Clock Frequency        : 2500 ps (400.00 MHz)
+   Design Clock Frequency        : 1250 ps (800.00 MHz)
    Phy to Controller Clock Ratio : 4:1
    Input Clock Period            : 5000 ps
-   CLKFBOUT_MULT (PLL)           : 4
+   CLKFBOUT_MULT (PLL)           : 8
    DIVCLK_DIVIDE (PLL)           : 1
    VCC_AUX IO                    : 1.8V
    Memory Type                   : SODIMMs
@@ -44,7 +44,7 @@ Controller Options :
    ORDERING                      : Normal
 
 AXI Parameters :
-   Data Width                    : 64
+   Data Width                    : 128
    Arbitration Scheme            : RD_PRI_REG
    Narrow Burst Support          : 1
    ID Width                      : 4
@@ -52,7 +52,7 @@ AXI Parameters :
 Memory Options:
    Burst Length (MR0[1:0])          : 8 - Fixed
    Read Burst Type (MR0[3])         : Sequential
-   CAS Latency (MR0[6:4])           : 6
+   CAS Latency (MR0[6:4])           : 11
    Output Drive Strength (MR1[5,1]) : RZQ/7
    Controller CS option             : Enable
    Rtt_NOM - ODT (MR1[9,6,2])       : RZQ/6

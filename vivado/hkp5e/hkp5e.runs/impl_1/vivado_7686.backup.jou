@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# Vivado v2013.1.0 (64-bit)
+# Build 237167 by xbuild on Tue Feb 12 21:40:19 MST 2013
+# Start of session at: Sun Mar 10 10:57:08 2013
+# Process ID: 7193
+# Log file: /home/shep/projects/hotline/vivado/hkp5e/hkp5e.runs/impl_1/fpgaTop.rdi
+# Journal file: /home/shep/projects/hotline/vivado/hkp5e/hkp5e.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source -notrace "/home/shep/.Xilinx/Vivado/init.tcl"
+source fpgaTop.tcl -notrace

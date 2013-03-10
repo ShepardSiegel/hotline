@@ -21,6 +21,10 @@ set_property used_in_implementation 0 [get_files -all /home/shep/projects/hotlin
 set_property used_in_implementation 0 [get_files -all /home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_v_axi4s_vid_out_1_0/design_1_v_axi4s_vid_out_1_0.xdc]
 set_property used_in_implementation 0 [get_files -all /home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_v_vid_in_axi4s_1_0/design_1_v_vid_in_axi4s_1_0_ooc.xdc]
 set_property used_in_implementation 0 [get_files -all /home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_v_vid_in_axi4s_1_0/design_1_v_vid_in_axi4s_1_0.xdc]
+set_property used_in_implementation 0 [get_files -all /home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_auto_us_0/design_1_auto_us_0_ooc.xdc]
+set_property used_in_implementation 0 [get_files -all /home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_auto_us_0/design_1_auto_us_0.xdc]
+set_property used_in_implementation 0 [get_files -all /home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1_ooc.xdc]
+set_property used_in_implementation 0 [get_files -all /home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1.xdc]
 set_property is_locked true [get_files /home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/design_1.bd]
 
 read_verilog /home/shep/projects/hotline/rtl/fpgaTop.v

@@ -42,6 +42,12 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_v_vid_
 # IP: bd/design_1/ip/design_1_xlconstant_1_0/design_1_xlconstant_1_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_xlconstant_1_0 || ORIG_REF_NAME==design_1_xlconstant_1_0}]
 
+# IP: bd/design_1/ip/design_1_auto_us_0/design_1_auto_us_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_auto_us_0 || ORIG_REF_NAME==design_1_auto_us_0}]
+
+# IP: bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_auto_us_1 || ORIG_REF_NAME==design_1_auto_us_1}]
+
 # XDC: bd/design_1/ip/design_1_mig_1_0/design_1_mig_1_0/user_design/constraints/design_1_mig_1_0.xdc
 #dup# set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_mig_1_0 || ORIG_REF_NAME==design_1_mig_1_0}]
 
@@ -59,3 +65,15 @@ set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {R
 
 # XDC: bd/design_1/ip/design_1_v_vid_in_axi4s_1_0/design_1_v_vid_in_axi4s_1_0.xdc
 set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==design_1_v_vid_in_axi4s_1_0 || ORIG_REF_NAME==design_1_v_vid_in_axi4s_1_0}] {/inst }]/inst ]]
+
+# XDC: bd/design_1/ip/design_1_auto_us_0/design_1_auto_us_0_ooc.xdc
+set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==design_1_auto_us_0 || ORIG_REF_NAME==design_1_auto_us_0}] {/inst }]/inst ]]
+
+# XDC: bd/design_1/ip/design_1_auto_us_0/design_1_auto_us_0.xdc
+#dup# set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==design_1_auto_us_0 || ORIG_REF_NAME==design_1_auto_us_0}] {/inst }]/inst ]]
+
+# XDC: bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1_ooc.xdc
+set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==design_1_auto_us_1 || ORIG_REF_NAME==design_1_auto_us_1}] {/inst }]/inst ]]
+
+# XDC: bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1.xdc
+#dup# set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==design_1_auto_us_1 || ORIG_REF_NAME==design_1_auto_us_1}] {/inst }]/inst ]]

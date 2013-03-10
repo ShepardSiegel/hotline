@@ -331,25 +331,6 @@
 					</spirit:parameter>
 				</spirit:parameters>
 			</spirit:view>
-			<spirit:view>
-				<spirit:name>xilinx_verilogbehavioralsimulation</spirit:name>
-				<spirit:displayName>Verilog Simulation</spirit:displayName>
-				<spirit:envIdentifier>verilogSource:vivado.xilinx.com:simulation</spirit:envIdentifier>
-				<spirit:language>verilog</spirit:language>
-				<spirit:fileSetRef>
-					<spirit:localName>xilinx_verilogbehavioralsimulation_view_fileset</spirit:localName>
-				</spirit:fileSetRef>
-				<spirit:parameters>
-					<spirit:parameter>
-						<spirit:name>customizationCRC</spirit:name>
-						<spirit:value>2814172153</spirit:value>
-					</spirit:parameter>
-					<spirit:parameter>
-						<spirit:name>customizationCRCversion</spirit:name>
-						<spirit:value>2</spirit:value>
-					</spirit:parameter>
-				</spirit:parameters>
-			</spirit:view>
 		</spirit:views>
 		<spirit:ports>
 			<spirit:port>
@@ -360,7 +341,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -373,7 +353,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 					<spirit:driver>
@@ -389,7 +368,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 					<spirit:driver>
@@ -405,7 +383,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 					<spirit:driver>
@@ -428,7 +405,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -441,7 +417,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -454,7 +429,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -467,7 +441,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -480,7 +453,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -493,7 +465,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 					<spirit:driver>
@@ -509,7 +480,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -522,7 +492,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 					<spirit:driver>
@@ -538,7 +507,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -551,7 +519,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -564,7 +531,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -577,7 +543,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -590,7 +555,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -603,7 +567,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -623,7 +586,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -636,7 +598,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -649,7 +610,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -662,7 +622,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -675,7 +634,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -688,7 +646,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -701,7 +658,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 					<spirit:driver>
@@ -717,7 +673,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -730,7 +685,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -743,7 +697,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -756,7 +709,6 @@
 						<spirit:wireTypeDef>
 							<spirit:typeName>wire</spirit:typeName>
 							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
-							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
 						</spirit:wireTypeDef>
 					</spirit:wireTypeDefs>
 				</spirit:wire>
@@ -950,39 +902,6 @@
 				<spirit:logicalName>work</spirit:logicalName>
 			</spirit:file>
 		</spirit:fileSet>
-		<spirit:fileSet>
-			<spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
-			<spirit:file>
-				<spirit:name>v_axi4s_vid_out_v3_0/hdl/verilog/v_axi4s_vid_out_v3_0_axi4s_vid_out_top.v</spirit:name>
-				<spirit:fileType>verilogSource</spirit:fileType>
-				<spirit:logicalName>v_axi4s_vid_out_v3_0</spirit:logicalName>
-			</spirit:file>
-			<spirit:file>
-				<spirit:name>v_axi4s_vid_out_v3_0/hdl/verilog/v_axi4s_vid_out_v3_0_bridge_async_fifo_2.v</spirit:name>
-				<spirit:fileType>verilogSource</spirit:fileType>
-				<spirit:logicalName>v_axi4s_vid_out_v3_0</spirit:logicalName>
-			</spirit:file>
-			<spirit:file>
-				<spirit:name>v_axi4s_vid_out_v3_0/hdl/verilog/v_axi4s_vid_out_v3_0_out_coupler.v</spirit:name>
-				<spirit:fileType>verilogSource</spirit:fileType>
-				<spirit:logicalName>v_axi4s_vid_out_v3_0</spirit:logicalName>
-			</spirit:file>
-			<spirit:file>
-				<spirit:name>v_axi4s_vid_out_v3_0/hdl/verilog/v_axi4s_vid_out_v3_0_out_sync.v</spirit:name>
-				<spirit:fileType>verilogSource</spirit:fileType>
-				<spirit:logicalName>v_axi4s_vid_out_v3_0</spirit:logicalName>
-			</spirit:file>
-			<spirit:file>
-				<spirit:name>v_axi4s_vid_out_v3_0/hdl/verilog/v_axi4s_vid_out_v3_0_vid_out_formatter.v</spirit:name>
-				<spirit:fileType>verilogSource</spirit:fileType>
-				<spirit:logicalName>v_axi4s_vid_out_v3_0</spirit:logicalName>
-			</spirit:file>
-			<spirit:file>
-				<spirit:name>sim/design_1_v_axi4s_vid_out_1_0.v</spirit:name>
-				<spirit:fileType>verilogSource</spirit:fileType>
-				<spirit:logicalName>work</spirit:logicalName>
-			</spirit:file>
-		</spirit:fileSet>
 	</spirit:fileSets>
 	<spirit:description>Bridge from AXI4-Stream slave bus to video output with syncs.</spirit:description>
 	<spirit:parameters>
@@ -1065,7 +984,7 @@
 			<xilinx:upgrades>
 				<xilinx:canUpgradeFrom>xilinx.com:ip:v_axi4s_vid_out:2.01.a</xilinx:canUpgradeFrom>
 			</xilinx:upgrades>
-			<xilinx:coreCreationDateTime>2013-03-08T12:35:14</xilinx:coreCreationDateTime>
+			<xilinx:coreCreationDateTime>2013-03-10T10:32:47</xilinx:coreCreationDateTime>
 		</xilinx:coreExtensions>
 		<xilinx:packagingInfo>
 			<xilinx:xilinxVersion>2013.1.0</xilinx:xilinxVersion>

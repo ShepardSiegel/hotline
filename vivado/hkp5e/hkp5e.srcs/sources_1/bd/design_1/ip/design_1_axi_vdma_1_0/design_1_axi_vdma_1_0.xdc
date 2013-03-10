@@ -45,6 +45,34 @@
 # THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 # PART OF THIS FILE AT ALL TIMES.
 ##################################################################################################################################
-## INFO: No CDC present in axi-vdma
-## INFO: When C_PRMRY_IS_ACLK_ASYNC = 0, axi-vdma MANDATORY REQUIREMENT IS THAT ALL axi-vdma CLOCK PORTS MUST BE CONNECTED TO THE SAME CLOCK SOURCE HAVING SAME FREQUENCY i.e. THERE IS ONLY ONE CLOCK-DOMAIN IN THE ENTIRE axi-vdma DESIGN
-## INFO: PLEASE ENSURE THIS REQUIREMENT IS MET.
+##################################################################################################################################
+##################################################################################################################################
+##################################################################################################################################
+##################################################################################################################################
+##################################################################################################################################
+##################################################################################################################################
+##################################################################################################################################
+##################################################################################################################################
+#
+#
+# create_clock -name s_axi_lite_aclk -period 15 [get_ports s_axi_lite_aclk]
+# create_clock -name m_axi_mm2s_aclk -period 10 [get_ports m_axi_mm2s_aclk]
+# create_clock -name m_axis_mm2s_aclk -period 10  [get_ports m_axis_mm2s_aclk]
+# create_clock -name m_axi_s2mm_aclk -period 10 [get_ports m_axi_s2mm_aclk]
+# create_clock -name s_axis_s2mm_aclk -period 10 [get_ports s_axis_s2mm_aclk]
+## INFO: AXI-Lite to&fro MMAP clock domain Crossings in axi_vdma
+ set_false_path -to [get_cells -hier *cdc_tig* -filter {is_sequential}]
+## INFO: CDC Crossing in axi_vdma
+ set_false_path -from [get_cells -hier *cdc_from* -filter {is_sequential}] -to [get_cells -hier *cdc_to* -filter {is_sequential}]
+
+## following constraints are needed for ASYNC FIFOs in axi_vdma
+
+
+
+  set_false_path -from [get_cells -hier *rsync.ric.power_on_rd_rst_reg[*]*]
+  set_false_path -from [get_cells -hier *rsync.ric.rd_rst_reg_reg*]
+
+
+  set_false_path -from [get_cells -hier *rsync.ric.wr_rst_reg*]
+  set_false_path -from [get_cells -hier *rsync.ric.power_on_wr_rst_reg[*]*]
+

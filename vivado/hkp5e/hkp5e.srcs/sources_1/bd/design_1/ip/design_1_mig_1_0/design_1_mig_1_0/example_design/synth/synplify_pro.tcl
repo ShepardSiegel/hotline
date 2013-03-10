@@ -105,7 +105,7 @@ set_option -part_companion ""
 set_option -top_module "example_top"
 
 # mapper_options
-set_option -frequency 400
+set_option -frequency 800
 set_option -write_verilog 0
 set_option -write_vhdl 0
 

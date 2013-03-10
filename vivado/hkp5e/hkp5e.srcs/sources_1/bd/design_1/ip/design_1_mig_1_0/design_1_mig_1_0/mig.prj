@@ -19,7 +19,7 @@
     <dci_cascade>1</dci_cascade>
     <Controller number="0" >
         <MemoryDevice>DDR3_SDRAM/SODIMMs/MT8JTF12864HZ-1G6</MemoryDevice>
-        <TimePeriod>2500</TimePeriod>
+        <TimePeriod>1250</TimePeriod>
         <VccAuxIO>1.8V</VccAuxIO>
         <PHYRatio>4:1</PHYRatio>
         <InputClkFreq>200</InputClkFreq>
@@ -166,7 +166,7 @@
         </TimingParameters>
         <mrBurstLength name="Burst Length" >8 - Fixed</mrBurstLength>
         <mrBurstType name="Read Burst Type and Length" >Sequential</mrBurstType>
-        <mrCasLatency name="CAS Latency" >6</mrCasLatency>
+        <mrCasLatency name="CAS Latency" >11</mrCasLatency>
         <mrMode name="Mode" >Normal</mrMode>
         <mrDllReset name="DLL Reset" >No</mrDllReset>
         <mrPdMode name="DLL control for precharge PD" >Slow Exit</mrPdMode>
@@ -180,7 +180,7 @@
         <emrDQS name="TDQS enable" >Enabled</emrDQS>
         <emrRDQS name="Qoff" >Output Buffer Enabled</emrRDQS>
         <mr2PartialArraySelfRefresh name="Partial-Array Self Refresh" >Full Array</mr2PartialArraySelfRefresh>
-        <mr2CasWriteLatency name="CAS write latency" >5</mr2CasWriteLatency>
+        <mr2CasWriteLatency name="CAS write latency" >8</mr2CasWriteLatency>
         <mr2AutoSelfRefresh name="Auto Self Refresh" >Enabled</mr2AutoSelfRefresh>
         <mr2SelfRefreshTempRange name="High Temparature Self Refresh Rate" >Normal</mr2SelfRefreshTempRange>
         <mr2RTTWR name="RTT_WR - Dynamic On Die Termination (ODT)" >Dynamic ODT off</mr2RTTWR>
@@ -188,7 +188,7 @@
         <AXIParameters>
             <C0_C_RD_WR_ARB_ALGORITHM>RD_PRI_REG</C0_C_RD_WR_ARB_ALGORITHM>
             <C0_S_AXI_ADDR_WIDTH>32</C0_S_AXI_ADDR_WIDTH>
-            <C0_S_AXI_DATA_WIDTH>64</C0_S_AXI_DATA_WIDTH>
+            <C0_S_AXI_DATA_WIDTH>128</C0_S_AXI_DATA_WIDTH>
             <C0_S_AXI_ID_WIDTH>4</C0_S_AXI_ID_WIDTH>
             <C0_S_AXI_SUPPORTS_NARROW_BURST>1</C0_S_AXI_SUPPORTS_NARROW_BURST>
         </AXIParameters>

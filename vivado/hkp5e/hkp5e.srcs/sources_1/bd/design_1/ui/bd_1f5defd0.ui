@@ -1,0 +1,97 @@
+{
+   guistr: "# # String gsaved with Nlview version 6.2.11  2013-01-31 bk=1.2815 VDI=32 GEI=33
+#  -string -flagsOSRD
+preplace port mm2s_fsync -pg 1 -y 500 -defaultsOSRD
+preplace port vid_io_out -pg 1 -y 710 -defaultsOSRD
+preplace port gmii_rstn -pg 1 -y 470 -defaultsOSRD
+preplace port sys1_rstn -pg 1 -y 430 -defaultsOSRD
+preplace port DDR3 -pg 1 -y 520 -defaultsOSRD
+preplace port SYS_CLK -pg 1 -y 540 -defaultsOSRD
+preplace port vid_io_out_rst -pg 1 -y 670 -defaultsOSRD
+preplace port init_calib_complete -pg 1 -y 580 -defaultsOSRD
+preplace port vid_io_in_rst -pg 1 -y 780 -defaultsOSRD
+preplace port sys0_clk -pg 1 -y 560 -defaultsOSRD
+preplace port vid_io_in -pg 1 -y 740 -defaultsOSRD
+preplace port s2mm_fsync -pg 1 -y 520 -defaultsOSRD
+preplace port vid_io_out_clk -pg 1 -y 940 -defaultsOSRD
+preplace port vid_io_in_clk -pg 1 -y 760 -defaultsOSRD
+preplace port aresetn -pg 1 -y 800 -defaultsOSRD
+preplace port gmii -pg 1 -y 450 -defaultsOSRD
+preplace port sys_rst -pg 1 -y 560 -defaultsOSRD
+preplace port vtiming_in -pg 1 -y 690 -defaultsOSRD
+preplace port sys1 -pg 1 -y 410 -defaultsOSRD
+preplace inst v_axi4s_vid_out_1 -pg 1 -lvl 5 -y 750 -defaultsOSRD
+preplace inst axi_interconnect_1 -pg 1 -lvl 2 -y 170 -defaultsOSRD
+preplace inst axi_interconnect_2 -pg 1 -lvl 4 -y 250 -defaultsOSRD
+preplace inst mig_1 -pg 1 -lvl 5 -y 550 -defaultsOSRD
+preplace inst mkL2HCrt_1 -pg 1 -lvl 1 -y 420 -defaultsOSRD
+preplace inst v_vid_in_axi4s_1 -pg 1 -lvl 2 -y 810 -defaultsOSRD
+preplace inst axi_vdma_1 -pg 1 -lvl 3 -y 240 -defaultsOSRD
+preplace inst mkA4LS_1 -pg 1 -lvl 5 -y 80 -defaultsOSRD
+preplace inst mkA4LS_2 -pg 1 -lvl 5 -y 390 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 2 -y 410 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 2 -y 410 -defaultsOSRD
+preplace netloc vtiming_in_1 1 0 5 N 690 N 690 N 690 N 690 N
+preplace netloc vtiming_in_1 1 0 5 N 690 N 690 N 690 N 690 N
+preplace netloc sys1_1 1 0 1 N
+preplace netloc sys1_1 1 0 1 N
+preplace netloc axi_interconnect_1_m01_axi 1 2 3 790 410 N 410 1430
+preplace netloc axi_interconnect_1_m01_axi 1 2 3 790 410 N 410 1430
+preplace netloc mig_1_init_calib_complete 1 5 1 N
+preplace netloc mig_1_init_calib_complete 1 5 1 N
+preplace netloc rst_1 1 0 2 N 780 N
+preplace netloc rst_1 1 0 2 N 780 N
+preplace netloc axi_interconnect_1_m02_axi 1 2 1 730
+preplace netloc axi_interconnect_1_m02_axi 1 2 1 730
+preplace netloc rst_2 1 0 5 N 670 N 670 N 670 N 670 1450
+preplace netloc rst_2 1 0 5 N 670 N 670 N 670 N 670 1450
+preplace netloc sys_clk_1 1 0 5 N 540 N 540 N 540 N 540 N
+preplace netloc sys_clk_1 1 0 5 N 540 N 540 N 540 N 540 N
+preplace netloc mkl2hcrt_1_gmii 1 1 5 430 450 N 450 N 450 N 450 N
+preplace netloc mkl2hcrt_1_gmii 1 1 5 430 450 N 450 N 450 N 450 N
+preplace netloc mkl2hcrt_1_m_axi_aclk 1 1 4 370 10 830 80 N 80 1510
+preplace netloc mkl2hcrt_1_m_axi_aclk 1 1 4 370 10 830 80 N 80 1510
+preplace netloc mkl2hcrt_1_m_axi 1 1 1 390
+preplace netloc mkl2hcrt_1_m_axi 1 1 1 390
+preplace netloc xlconstant_1_const 1 2 1 770
+preplace netloc xlconstant_1_const 1 2 1 770
+preplace netloc s00_axi_1 1 3 1 1150
+preplace netloc s00_axi_1 1 3 1 1150
+preplace netloc s2mm_fsync_1 1 0 3 N 520 470 360 750
+preplace netloc s2mm_fsync_1 1 0 3 N 520 470 360 750
+preplace netloc mm2s_fsync_1 1 0 3 N 500 450 340 730
+preplace netloc mm2s_fsync_1 1 0 3 N 500 450 340 730
+preplace netloc vid_io_out_clk_1 1 0 5 N 940 N 940 N 940 N 940 1470
+preplace netloc vid_io_out_clk_1 1 0 5 N 940 N 940 N 940 N 940 1470
+preplace netloc vid_io_in_1 1 0 2 N 740 N
+preplace netloc vid_io_in_1 1 0 2 N 740 N
+preplace netloc mig_1_ddr3 1 5 1 N
+preplace netloc mig_1_ddr3 1 5 1 N
+preplace netloc axi_vdma_1_m_axis_mm2s 1 3 2 1150 390 1470
+preplace netloc axi_vdma_1_m_axis_mm2s 1 3 2 1150 390 1470
+preplace netloc s01_axi_1 1 3 1 1170
+preplace netloc s01_axi_1 1 3 1 1170
+preplace netloc sys_rst_1 1 0 5 N 560 N 560 N 560 N 560 N
+preplace netloc sys_rst_1 1 0 5 N 560 N 560 N 560 N 560 N
+preplace netloc sys1_rstn_1 1 0 1 N
+preplace netloc sys1_rstn_1 1 0 1 N
+preplace netloc vid_io_in_clk_1 1 0 2 N 760 N
+preplace netloc vid_io_in_clk_1 1 0 2 N 760 N
+preplace netloc axi_interconnect_1_m00_axi 1 2 3 710 60 N 60 N
+preplace netloc axi_interconnect_1_m00_axi 1 2 3 710 60 N 60 N
+preplace netloc mkl2hcrt_1_m_axi_aresetn1 1 1 4 410 320 710 430 N 430 1450
+preplace netloc mkl2hcrt_1_m_axi_aresetn1 1 1 4 410 320 710 430 N 430 1450
+preplace netloc axi_interconnect_2_m00_axi 1 4 1 1490
+preplace netloc axi_interconnect_2_m00_axi 1 4 1 1490
+preplace netloc mig_1_ui_clk 1 1 5 450 920 830 390 1190 710 1510 620 1770
+preplace netloc mig_1_ui_clk 1 1 5 450 920 830 390 1190 710 1510 620 1770
+preplace netloc mkl2hcrt_1_gmii_rstn 1 1 5 370 470 N 470 N 470 N 470 N
+preplace netloc mkl2hcrt_1_gmii_rstn 1 1 5 370 470 N 470 N 470 N 470 N
+preplace netloc v_axi4s_vid_out_1_vid_io_out 1 5 1 N
+preplace netloc v_axi4s_vid_out_1_vid_io_out 1 5 1 N
+preplace netloc v_vid_in_axi4s_1_video_out 1 2 1 810
+preplace netloc v_vid_in_axi4s_1_video_out 1 2 1 810
+preplace netloc aresetn_1 1 0 5 N 800 390 650 N 650 1210 730 1430
+levelinfo -pg 1 130 260 590 990 1320 1640 1790
+",
+}

@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "axi_crossbar_v2_0_axi_crossbar,Vivado 2013.1.0" *)
 (* CHECK_LICENSE_TYPE = "design_1_xbar_1,axi_crossbar_v2_0_axi_crossbar,{}" *)
-(* CORE_GENERATION_INFO = "design_1_xbar_1,axi_crossbar_v2_0_axi_crossbar,{x_ipProduct=Vivado 2013.1.0,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_crossbar,x_ipVersion=2.0,x_ipCoreRevision=128000,x_ipLanguage=VERILOG,C_FAMILY=kintex7,C_NUM_SLAVE_SLOTS=2,C_NUM_MASTER_SLOTS=1,C_AXI_ID_WIDTH=1,C_AXI_ADDR_WIDTH=32,C_AXI_DATA_WIDTH=64,C_AXI_PROTOCOL=0,C_NUM_ADDR_RANGES=1,C_M_AXI_BASE_ADDR=0x0000000080000000,C_M_AXI_ADDR_WIDTH=0x0000001e,C_S_AXI_BASE_ID=0x0000000100000000,C_S_AXI_THREAD_ID_WIDTH=0x0000000000000000,C_AXI_SUPPORTS_USER_SIGNALS=0,C_AXI_AWUSER_WIDTH=1,C_AXI_ARUSER_WIDTH=1,C_AXI_WUSER_WIDTH=1,C_AXI_RUSER_WIDTH=1,C_AXI_BUSER_WIDTH=1,C_M_AXI_WRITE_CONNECTIVITY=0x00000003,C_M_AXI_READ_CONNECTIVITY=0x00000003,C_R_REGISTER=0,C_S_AXI_SINGLE_THREAD=0x0000000000000000,C_S_AXI_WRITE_ACCEPTANCE=0x0000000200000001,C_S_AXI_READ_ACCEPTANCE=0x0000000100000002,C_M_AXI_WRITE_ISSUING=0x00000002,C_M_AXI_READ_ISSUING=0x00000002,C_S_AXI_ARB_PRIORITY=0x0000000000000000,C_M_AXI_SECURE=0x00000000,C_CONNECTIVITY_MODE=1}" *)
+(* CORE_GENERATION_INFO = "design_1_xbar_1,axi_crossbar_v2_0_axi_crossbar,{x_ipProduct=Vivado 2013.1.0,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_crossbar,x_ipVersion=2.0,x_ipCoreRevision=128000,x_ipLanguage=VERILOG,C_FAMILY=kintex7,C_NUM_SLAVE_SLOTS=2,C_NUM_MASTER_SLOTS=1,C_AXI_ID_WIDTH=1,C_AXI_ADDR_WIDTH=32,C_AXI_DATA_WIDTH=128,C_AXI_PROTOCOL=0,C_NUM_ADDR_RANGES=1,C_M_AXI_BASE_ADDR=0x0000000080000000,C_M_AXI_ADDR_WIDTH=0x0000001e,C_S_AXI_BASE_ID=0x0000000100000000,C_S_AXI_THREAD_ID_WIDTH=0x0000000000000000,C_AXI_SUPPORTS_USER_SIGNALS=0,C_AXI_AWUSER_WIDTH=1,C_AXI_ARUSER_WIDTH=1,C_AXI_WUSER_WIDTH=1,C_AXI_RUSER_WIDTH=1,C_AXI_BUSER_WIDTH=1,C_M_AXI_WRITE_CONNECTIVITY=0x00000003,C_M_AXI_READ_CONNECTIVITY=0x00000003,C_R_REGISTER=0,C_S_AXI_SINGLE_THREAD=0x0000000000000000,C_S_AXI_WRITE_ACCEPTANCE=0x0000000200000001,C_S_AXI_READ_ACCEPTANCE=0x0000000100000002,C_M_AXI_WRITE_ISSUING=0x00000002,C_M_AXI_READ_ISSUING=0x00000002,C_S_AXI_ARB_PRIORITY=0x0000000000000000,C_M_AXI_SECURE=0x00000000,C_CONNECTIVITY_MODE=1}" *)
 module design_1_xbar_1 (
   aclk,
   aresetn,
@@ -147,8 +147,8 @@ input [5 : 0] s_axi_awprot;
 input [7 : 0] s_axi_awqos;
 input [1 : 0] s_axi_awvalid;
 output [1 : 0] s_axi_awready;
-input [127 : 0] s_axi_wdata;
-input [15 : 0] s_axi_wstrb;
+input [255 : 0] s_axi_wdata;
+input [31 : 0] s_axi_wstrb;
 input [1 : 0] s_axi_wlast;
 input [1 : 0] s_axi_wvalid;
 output [1 : 0] s_axi_wready;
@@ -168,7 +168,7 @@ input [7 : 0] s_axi_arqos;
 input [1 : 0] s_axi_arvalid;
 output [1 : 0] s_axi_arready;
 output [1 : 0] s_axi_rid;
-output [127 : 0] s_axi_rdata;
+output [255 : 0] s_axi_rdata;
 output [3 : 0] s_axi_rresp;
 output [1 : 0] s_axi_rlast;
 output [1 : 0] s_axi_rvalid;
@@ -185,8 +185,8 @@ output [3 : 0] m_axi_awregion;
 output [3 : 0] m_axi_awqos;
 output [0 : 0] m_axi_awvalid;
 input [0 : 0] m_axi_awready;
-output [63 : 0] m_axi_wdata;
-output [7 : 0] m_axi_wstrb;
+output [127 : 0] m_axi_wdata;
+output [15 : 0] m_axi_wstrb;
 output [0 : 0] m_axi_wlast;
 output [0 : 0] m_axi_wvalid;
 input [0 : 0] m_axi_wready;
@@ -207,7 +207,7 @@ output [3 : 0] m_axi_arqos;
 output [0 : 0] m_axi_arvalid;
 input [0 : 0] m_axi_arready;
 input [0 : 0] m_axi_rid;
-input [63 : 0] m_axi_rdata;
+input [127 : 0] m_axi_rdata;
 input [1 : 0] m_axi_rresp;
 input [0 : 0] m_axi_rlast;
 input [0 : 0] m_axi_rvalid;
@@ -219,7 +219,7 @@ output [0 : 0] m_axi_rready;
     .C_NUM_MASTER_SLOTS(1),
     .C_AXI_ID_WIDTH(1),
     .C_AXI_ADDR_WIDTH(32),
-    .C_AXI_DATA_WIDTH(64),
+    .C_AXI_DATA_WIDTH(128),
     .C_AXI_PROTOCOL(0),
     .C_NUM_ADDR_RANGES(1),
     .C_M_AXI_BASE_ADDR('H0000000080000000),

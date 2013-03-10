@@ -1532,7 +1532,7 @@
 			<xilinx:displayName>AXI Interconnect</xilinx:displayName>
 			<xilinx:vendorURL>http://www.xilinx.com</xilinx:vendorURL>
 			<xilinx:coreRevision>128000</xilinx:coreRevision>
-			<xilinx:coreCreationDateTime>2013-03-08T12:35:14</xilinx:coreCreationDateTime>
+			<xilinx:coreCreationDateTime>2013-03-10T10:32:47</xilinx:coreCreationDateTime>
 		</xilinx:coreExtensions>
 		<xilinx:packagingInfo>
 			<xilinx:xilinxVersion>2013.1.0</xilinx:xilinxVersion>

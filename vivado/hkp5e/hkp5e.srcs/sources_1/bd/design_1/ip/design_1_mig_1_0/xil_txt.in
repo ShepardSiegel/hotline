@@ -13,7 +13,7 @@ SET_PREFERENCE flowvendor Other
 SET_PREFERENCE tool vivado
 SET_PREFERENCE compnamestatus 0
 SET_PARAMETER component_name design_1_mig_1_0
-SET_PARAMETER xml_input_file /home/shep/projects/hotline/data/mig_100MHz_8B.prj
+SET_PARAMETER xml_input_file /home/shep/projects/hotline/data/mig_200MHz_16B.prj
 SET_CORE_NAME MIG 7 Series
 SET_CORE_VERSION 1.9.a
 SET_CORE_VLNV xilinx.com:ip:mig_7series:1.9.a

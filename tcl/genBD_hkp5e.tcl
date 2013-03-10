@@ -69,8 +69,8 @@ set mig_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:1.9.a mig_1 
 #   puts "Copying <$mig_file> to <$str_mig_folder//home/shep/projects/hotline/data/mig_100MHz_16B.prj>..."
 #   file copy $mig_file "$str_mig_folder//home/shep/projects/hotline/data/mig_100MHz_16B.prj"
 #}
-puts "FIXME using 8B (64b) DDR800 MIG"
-set_property -dict [ list CONFIG.XML_INPUT_FILE {/home/shep/projects/hotline/data/mig_100MHz_8B.prj}  ] $mig_1
+puts "FIXME using 16B (128b) DDR1600 MIG"
+set_property -dict [ list CONFIG.XML_INPUT_FILE {/home/shep/projects/hotline/data/mig_200MHz_16B.prj}  ] $mig_1
 
 # Create instance: axi_interconnect_1, and set properties
 set axi_interconnect_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.0 axi_interconnect_1 ]
@@ -140,3 +140,13 @@ create_bd_addr_seg -range 0x1000 -offset 0x10000 [get_bd_addr_spaces /mkL2HCrt_1
 create_bd_addr_seg -range 0x10000 -offset 0x20000 [get_bd_addr_spaces /mkL2HCrt_1/m_axi] [get_bd_addr_segs /axi_vdma_1/S_AXI_LITE/Reg] SEG3
 create_bd_addr_seg -range 0x40000000 -offset 0x80000000 [get_bd_addr_spaces /axi_vdma_1/Data_MM2S] [get_bd_addr_segs /mig_1/memmap/memaddr] SEG1
 create_bd_addr_seg -range 0x40000000 -offset 0x80000000 [get_bd_addr_spaces /axi_vdma_1/Data_S2MM] [get_bd_addr_segs /mig_1/memmap/memaddr] SEG2
+
+#clocks
+set_property CONFIG.FREQ_HZ {200000000} [get_bd_intf_ports /SYS_CLK]
+set_property CONFIG.FREQ_HZ 200000000 [ get_bd_ports /sys0_clk]
+set_property CONFIG.FREQ_HZ {125000000} [get_bd_intf_ports /sys1]
+set_property CONFIG.FREQ_HZ {125000000} [get_bd_pins /mkL2HCrt_1/m_axi_aclk]
+
+regenerate_bd_layout
+save_bd_design
+

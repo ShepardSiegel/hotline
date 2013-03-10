@@ -14,7 +14,7 @@
 					spirit:name="mig_7series"
 					spirit:version="1.9.a"/>
 			<spirit:configurableElementValues>
-				<spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.XML_INPUT_FILE">/home/shep/projects/hotline/data/mig_100MHz_8B.prj</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.XML_INPUT_FILE">/home/shep/projects/hotline/data/mig_200MHz_16B.prj</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.Component_Name">design_1_mig_1_0</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.NoOfControllers">1</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.COMBINED_INTERFACE">0</spirit:configurableElementValue>
@@ -86,13 +86,13 @@
 				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.LPDDR2_ADDR_WIDTH">8</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.LPDDR2_nCK_PER_CLK">2</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.LPDDR2_DATA_WIDTH">8</spirit:configurableElementValue>
-				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.FREQ_HZ">100000000</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.FREQ_HZ">200000000</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.PHASE">337.5</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_S_AXI_CTRLID_WIDTH">4</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_S_AXI_CTRLDATA_WIDTH">32</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_S_AXI_CTRLADDR_WIDTH">32</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_S_AXI_ID_WIDTH">4</spirit:configurableElementValue>
-				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_S_AXI_DATA_WIDTH">64</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_S_AXI_DATA_WIDTH">128</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_S_AXI_ADDR_WIDTH">32</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_S_AXI_MEM_SIZE">1073741824</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.QDRIIP_NUM_DEVICES">1</spirit:configurableElementValue>

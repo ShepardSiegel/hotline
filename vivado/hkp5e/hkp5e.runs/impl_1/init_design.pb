@@ -49,14 +49,14 @@ C/opt/Xilinx/Vivado/2013.1/data/parts/xilinx/kintex7/ConfigModes.xmlZ21-14
 /Loading list of drcs for the architecture : %s
 17*drc2?
 =/opt/Xilinx/Vivado/2013.1/data/./parts/xilinx/kintex7/drc.xmlZ23-17
-û
+ù
 Parsing XDC File [%s]
-179*designutils2h
-f/home/shep/projects/hotline/vivado/hkp5e/hkp5e.runs/impl_1/.Xil/Vivado-10775-ar-cms520/dcp/fpgaTop.xdcZ20-179
-ß
+179*designutils2g
+e/home/shep/projects/hotline/vivado/hkp5e/hkp5e.runs/impl_1/.Xil/Vivado-7193-ar-cms520/dcp/fpgaTop.xdcZ20-179
+¶
 Finished Parsing XDC File [%s]
-178*designutils2h
-f/home/shep/projects/hotline/vivado/hkp5e/hkp5e.runs/impl_1/.Xil/Vivado-10775-ar-cms520/dcp/fpgaTop.xdcZ20-178
+178*designutils2g
+e/home/shep/projects/hotline/vivado/hkp5e/hkp5e.runs/impl_1/.Xil/Vivado-7193-ar-cms520/dcp/fpgaTop.xdcZ20-178
 ä
 !Unisim Transformation Summary:
 %s111*project2Õ
@@ -68,7 +68,7 @@ f/home/shep/projects/hotline/vivado/hkp5e/hkp5e.runs/impl_1/.Xil/Vivado-10775-ar
   RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 430 instances
 Z1-111
 1
-%Phase 0 | Netlist Checksum: dde03c20
+%Phase 0 | Netlist Checksum: be5ff797
 *common
 •
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
@@ -78,8 +78,8 @@ I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 00:00:212
 
 00:00:222	
-930.5552	
-781.652Z17-268
+934.0662	
+785.137Z17-268
 g
 Parsing XDC File [%s]
 179*designutils21
@@ -110,7 +110,7 @@ read_xdc: 2
 
 00:00:102
 
-1032.0592
+1037.6642
 78.184Z17-268
 ﬂ
 $Parsing XDC File [%s] for cell '%s'
@@ -135,6 +135,20 @@ $Parsing XDC File [%s] for cell '%s'
 848*designutils2~
 |/home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_axi_vdma_1_0/design_1_axi_vdma_1_0.xdc2
 d1_i/axi_vdma_1/U0Z20-848
+Õ
+$%s: '%s' is not a valid startpoint.
+402*constraints2
+set_false_path2Á
+‰d1_i/axi_vdma_1/U0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUF_FLUSH_SOF.GEN_LINEBUFFER.GEN_ASYNC_FIFO.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbiv5.bi/rstbt/rsync.ric.rd_rst_reg_reg_i_12Ä
+|/home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_axi_vdma_1_0/design_1_axi_vdma_1_0.xdc2
+738@Z18-402
+‰
+$%s: '%s' is not a valid startpoint.
+402*constraints2
+set_false_path2˛
+˚d1_i/axi_vdma_1/U0/GEN_SPRT_FOR_S2MM.S2MM_LINEBUFFER_I/GEN_S2MM_FLUSH_SOF_LOGIC.GEN_LINEBUFFER_FLUSH_SOF.GEN_ASYNC_FIFO_FLUSH_SOF.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbiv5.bi/rstbt/rsync.ric.wr_rst_reg_reg_i_12Ä
+|/home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_axi_vdma_1_0/design_1_axi_vdma_1_0.xdc2
+768@Z18-402
 ·
 -Finished Parsing XDC File [%s] for cell '%s'
 847*designutils2~
@@ -203,12 +217,12 @@ I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2
 get_clocks: 2
 
-00:00:172
+00:00:182
 
-00:00:082
+00:00:092
 
-1234.1092	
-196.422Z17-268
+1243.0512	
+201.883Z17-268
 ì
 ZNo clocks specified, please specify clocks using -clock, -fall_clock, -rise_clock options
 259*	planAhead2è
@@ -279,12 +293,12 @@ I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 
 read_xdc: 2
 
-00:00:172
+00:00:192
 
 00:00:092
 
-1240.1412	
-203.957Z17-268
+1249.2072	
+208.039Z17-268
 Ó
 $Parsing XDC File [%s] for cell '%s'
 848*designutils2ã
@@ -373,6 +387,69 @@ ZNo clocks specified, please specify clocks using -clock, -fall_clock, -rise_clo
 847*designutils2ã
 à/home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_v_vid_in_axi4s_1_0/design_1_v_vid_in_axi4s_1_0.xdc2
 d1_i/v_vid_in_axi4s_1/instZ20-847
+ı
+$Parsing XDC File [%s] for cell '%s'
+848*designutils2|
+z/home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_auto_us_0/design_1_auto_us_0_ooc.xdc23
+1d1_i/axi_interconnect_2/s00_couplers/auto_us/instZ20-848
+¨
+~There are no top level ports directly connected to pins of cell '%s', returning the pins matched for query '%s' of cell '%s'.
+1399*	planAhead23
+1d1_i/axi_interconnect_2/s00_couplers/auto_us/inst2
+[get_ports s_axi_aclk]23
+1d1_i/axi_interconnect_2/s00_couplers/auto_us/inst2~
+z/home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_auto_us_0/design_1_auto_us_0_ooc.xdc2
+508@Z12-1399
+˛
+-Finished Parsing XDC File [%s] for cell '%s'
+847*designutils2|
+z/home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_auto_us_0/design_1_auto_us_0_ooc.xdc23
+1d1_i/axi_interconnect_2/s00_couplers/auto_us/instZ20-847
+Ò
+$Parsing XDC File [%s] for cell '%s'
+848*designutils2x
+v/home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_auto_us_0/design_1_auto_us_0.xdc23
+1d1_i/axi_interconnect_2/s00_couplers/auto_us/instZ20-848
+˙
+-Finished Parsing XDC File [%s] for cell '%s'
+847*designutils2x
+v/home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_auto_us_0/design_1_auto_us_0.xdc23
+1d1_i/axi_interconnect_2/s00_couplers/auto_us/instZ20-847
+ı
+$Parsing XDC File [%s] for cell '%s'
+848*designutils2|
+z/home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1_ooc.xdc23
+1d1_i/axi_interconnect_2/s01_couplers/auto_us/instZ20-848
+¨
+~There are no top level ports directly connected to pins of cell '%s', returning the pins matched for query '%s' of cell '%s'.
+1399*	planAhead23
+1d1_i/axi_interconnect_2/s01_couplers/auto_us/inst2
+[get_ports s_axi_aclk]23
+1d1_i/axi_interconnect_2/s01_couplers/auto_us/inst2~
+z/home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1_ooc.xdc2
+508@Z12-1399
+¶
+nA clock with name '%s' already exists, creating a clock with the same name will overwrite the previous clock.
+576*constraints2
+
+s_axi_aclk2~
+z/home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1_ooc.xdc2
+508@Z18-619
+˛
+-Finished Parsing XDC File [%s] for cell '%s'
+847*designutils2|
+z/home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1_ooc.xdc23
+1d1_i/axi_interconnect_2/s01_couplers/auto_us/instZ20-847
+Ò
+$Parsing XDC File [%s] for cell '%s'
+848*designutils2x
+v/home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1.xdc23
+1d1_i/axi_interconnect_2/s01_couplers/auto_us/instZ20-848
+˙
+-Finished Parsing XDC File [%s] for cell '%s'
+847*designutils2x
+v/home/shep/projects/hotline/vivado/hkp5e/hkp5e.srcs/sources_1/bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1.xdc23
+1d1_i/axi_interconnect_2/s01_couplers/auto_us/instZ20-847
 
 
 End Record
