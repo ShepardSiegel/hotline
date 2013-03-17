@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# Vivado v2013.1 (64-bit)
+# Build 245112 by xbuild on Wed Mar 13 19:17:48 MDT 2013
+# Start of session at: Sun Mar 17 09:26:30 2013
+# Process ID: 4332
+# Log file: /home/shep/projects/hotline/ip/a4ls/vivado.log
+# Journal file: /home/shep/projects/hotline/ip/a4ls/vivado.jou
+#-----------------------------------------------------------
+source "/home/shep/.Xilinx/Vivado/init.tcl"
+source ../../tcl/create_a4ls.tcl

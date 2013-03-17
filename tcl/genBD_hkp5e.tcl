@@ -147,6 +147,11 @@ set_property CONFIG.FREQ_HZ 200000000 [ get_bd_ports /sys0_clk]
 set_property CONFIG.FREQ_HZ {125000000} [get_bd_intf_ports /sys1]
 set_property CONFIG.FREQ_HZ {125000000} [get_bd_pins /mkL2HCrt_1/m_axi_aclk]
 
+#ECO
+puts "AR-WARNING: making ECO edits to Reset and Phase as part of 2013.1 betas..."
+set_property CONFIG.POLARITY {ACTIVE_LOW} [get_bd_ports /sys_rst]
+set_property CONFIG.PHASE {0} [get_bd_ports /sys0_clk]
+
 regenerate_bd_layout
 save_bd_design
 

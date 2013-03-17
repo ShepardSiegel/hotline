@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# Vivado v2013.1 (64-bit)
+# Build 245112 by xbuild on Wed Mar 13 19:17:48 MDT 2013
+# Start of session at: Sun Mar 17 09:27:19 2013
+# Process ID: 4376
+# Log file: /home/shep/projects/hotline/ip/l2HCrt/vivado.log
+# Journal file: /home/shep/projects/hotline/ip/l2HCrt/vivado.jou
+#-----------------------------------------------------------
+source "/home/shep/.Xilinx/Vivado/init.tcl"
+source ../../tcl/create_l2HCrt.tcl

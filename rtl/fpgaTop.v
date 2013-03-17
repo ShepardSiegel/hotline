@@ -290,9 +290,9 @@ always@(posedge sys0_clk) begin
 end
 
 //`define USE_MKFTOP
-//`define USE_IPI_BD
+`define USE_IPI_BD
 //`define USE_IPIMIG_BD
-`define USE_HKP5E
+//`define USE_HKP5E
 
 
 `ifdef USE_MKFTOP
@@ -394,7 +394,7 @@ IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset 
   .DDR3_addr      (DDR3_addr),
   .DDR3_ba        (DDR3_ba),
   .DDR3_cas_n     (DDR3_cas_n),
-  .DDR3_ck_n      (DDR3_ck_n),  // TODO: Understand the funny \^ prefix usage for 5 DDR3 signals
+  .DDR3_ck_n      (DDR3_ck_n),
   .DDR3_ck_p      (DDR3_ck_p),
   .DDR3_cke       (DDR3_cke),
   .DDR3_cs_n      (DDR3_cs_n),
@@ -406,11 +406,6 @@ IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset 
   .DDR3_ras_n     (DDR3_ras_n),
   .DDR3_reset_n   (DDR3_reset_n),
   .DDR3_we_n      (DDR3_we_n),
-//.DDR3_ck_n      (\^DDR3_ck_n ),
-//.DDR3_ck_p      (\^DDR3_ck_p ),
-//.DDR3_cke       (\^DDR3_cke ),
-//.DDR3_cs_n      (\^DDR3_cs_n ),
-//.DDR3_odt       (\^DDR3_odt ),
   .init_calib_complete (init_calib_complete),
 
    // 9 GMII
@@ -444,7 +439,6 @@ IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset 
 wire [15:0] vid_io_in_data, vid_io_out_data;
 wire vid_io_in_active_video, vid_io_in_clk, vid_io_in_field, vid_io_in_hblank, vid_io_in_hsync, vid_io_in_rst, vid_io_in_vblank, vid_io_in_vsync, vid_io_out_active_video, vid_io_out_clk, vid_io_out_field, vid_io_out_hblank, vid_io_out_hsync, vid_io_out_rst, vid_io_out_vblank, vid_io_out_vsync, vtiming_in_active_video, vtiming_in_field, vtiming_in_hblank, vtiming_in_hsync, vtiming_in_vblank, vtiming_in_vsync, mm2s_fsync, s2mm_fsync;      
 
-
 assign vid_io_in_data         = 0;
 assign vid_io_in_active_video = 0;
 assign vid_io_in_clk          = 0;
@@ -454,15 +448,6 @@ assign vid_io_in_hsync        = 0;
 assign vid_io_in_rst          = 0;
 assign vid_io_in_vblank       = 0;
 assign vid_io_in_vsync        = 0;
-
-//vid_io_out_data;
-//vid_io_out_active_video,
-//vid_io_out_clk,
-//vid_io_out_field vid_io_out_hblank,
-//vid_io_out_hsync,
-//vid_io_out_rst,
-//vid_io_out_vblank,
-//vid_io_out_vsync,
 
 assign vtiming_in_active_video = 0;
 assign vtiming_in_field        = 0;
@@ -484,12 +469,11 @@ assign s2mm_fsync              = 0;
 
   .aresetn        (aresetn),   // released after init_calib
 
-
   // 15 DDR3
   .DDR3_addr      (DDR3_addr),
   .DDR3_ba        (DDR3_ba),
   .DDR3_cas_n     (DDR3_cas_n),
-  .DDR3_ck_n      (DDR3_ck_n),  // TODO: Understand the funny \^ prefix usage for 5 DDR3 signals
+  .DDR3_ck_n      (DDR3_ck_n),
   .DDR3_ck_p      (DDR3_ck_p),
   .DDR3_cke       (DDR3_cke),
   .DDR3_cs_n      (DDR3_cs_n),
@@ -501,11 +485,6 @@ assign s2mm_fsync              = 0;
   .DDR3_ras_n     (DDR3_ras_n),
   .DDR3_reset_n   (DDR3_reset_n),
   .DDR3_we_n      (DDR3_we_n),
-//.DDR3_ck_n      (\^DDR3_ck_n ),
-//.DDR3_ck_p      (\^DDR3_ck_p ),
-//.DDR3_cke       (\^DDR3_cke ),
-//.DDR3_cs_n      (\^DDR3_cs_n ),
-//.DDR3_odt       (\^DDR3_odt ),
   .init_calib_complete (init_calib_complete),
 
    // 9 GMII
@@ -551,78 +530,6 @@ assign s2mm_fsync              = 0;
 
 );
 
-`endif
-
-
-
-
-`ifdef FOR_REFERENCE_ONLY
-design_1 design_1_i (
-  .CLK_IN1_N      (sys0_clkn),
-  .CLK_IN1_P      (sys0_clkp),
-  .sys_rst        (sys0_rst),
-
-  .DDR3_addr      (DDR3_addr),
-  .DDR3_ba        (DDR3_ba),
-  .DDR3_cas_n     (DDR3_cas_n),
-  .DDR3_ck_n      (\^DDR3_ck_n ),
-  .DDR3_ck_p      (\^DDR3_ck_p ),
-  .DDR3_cke       (\^DDR3_cke ),
-  .DDR3_cs_n      (\^DDR3_cs_n ),
-  .DDR3_odt       (\^DDR3_odt ),
-  .DDR3_dm        (DDR3_dm),
-  .DDR3_dq        (DDR3_dq),
-  .DDR3_dqs_n     (DDR3_dqs_n),
-  .DDR3_dqs_p     (DDR3_dqs_p),
-  .DDR3_ras_n     (DDR3_ras_n),
-  .DDR3_reset_n   (DDR3_reset_n),
-  .DDR3_we_n      (DDR3_we_n),
-  .init_calib_complete(init_calib_complete),
-
-  .Gpo            (\^Gpo ),
-  .gpio_tri_i     (8'h00),
-  .gpio_tri_o     (led),
-  .gpio_tri_t     (),     // unconnected
-
-  .hdmiin0_clk    (hdmiin0_clk),
-  .hdmiin0_data   (hdmiin0_data),
-  .hdmiin0_de     (hdmiin0_de),
-  .hdmiin0_hsync  (hdmiin0_hsync),
-  .hdmiin0_vsync  (hdmiin0_vsync),
-  .hdmiin1_clk    (hdmiin1_clk),
-  .hdmiin1_data   (hdmiin1_data),
-  .hdmiin1_de     (hdmiin1_de),
-  .hdmiin1_hsync  (hdmiin1_hsync),
-  .hdmiin1_vsync  (hdmiin1_vsync),
-  .hdmiout0_clk   (hdmiout_clk),
-  .hdmiout0_data  (hdmiout_data),
-  .hdmiout0_de    (hdmiout_de),
-  .hdmiout0_hsync (hdmiout_hsync),
-  .hdmiout0_vsync (hdmiout_vsync),
-
-  .iic_scl_i      (1'b0),
-  .iic_scl_o      (i2c_scl),
-  .iic_scl_t      (),    // unconnected
-  .iic_sda_i      (iic_sda_i),
-  .iic_sda_o      (iic_sda_o),
-  .iic_sda_t      (iic_sda_t),
-
-  .PHY_MDC        (phy_mdc),
-  .PHY_MDIO_I     (phy_mdio_i),
-  .PHY_MDIO_O     (phy_mdio_o),
-  .PHY_MDIO_T     (phy_mdio_t),
-  .mii_col        (mii_col),
-  .mii_crs        (mii_crs),
-  .mii_rst_n      (mii_rst_n),
-  .mii_rx_clk     (mii_rx_clk),
-  .mii_rx_dv      (mii_rx_dv),
-  .mii_rx_er      (mii_rx_er),
-  .mii_rxd        (mii_rxd),
-  .mii_tx_clk     (mii_tx_clk),
-  .mii_tx_en      (mii_tx_en),
-  .mii_txd        (mii_txd),
-  .uart_rxd       (uart_rxd),
-  .uart_txd       (uart_txd));
 `endif
 
 endmodule

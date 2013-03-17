@@ -1,25 +1,36 @@
 #-----------------------------------------------------------
 # hkp3 - this variant adds two slaves
 #-----------------------------------------------------------
-puts "Remove Exisiting IP Component Libs and hkp3 design"
-exec rm -rf ../ip/a4ls/component.xml ../ip/a4ls/vv_index_xml ../ip/a4ls/xgui
-exec rm -rf ../ip/l2HCrt/component.xml ../ip/l2HCrt/vv_index_xml ../ip/l2HCrt/xgui
-exec rm -rf hkp3
+set designName hkp3
+set repoRoot /home/shep/projects/hotline
 
-create_project hkp3 /home/shep/projects/hotline/vivado/hkp3 -part xc7k325tffg900-2
+puts "AR-NOTE: Archive exisitng $designName design if it exists"
+set formatDate [exec date +%Y%m%d_%H%M]
+set separator _
+set dateSuffix $separator$formatDate
+if { [file exists "$designName"] == 1 } { 
+  puts "Moving existing $designName to time-stamped suffix $designName$dateSuffix"
+  exec mv $designName $designName$dateSuffix
+}
+
+create_project $designName "$repoRoot/vivado/$designName" -part xc7k325tffg900-2
 set_property board xilinx.com:kintex7:kc705:1.0 [current_project]
 
-source ../tcl/create_a4ls.tcl
-source ../tcl/create_l2HCrt.tcl
+puts "AR-NOTE: Bring external IP component libraries into IP Catalog"
+set localIpDir "$repoRoot/ip"
+set local_a4ls   "$localIpDir/a4ls"
+set local_l2HCrt "$localIpDir/l2HCrt"
+set_property ip_repo_paths "$local_a4ls $local_l2HCrt" [current_fileset]
+update_ip_catalog -rebuild
 
-puts "Ready for BD"
-source ../tcl/genBD_twoSlaves.tcl
+puts "AR-NOTE: Ready for BD"
+source ../tcl/genBD_$designName.tcl
 
-puts "Ready for Top Layer"
-add_files -norecurse /home/shep/projects/hotline/rtl/fpgaTop.v
+puts "AR-NOTE: Ready for Top Layer"
+add_files -norecurse "$repoRoot/rtl/fpgaTop.v"
 update_compile_order -fileset sources_1
 update_compile_order -fileset sim_1
-add_files -fileset constrs_1 -norecurse /home/shep/projects/hotline/constrs/fpgaTop.xdc
+add_files -fileset constrs_1 -norecurse "$repoRoot/constrs/fpgaTop.xdc"
 set_property top fpgaTop [current_fileset]
 set_property top_lib {} [current_fileset]
 set_property top_file {} [current_fileset]
