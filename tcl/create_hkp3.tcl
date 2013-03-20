@@ -27,7 +27,8 @@ puts "AR-NOTE: Ready for BD"
 source ../tcl/genBD_$designName.tcl
 
 puts "AR-NOTE: Ready for Top Layer"
-add_files -norecurse "$repoRoot/rtl/fpgaTop.v"
+#add_files -norecurse "$repoRoot/rtl/fpgaTop.v"
+add_files -norecurse {/home/shep/projects/hotline/rtl/fpgaTop.v /home/shep/projects/hotline/rtl/mkA4LS.v /home/shep/projects/hotline/rtl/mkCRC32.v /home/shep/projects/hotline/rtl/mkFTop_kc705.v /home/shep/projects/hotline/rtl/mkGMAC.v /home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v /home/shep/projects/hotline/rtl/mkL2Proc.v /home/shep/projects/hotline/rtl/mkLCDController.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/MakeResetA.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/ResetInverter.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/TriState.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncBit.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v}
 update_compile_order -fileset sources_1
 update_compile_order -fileset sim_1
 add_files -fileset constrs_1 -norecurse "$repoRoot/constrs/fpgaTop.xdc"

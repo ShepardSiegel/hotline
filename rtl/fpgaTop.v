@@ -289,8 +289,8 @@ always@(posedge sys0_clk) begin
   dipsw_r <= dipsw;
 end
 
-//`define USE_MKFTOP
-`define USE_IPI_BD
+`define USE_MKFTOP
+//`define USE_IPI_BD
 //`define USE_IPIMIG_BD
 //`define USE_HKP5E
 
@@ -304,7 +304,7 @@ BUFG    sys0_bufg(.O(sys0_clk), .I(sys0_clki));
 
  mkFTop_kc705 ftop(
   .sys0_clk           (sys0_clk),
-  .sys0_rst           (!sys0_rst),    // Inverted to make reset rstn active-low
+  .sys0_rstn          (!sys0_rst),    // Inverted to make reset rstn active-low
   .sys1_clkp          (sys1_clkp),
   .sys1_clkn          (sys1_clkn),
 

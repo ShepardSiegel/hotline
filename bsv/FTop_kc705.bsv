@@ -169,7 +169,9 @@ module mkFTop_kc705#(Clock sys0_clk , Reset sys0_rstn,
   // Paint the LCD when the iic sequence is done...
   rule init_lcd (lcdNeedsInit && iicDone);
     Vector#(16,Bit#(8)) text1 = lcdLine("Atomic Rules LLC");
-    Vector#(16,Bit#(8)) text2 = lcdLine("HCrt 2013.03.17a");
+    Vector#(16,Bit#(8)) text2 = lcdLine("HCrt 2013.03.20a");
+    //Vector#(16,Bit#(8)) text1 = lcdLine("Maxim Integrated");
+    //Vector#(16,Bit#(8)) text2 = lcdLine("SG02/CA31:------");
     lcd_ctrl.setLine1(text1);
     lcd_ctrl.setLine2(text2);
     lcdNeedsInit <= False;

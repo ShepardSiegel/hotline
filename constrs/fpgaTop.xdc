@@ -328,11 +328,18 @@ set_property DCI_CASCADE {32 34} [get_iobanks 33]
 
 # Null Sync clock domain crossing...
 #set_false_path -from [get_pins {dipsw_r_reg*/C}] -to [get_pins {vsel_reg*/D}]
-# TODO Make use of Asynchronous Clocks
-set_false_path -from [get_clocks {sys0_clkp}]  -to [get_clocks {sys1_clkp}]
-set_false_path -from [get_clocks {sys0_clkp}]  -to [get_clocks {sys2_clkp}]
-set_false_path -from [get_clocks {sys1_clkp}]  -to [get_clocks {sys0_clkp}]
-set_false_path -from [get_clocks {sys1_clkp}]  -to [get_clocks {sys2_clkp}]
-set_false_path -from [get_clocks {sys2_clkp}]  -to [get_clocks {sys0_clkp}]
-set_false_path -from [get_clocks {sys2_clkp}]  -to [get_clocks {sys1_clkp}]
-set_false_path -from [get_clocks {gmiirx_clk}] -to [get_clocks {sys1_clkp}]
+## TODO Make use of Asynchronous Clocks
+#set_false_path -from [get_clocks {sys0_clkp}]  -to [get_clocks {sys1_clkp}]
+#set_false_path -from [get_clocks {sys0_clkp}]  -to [get_clocks {sys2_clkp}]
+#set_false_path -from [get_clocks {sys1_clkp}]  -to [get_clocks {sys0_clkp}]
+#set_false_path -from [get_clocks {sys1_clkp}]  -to [get_clocks {sys2_clkp}]
+#set_false_path -from [get_clocks {sys2_clkp}]  -to [get_clocks {sys0_clkp}]
+#set_false_path -from [get_clocks {sys2_clkp}]  -to [get_clocks {sys1_clkp}]
+#set_false_path -from [get_clocks {gmiirx_clk}] -to [get_clocks {sys1_clkp}]
+
+set_clock_groups -asynchronous \
+ -group [get_clocks -include_generated_clocks {sys0_clkp}]  \
+ -group [get_clocks -include_generated_clocks {sys1_clkp}]  \
+ -group [get_clocks -include_generated_clocks {sys2_clkp}]  \
+ -group [get_clocks -include_generated_clocks {gmiirx_clk}] 
+
