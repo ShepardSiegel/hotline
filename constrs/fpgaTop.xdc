@@ -337,6 +337,7 @@ set_property DCI_CASCADE {32 34} [get_iobanks 33]
 #set_false_path -from [get_clocks {sys2_clkp}]  -to [get_clocks {sys1_clkp}]
 #set_false_path -from [get_clocks {gmiirx_clk}] -to [get_clocks {sys1_clkp}]
 
+# Asynchronous Clock Groups...
 set_clock_groups -asynchronous \
  -group [get_clocks -include_generated_clocks {sys0_clkp}]  \
  -group [get_clocks -include_generated_clocks {sys1_clkp}]  \

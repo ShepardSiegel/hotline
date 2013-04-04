@@ -212,8 +212,9 @@ module fpgaTop (
 
 
 // Input from SI570...
-wire sys2_clk;
-IBUFGDS sys2Y_buf(.O(sys2_clk),.I(sys2_clkp),.IB(sys2_clkn));
+wire sys2_clk, sys2_clk_ub;
+IBUFGDS sys2Y_buf(.O(sys2_clk_ub),.I(sys2_clkp),.IB(sys2_clkn));
+BUFG BUFG_i(.O(sys2_clk),.I(sys2_clk_ub));
 
 assign gpix_p = sys2_clk; // Put SI570 on J13
 assign gpix_n = 1'b0;     // 0 on J14
