@@ -4,10 +4,8 @@
 package HCrt;
 
 import ABS          ::*;
-import E8023        ::*;
 import ARAXI4L      ::*; 
 import A4LS         ::*;   // for TB
-import L2Proc       ::*;   // for TB
 
 import ClientServer ::*; 
 import Clocks       ::*;
@@ -122,8 +120,8 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   FIFO#(QABS)               crtRespF      <- mkFIFO;        // Outbound HCrt Responses
   A4LMasterIfc              a4l           <- mkA4LMaster;   // The AXI4-Lite Master Interface
   // The internal state of the HCrt module...
-  Reg#(Bool)                modActive     <- mkDReg(True);  // Pulse indication of module activity
-  Reg#(Bool)                modFaulted    <- mkDReg(True);  // Pulse indication of module fault
+  Reg#(Bool)                modActive     <- mkDReg(False); // Pulse indication of module activity
+  Reg#(Bool)                modFaulted    <- mkDReg(False); // Pulse indication of module fault
   Reg#(TagCRH)              cmdCRH        <- mkReg(tagged Invalid);
   Reg#(Bool)                cmdIsLast     <- mkReg(False);  // Indicates LAST command of message
   Reg#(Bool)                cmdIsDO       <- mkReg(False);  // True when command is a Discovery Operation (DO) 
