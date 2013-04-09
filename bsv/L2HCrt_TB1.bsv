@@ -418,7 +418,7 @@ module mkHCrt_L2TB1 (Empty);
       1:  l2GenF.enq(tagged ValidNotEOP 8'hFF);
       2:  l2GenF.enq(tagged ValidNotEOP 8'h01);  // 1 DW Read Request (ADL is for resp)
       3:  l2GenF.enq(tagged ValidNotEOP 8'h80);  // Last Dword
-      4:  l2GenF.enq(tagged ValidNotEOP 8'h10);  // Addr 0000_0004
+      4:  l2GenF.enq(tagged ValidNotEOP 8'h10);  // Addr 0000_0010
       5:  l2GenF.enq(tagged ValidNotEOP 8'h00);
       6:  l2GenF.enq(tagged ValidNotEOP 8'h00);
       7:  l2GenF.enq(tagged ValidEOP    8'h00);
@@ -524,7 +524,7 @@ module mkHCrt_L2TB1 (Empty);
     cycleCount <= cycleCount + 1;
   endrule
 
-  rule terminate (cycleCount==400);
+  rule terminate (cycleCount==100);
     $display("[%0d]: %m: Terminate rule fired in cycle:%0d", $time, cycleCount);
     $finish;
   endrule

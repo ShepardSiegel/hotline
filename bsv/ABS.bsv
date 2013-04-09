@@ -277,8 +277,9 @@ endmodule
 
 // QABS Utility Modules...
 
-  function Bool hasQABSEOP(QABS x)   = Vector::any(isEOP,x);
-  function Bool isQABSActive(QABS x) = !hasQABSEOP(x);
+  function Bool hasQABSEOP(QABS x)    = Vector::any(isEOP,x);
+  function Bool isQABSActive(QABS x)  = !hasQABSEOP(x);
+  function Bit#(32) getDataQ (QABS q) = pack(map(getData,q));
 
 interface QABSMergeIfc;
   interface Put#(QABS) iport0;

@@ -316,10 +316,11 @@ module mkHCrt_TB1 (Empty);
 
   FIFO#(Bit#(32))      cmdF       <- mkFIFO; // Command  FIFO Requestor-to-Completer
   FIFO#(QABS)          rspF       <- mkFIFO; // Response FIFO Completer-to-Requestor
+  Reg#(Bit#(32))       rDat       <- mkRegU;
 
 
   Vector#(10, Bit#(32)) cmdVector = ?;
-  cmdVector[0] = 32'h8001_FFA0;
+  cmdVector[0] = 32'h8002_FFA0;
   cmdVector[1] = 32'h0000_0010;
   cmdVector[2] = 32'h8001_FFA0;
   cmdVector[3] = 32'h0000_0024;
@@ -330,7 +331,7 @@ module mkHCrt_TB1 (Empty);
   cmdVector[8] = 32'h8001_FFA0;
   cmdVector[9] = 32'h0000_0024;
 
-  rule produce_commands (cmdCount<10);
+  rule produce_commands (cmdCount<2);
     cmdCount <= cmdCount + 1;
     cmdF.enq(cmdVector[cmdCount]);
   endrule
@@ -340,6 +341,7 @@ module mkHCrt_TB1 (Empty);
 
   rule chomp_rsp;
     let qb = rspF.first;  rspF.deq;
+    rDat <= getDataQ(qb);
     rspCount <= rspCount + 1;
   endrule
 
@@ -349,7 +351,7 @@ module mkHCrt_TB1 (Empty);
     cycleCount <= cycleCount + 1;
   endrule
 
-  rule terminate (cycleCount==400);
+  rule terminate (cycleCount==100);
     $display("[%0d]: %m: Terminate rule fired in cycle:%0d", $time, cycleCount);
     $finish;
   endrule

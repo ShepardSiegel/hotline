@@ -113,6 +113,7 @@ rule a4l_cfrd;  // AXI4-Lite Configuration Property Reads...
       'h00 : rdat = pack(r0);           // return r0
       'h04 : rdat = pack(r4);           // return r4
       'h10 : rdat = 32'hF00DFACE;       // return a constant
+      'h14 : rdat = 32'hFEEDC0DE;       // return another constant
       'h18 : rdat = {b1B,b1A,b19,b18};  // return little-endian
       'h20 : rdat = lastWriteAddr;      // return the address last written
       'h24 : rdat = lastReadAddr;       // return the address last read
