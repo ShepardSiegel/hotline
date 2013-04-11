@@ -1,29 +1,397 @@
 [*]
 [*] GTKWave Analyzer v3.3.43 (w)1999-2012 BSI
-[*] Mon Feb 11 22:11:52 2013
+[*] Thu Apr 11 16:18:46 2013
 [*]
-[dumpfile] "/home/shep/projects/hotline/dump.vcd"
-[dumpfile_mtime] "Mon Feb 11 22:06:54 2013"
-[dumpfile_size] 63826
-[savefile] "/home/shep/projects/hotline/gtkw1.gtkw"
+[dumpfile] "/home/shep/projects/hotline/sim/dump.vcd"
+[dumpfile_mtime] "Thu Apr 11 15:27:08 2013"
+[dumpfile_size] 33624
+[savefile] "/home/shep/projects/hotline/gtkwave/gtkw1.gtkw"
 [timestart] 0
-[size] 1386 772
-[pos] -387 -1
-*-8.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
-[sst_width] 219
-[signals_width] 262
+[size] 1827 1335
+[pos] -101 -1
+*-4.911511 140 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 240
+[signals_width] 471
 [sst_expanded] 1
 [sst_vpaned_height] 211
-@22
+@24
 +{main.top.cycleCount [UInt#(16)]} main.top.cycleCount[15:0]
+@200
+-
+@22
++{main.top.WILL_FIRE_RL_produce_commands [Bool]} main.top.WILL_FIRE_RL_produce_commands
++{main.top.cmdF.D_IN [Bit#(32)]} main.top.cmdF.D_IN[31:0]
++{main.top.cmdCount [UInt#(16)]} main.top.cmdCount[15:0]
+@200
+-
+@22
++{main.top.crt2axi.crtCmdF.D_OUT [Bit#(32)]} main.top.crt2axi.crtCmdF.D_OUT[31:0]
++{main.top.crt2axi.crtCmdF.DEQ [Bool]} main.top.crt2axi.crtCmdF.DEQ
+@200
+-
+@22
 +{main.top.crt2axi.WILL_FIRE_RL_cmd_crh [Bool]} main.top.crt2axi.WILL_FIRE_RL_cmd_crh
+@c00022
++{main.top.crt2axi.cmdCRH [+] [TagCRH]} main.top.crt2axi.cmdCRH[34:0]
+@4022
+^>1 enum HCrt::NOP HCrt::Write HCrt::Read HCrt::RespNOP HCrt::RespWrite HCrt::RespRead HCrt::Invalid
++{main.top.crt2axi.cmdCRH|tag [TagCRH]} #{main.top.crt2axi.cmdCRH[34:32]} (0)main.top.crt2axi.cmdCRH[34:0] (1)main.top.crt2axi.cmdCRH[34:0] (2)main.top.crt2axi.cmdCRH[34:0]
+@c00022
++{main.top.crt2axi.cmdCRH|NOP [+] [CRHNOP]} #{main.top.crt2axi.cmdCRH[31:0]} (3)main.top.crt2axi.cmdCRH[34:0] (4)main.top.crt2axi.cmdCRH[34:0] (5)main.top.crt2axi.cmdCRH[34:0] (6)main.top.crt2axi.cmdCRH[34:0] (7)main.top.crt2axi.cmdCRH[34:0] (8)main.top.crt2axi.cmdCRH[34:0] (9)main.top.crt2axi.cmdCRH[34:0] (10)main.top.crt2axi.cmdCRH[34:0] (11)main.top.crt2axi.cmdCRH[34:0] (12)main.top.crt2axi.cmdCRH[34:0] (13)main.top.crt2axi.cmdCRH[34:0] (14)main.top.crt2axi.cmdCRH[34:0] (15)main.top.crt2axi.cmdCRH[34:0] (16)main.top.crt2axi.cmdCRH[34:0] (17)main.top.crt2axi.cmdCRH[34:0] (18)main.top.crt2axi.cmdCRH[34:0] (19)main.top.crt2axi.cmdCRH[34:0] (20)main.top.crt2axi.cmdCRH[34:0] (21)main.top.crt2axi.cmdCRH[34:0] (22)main.top.crt2axi.cmdCRH[34:0] (23)main.top.crt2axi.cmdCRH[34:0] (24)main.top.crt2axi.cmdCRH[34:0] (25)main.top.crt2axi.cmdCRH[34:0] (26)main.top.crt2axi.cmdCRH[34:0] (27)main.top.crt2axi.cmdCRH[34:0] (28)main.top.crt2axi.cmdCRH[34:0] (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0] (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|NOP|isLast [Bool]} (3)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|NOP|rsvd28 [Bit#(3)]} #{main.top.crt2axi.cmdCRH[30:28]} (4)main.top.crt2axi.cmdCRH[34:0] (5)main.top.crt2axi.cmdCRH[34:0] (6)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|NOP|adl [UInt#(12)]} #{main.top.crt2axi.cmdCRH[27:16]} (7)main.top.crt2axi.cmdCRH[34:0] (8)main.top.crt2axi.cmdCRH[34:0] (9)main.top.crt2axi.cmdCRH[34:0] (10)main.top.crt2axi.cmdCRH[34:0] (11)main.top.crt2axi.cmdCRH[34:0] (12)main.top.crt2axi.cmdCRH[34:0] (13)main.top.crt2axi.cmdCRH[34:0] (14)main.top.crt2axi.cmdCRH[34:0] (15)main.top.crt2axi.cmdCRH[34:0] (16)main.top.crt2axi.cmdCRH[34:0] (17)main.top.crt2axi.cmdCRH[34:0] (18)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|NOP|rsvd8 [Bit#(8)]} #{main.top.crt2axi.cmdCRH[15:8]} (19)main.top.crt2axi.cmdCRH[34:0] (20)main.top.crt2axi.cmdCRH[34:0] (21)main.top.crt2axi.cmdCRH[34:0] (22)main.top.crt2axi.cmdCRH[34:0] (23)main.top.crt2axi.cmdCRH[34:0] (24)main.top.crt2axi.cmdCRH[34:0] (25)main.top.crt2axi.cmdCRH[34:0] (26)main.top.crt2axi.cmdCRH[34:0]
+@c00022
++{main.top.crt2axi.cmdCRH|NOP|c0 [+] [CRH0]} #{main.top.crt2axi.cmdCRH[7:0]} (27)main.top.crt2axi.cmdCRH[34:0] (28)main.top.crt2axi.cmdCRH[34:0] (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0] (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|NOP|c0|isDO [Bool]} (27)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|NOP|c0|isAM64 [Bool]} (28)main.top.crt2axi.cmdCRH[34:0]
+@4022
+^>2 enum NOP Write Read Response
++{main.top.crt2axi.cmdCRH|NOP|c0|mesgt [HCrtMesgType]} #{main.top.crt2axi.cmdCRH[5:4]} (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|NOP|c0|tag [Bit#(4)]} #{main.top.crt2axi.cmdCRH[3:0]} (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@1401200
+-group_end
+-group_end
+@c00022
++{main.top.crt2axi.cmdCRH|Write [+] [CRHWrite]} #{main.top.crt2axi.cmdCRH[31:0]} (3)main.top.crt2axi.cmdCRH[34:0] (4)main.top.crt2axi.cmdCRH[34:0] (5)main.top.crt2axi.cmdCRH[34:0] (6)main.top.crt2axi.cmdCRH[34:0] (7)main.top.crt2axi.cmdCRH[34:0] (8)main.top.crt2axi.cmdCRH[34:0] (9)main.top.crt2axi.cmdCRH[34:0] (10)main.top.crt2axi.cmdCRH[34:0] (11)main.top.crt2axi.cmdCRH[34:0] (12)main.top.crt2axi.cmdCRH[34:0] (13)main.top.crt2axi.cmdCRH[34:0] (14)main.top.crt2axi.cmdCRH[34:0] (15)main.top.crt2axi.cmdCRH[34:0] (16)main.top.crt2axi.cmdCRH[34:0] (17)main.top.crt2axi.cmdCRH[34:0] (18)main.top.crt2axi.cmdCRH[34:0] (19)main.top.crt2axi.cmdCRH[34:0] (20)main.top.crt2axi.cmdCRH[34:0] (21)main.top.crt2axi.cmdCRH[34:0] (22)main.top.crt2axi.cmdCRH[34:0] (23)main.top.crt2axi.cmdCRH[34:0] (24)main.top.crt2axi.cmdCRH[34:0] (25)main.top.crt2axi.cmdCRH[34:0] (26)main.top.crt2axi.cmdCRH[34:0] (27)main.top.crt2axi.cmdCRH[34:0] (28)main.top.crt2axi.cmdCRH[34:0] (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0] (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|Write|isLast [Bool]} (3)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|Write|rsvd28 [Bit#(3)]} #{main.top.crt2axi.cmdCRH[30:28]} (4)main.top.crt2axi.cmdCRH[34:0] (5)main.top.crt2axi.cmdCRH[34:0] (6)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|Write|adl [UInt#(12)]} #{main.top.crt2axi.cmdCRH[27:16]} (7)main.top.crt2axi.cmdCRH[34:0] (8)main.top.crt2axi.cmdCRH[34:0] (9)main.top.crt2axi.cmdCRH[34:0] (10)main.top.crt2axi.cmdCRH[34:0] (11)main.top.crt2axi.cmdCRH[34:0] (12)main.top.crt2axi.cmdCRH[34:0] (13)main.top.crt2axi.cmdCRH[34:0] (14)main.top.crt2axi.cmdCRH[34:0] (15)main.top.crt2axi.cmdCRH[34:0] (16)main.top.crt2axi.cmdCRH[34:0] (17)main.top.crt2axi.cmdCRH[34:0] (18)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|Write|lastBE [Bit#(4)]} #{main.top.crt2axi.cmdCRH[15:12]} (19)main.top.crt2axi.cmdCRH[34:0] (20)main.top.crt2axi.cmdCRH[34:0] (21)main.top.crt2axi.cmdCRH[34:0] (22)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|Write|firstBE [Bit#(4)]} #{main.top.crt2axi.cmdCRH[11:8]} (23)main.top.crt2axi.cmdCRH[34:0] (24)main.top.crt2axi.cmdCRH[34:0] (25)main.top.crt2axi.cmdCRH[34:0] (26)main.top.crt2axi.cmdCRH[34:0]
+@c00022
++{main.top.crt2axi.cmdCRH|Write|c0 [+] [CRH0]} #{main.top.crt2axi.cmdCRH[7:0]} (27)main.top.crt2axi.cmdCRH[34:0] (28)main.top.crt2axi.cmdCRH[34:0] (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0] (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|Write|c0|isDO [Bool]} (27)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|Write|c0|isAM64 [Bool]} (28)main.top.crt2axi.cmdCRH[34:0]
+@4022
+^>2 enum NOP Write Read Response
++{main.top.crt2axi.cmdCRH|Write|c0|mesgt [HCrtMesgType]} #{main.top.crt2axi.cmdCRH[5:4]} (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|Write|c0|tag [Bit#(4)]} #{main.top.crt2axi.cmdCRH[3:0]} (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@1401200
+-group_end
+-group_end
+@c00022
++{main.top.crt2axi.cmdCRH|Read [+] [CRHRead]} #{main.top.crt2axi.cmdCRH[31:0]} (3)main.top.crt2axi.cmdCRH[34:0] (4)main.top.crt2axi.cmdCRH[34:0] (5)main.top.crt2axi.cmdCRH[34:0] (6)main.top.crt2axi.cmdCRH[34:0] (7)main.top.crt2axi.cmdCRH[34:0] (8)main.top.crt2axi.cmdCRH[34:0] (9)main.top.crt2axi.cmdCRH[34:0] (10)main.top.crt2axi.cmdCRH[34:0] (11)main.top.crt2axi.cmdCRH[34:0] (12)main.top.crt2axi.cmdCRH[34:0] (13)main.top.crt2axi.cmdCRH[34:0] (14)main.top.crt2axi.cmdCRH[34:0] (15)main.top.crt2axi.cmdCRH[34:0] (16)main.top.crt2axi.cmdCRH[34:0] (17)main.top.crt2axi.cmdCRH[34:0] (18)main.top.crt2axi.cmdCRH[34:0] (19)main.top.crt2axi.cmdCRH[34:0] (20)main.top.crt2axi.cmdCRH[34:0] (21)main.top.crt2axi.cmdCRH[34:0] (22)main.top.crt2axi.cmdCRH[34:0] (23)main.top.crt2axi.cmdCRH[34:0] (24)main.top.crt2axi.cmdCRH[34:0] (25)main.top.crt2axi.cmdCRH[34:0] (26)main.top.crt2axi.cmdCRH[34:0] (27)main.top.crt2axi.cmdCRH[34:0] (28)main.top.crt2axi.cmdCRH[34:0] (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0] (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|Read|isLast [Bool]} (3)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|Read|rsvd28 [Bit#(3)]} #{main.top.crt2axi.cmdCRH[30:28]} (4)main.top.crt2axi.cmdCRH[34:0] (5)main.top.crt2axi.cmdCRH[34:0] (6)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|Read|adl [UInt#(12)]} #{main.top.crt2axi.cmdCRH[27:16]} (7)main.top.crt2axi.cmdCRH[34:0] (8)main.top.crt2axi.cmdCRH[34:0] (9)main.top.crt2axi.cmdCRH[34:0] (10)main.top.crt2axi.cmdCRH[34:0] (11)main.top.crt2axi.cmdCRH[34:0] (12)main.top.crt2axi.cmdCRH[34:0] (13)main.top.crt2axi.cmdCRH[34:0] (14)main.top.crt2axi.cmdCRH[34:0] (15)main.top.crt2axi.cmdCRH[34:0] (16)main.top.crt2axi.cmdCRH[34:0] (17)main.top.crt2axi.cmdCRH[34:0] (18)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|Read|lastBE [Bit#(4)]} #{main.top.crt2axi.cmdCRH[15:12]} (19)main.top.crt2axi.cmdCRH[34:0] (20)main.top.crt2axi.cmdCRH[34:0] (21)main.top.crt2axi.cmdCRH[34:0] (22)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|Read|firstBE [Bit#(4)]} #{main.top.crt2axi.cmdCRH[11:8]} (23)main.top.crt2axi.cmdCRH[34:0] (24)main.top.crt2axi.cmdCRH[34:0] (25)main.top.crt2axi.cmdCRH[34:0] (26)main.top.crt2axi.cmdCRH[34:0]
+@c00022
++{main.top.crt2axi.cmdCRH|Read|c0 [+] [CRH0]} #{main.top.crt2axi.cmdCRH[7:0]} (27)main.top.crt2axi.cmdCRH[34:0] (28)main.top.crt2axi.cmdCRH[34:0] (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0] (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|Read|c0|isDO [Bool]} (27)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|Read|c0|isAM64 [Bool]} (28)main.top.crt2axi.cmdCRH[34:0]
+@4022
+^>2 enum NOP Write Read Response
++{main.top.crt2axi.cmdCRH|Read|c0|mesgt [HCrtMesgType]} #{main.top.crt2axi.cmdCRH[5:4]} (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|Read|c0|tag [Bit#(4)]} #{main.top.crt2axi.cmdCRH[3:0]} (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@1401200
+-group_end
+-group_end
+@c00022
++{main.top.crt2axi.cmdCRH|RespNOP [+] [CRHResp]} #{main.top.crt2axi.cmdCRH[31:0]} (3)main.top.crt2axi.cmdCRH[34:0] (4)main.top.crt2axi.cmdCRH[34:0] (5)main.top.crt2axi.cmdCRH[34:0] (6)main.top.crt2axi.cmdCRH[34:0] (7)main.top.crt2axi.cmdCRH[34:0] (8)main.top.crt2axi.cmdCRH[34:0] (9)main.top.crt2axi.cmdCRH[34:0] (10)main.top.crt2axi.cmdCRH[34:0] (11)main.top.crt2axi.cmdCRH[34:0] (12)main.top.crt2axi.cmdCRH[34:0] (13)main.top.crt2axi.cmdCRH[34:0] (14)main.top.crt2axi.cmdCRH[34:0] (15)main.top.crt2axi.cmdCRH[34:0] (16)main.top.crt2axi.cmdCRH[34:0] (17)main.top.crt2axi.cmdCRH[34:0] (18)main.top.crt2axi.cmdCRH[34:0] (19)main.top.crt2axi.cmdCRH[34:0] (20)main.top.crt2axi.cmdCRH[34:0] (21)main.top.crt2axi.cmdCRH[34:0] (22)main.top.crt2axi.cmdCRH[34:0] (23)main.top.crt2axi.cmdCRH[34:0] (24)main.top.crt2axi.cmdCRH[34:0] (25)main.top.crt2axi.cmdCRH[34:0] (26)main.top.crt2axi.cmdCRH[34:0] (27)main.top.crt2axi.cmdCRH[34:0] (28)main.top.crt2axi.cmdCRH[34:0] (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0] (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|RespNOP|isLast [Bool]} (3)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|RespNOP|rsvd28 [Bit#(3)]} #{main.top.crt2axi.cmdCRH[30:28]} (4)main.top.crt2axi.cmdCRH[34:0] (5)main.top.crt2axi.cmdCRH[34:0] (6)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|RespNOP|adl [UInt#(12)]} #{main.top.crt2axi.cmdCRH[27:16]} (7)main.top.crt2axi.cmdCRH[34:0] (8)main.top.crt2axi.cmdCRH[34:0] (9)main.top.crt2axi.cmdCRH[34:0] (10)main.top.crt2axi.cmdCRH[34:0] (11)main.top.crt2axi.cmdCRH[34:0] (12)main.top.crt2axi.cmdCRH[34:0] (13)main.top.crt2axi.cmdCRH[34:0] (14)main.top.crt2axi.cmdCRH[34:0] (15)main.top.crt2axi.cmdCRH[34:0] (16)main.top.crt2axi.cmdCRH[34:0] (17)main.top.crt2axi.cmdCRH[34:0] (18)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|RespNOP|rsvd12 [Bit#(4)]} #{main.top.crt2axi.cmdCRH[15:12]} (19)main.top.crt2axi.cmdCRH[34:0] (20)main.top.crt2axi.cmdCRH[34:0] (21)main.top.crt2axi.cmdCRH[34:0] (22)main.top.crt2axi.cmdCRH[34:0]
+@4022
+^>3 enum OK Timeout Error RSVD
++{main.top.crt2axi.cmdCRH|RespNOP|respt [HCrtRespCode]} #{main.top.crt2axi.cmdCRH[11:8]} (23)main.top.crt2axi.cmdCRH[34:0] (24)main.top.crt2axi.cmdCRH[34:0] (25)main.top.crt2axi.cmdCRH[34:0] (26)main.top.crt2axi.cmdCRH[34:0]
+@c00022
++{main.top.crt2axi.cmdCRH|RespNOP|c0 [+] [CRH0]} #{main.top.crt2axi.cmdCRH[7:0]} (27)main.top.crt2axi.cmdCRH[34:0] (28)main.top.crt2axi.cmdCRH[34:0] (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0] (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|RespNOP|c0|isDO [Bool]} (27)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|RespNOP|c0|isAM64 [Bool]} (28)main.top.crt2axi.cmdCRH[34:0]
+@4022
+^>2 enum NOP Write Read Response
++{main.top.crt2axi.cmdCRH|RespNOP|c0|mesgt [HCrtMesgType]} #{main.top.crt2axi.cmdCRH[5:4]} (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|RespNOP|c0|tag [Bit#(4)]} #{main.top.crt2axi.cmdCRH[3:0]} (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@1401200
+-group_end
+-group_end
+@c00022
++{main.top.crt2axi.cmdCRH|RespWrite [+] [CRHResp]} #{main.top.crt2axi.cmdCRH[31:0]} (3)main.top.crt2axi.cmdCRH[34:0] (4)main.top.crt2axi.cmdCRH[34:0] (5)main.top.crt2axi.cmdCRH[34:0] (6)main.top.crt2axi.cmdCRH[34:0] (7)main.top.crt2axi.cmdCRH[34:0] (8)main.top.crt2axi.cmdCRH[34:0] (9)main.top.crt2axi.cmdCRH[34:0] (10)main.top.crt2axi.cmdCRH[34:0] (11)main.top.crt2axi.cmdCRH[34:0] (12)main.top.crt2axi.cmdCRH[34:0] (13)main.top.crt2axi.cmdCRH[34:0] (14)main.top.crt2axi.cmdCRH[34:0] (15)main.top.crt2axi.cmdCRH[34:0] (16)main.top.crt2axi.cmdCRH[34:0] (17)main.top.crt2axi.cmdCRH[34:0] (18)main.top.crt2axi.cmdCRH[34:0] (19)main.top.crt2axi.cmdCRH[34:0] (20)main.top.crt2axi.cmdCRH[34:0] (21)main.top.crt2axi.cmdCRH[34:0] (22)main.top.crt2axi.cmdCRH[34:0] (23)main.top.crt2axi.cmdCRH[34:0] (24)main.top.crt2axi.cmdCRH[34:0] (25)main.top.crt2axi.cmdCRH[34:0] (26)main.top.crt2axi.cmdCRH[34:0] (27)main.top.crt2axi.cmdCRH[34:0] (28)main.top.crt2axi.cmdCRH[34:0] (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0] (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|RespWrite|isLast [Bool]} (3)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|RespWrite|rsvd28 [Bit#(3)]} #{main.top.crt2axi.cmdCRH[30:28]} (4)main.top.crt2axi.cmdCRH[34:0] (5)main.top.crt2axi.cmdCRH[34:0] (6)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|RespWrite|adl [UInt#(12)]} #{main.top.crt2axi.cmdCRH[27:16]} (7)main.top.crt2axi.cmdCRH[34:0] (8)main.top.crt2axi.cmdCRH[34:0] (9)main.top.crt2axi.cmdCRH[34:0] (10)main.top.crt2axi.cmdCRH[34:0] (11)main.top.crt2axi.cmdCRH[34:0] (12)main.top.crt2axi.cmdCRH[34:0] (13)main.top.crt2axi.cmdCRH[34:0] (14)main.top.crt2axi.cmdCRH[34:0] (15)main.top.crt2axi.cmdCRH[34:0] (16)main.top.crt2axi.cmdCRH[34:0] (17)main.top.crt2axi.cmdCRH[34:0] (18)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|RespWrite|rsvd12 [Bit#(4)]} #{main.top.crt2axi.cmdCRH[15:12]} (19)main.top.crt2axi.cmdCRH[34:0] (20)main.top.crt2axi.cmdCRH[34:0] (21)main.top.crt2axi.cmdCRH[34:0] (22)main.top.crt2axi.cmdCRH[34:0]
+@4022
+^>3 enum OK Timeout Error RSVD
++{main.top.crt2axi.cmdCRH|RespWrite|respt [HCrtRespCode]} #{main.top.crt2axi.cmdCRH[11:8]} (23)main.top.crt2axi.cmdCRH[34:0] (24)main.top.crt2axi.cmdCRH[34:0] (25)main.top.crt2axi.cmdCRH[34:0] (26)main.top.crt2axi.cmdCRH[34:0]
+@c00022
++{main.top.crt2axi.cmdCRH|RespWrite|c0 [+] [CRH0]} #{main.top.crt2axi.cmdCRH[7:0]} (27)main.top.crt2axi.cmdCRH[34:0] (28)main.top.crt2axi.cmdCRH[34:0] (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0] (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|RespWrite|c0|isDO [Bool]} (27)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|RespWrite|c0|isAM64 [Bool]} (28)main.top.crt2axi.cmdCRH[34:0]
+@4022
+^>2 enum NOP Write Read Response
++{main.top.crt2axi.cmdCRH|RespWrite|c0|mesgt [HCrtMesgType]} #{main.top.crt2axi.cmdCRH[5:4]} (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|RespWrite|c0|tag [Bit#(4)]} #{main.top.crt2axi.cmdCRH[3:0]} (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@1401200
+-group_end
+-group_end
+@c00022
++{main.top.crt2axi.cmdCRH|RespRead [+] [CRHResp]} #{main.top.crt2axi.cmdCRH[31:0]} (3)main.top.crt2axi.cmdCRH[34:0] (4)main.top.crt2axi.cmdCRH[34:0] (5)main.top.crt2axi.cmdCRH[34:0] (6)main.top.crt2axi.cmdCRH[34:0] (7)main.top.crt2axi.cmdCRH[34:0] (8)main.top.crt2axi.cmdCRH[34:0] (9)main.top.crt2axi.cmdCRH[34:0] (10)main.top.crt2axi.cmdCRH[34:0] (11)main.top.crt2axi.cmdCRH[34:0] (12)main.top.crt2axi.cmdCRH[34:0] (13)main.top.crt2axi.cmdCRH[34:0] (14)main.top.crt2axi.cmdCRH[34:0] (15)main.top.crt2axi.cmdCRH[34:0] (16)main.top.crt2axi.cmdCRH[34:0] (17)main.top.crt2axi.cmdCRH[34:0] (18)main.top.crt2axi.cmdCRH[34:0] (19)main.top.crt2axi.cmdCRH[34:0] (20)main.top.crt2axi.cmdCRH[34:0] (21)main.top.crt2axi.cmdCRH[34:0] (22)main.top.crt2axi.cmdCRH[34:0] (23)main.top.crt2axi.cmdCRH[34:0] (24)main.top.crt2axi.cmdCRH[34:0] (25)main.top.crt2axi.cmdCRH[34:0] (26)main.top.crt2axi.cmdCRH[34:0] (27)main.top.crt2axi.cmdCRH[34:0] (28)main.top.crt2axi.cmdCRH[34:0] (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0] (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|RespRead|isLast [Bool]} (3)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|RespRead|rsvd28 [Bit#(3)]} #{main.top.crt2axi.cmdCRH[30:28]} (4)main.top.crt2axi.cmdCRH[34:0] (5)main.top.crt2axi.cmdCRH[34:0] (6)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|RespRead|adl [UInt#(12)]} #{main.top.crt2axi.cmdCRH[27:16]} (7)main.top.crt2axi.cmdCRH[34:0] (8)main.top.crt2axi.cmdCRH[34:0] (9)main.top.crt2axi.cmdCRH[34:0] (10)main.top.crt2axi.cmdCRH[34:0] (11)main.top.crt2axi.cmdCRH[34:0] (12)main.top.crt2axi.cmdCRH[34:0] (13)main.top.crt2axi.cmdCRH[34:0] (14)main.top.crt2axi.cmdCRH[34:0] (15)main.top.crt2axi.cmdCRH[34:0] (16)main.top.crt2axi.cmdCRH[34:0] (17)main.top.crt2axi.cmdCRH[34:0] (18)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|RespRead|rsvd12 [Bit#(4)]} #{main.top.crt2axi.cmdCRH[15:12]} (19)main.top.crt2axi.cmdCRH[34:0] (20)main.top.crt2axi.cmdCRH[34:0] (21)main.top.crt2axi.cmdCRH[34:0] (22)main.top.crt2axi.cmdCRH[34:0]
+@4022
+^>3 enum OK Timeout Error RSVD
++{main.top.crt2axi.cmdCRH|RespRead|respt [HCrtRespCode]} #{main.top.crt2axi.cmdCRH[11:8]} (23)main.top.crt2axi.cmdCRH[34:0] (24)main.top.crt2axi.cmdCRH[34:0] (25)main.top.crt2axi.cmdCRH[34:0] (26)main.top.crt2axi.cmdCRH[34:0]
+@c00022
++{main.top.crt2axi.cmdCRH|RespRead|c0 [+] [CRH0]} #{main.top.crt2axi.cmdCRH[7:0]} (27)main.top.crt2axi.cmdCRH[34:0] (28)main.top.crt2axi.cmdCRH[34:0] (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0] (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|RespRead|c0|isDO [Bool]} (27)main.top.crt2axi.cmdCRH[34:0]
++{main.top.crt2axi.cmdCRH|RespRead|c0|isAM64 [Bool]} (28)main.top.crt2axi.cmdCRH[34:0]
+@4022
+^>2 enum NOP Write Read Response
++{main.top.crt2axi.cmdCRH|RespRead|c0|mesgt [HCrtMesgType]} #{main.top.crt2axi.cmdCRH[5:4]} (29)main.top.crt2axi.cmdCRH[34:0] (30)main.top.crt2axi.cmdCRH[34:0]
+@22
++{main.top.crt2axi.cmdCRH|RespRead|c0|tag [Bit#(4)]} #{main.top.crt2axi.cmdCRH[3:0]} (31)main.top.crt2axi.cmdCRH[34:0] (32)main.top.crt2axi.cmdCRH[34:0] (33)main.top.crt2axi.cmdCRH[34:0] (34)main.top.crt2axi.cmdCRH[34:0]
+@1401200
+-group_end
+-group_end
+-group_end
+@200
+-
+@22
 +{main.top.crt2axi.WILL_FIRE_RL_cmd_nop [Bool]} main.top.crt2axi.WILL_FIRE_RL_cmd_nop
-+{main.top.crt2axi.WILL_FIRE_RL_cmd_write [Bool]} main.top.crt2axi.WILL_FIRE_RL_cmd_write
-+{main.top.crt2axi.WILL_FIRE_RL_cmd_read [Bool]} main.top.crt2axi.WILL_FIRE_RL_cmd_read
 +{main.top.crt2axi.WILL_FIRE_RL_rsp_nop [Bool]} main.top.crt2axi.WILL_FIRE_RL_rsp_nop
+@200
+-
+@22
++{main.top.crt2axi.WILL_FIRE_RL_cmd_read [Bool]} main.top.crt2axi.WILL_FIRE_RL_cmd_read
+@c00022
++{main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire [+] [A4LAddrCmd]} main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0]
++{main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire|prot [+] [A4Prot]} #{main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:32]} (0)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (1)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (2)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0]
+@22
++{main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire|prot|isInstruction [Bool]} (0)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0]
++{main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire|prot|isNonSecure [Bool]} (1)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0]
++{main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire|prot|isPrivileged [Bool]} (2)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0]
+@1401200
+-group_end
+@22
++{main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire|addr [Bit#(32)]} #{main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[31:0]} (3)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (4)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (5)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (6)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (7)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (8)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (9)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (10)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (11)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (12)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (13)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (14)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (15)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (16)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (17)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (18)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (19)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (20)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (21)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (22)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (23)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (24)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (25)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (26)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (27)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (28)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (29)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (30)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (31)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (32)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (33)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0] (34)main.top.crt2axi.a4l_a4rdAddr_fifof_x_wire[34:0]
+@1401200
+-group_end
+@22
++{main.top.crt2axi.WILL_FIRE_RL_a4l_a4rdAddr_fifof_incCtr [Bool]} main.top.crt2axi.WILL_FIRE_RL_a4l_a4rdAddr_fifof_incCtr
 @23
-+{main.top.crt2axi.WILL_FIRE_RL_rsp_write [Bool]} main.top.crt2axi.WILL_FIRE_RL_rsp_write
++{main.top.crt2axi.cmdAdlRemain [UInt#(12)]} main.top.crt2axi.cmdAdlRemain[11:0]
+@200
+-
 @22
 +{main.top.crt2axi.WILL_FIRE_RL_rsp_read [Bool]} main.top.crt2axi.WILL_FIRE_RL_rsp_read
++{main.top.crt2axi.rspAdlRemain [UInt#(12)]} main.top.crt2axi.rspAdlRemain[11:0]
+@c00022
++{main.top.crt2axi.rspCRH [+] [TagCRH]} main.top.crt2axi.rspCRH[34:0]
+@4022
+^>1 enum HCrt::NOP HCrt::Write HCrt::Read HCrt::RespNOP HCrt::RespWrite HCrt::RespRead HCrt::Invalid
++{main.top.crt2axi.rspCRH|tag [TagCRH]} #{main.top.crt2axi.rspCRH[34:32]} (0)main.top.crt2axi.rspCRH[34:0] (1)main.top.crt2axi.rspCRH[34:0] (2)main.top.crt2axi.rspCRH[34:0]
+@c00022
++{main.top.crt2axi.rspCRH|NOP [+] [CRHNOP]} #{main.top.crt2axi.rspCRH[31:0]} (3)main.top.crt2axi.rspCRH[34:0] (4)main.top.crt2axi.rspCRH[34:0] (5)main.top.crt2axi.rspCRH[34:0] (6)main.top.crt2axi.rspCRH[34:0] (7)main.top.crt2axi.rspCRH[34:0] (8)main.top.crt2axi.rspCRH[34:0] (9)main.top.crt2axi.rspCRH[34:0] (10)main.top.crt2axi.rspCRH[34:0] (11)main.top.crt2axi.rspCRH[34:0] (12)main.top.crt2axi.rspCRH[34:0] (13)main.top.crt2axi.rspCRH[34:0] (14)main.top.crt2axi.rspCRH[34:0] (15)main.top.crt2axi.rspCRH[34:0] (16)main.top.crt2axi.rspCRH[34:0] (17)main.top.crt2axi.rspCRH[34:0] (18)main.top.crt2axi.rspCRH[34:0] (19)main.top.crt2axi.rspCRH[34:0] (20)main.top.crt2axi.rspCRH[34:0] (21)main.top.crt2axi.rspCRH[34:0] (22)main.top.crt2axi.rspCRH[34:0] (23)main.top.crt2axi.rspCRH[34:0] (24)main.top.crt2axi.rspCRH[34:0] (25)main.top.crt2axi.rspCRH[34:0] (26)main.top.crt2axi.rspCRH[34:0] (27)main.top.crt2axi.rspCRH[34:0] (28)main.top.crt2axi.rspCRH[34:0] (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0] (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|NOP|isLast [Bool]} (3)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|NOP|rsvd28 [Bit#(3)]} #{main.top.crt2axi.rspCRH[30:28]} (4)main.top.crt2axi.rspCRH[34:0] (5)main.top.crt2axi.rspCRH[34:0] (6)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|NOP|adl [UInt#(12)]} #{main.top.crt2axi.rspCRH[27:16]} (7)main.top.crt2axi.rspCRH[34:0] (8)main.top.crt2axi.rspCRH[34:0] (9)main.top.crt2axi.rspCRH[34:0] (10)main.top.crt2axi.rspCRH[34:0] (11)main.top.crt2axi.rspCRH[34:0] (12)main.top.crt2axi.rspCRH[34:0] (13)main.top.crt2axi.rspCRH[34:0] (14)main.top.crt2axi.rspCRH[34:0] (15)main.top.crt2axi.rspCRH[34:0] (16)main.top.crt2axi.rspCRH[34:0] (17)main.top.crt2axi.rspCRH[34:0] (18)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|NOP|rsvd8 [Bit#(8)]} #{main.top.crt2axi.rspCRH[15:8]} (19)main.top.crt2axi.rspCRH[34:0] (20)main.top.crt2axi.rspCRH[34:0] (21)main.top.crt2axi.rspCRH[34:0] (22)main.top.crt2axi.rspCRH[34:0] (23)main.top.crt2axi.rspCRH[34:0] (24)main.top.crt2axi.rspCRH[34:0] (25)main.top.crt2axi.rspCRH[34:0] (26)main.top.crt2axi.rspCRH[34:0]
+@c00022
++{main.top.crt2axi.rspCRH|NOP|c0 [+] [CRH0]} #{main.top.crt2axi.rspCRH[7:0]} (27)main.top.crt2axi.rspCRH[34:0] (28)main.top.crt2axi.rspCRH[34:0] (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0] (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|NOP|c0|isDO [Bool]} (27)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|NOP|c0|isAM64 [Bool]} (28)main.top.crt2axi.rspCRH[34:0]
+@4022
+^>2 enum NOP Write Read Response
++{main.top.crt2axi.rspCRH|NOP|c0|mesgt [HCrtMesgType]} #{main.top.crt2axi.rspCRH[5:4]} (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|NOP|c0|tag [Bit#(4)]} #{main.top.crt2axi.rspCRH[3:0]} (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@1401200
+-group_end
+-group_end
+@c00022
++{main.top.crt2axi.rspCRH|Write [+] [CRHWrite]} #{main.top.crt2axi.rspCRH[31:0]} (3)main.top.crt2axi.rspCRH[34:0] (4)main.top.crt2axi.rspCRH[34:0] (5)main.top.crt2axi.rspCRH[34:0] (6)main.top.crt2axi.rspCRH[34:0] (7)main.top.crt2axi.rspCRH[34:0] (8)main.top.crt2axi.rspCRH[34:0] (9)main.top.crt2axi.rspCRH[34:0] (10)main.top.crt2axi.rspCRH[34:0] (11)main.top.crt2axi.rspCRH[34:0] (12)main.top.crt2axi.rspCRH[34:0] (13)main.top.crt2axi.rspCRH[34:0] (14)main.top.crt2axi.rspCRH[34:0] (15)main.top.crt2axi.rspCRH[34:0] (16)main.top.crt2axi.rspCRH[34:0] (17)main.top.crt2axi.rspCRH[34:0] (18)main.top.crt2axi.rspCRH[34:0] (19)main.top.crt2axi.rspCRH[34:0] (20)main.top.crt2axi.rspCRH[34:0] (21)main.top.crt2axi.rspCRH[34:0] (22)main.top.crt2axi.rspCRH[34:0] (23)main.top.crt2axi.rspCRH[34:0] (24)main.top.crt2axi.rspCRH[34:0] (25)main.top.crt2axi.rspCRH[34:0] (26)main.top.crt2axi.rspCRH[34:0] (27)main.top.crt2axi.rspCRH[34:0] (28)main.top.crt2axi.rspCRH[34:0] (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0] (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|Write|isLast [Bool]} (3)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|Write|rsvd28 [Bit#(3)]} #{main.top.crt2axi.rspCRH[30:28]} (4)main.top.crt2axi.rspCRH[34:0] (5)main.top.crt2axi.rspCRH[34:0] (6)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|Write|adl [UInt#(12)]} #{main.top.crt2axi.rspCRH[27:16]} (7)main.top.crt2axi.rspCRH[34:0] (8)main.top.crt2axi.rspCRH[34:0] (9)main.top.crt2axi.rspCRH[34:0] (10)main.top.crt2axi.rspCRH[34:0] (11)main.top.crt2axi.rspCRH[34:0] (12)main.top.crt2axi.rspCRH[34:0] (13)main.top.crt2axi.rspCRH[34:0] (14)main.top.crt2axi.rspCRH[34:0] (15)main.top.crt2axi.rspCRH[34:0] (16)main.top.crt2axi.rspCRH[34:0] (17)main.top.crt2axi.rspCRH[34:0] (18)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|Write|lastBE [Bit#(4)]} #{main.top.crt2axi.rspCRH[15:12]} (19)main.top.crt2axi.rspCRH[34:0] (20)main.top.crt2axi.rspCRH[34:0] (21)main.top.crt2axi.rspCRH[34:0] (22)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|Write|firstBE [Bit#(4)]} #{main.top.crt2axi.rspCRH[11:8]} (23)main.top.crt2axi.rspCRH[34:0] (24)main.top.crt2axi.rspCRH[34:0] (25)main.top.crt2axi.rspCRH[34:0] (26)main.top.crt2axi.rspCRH[34:0]
+@c00022
++{main.top.crt2axi.rspCRH|Write|c0 [+] [CRH0]} #{main.top.crt2axi.rspCRH[7:0]} (27)main.top.crt2axi.rspCRH[34:0] (28)main.top.crt2axi.rspCRH[34:0] (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0] (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|Write|c0|isDO [Bool]} (27)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|Write|c0|isAM64 [Bool]} (28)main.top.crt2axi.rspCRH[34:0]
+@4022
+^>2 enum NOP Write Read Response
++{main.top.crt2axi.rspCRH|Write|c0|mesgt [HCrtMesgType]} #{main.top.crt2axi.rspCRH[5:4]} (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|Write|c0|tag [Bit#(4)]} #{main.top.crt2axi.rspCRH[3:0]} (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@1401200
+-group_end
+-group_end
+@c00022
++{main.top.crt2axi.rspCRH|Read [+] [CRHRead]} #{main.top.crt2axi.rspCRH[31:0]} (3)main.top.crt2axi.rspCRH[34:0] (4)main.top.crt2axi.rspCRH[34:0] (5)main.top.crt2axi.rspCRH[34:0] (6)main.top.crt2axi.rspCRH[34:0] (7)main.top.crt2axi.rspCRH[34:0] (8)main.top.crt2axi.rspCRH[34:0] (9)main.top.crt2axi.rspCRH[34:0] (10)main.top.crt2axi.rspCRH[34:0] (11)main.top.crt2axi.rspCRH[34:0] (12)main.top.crt2axi.rspCRH[34:0] (13)main.top.crt2axi.rspCRH[34:0] (14)main.top.crt2axi.rspCRH[34:0] (15)main.top.crt2axi.rspCRH[34:0] (16)main.top.crt2axi.rspCRH[34:0] (17)main.top.crt2axi.rspCRH[34:0] (18)main.top.crt2axi.rspCRH[34:0] (19)main.top.crt2axi.rspCRH[34:0] (20)main.top.crt2axi.rspCRH[34:0] (21)main.top.crt2axi.rspCRH[34:0] (22)main.top.crt2axi.rspCRH[34:0] (23)main.top.crt2axi.rspCRH[34:0] (24)main.top.crt2axi.rspCRH[34:0] (25)main.top.crt2axi.rspCRH[34:0] (26)main.top.crt2axi.rspCRH[34:0] (27)main.top.crt2axi.rspCRH[34:0] (28)main.top.crt2axi.rspCRH[34:0] (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0] (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|Read|isLast [Bool]} (3)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|Read|rsvd28 [Bit#(3)]} #{main.top.crt2axi.rspCRH[30:28]} (4)main.top.crt2axi.rspCRH[34:0] (5)main.top.crt2axi.rspCRH[34:0] (6)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|Read|adl [UInt#(12)]} #{main.top.crt2axi.rspCRH[27:16]} (7)main.top.crt2axi.rspCRH[34:0] (8)main.top.crt2axi.rspCRH[34:0] (9)main.top.crt2axi.rspCRH[34:0] (10)main.top.crt2axi.rspCRH[34:0] (11)main.top.crt2axi.rspCRH[34:0] (12)main.top.crt2axi.rspCRH[34:0] (13)main.top.crt2axi.rspCRH[34:0] (14)main.top.crt2axi.rspCRH[34:0] (15)main.top.crt2axi.rspCRH[34:0] (16)main.top.crt2axi.rspCRH[34:0] (17)main.top.crt2axi.rspCRH[34:0] (18)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|Read|lastBE [Bit#(4)]} #{main.top.crt2axi.rspCRH[15:12]} (19)main.top.crt2axi.rspCRH[34:0] (20)main.top.crt2axi.rspCRH[34:0] (21)main.top.crt2axi.rspCRH[34:0] (22)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|Read|firstBE [Bit#(4)]} #{main.top.crt2axi.rspCRH[11:8]} (23)main.top.crt2axi.rspCRH[34:0] (24)main.top.crt2axi.rspCRH[34:0] (25)main.top.crt2axi.rspCRH[34:0] (26)main.top.crt2axi.rspCRH[34:0]
+@c00022
++{main.top.crt2axi.rspCRH|Read|c0 [+] [CRH0]} #{main.top.crt2axi.rspCRH[7:0]} (27)main.top.crt2axi.rspCRH[34:0] (28)main.top.crt2axi.rspCRH[34:0] (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0] (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|Read|c0|isDO [Bool]} (27)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|Read|c0|isAM64 [Bool]} (28)main.top.crt2axi.rspCRH[34:0]
+@4022
+^>2 enum NOP Write Read Response
++{main.top.crt2axi.rspCRH|Read|c0|mesgt [HCrtMesgType]} #{main.top.crt2axi.rspCRH[5:4]} (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|Read|c0|tag [Bit#(4)]} #{main.top.crt2axi.rspCRH[3:0]} (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@1401200
+-group_end
+-group_end
+@c00022
++{main.top.crt2axi.rspCRH|RespNOP [+] [CRHResp]} #{main.top.crt2axi.rspCRH[31:0]} (3)main.top.crt2axi.rspCRH[34:0] (4)main.top.crt2axi.rspCRH[34:0] (5)main.top.crt2axi.rspCRH[34:0] (6)main.top.crt2axi.rspCRH[34:0] (7)main.top.crt2axi.rspCRH[34:0] (8)main.top.crt2axi.rspCRH[34:0] (9)main.top.crt2axi.rspCRH[34:0] (10)main.top.crt2axi.rspCRH[34:0] (11)main.top.crt2axi.rspCRH[34:0] (12)main.top.crt2axi.rspCRH[34:0] (13)main.top.crt2axi.rspCRH[34:0] (14)main.top.crt2axi.rspCRH[34:0] (15)main.top.crt2axi.rspCRH[34:0] (16)main.top.crt2axi.rspCRH[34:0] (17)main.top.crt2axi.rspCRH[34:0] (18)main.top.crt2axi.rspCRH[34:0] (19)main.top.crt2axi.rspCRH[34:0] (20)main.top.crt2axi.rspCRH[34:0] (21)main.top.crt2axi.rspCRH[34:0] (22)main.top.crt2axi.rspCRH[34:0] (23)main.top.crt2axi.rspCRH[34:0] (24)main.top.crt2axi.rspCRH[34:0] (25)main.top.crt2axi.rspCRH[34:0] (26)main.top.crt2axi.rspCRH[34:0] (27)main.top.crt2axi.rspCRH[34:0] (28)main.top.crt2axi.rspCRH[34:0] (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0] (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|RespNOP|isLast [Bool]} (3)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|RespNOP|rsvd28 [Bit#(3)]} #{main.top.crt2axi.rspCRH[30:28]} (4)main.top.crt2axi.rspCRH[34:0] (5)main.top.crt2axi.rspCRH[34:0] (6)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|RespNOP|adl [UInt#(12)]} #{main.top.crt2axi.rspCRH[27:16]} (7)main.top.crt2axi.rspCRH[34:0] (8)main.top.crt2axi.rspCRH[34:0] (9)main.top.crt2axi.rspCRH[34:0] (10)main.top.crt2axi.rspCRH[34:0] (11)main.top.crt2axi.rspCRH[34:0] (12)main.top.crt2axi.rspCRH[34:0] (13)main.top.crt2axi.rspCRH[34:0] (14)main.top.crt2axi.rspCRH[34:0] (15)main.top.crt2axi.rspCRH[34:0] (16)main.top.crt2axi.rspCRH[34:0] (17)main.top.crt2axi.rspCRH[34:0] (18)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|RespNOP|rsvd12 [Bit#(4)]} #{main.top.crt2axi.rspCRH[15:12]} (19)main.top.crt2axi.rspCRH[34:0] (20)main.top.crt2axi.rspCRH[34:0] (21)main.top.crt2axi.rspCRH[34:0] (22)main.top.crt2axi.rspCRH[34:0]
+@4022
+^>3 enum OK Timeout Error RSVD
++{main.top.crt2axi.rspCRH|RespNOP|respt [HCrtRespCode]} #{main.top.crt2axi.rspCRH[11:8]} (23)main.top.crt2axi.rspCRH[34:0] (24)main.top.crt2axi.rspCRH[34:0] (25)main.top.crt2axi.rspCRH[34:0] (26)main.top.crt2axi.rspCRH[34:0]
+@c00022
++{main.top.crt2axi.rspCRH|RespNOP|c0 [+] [CRH0]} #{main.top.crt2axi.rspCRH[7:0]} (27)main.top.crt2axi.rspCRH[34:0] (28)main.top.crt2axi.rspCRH[34:0] (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0] (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|RespNOP|c0|isDO [Bool]} (27)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|RespNOP|c0|isAM64 [Bool]} (28)main.top.crt2axi.rspCRH[34:0]
+@4022
+^>2 enum NOP Write Read Response
++{main.top.crt2axi.rspCRH|RespNOP|c0|mesgt [HCrtMesgType]} #{main.top.crt2axi.rspCRH[5:4]} (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|RespNOP|c0|tag [Bit#(4)]} #{main.top.crt2axi.rspCRH[3:0]} (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@1401200
+-group_end
+-group_end
+@c00022
++{main.top.crt2axi.rspCRH|RespWrite [+] [CRHResp]} #{main.top.crt2axi.rspCRH[31:0]} (3)main.top.crt2axi.rspCRH[34:0] (4)main.top.crt2axi.rspCRH[34:0] (5)main.top.crt2axi.rspCRH[34:0] (6)main.top.crt2axi.rspCRH[34:0] (7)main.top.crt2axi.rspCRH[34:0] (8)main.top.crt2axi.rspCRH[34:0] (9)main.top.crt2axi.rspCRH[34:0] (10)main.top.crt2axi.rspCRH[34:0] (11)main.top.crt2axi.rspCRH[34:0] (12)main.top.crt2axi.rspCRH[34:0] (13)main.top.crt2axi.rspCRH[34:0] (14)main.top.crt2axi.rspCRH[34:0] (15)main.top.crt2axi.rspCRH[34:0] (16)main.top.crt2axi.rspCRH[34:0] (17)main.top.crt2axi.rspCRH[34:0] (18)main.top.crt2axi.rspCRH[34:0] (19)main.top.crt2axi.rspCRH[34:0] (20)main.top.crt2axi.rspCRH[34:0] (21)main.top.crt2axi.rspCRH[34:0] (22)main.top.crt2axi.rspCRH[34:0] (23)main.top.crt2axi.rspCRH[34:0] (24)main.top.crt2axi.rspCRH[34:0] (25)main.top.crt2axi.rspCRH[34:0] (26)main.top.crt2axi.rspCRH[34:0] (27)main.top.crt2axi.rspCRH[34:0] (28)main.top.crt2axi.rspCRH[34:0] (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0] (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|RespWrite|isLast [Bool]} (3)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|RespWrite|rsvd28 [Bit#(3)]} #{main.top.crt2axi.rspCRH[30:28]} (4)main.top.crt2axi.rspCRH[34:0] (5)main.top.crt2axi.rspCRH[34:0] (6)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|RespWrite|adl [UInt#(12)]} #{main.top.crt2axi.rspCRH[27:16]} (7)main.top.crt2axi.rspCRH[34:0] (8)main.top.crt2axi.rspCRH[34:0] (9)main.top.crt2axi.rspCRH[34:0] (10)main.top.crt2axi.rspCRH[34:0] (11)main.top.crt2axi.rspCRH[34:0] (12)main.top.crt2axi.rspCRH[34:0] (13)main.top.crt2axi.rspCRH[34:0] (14)main.top.crt2axi.rspCRH[34:0] (15)main.top.crt2axi.rspCRH[34:0] (16)main.top.crt2axi.rspCRH[34:0] (17)main.top.crt2axi.rspCRH[34:0] (18)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|RespWrite|rsvd12 [Bit#(4)]} #{main.top.crt2axi.rspCRH[15:12]} (19)main.top.crt2axi.rspCRH[34:0] (20)main.top.crt2axi.rspCRH[34:0] (21)main.top.crt2axi.rspCRH[34:0] (22)main.top.crt2axi.rspCRH[34:0]
+@4022
+^>3 enum OK Timeout Error RSVD
++{main.top.crt2axi.rspCRH|RespWrite|respt [HCrtRespCode]} #{main.top.crt2axi.rspCRH[11:8]} (23)main.top.crt2axi.rspCRH[34:0] (24)main.top.crt2axi.rspCRH[34:0] (25)main.top.crt2axi.rspCRH[34:0] (26)main.top.crt2axi.rspCRH[34:0]
+@c00022
++{main.top.crt2axi.rspCRH|RespWrite|c0 [+] [CRH0]} #{main.top.crt2axi.rspCRH[7:0]} (27)main.top.crt2axi.rspCRH[34:0] (28)main.top.crt2axi.rspCRH[34:0] (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0] (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|RespWrite|c0|isDO [Bool]} (27)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|RespWrite|c0|isAM64 [Bool]} (28)main.top.crt2axi.rspCRH[34:0]
+@4022
+^>2 enum NOP Write Read Response
++{main.top.crt2axi.rspCRH|RespWrite|c0|mesgt [HCrtMesgType]} #{main.top.crt2axi.rspCRH[5:4]} (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|RespWrite|c0|tag [Bit#(4)]} #{main.top.crt2axi.rspCRH[3:0]} (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@1401200
+-group_end
+-group_end
+@c00022
++{main.top.crt2axi.rspCRH|RespRead [+] [CRHResp]} #{main.top.crt2axi.rspCRH[31:0]} (3)main.top.crt2axi.rspCRH[34:0] (4)main.top.crt2axi.rspCRH[34:0] (5)main.top.crt2axi.rspCRH[34:0] (6)main.top.crt2axi.rspCRH[34:0] (7)main.top.crt2axi.rspCRH[34:0] (8)main.top.crt2axi.rspCRH[34:0] (9)main.top.crt2axi.rspCRH[34:0] (10)main.top.crt2axi.rspCRH[34:0] (11)main.top.crt2axi.rspCRH[34:0] (12)main.top.crt2axi.rspCRH[34:0] (13)main.top.crt2axi.rspCRH[34:0] (14)main.top.crt2axi.rspCRH[34:0] (15)main.top.crt2axi.rspCRH[34:0] (16)main.top.crt2axi.rspCRH[34:0] (17)main.top.crt2axi.rspCRH[34:0] (18)main.top.crt2axi.rspCRH[34:0] (19)main.top.crt2axi.rspCRH[34:0] (20)main.top.crt2axi.rspCRH[34:0] (21)main.top.crt2axi.rspCRH[34:0] (22)main.top.crt2axi.rspCRH[34:0] (23)main.top.crt2axi.rspCRH[34:0] (24)main.top.crt2axi.rspCRH[34:0] (25)main.top.crt2axi.rspCRH[34:0] (26)main.top.crt2axi.rspCRH[34:0] (27)main.top.crt2axi.rspCRH[34:0] (28)main.top.crt2axi.rspCRH[34:0] (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0] (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|RespRead|isLast [Bool]} (3)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|RespRead|rsvd28 [Bit#(3)]} #{main.top.crt2axi.rspCRH[30:28]} (4)main.top.crt2axi.rspCRH[34:0] (5)main.top.crt2axi.rspCRH[34:0] (6)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|RespRead|adl [UInt#(12)]} #{main.top.crt2axi.rspCRH[27:16]} (7)main.top.crt2axi.rspCRH[34:0] (8)main.top.crt2axi.rspCRH[34:0] (9)main.top.crt2axi.rspCRH[34:0] (10)main.top.crt2axi.rspCRH[34:0] (11)main.top.crt2axi.rspCRH[34:0] (12)main.top.crt2axi.rspCRH[34:0] (13)main.top.crt2axi.rspCRH[34:0] (14)main.top.crt2axi.rspCRH[34:0] (15)main.top.crt2axi.rspCRH[34:0] (16)main.top.crt2axi.rspCRH[34:0] (17)main.top.crt2axi.rspCRH[34:0] (18)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|RespRead|rsvd12 [Bit#(4)]} #{main.top.crt2axi.rspCRH[15:12]} (19)main.top.crt2axi.rspCRH[34:0] (20)main.top.crt2axi.rspCRH[34:0] (21)main.top.crt2axi.rspCRH[34:0] (22)main.top.crt2axi.rspCRH[34:0]
+@4022
+^>3 enum OK Timeout Error RSVD
++{main.top.crt2axi.rspCRH|RespRead|respt [HCrtRespCode]} #{main.top.crt2axi.rspCRH[11:8]} (23)main.top.crt2axi.rspCRH[34:0] (24)main.top.crt2axi.rspCRH[34:0] (25)main.top.crt2axi.rspCRH[34:0] (26)main.top.crt2axi.rspCRH[34:0]
+@c00022
++{main.top.crt2axi.rspCRH|RespRead|c0 [+] [CRH0]} #{main.top.crt2axi.rspCRH[7:0]} (27)main.top.crt2axi.rspCRH[34:0] (28)main.top.crt2axi.rspCRH[34:0] (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0] (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|RespRead|c0|isDO [Bool]} (27)main.top.crt2axi.rspCRH[34:0]
++{main.top.crt2axi.rspCRH|RespRead|c0|isAM64 [Bool]} (28)main.top.crt2axi.rspCRH[34:0]
+@4022
+^>2 enum NOP Write Read Response
++{main.top.crt2axi.rspCRH|RespRead|c0|mesgt [HCrtMesgType]} #{main.top.crt2axi.rspCRH[5:4]} (29)main.top.crt2axi.rspCRH[34:0] (30)main.top.crt2axi.rspCRH[34:0]
+@22
++{main.top.crt2axi.rspCRH|RespRead|c0|tag [Bit#(4)]} #{main.top.crt2axi.rspCRH[3:0]} (31)main.top.crt2axi.rspCRH[34:0] (32)main.top.crt2axi.rspCRH[34:0] (33)main.top.crt2axi.rspCRH[34:0] (34)main.top.crt2axi.rspCRH[34:0]
+@1401200
+-group_end
+-group_end
+-group_end
+@200
+-
+@22
++{main.top.crt2axi.WILL_FIRE_RL_cmd_write [Bool]} main.top.crt2axi.WILL_FIRE_RL_cmd_write
++{main.top.crt2axi.WILL_FIRE_RL_rsp_write [Bool]} main.top.crt2axi.WILL_FIRE_RL_rsp_write
++{main.top.crt2axi.cmdAdlRemain [UInt#(12)]} main.top.crt2axi.cmdAdlRemain[11:0]
+@200
+-
+@22
++{main.top.crt2axi.crtRespF.ENQ [Bool]} main.top.crt2axi.crtRespF.ENQ
+@c00022
++{main.top.crt2axi.crtRespF.D_IN [+] [Vector#(4, ABS)]} main.top.crt2axi.crtRespF.D_IN[39:0]
++{main.top.crt2axi.crtRespF.D_IN [3] [+] [ABS]} #{main.top.crt2axi.crtRespF.D_IN[39:30]} (0)main.top.crt2axi.crtRespF.D_IN[39:0] (1)main.top.crt2axi.crtRespF.D_IN[39:0] (2)main.top.crt2axi.crtRespF.D_IN[39:0] (3)main.top.crt2axi.crtRespF.D_IN[39:0] (4)main.top.crt2axi.crtRespF.D_IN[39:0] (5)main.top.crt2axi.crtRespF.D_IN[39:0] (6)main.top.crt2axi.crtRespF.D_IN[39:0] (7)main.top.crt2axi.crtRespF.D_IN[39:0] (8)main.top.crt2axi.crtRespF.D_IN[39:0] (9)main.top.crt2axi.crtRespF.D_IN[39:0]
+@4022
+^>4 enum ABS::ValidNotEOP ABS::ValidEOP ABS::EmptyEOP ABS::AbortEOP
++{main.top.crt2axi.crtRespF.D_IN [3]|tag [ABS]} #{main.top.crt2axi.crtRespF.D_IN[39:38]} (0)main.top.crt2axi.crtRespF.D_IN[39:0] (1)main.top.crt2axi.crtRespF.D_IN[39:0]
+@22
++{main.top.crt2axi.crtRespF.D_IN [3] ValidNotEOP [Bit#(8)]} #{main.top.crt2axi.crtRespF.D_IN[37:30]} (2)main.top.crt2axi.crtRespF.D_IN[39:0] (3)main.top.crt2axi.crtRespF.D_IN[39:0] (4)main.top.crt2axi.crtRespF.D_IN[39:0] (5)main.top.crt2axi.crtRespF.D_IN[39:0] (6)main.top.crt2axi.crtRespF.D_IN[39:0] (7)main.top.crt2axi.crtRespF.D_IN[39:0] (8)main.top.crt2axi.crtRespF.D_IN[39:0] (9)main.top.crt2axi.crtRespF.D_IN[39:0]
++{main.top.crt2axi.crtRespF.D_IN [3] ValidEOP [Bit#(8)]} #{main.top.crt2axi.crtRespF.D_IN[37:30]} (2)main.top.crt2axi.crtRespF.D_IN[39:0] (3)main.top.crt2axi.crtRespF.D_IN[39:0] (4)main.top.crt2axi.crtRespF.D_IN[39:0] (5)main.top.crt2axi.crtRespF.D_IN[39:0] (6)main.top.crt2axi.crtRespF.D_IN[39:0] (7)main.top.crt2axi.crtRespF.D_IN[39:0] (8)main.top.crt2axi.crtRespF.D_IN[39:0] (9)main.top.crt2axi.crtRespF.D_IN[39:0]
+@1401200
+-group_end
+@c00022
++{main.top.crt2axi.crtRespF.D_IN [2] [+] [ABS]} #{main.top.crt2axi.crtRespF.D_IN[29:20]} (10)main.top.crt2axi.crtRespF.D_IN[39:0] (11)main.top.crt2axi.crtRespF.D_IN[39:0] (12)main.top.crt2axi.crtRespF.D_IN[39:0] (13)main.top.crt2axi.crtRespF.D_IN[39:0] (14)main.top.crt2axi.crtRespF.D_IN[39:0] (15)main.top.crt2axi.crtRespF.D_IN[39:0] (16)main.top.crt2axi.crtRespF.D_IN[39:0] (17)main.top.crt2axi.crtRespF.D_IN[39:0] (18)main.top.crt2axi.crtRespF.D_IN[39:0] (19)main.top.crt2axi.crtRespF.D_IN[39:0]
+@4022
+^>4 enum ABS::ValidNotEOP ABS::ValidEOP ABS::EmptyEOP ABS::AbortEOP
++{main.top.crt2axi.crtRespF.D_IN [2]|tag [ABS]} #{main.top.crt2axi.crtRespF.D_IN[29:28]} (10)main.top.crt2axi.crtRespF.D_IN[39:0] (11)main.top.crt2axi.crtRespF.D_IN[39:0]
+@22
++{main.top.crt2axi.crtRespF.D_IN [2] ValidNotEOP [Bit#(8)]} #{main.top.crt2axi.crtRespF.D_IN[27:20]} (12)main.top.crt2axi.crtRespF.D_IN[39:0] (13)main.top.crt2axi.crtRespF.D_IN[39:0] (14)main.top.crt2axi.crtRespF.D_IN[39:0] (15)main.top.crt2axi.crtRespF.D_IN[39:0] (16)main.top.crt2axi.crtRespF.D_IN[39:0] (17)main.top.crt2axi.crtRespF.D_IN[39:0] (18)main.top.crt2axi.crtRespF.D_IN[39:0] (19)main.top.crt2axi.crtRespF.D_IN[39:0]
++{main.top.crt2axi.crtRespF.D_IN [2] ValidEOP [Bit#(8)]} #{main.top.crt2axi.crtRespF.D_IN[27:20]} (12)main.top.crt2axi.crtRespF.D_IN[39:0] (13)main.top.crt2axi.crtRespF.D_IN[39:0] (14)main.top.crt2axi.crtRespF.D_IN[39:0] (15)main.top.crt2axi.crtRespF.D_IN[39:0] (16)main.top.crt2axi.crtRespF.D_IN[39:0] (17)main.top.crt2axi.crtRespF.D_IN[39:0] (18)main.top.crt2axi.crtRespF.D_IN[39:0] (19)main.top.crt2axi.crtRespF.D_IN[39:0]
+@1401200
+-group_end
+@c00022
++{main.top.crt2axi.crtRespF.D_IN [1] [+] [ABS]} #{main.top.crt2axi.crtRespF.D_IN[19:10]} (20)main.top.crt2axi.crtRespF.D_IN[39:0] (21)main.top.crt2axi.crtRespF.D_IN[39:0] (22)main.top.crt2axi.crtRespF.D_IN[39:0] (23)main.top.crt2axi.crtRespF.D_IN[39:0] (24)main.top.crt2axi.crtRespF.D_IN[39:0] (25)main.top.crt2axi.crtRespF.D_IN[39:0] (26)main.top.crt2axi.crtRespF.D_IN[39:0] (27)main.top.crt2axi.crtRespF.D_IN[39:0] (28)main.top.crt2axi.crtRespF.D_IN[39:0] (29)main.top.crt2axi.crtRespF.D_IN[39:0]
+@4022
+^>4 enum ABS::ValidNotEOP ABS::ValidEOP ABS::EmptyEOP ABS::AbortEOP
++{main.top.crt2axi.crtRespF.D_IN [1]|tag [ABS]} #{main.top.crt2axi.crtRespF.D_IN[19:18]} (20)main.top.crt2axi.crtRespF.D_IN[39:0] (21)main.top.crt2axi.crtRespF.D_IN[39:0]
+@22
++{main.top.crt2axi.crtRespF.D_IN [1] ValidNotEOP [Bit#(8)]} #{main.top.crt2axi.crtRespF.D_IN[17:10]} (22)main.top.crt2axi.crtRespF.D_IN[39:0] (23)main.top.crt2axi.crtRespF.D_IN[39:0] (24)main.top.crt2axi.crtRespF.D_IN[39:0] (25)main.top.crt2axi.crtRespF.D_IN[39:0] (26)main.top.crt2axi.crtRespF.D_IN[39:0] (27)main.top.crt2axi.crtRespF.D_IN[39:0] (28)main.top.crt2axi.crtRespF.D_IN[39:0] (29)main.top.crt2axi.crtRespF.D_IN[39:0]
++{main.top.crt2axi.crtRespF.D_IN [1] ValidEOP [Bit#(8)]} #{main.top.crt2axi.crtRespF.D_IN[17:10]} (22)main.top.crt2axi.crtRespF.D_IN[39:0] (23)main.top.crt2axi.crtRespF.D_IN[39:0] (24)main.top.crt2axi.crtRespF.D_IN[39:0] (25)main.top.crt2axi.crtRespF.D_IN[39:0] (26)main.top.crt2axi.crtRespF.D_IN[39:0] (27)main.top.crt2axi.crtRespF.D_IN[39:0] (28)main.top.crt2axi.crtRespF.D_IN[39:0] (29)main.top.crt2axi.crtRespF.D_IN[39:0]
+@1401200
+-group_end
+@c00022
++{main.top.crt2axi.crtRespF.D_IN [0] [+] [ABS]} #{main.top.crt2axi.crtRespF.D_IN[9:0]} (30)main.top.crt2axi.crtRespF.D_IN[39:0] (31)main.top.crt2axi.crtRespF.D_IN[39:0] (32)main.top.crt2axi.crtRespF.D_IN[39:0] (33)main.top.crt2axi.crtRespF.D_IN[39:0] (34)main.top.crt2axi.crtRespF.D_IN[39:0] (35)main.top.crt2axi.crtRespF.D_IN[39:0] (36)main.top.crt2axi.crtRespF.D_IN[39:0] (37)main.top.crt2axi.crtRespF.D_IN[39:0] (38)main.top.crt2axi.crtRespF.D_IN[39:0] (39)main.top.crt2axi.crtRespF.D_IN[39:0]
+@4022
+^>4 enum ABS::ValidNotEOP ABS::ValidEOP ABS::EmptyEOP ABS::AbortEOP
++{main.top.crt2axi.crtRespF.D_IN [0]|tag [ABS]} #{main.top.crt2axi.crtRespF.D_IN[9:8]} (30)main.top.crt2axi.crtRespF.D_IN[39:0] (31)main.top.crt2axi.crtRespF.D_IN[39:0]
+@22
++{main.top.crt2axi.crtRespF.D_IN [0] ValidNotEOP [Bit#(8)]} #{main.top.crt2axi.crtRespF.D_IN[7:0]} (32)main.top.crt2axi.crtRespF.D_IN[39:0] (33)main.top.crt2axi.crtRespF.D_IN[39:0] (34)main.top.crt2axi.crtRespF.D_IN[39:0] (35)main.top.crt2axi.crtRespF.D_IN[39:0] (36)main.top.crt2axi.crtRespF.D_IN[39:0] (37)main.top.crt2axi.crtRespF.D_IN[39:0] (38)main.top.crt2axi.crtRespF.D_IN[39:0] (39)main.top.crt2axi.crtRespF.D_IN[39:0]
++{main.top.crt2axi.crtRespF.D_IN [0] ValidEOP [Bit#(8)]} #{main.top.crt2axi.crtRespF.D_IN[7:0]} (32)main.top.crt2axi.crtRespF.D_IN[39:0] (33)main.top.crt2axi.crtRespF.D_IN[39:0] (34)main.top.crt2axi.crtRespF.D_IN[39:0] (35)main.top.crt2axi.crtRespF.D_IN[39:0] (36)main.top.crt2axi.crtRespF.D_IN[39:0] (37)main.top.crt2axi.crtRespF.D_IN[39:0] (38)main.top.crt2axi.crtRespF.D_IN[39:0] (39)main.top.crt2axi.crtRespF.D_IN[39:0]
+@1401200
+-group_end
+-group_end
+@200
+-
+@22
++{main.top.WILL_FIRE_RL_chomp_rsp [Bool]} main.top.WILL_FIRE_RL_chomp_rsp
++{main.top.rDat [Bit#(32)]} main.top.rDat[31:0]
 [pattern_trace] 1
 [pattern_trace] 0

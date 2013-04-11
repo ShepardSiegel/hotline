@@ -136,6 +136,9 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   Reg#(Vector#(2,Bit#(32))) cmdAddrV      <- mkRegU;
   Reg#(Bool)                crtBusy       <- mkReg(False);  // Used to enforce sequential command-response w/o overlap
 
+  Reg#(Bool)                cmdRdHead     <- mkReg(True);
+  Reg#(Bit#(32))            cmdAddrAccu   <- mkRegU;
+
   Bit#(32) targAdvert = fromInteger(respBufSize);
 
   // Fire and take a new CRH DWORD...
@@ -147,7 +150,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
       case (cmt)
         NOP:      action t = (tagged NOP      unpack(x)); cmdAdlRemain<=unpack(x[27:16]); endaction
         Write:    action t = (tagged Write    unpack(x)); cmdAdlRemain<=unpack(x[27:16]); endaction
-        Read:     action t = (tagged Read     unpack(x)); endaction
+        Read:     action t = (tagged Read     unpack(x)); cmdAdlRemain<=unpack(x[27:16]); endaction
         Response: action modFaulted<=True; endaction // Completer does not expect a Response
       endcase
       cmdCRH <= t; // update state variable
@@ -245,16 +248,24 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
 
 
   // Rule to process Read Command Requests
+  // TODO: AM64 Processing
+  // On a Read Command, this will fire ADL times
   rule cmd_read (cmdCRH matches tagged Read .n &&& rspCRH matches tagged Invalid);
+    // Read AM64 Processing
     let x = crtCmdF.first; crtCmdF.deq;
     cmdAdrRemain <= (cmdAdrRemain==0) ? 0 : cmdAdrRemain - 1;
     if (cmdAdrRemain>0) cmdAddrV<= shiftInAtN(cmdAddrV   , x);  // LS 32b first when 64b Addr
-    Bit#(32) addr32 = x;
+
+    cmdAdlRemain <= (cmdAdrRemain!=0) ? cmdAdlRemain : (cmdAdlRemain>0) ? cmdAdlRemain-1 : 0;
+    Bool doneWithRead = (!cmdAdlRemain>1);
+    cmdBurstLive <= // TODO
+    cmdAddrAccu  <= (cmdbBurstLive) ? cmdAddrAccu+4 : x; // load accumulator on first time through
+
     // commitRead if the lastTag is Valid and the tags dont match OR if the lastTag is Invalid OR a Discovery Op
     Bool commitRead = ((isValid(lastTag) && n.c0.tag!=fromMaybe(?,lastTag)) || !isValid(lastTag) || n.c0.isDO);
     if (True) begin // FIXME : cmdAdr Dec
-      if (commitRead) a4l.f.rdAddr.enq(A4LAddrCmd{addr:addr32, prot:aProtDflt});
-      cmdCRH <= tagged Invalid;
+      if (commitRead) a4l.f.rdAddr.enq(A4LAddrCmd{addr:(cmdBurstLive)?cmdAddrAccu:addr32, prot:aProtDflt});
+      if (doneWithRead) cmdCRH <= tagged Invalid;
       if (commitRead) begin
         rspCRH <= tagged RespRead CRHResp {isLast:True,rsvd28:0,adl:n.adl,rsvd12:0,respt:OK,
                                   c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
