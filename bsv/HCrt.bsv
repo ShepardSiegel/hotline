@@ -228,9 +228,9 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   endrule
 
  
-  // Rule to process Write Command Requests, it fires ADL time, one for each write data DWORD beat...
-  rule cmd_write (cmdCRH matches tagged Write .n &&& addrAccu matches tagged A32 .a &&& rspCRH matches tagged Invalid);
-    let x = crtCmdF.first; crtCmdF.deq;
+  // Rule to process Write Command Requests, it fires ADL times, one for each write data DWORD beat...
+  rule cmd_write (cmdCRH matches tagged Write .n &&& addrAccu matches tagged A32 .a);
+    let x = crtCmdF.first; crtCmdF.deq; // Get this DWORD of write data
 
     // Write address processing
     addrAccu <= tagged A32 (a+4);
@@ -241,12 +241,15 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
 
     // commitWrite if the lastTag is Valid and the tags dont match OR if the lastTag is Invalid OR a Discovery Op...
     Bool commitWrite = ((isValid(lastTag) && n.c0.tag!=fromMaybe(?,lastTag)) || !isValid(lastTag) || n.c0.isDO);
-    if (cmdAdlRemain==1) begin
+    if (True) begin
       if (commitWrite) a4l.f.wrAddr.enq(A4LAddrCmd{addr:pack(a), prot:aProtDflt});
       if (commitWrite) a4l.f.wrData.enq(A4LWrData {strb:n.firstBE,  data:x});
-      cmdCRH <= tagged Invalid;
+      if (doneWithWrite) cmdCRH <= tagged Invalid;
       // Blind ACK the Write regardless if tag match or not...
       //TODO: When write responses are non-blind (from non-posted requests), make write machine use lastResp like Read
+      //
+      // make the response when we issuie the last write. Should really count N good OKs
+      if (doneWithWrite)
       rspCRH <= tagged RespWrite CRHResp {isLast:True,rsvd28:0,adl:0,rsvd12:0,respt:OK,
                                  c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
       $display("[%0d]: %m: Hcrt cmd_write address:%0x data:%0x", $time, a, x);
@@ -278,10 +281,9 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
 
 
   // Rule to process Read Command Requests
-  // TODO: AM64 Processing
   // On a Read Command, this will fire ADL times
-  rule cmd_read (cmdCRH matches tagged Read .n &&& addrAccu matches tagged A32 .a &&& rspCRH matches tagged Invalid);
-    let x = crtCmdF.first; crtCmdF.deq;
+  rule cmd_read (cmdCRH matches tagged Read .n &&& addrAccu matches tagged A32 .a);
+    // No Data to Consume, just read requests to issue...
 
     // Read address Processing
     addrAccu <= tagged A32 (a+4);
@@ -350,6 +352,7 @@ module mkHCrt_TB1 (Empty);
   HCrtCompleter2AxiIfc crt2axi     <- mkHCrtCompleter2Axi;
   A4L_Em               a4lm        <- mkA4MtoEm(crt2axi.axiM0);
   A4LSIfc              a4ls        <- mkA4LS(True);
+  Reg#(Bool)           validResp   <- mkDReg(False);
   Reg#(UInt#(16))      cycleCount  <- mkReg(0);
   Reg#(UInt#(16))      cmdCount    <- mkReg(0);
   Reg#(UInt#(16))      rspCount    <- mkReg(0);
@@ -360,18 +363,19 @@ module mkHCrt_TB1 (Empty);
 
 
   Vector#(10, Bit#(32)) cmdVector = ?;
-  cmdVector[0] = 32'h8002_FFA0;
-  cmdVector[1] = 32'h0000_0010;
-  cmdVector[2] = 32'h8001_FFA0;
-  cmdVector[3] = 32'h0000_0024;
-  cmdVector[4] = 32'h8001_FFA0;
+  cmdVector[0] = 32'h8003_FF90;
+  cmdVector[1] = 32'h0000_0000;
+  cmdVector[2] = 32'h0000_5555;
+  cmdVector[3] = 32'h0000_6666;
+  cmdVector[4] = 32'h0000_7777;
+
   cmdVector[5] = 32'h0000_0000;
   cmdVector[6] = 32'h8001_FFA0;
   cmdVector[7] = 32'h0000_0004;
   cmdVector[8] = 32'h8001_FFA0;
   cmdVector[9] = 32'h0000_0024;
 
-  rule produce_commands (cmdCount<2);
+  rule produce_commands (cmdCount<5);
     cmdCount <= cmdCount + 1;
     cmdF.enq(cmdVector[cmdCount]);
   endrule
@@ -381,8 +385,9 @@ module mkHCrt_TB1 (Empty);
 
   rule chomp_rsp;
     let qb = rspF.first;  rspF.deq;
-    rDat <= getDataQ(qb);
     rspCount <= rspCount + 1;
+    rDat <= getDataQ(qb);
+    validResp <= True;
   endrule
 
   mkConnection(a4lm, a4ls.s_axi);

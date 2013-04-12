@@ -14,6 +14,7 @@ module mkA4LS#(parameter Bool hasDebugLogic) (A4LSIfc);
   A4LSlaveIfc     a4l           <- mkA4LSlave;     // The AXI4-Lite Slave Interface
   Reg#(Bit#(32))  r0            <- mkReg(0);       // Some regsiters for testing...
   Reg#(Bit#(32))  r4            <- mkReg(0);
+  Reg#(Bit#(32))  r8            <- mkReg(0);
   Reg#(Bit#(8))   b18           <- mkReg(8'h18);
   Reg#(Bit#(8))   b19           <- mkReg(8'h19);
   Reg#(Bit#(8))   b1A           <- mkReg(8'h1A);
@@ -28,6 +29,7 @@ rule a4l_cfwr; // AXI4-Lite Configuration Property Writes...
   case (wa.addr[7:0]) matches                     // Take some action with it...
     'h00 : r0  <= unpack(wd.data);
     'h04 : r4  <= unpack(wd.data);
+    'h08 : r8  <= unpack(wd.data);
     'h18 : begin
         if (wd.strb[0]==1) b18 <=wd.data[ 7: 0];
         if (wd.strb[1]==1) b19 <=wd.data[15: 8];
@@ -46,7 +48,9 @@ rule a4l_cfrd;  // AXI4-Lite Configuration Property Reads...
   case (ra.addr[7:0]) matches                     
     'h00 : rdat = pack(r0);           // return r0
     'h04 : rdat = pack(r4);           // return r4
+    'h08 : rdat = pack(r8);           // return r8
     'h10 : rdat = 32'hF00DFACE;       // return a constant
+    'h14 : rdat = 32'hFEEDC0DE;       // return a constant
     'h18 : rdat = {b1B,b1A,b19,b18};  // return little-endian
     'h20 : rdat = lastWriteAddr;      // return the address last written
     'h24 : rdat = lastReadAddr;       // return the address last read
@@ -72,6 +76,7 @@ module mkA4LSA (A4LSAIfc);
   A4LSlaveIfc     a4l           <- mkA4LSlave;     // The AXI4-Lite Slave Interface
   Reg#(Bit#(32))  r0            <- mkReg(0);       // Some regsiters for testing...
   Reg#(Bit#(32))  r4            <- mkReg(0);
+  Reg#(Bit#(32))  r8            <- mkReg(0);
   Reg#(Bit#(8))   b18           <- mkReg(8'h18);
   Reg#(Bit#(8))   b19           <- mkReg(8'h19);
   Reg#(Bit#(8))   b1A           <- mkReg(8'h1A);
@@ -89,6 +94,7 @@ rule a4l_cfwr; // AXI4-Lite Configuration Property Writes...
     case (wa.addr[7:0]) matches                     // Take some action with it...
       'h00 : r0  <= unpack(wd.data);
       'h04 : r4  <= unpack(wd.data);
+      'h08 : r8  <= unpack(wd.data);
       'h18 : begin
           if (wd.strb[0]==1) b18 <=wd.data[ 7: 0];
           if (wd.strb[1]==1) b19 <=wd.data[15: 8];
@@ -112,6 +118,7 @@ rule a4l_cfrd;  // AXI4-Lite Configuration Property Reads...
     case (ra.addr[7:0]) matches                     
       'h00 : rdat = pack(r0);           // return r0
       'h04 : rdat = pack(r4);           // return r4
+      'h08 : rdat = pack(r8);           // return r8
       'h10 : rdat = 32'hF00DFACE;       // return a constant
       'h14 : rdat = 32'hFEEDC0DE;       // return another constant
       'h18 : rdat = {b1B,b1A,b19,b18};  // return little-endian
