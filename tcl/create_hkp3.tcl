@@ -16,19 +16,20 @@ if { [file exists "$designName"] == 1 } {
 create_project $designName "$repoRoot/vivado/$designName" -part xc7k325tffg900-2
 set_property board xilinx.com:kintex7:kc705:1.0 [current_project]
 
-puts "AR-NOTE: Bring external IP component libraries into IP Catalog"
-set localIpDir "$repoRoot/ip"
+puts "AR-NOTE: Bringing local IP Component and Interface libraries into IP Catalog..."
+set localIfDir   "$repoRoot/if"
+set localIpDir   "$repoRoot/ip"
+set localLibDir  "$repoRoot/lib"
 set local_a4ls   "$localIpDir/a4ls"
 set local_l2HCrt "$localIpDir/l2HCrt"
-set_property ip_repo_paths "$local_a4ls $local_l2HCrt" [current_fileset]
+set_property ip_repo_paths "$localLibDir/bsv $local_a4ls $local_l2HCrt" [current_fileset]
 update_ip_catalog -rebuild
 
 puts "AR-NOTE: Ready for BD"
 source ../tcl/genBD_$designName.tcl
 
 puts "AR-NOTE: Ready for Top Layer"
-#add_files -norecurse "$repoRoot/rtl/fpgaTop.v"
-add_files -norecurse {/home/shep/projects/hotline/rtl/fpgaTop.v /home/shep/projects/hotline/rtl/mkA4LS.v /home/shep/projects/hotline/rtl/mkCRC32.v /home/shep/projects/hotline/rtl/mkFTop_kc705.v /home/shep/projects/hotline/rtl/mkGMAC.v /home/shep/projects/hotline/rtl/mkHCrtCompleter2Axi.v /home/shep/projects/hotline/rtl/mkL2Proc.v /home/shep/projects/hotline/rtl/mkLCDController.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/FIFO2.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/MakeResetA.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/ResetInverter.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SizedFIFO.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/TriState.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/BRAM1Load.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncBit.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncFIFO.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/SyncResetA.v /opt/Bluespec/Bluespec-2013.01.beta5/lib/Verilog/Counter.v}
+add_files -norecurse "$repoRoot/rtl/fpgaTop.v"
 update_compile_order -fileset sources_1
 update_compile_order -fileset sim_1
 add_files -fileset constrs_1 -norecurse "$repoRoot/constrs/fpgaTop.xdc"

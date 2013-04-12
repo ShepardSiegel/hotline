@@ -16,11 +16,13 @@ if { [file exists "$designName"] == 1 } {
 create_project $designName "$repoRoot/vivado/$designName" -part xc7k325tffg900-2
 set_property board xilinx.com:kintex7:kc705:1.0 [current_project]
 
-puts "AR-NOTE: Bring external IP component libraries into IP Catalog"
-set localIpDir "$repoRoot/ip"
+puts "AR-NOTE: Bringing local IP Component and Interface libraries into IP Catalog..."
+set localIfDir   "$repoRoot/if"
+set localIpDir   "$repoRoot/ip"
+set localLibDir  "$repoRoot/lib"
 set local_a4ls   "$localIpDir/a4ls"
 set local_l2HCrt "$localIpDir/l2HCrt"
-set_property ip_repo_paths "$local_a4ls $local_l2HCrt" [current_fileset]
+set_property ip_repo_paths "$localLibDir/bsv $local_a4ls $local_l2HCrt" [current_fileset]
 update_ip_catalog -rebuild
 
 puts "AR-NOTE: Ready for BD"

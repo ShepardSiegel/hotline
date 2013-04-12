@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<Index Version="1" Minor="0">
+	<Repository value="/home/shep/projects/hotline/lib/bsv">
+	</Repository>
+	<IP>
+		<VLNV value="xilinx.com:ip:bsv:1.0">
+		</VLNV>
+		<DisplayName value="bsv">
+		</DisplayName>
+		<Description value="">
+		</Description>
+		<SupportsRdiCustomization value="false">
+		</SupportsRdiCustomization>
+		<SupportsRdiGeneration value="true">
+		</SupportsRdiGeneration>
+		<NativeOnly value="true">
+		</NativeOnly>
+		<ComponentPath value="component.xml">
+		</ComponentPath>
+	</IP>
+</Index>
+
