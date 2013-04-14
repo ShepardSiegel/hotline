@@ -232,9 +232,6 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   rule cmd_write (cmdCRH matches tagged Write .n &&& addrAccu matches tagged A32 .a);
     let x = crtCmdF.first; crtCmdF.deq; // Get this DWORD of write data
 
-    // Write address processing
-    addrAccu <= tagged A32 (a+4);
-
     // Write ADL Sequencing...
     cmdAdlRemain <=  (cmdAdlRemain>0) ? cmdAdlRemain-1 : 0;
     Bool doneWithWrite = (cmdAdlRemain==1);
@@ -244,7 +241,8 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     if (True) begin
       if (commitWrite) a4l.f.wrAddr.enq(A4LAddrCmd{addr:pack(a), prot:aProtDflt});
       if (commitWrite) a4l.f.wrData.enq(A4LWrData {strb:n.firstBE,  data:x});
-      if (doneWithWrite) cmdCRH <= tagged Invalid;
+      if (doneWithWrite) cmdCRH   <= tagged Invalid;
+      addrAccu <= (doneWithWrite)  ? tagged Invalid : tagged A32 (a+4); // Write address processing
       // Blind ACK the Write regardless if tag match or not...
       //TODO: When write responses are non-blind (from non-posted requests), make write machine use lastResp like Read
       //
@@ -285,9 +283,6 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   rule cmd_read (cmdCRH matches tagged Read .n &&& addrAccu matches tagged A32 .a);
     // No Data to Consume, just read requests to issue...
 
-    // Read address Processing
-    addrAccu <= tagged A32 (a+4);
-
     // Read ADL Sequencing...
     cmdAdlRemain <= (cmdAdlRemain>0) ? cmdAdlRemain-1 : 0;
     Bool doneWithRead = (cmdAdlRemain==1);
@@ -296,7 +291,8 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     Bool commitRead = ((isValid(lastTag) && n.c0.tag!=fromMaybe(?,lastTag)) || !isValid(lastTag) || n.c0.isDO);
     if (True) begin // FIXME : cmdAdr Dec
       if (commitRead) a4l.f.rdAddr.enq(A4LAddrCmd{addr:pack(a), prot:aProtDflt});
-      if (doneWithRead) cmdCRH <= tagged Invalid;
+      if (doneWithRead) cmdCRH   <= tagged Invalid;
+      addrAccu <= (doneWithRead)  ? tagged Invalid : tagged A32 (a+4); // Read address processing
       if (commitRead) begin
         rspCRH <= tagged RespRead CRHResp {isLast:True,rsvd28:0,adl:n.adl,rsvd12:0,respt:OK,
                                   c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
@@ -309,11 +305,13 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     end
     if ( n.c0.isDO) cmdIsDO <= True;
     if (commitRead && !n.c0.isDO) lastTag <= (tagged Valid n.c0.tag); // Capture the tag into lastTag
-    if (commitRead) respBufferF.clear;  // Clear the response buffer before performing Read
+    //if (commitRead) respBufferF.clear;  // Clear the response buffer before performing Read
     modActive <= True;
   endrule
 
   // Rule to respond to Read Command Requests...
+  // Reads can come back slowly, causing underrun of lower-layer datagram TX (e.g. Ethernet)
+  // if we depost word into the read reponse datagram more slowly than the media needs it.
   rule rsp_read (rspCRH matches tagged RespRead .n &&& crtBusy);
     Bool isEOM = rspActive && rspAdlRemain==1;
     rspActive    <= isEOM ? False : (rspAdlRemain!=1);
@@ -324,7 +322,8 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     end
     Bit#(32) data = rspActive ? ar.data : pack(n); // Send Resp CRH in first, non-rspActive cycle
     QABS resp = qabsFromDword(data, isEOM);
-    crtRespF.enq(resp);
+    //crtRespF.enq(resp);
+    respBufferF.enq(resp);
     //if (!cmdIsDO) respBufferF.enq(resp);
       if (isEOM) begin
         $display("[%0d]: %m: Hcrt rsp_read got data:%0x", $time, data);
@@ -334,6 +333,13 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
         crtBusy   <= False;
       end
     modActive <= True;
+  endrule
+
+  // When crt ends, push everything in respBufferF to crtRespF at once
+  rule drain_rsp_read(!crtBusy);
+    let x = respBufferF.first;
+    respBufferF.deq;
+    crtRespF.enq(x);
   endrule
 
   interface Server crtS0;  // Facing the HCrt Packet Side
