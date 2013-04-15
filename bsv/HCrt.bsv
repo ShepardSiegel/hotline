@@ -81,6 +81,12 @@ typedef union tagged {
   void      Invalid;
 } TagCRH deriving (Bits, Eq); 
 
+typedef union tagged {
+  void      Invalid;
+  UInt#(32) A32;
+  UInt#(64) A64;
+} CmdAddr deriving (Bits, Eq);
+
 
 // HctrCompleter2Axi - Hotline HCrt Completer to AXI4-L Master Bridge IP
 // HCrt commands are received on crtS0.request; HCrt responses are sent back on crtS0.response
@@ -124,17 +130,31 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   Reg#(Bool)                modFaulted    <- mkDReg(False); // Pulse indication of module fault
   Reg#(TagCRH)              cmdCRH        <- mkReg(tagged Invalid);
   Reg#(Bool)                cmdIsLast     <- mkReg(False);  // Indicates LAST command of message
+  Reg#(Bool)                cmdIsAM64     <- mkReg(False);  // True when command is a AM64 operation
   Reg#(Bool)                cmdIsDO       <- mkReg(False);  // True when command is a Discovery Operation (DO) 
-  Reg#(UInt#(2))            cmdAdrRemain  <- mkReg(0);      // Number of DWORDs, 1 or 2, of Address that remain
+  Reg#(Bool)                cmdIsRW       <- mkReg(False);  // True when command is a Read or Write Cycle
+
+
   Reg#(UInt#(12))           cmdAdlRemain  <- mkReg(0);      // Number of DWORDs, not incl CRH or Addr, that remain
   Reg#(UInt#(12))           rspAdlRemain  <- mkReg(0);
   Reg#(Maybe#(Bit#(4)))     lastTag       <- mkReg(tagged Invalid);  // The last tag captured (valid or not)
-  FIFO#(QABS)               respBufferF   <- mkSizedFIFO(respBufSize/4);
+
+  FIFO#(QABS)               respBufF      <- mkSizedFIFO(respBufSize/4);
+  Reg#(UInt#(12))           respBufCnt    <- mkReg(0);
+  Reg#(Bool)                respBufTrig   <- mkReg(False);
+
   Reg#(TagCRH)              rspCRH        <- mkReg(tagged Invalid);
   Reg#(Bool)                rspActive     <- mkReg(False); 
   Reg#(UInt#(32))           sizInitRespB  <- mkReg(0);      // Size in Bytes of the Initiator Resposne Buffer
-  Reg#(Vector#(2,Bit#(32))) cmdAddrV      <- mkRegU;
+
+  Reg#(CmdAddr)             addrAccu      <- mkReg(tagged Invalid);  // The target read or write address
+  Reg#(Bit#(32))            addrTmp       <- mkRegU;        // Temp storage for loading AM64 to addrAccu
+  Reg#(UInt#(2))            addrCaptCnt   <- mkRegU;        // Number of address word captured this command
+
   Reg#(Bool)                crtBusy       <- mkReg(False);  // Used to enforce sequential command-response w/o overlap
+
+  Reg#(Bool)                cmdRdHead     <- mkReg(True);
+  Reg#(Bit#(32))            cmdAddrAccu   <- mkRegU;
 
   Bit#(32) targAdvert = fromInteger(respBufSize);
 
@@ -146,12 +166,14 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
       TagCRH t = ?;
       case (cmt)
         NOP:      action t = (tagged NOP      unpack(x)); cmdAdlRemain<=unpack(x[27:16]); endaction
-        Write:    action t = (tagged Write    unpack(x)); cmdAdlRemain<=unpack(x[27:16]); endaction
-        Read:     action t = (tagged Read     unpack(x)); endaction
+        Write:    action t = (tagged Write    unpack(x)); cmdAdlRemain<=unpack(x[27:16]); cmdIsRW<=True; endaction
+        Read:     action t = (tagged Read     unpack(x)); cmdAdlRemain<=unpack(x[27:16]); cmdIsRW<=True; endaction
         Response: action modFaulted<=True; endaction // Completer does not expect a Response
       endcase
       cmdCRH <= t; // update state variable
-      cmdAdrRemain <= unpack(x[6]) ? 2 : 1;
+      cmdIsAM64    <= unpack(x[6]); 
+      cmdIsDO      <= unpack(x[7]); 
+      addrCaptCnt  <= 0;
       cmdIsLast    <= unpack(x[31]);
       modActive    <= True;
       crtBusy      <= True;
@@ -159,7 +181,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   endrule
 
   // Rule to process NOP Command Requests, consume ADL DWORDs of Initiator Advertisement
-  rule cmd_nop (cmdCRH matches tagged NOP .n &&& rspCRH matches tagged Invalid);
+  rule cmd_nop (cmdCRH matches tagged NOP .n &&& rspCRH matches tagged Invalid &&& !cmdIsRW);
     let x = crtCmdF.first; crtCmdF.deq;
     cmdAdlRemain <= (cmdAdlRemain>0) ? cmdAdlRemain-1 : 0;
     if (cmdAdlRemain==2) sizInitRespB <= unpack(x);
@@ -171,7 +193,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     if ( n.c0.isDO) cmdIsDO <= True;
     if (!n.c0.isDO) lastTag <= (tagged Invalid);  // non-DO NOPs Invalidate the lastTag so next command is always accepted
     $display("[%0d]: %m: Hcrt cmd_nop cmdAdlRemain:%0d data:%0x", $time, cmdAdlRemain, x);
-    //if (True) respBufferF.clear;  // Clear the response buffer before performing NOP
+    //if (True) respBufF.clear;  // Clear the response buffer before performing NOP
     modActive <= True;
   endrule
 
@@ -185,7 +207,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     Bit#(32) data = rspActive ? advert : pack(n); // Send Resp CRH in first, non-rspActive cycle
     QABS resp = qabsFromDword(data, isEOM);
     crtRespF.enq(resp);
-    //if (!cmdIsDO) respBufferF.enq(resp);
+    //if (!cmdIsDO) respBufF.enq(resp);
       if (isEOM) begin 
         rspCRH    <= tagged Invalid;
         cmdIsDO   <= False;
@@ -195,32 +217,48 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     modActive <= True;
   endrule
 
+  // Load Address Accumulator with either A32 or A64 starting address
+  // Rule to consume the one or two DWORDs of address that follow the CRH for Write and Read Commands
+  // The cmd_write and cmd_read rules need only concern themsleves with incrementing the address and doing the accesses
+  rule cmd_addr(addrAccu==tagged Invalid && cmdIsRW &&& crtBusy);
+    let x = crtCmdF.first; crtCmdF.deq;  // Take a DWORD from the HCrt stream in any case...
+    addrTmp <= x; 
+    if (cmdIsAM64) begin
+      if (addrCaptCnt==1) addrAccu <= tagged A64 unpack({addrTmp,x});
+    end else begin
+      addrAccu <= tagged A32 unpack(x);
+    end
+    addrCaptCnt <= addrCaptCnt + 1;
+  endrule
 
-  // Rule to process Write Command Requests, consume ADL DWORDs of Write Data
-  // This rule first fires 1 or 2 times to capture the 32 or 64 bit address.
-  // Once cmdAdrRemains==0, it fires ADL times to capture the write data
-  rule cmd_write (cmdCRH matches tagged Write .n &&& rspCRH matches tagged Invalid);
-    let x = crtCmdF.first; crtCmdF.deq;
-    // Write Address Processing...
-    cmdAdrRemain <= (cmdAdrRemain==0) ? 0 : cmdAdrRemain-1;
-    if (cmdAdrRemain>0) cmdAddrV <= shiftInAtN(cmdAddrV, x);  // LS 32b first when 64b Addr
-    // Write Data Processing...
-    cmdAdlRemain <= (cmdAdrRemain!=0) ? cmdAdlRemain : (cmdAdlRemain>0) ? cmdAdlRemain-1 : 0;
+ 
+  // Rule to process Write Command Requests, it fires ADL times, one for each write data DWORD beat...
+  rule cmd_write (cmdCRH matches tagged Write .n &&& addrAccu matches tagged A32 .a);
+    let x = crtCmdF.first; crtCmdF.deq; // Get this DWORD of write data
+
+    // Write ADL Sequencing...
+    cmdAdlRemain <=  (cmdAdlRemain>0) ? cmdAdlRemain-1 : 0;
+    Bool doneWithWrite = (cmdAdlRemain==1);
+
     // commitWrite if the lastTag is Valid and the tags dont match OR if the lastTag is Invalid OR a Discovery Op...
     Bool commitWrite = ((isValid(lastTag) && n.c0.tag!=fromMaybe(?,lastTag)) || !isValid(lastTag) || n.c0.isDO);
-    if (cmdAdrRemain==0 && cmdAdlRemain==1) begin
-      if (commitWrite) a4l.f.wrAddr.enq(A4LAddrCmd{addr:cmdAddrV[1], prot:aProtDflt});
+    if (True) begin
+      if (commitWrite) a4l.f.wrAddr.enq(A4LAddrCmd{addr:pack(a), prot:aProtDflt});
       if (commitWrite) a4l.f.wrData.enq(A4LWrData {strb:n.firstBE,  data:x});
-      cmdCRH <= tagged Invalid;
+      if (doneWithWrite) cmdCRH   <= tagged Invalid;
+      addrAccu <= (doneWithWrite)  ? tagged Invalid : tagged A32 (a+4); // Write address processing
       // Blind ACK the Write regardless if tag match or not...
       //TODO: When write responses are non-blind (from non-posted requests), make write machine use lastResp like Read
+      //
+      // make the response when we issuie the last write. Should really count N good OKs
+      if (doneWithWrite)
       rspCRH <= tagged RespWrite CRHResp {isLast:True,rsvd28:0,adl:0,rsvd12:0,respt:OK,
                                  c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
-      $display("[%0d]: %m: Hcrt cmd_write address:%0x data:%0x", $time, cmdAddrV[1], x);
+      $display("[%0d]: %m: Hcrt cmd_write address:%0x data:%0x", $time, a, x);
     end
     if ( n.c0.isDO) cmdIsDO <= True;
     if (commitWrite && !n.c0.isDO) lastTag <= (tagged Valid n.c0.tag); // Capture the tag into lastTag
-    if (commitWrite) respBufferF.clear;  // Clear the response buffer before performing Write
+    //if (commitWrite) respBufferF.clear;  // Clear the response buffer before performing Write
     modActive <= True;
   endrule
 
@@ -245,33 +283,39 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
 
 
   // Rule to process Read Command Requests
-  rule cmd_read (cmdCRH matches tagged Read .n &&& rspCRH matches tagged Invalid);
-    let x = crtCmdF.first; crtCmdF.deq;
-    cmdAdrRemain <= (cmdAdrRemain==0) ? 0 : cmdAdrRemain - 1;
-    if (cmdAdrRemain>0) cmdAddrV<= shiftInAtN(cmdAddrV   , x);  // LS 32b first when 64b Addr
-    Bit#(32) addr32 = x;
+  // On a Read Command, this will fire ADL times
+  rule cmd_read (cmdCRH matches tagged Read .n &&& addrAccu matches tagged A32 .a);
+    // No Data to Consume, just read requests to issue...
+
+    // Read ADL Sequencing...
+    cmdAdlRemain <= (cmdAdlRemain>0) ? cmdAdlRemain-1 : 0;
+    Bool doneWithRead = (cmdAdlRemain==1);
+
     // commitRead if the lastTag is Valid and the tags dont match OR if the lastTag is Invalid OR a Discovery Op
     Bool commitRead = ((isValid(lastTag) && n.c0.tag!=fromMaybe(?,lastTag)) || !isValid(lastTag) || n.c0.isDO);
     if (True) begin // FIXME : cmdAdr Dec
-      if (commitRead) a4l.f.rdAddr.enq(A4LAddrCmd{addr:addr32, prot:aProtDflt});
-      cmdCRH <= tagged Invalid;
+      if (commitRead) a4l.f.rdAddr.enq(A4LAddrCmd{addr:pack(a), prot:aProtDflt});
+      if (doneWithRead) cmdCRH   <= tagged Invalid;
+      addrAccu <= (doneWithRead)  ? tagged Invalid : tagged A32 (a+4); // Read address processing
       if (commitRead) begin
         rspCRH <= tagged RespRead CRHResp {isLast:True,rsvd28:0,adl:n.adl,rsvd12:0,respt:OK,
                                   c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
-        $display("[%0d]: %m: Hcrt cmd_read address:%0x", $time, addr32);
+        $display("[%0d]: %m: Hcrt cmd_read address:%0x", $time, a);
       end else begin
-        $display("[%0d]: %m: Hcrt cmd_read *TAGS MATCH *address:%0x", $time, addr32);
+        $display("[%0d]: %m: Hcrt cmd_read *TAGS MATCH *address:%0x", $time, a);
         // TODO: Implement correct retransmission
         //crtRespF.enq(lastResp);   // Retransmit the lastResp since tags match
       end
     end
     if ( n.c0.isDO) cmdIsDO <= True;
     if (commitRead && !n.c0.isDO) lastTag <= (tagged Valid n.c0.tag); // Capture the tag into lastTag
-    if (commitRead) respBufferF.clear;  // Clear the response buffer before performing Read
+    //if (commitRead) respBufferF.clear;  // Clear the response buffer before performing Read
     modActive <= True;
   endrule
 
   // Rule to respond to Read Command Requests...
+  // Reads can come back slowly, causing underrun of lower-layer datagram TX (e.g. Ethernet)
+  // if we depost word into the read reponse datagram more slowly than the media needs it.
   rule rsp_read (rspCRH matches tagged RespRead .n &&& crtBusy);
     Bool isEOM = rspActive && rspAdlRemain==1;
     rspActive    <= isEOM ? False : (rspAdlRemain!=1);
@@ -282,16 +326,29 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     end
     Bit#(32) data = rspActive ? ar.data : pack(n); // Send Resp CRH in first, non-rspActive cycle
     QABS resp = qabsFromDword(data, isEOM);
-    crtRespF.enq(resp);
+    //crtRespF.enq(resp);
+    respBufF.enq(resp);
+    respBufCnt <= respBufCnt+1;
+
     //if (!cmdIsDO) respBufferF.enq(resp);
       if (isEOM) begin
         $display("[%0d]: %m: Hcrt rsp_read got data:%0x", $time, data);
-        rspCRH    <= tagged Invalid;
-        cmdIsDO   <= False;
-        cmdIsLast <= False;
-        crtBusy   <= False;
+        rspCRH      <= tagged Invalid;
+        cmdIsDO     <= False;
+        cmdIsLast   <= False;
+        crtBusy     <= False;
+        respBufTrig <= True;
       end
     modActive <= True;
+  endrule
+
+  // When crt ends, push everything in respBufferF to crtRespF at once
+  rule drain_rsp_read(respBufTrig);
+    let x = respBufF.first;
+    respBufF.deq;
+    crtRespF.enq(x);
+    respBufCnt <= respBufCnt - 1;
+    respBufTrig <= !(respBufCnt==1);
   endrule
 
   interface Server crtS0;  // Facing the HCrt Packet Side
@@ -301,59 +358,6 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   interface A4LMIfc axiM0 = a4l.a4lm;
   method Bool isActive  = modActive;
   method Bool isFaulted = modFaulted;
-endmodule
-
-
-(* synthesize *)
-module mkHCrt_TB1 (Empty);
-
-  HCrtCompleter2AxiIfc crt2axi     <- mkHCrtCompleter2Axi;
-  A4L_Em               a4lm        <- mkA4MtoEm(crt2axi.axiM0);
-  A4LSIfc              a4ls        <- mkA4LS(True);
-  Reg#(UInt#(16))      cycleCount  <- mkReg(0);
-  Reg#(UInt#(16))      cmdCount    <- mkReg(0);
-  Reg#(UInt#(16))      rspCount    <- mkReg(0);
-
-  FIFO#(Bit#(32))      cmdF       <- mkFIFO; // Command  FIFO Requestor-to-Completer
-  FIFO#(QABS)          rspF       <- mkFIFO; // Response FIFO Completer-to-Requestor
-
-
-  Vector#(10, Bit#(32)) cmdVector = ?;
-  cmdVector[0] = 32'h8001_FFA0;
-  cmdVector[1] = 32'h0000_0010;
-  cmdVector[2] = 32'h8001_FFA0;
-  cmdVector[3] = 32'h0000_0024;
-  cmdVector[4] = 32'h8001_FFA0;
-  cmdVector[5] = 32'h0000_0000;
-  cmdVector[6] = 32'h8001_FFA0;
-  cmdVector[7] = 32'h0000_0004;
-  cmdVector[8] = 32'h8001_FFA0;
-  cmdVector[9] = 32'h0000_0024;
-
-  rule produce_commands (cmdCount<10);
-    cmdCount <= cmdCount + 1;
-    cmdF.enq(cmdVector[cmdCount]);
-  endrule
-
-  mkConnection(toGet(cmdF), crt2axi.crtS0.request);
-  mkConnection(crt2axi.crtS0.response, toPut(rspF));
-
-  rule chomp_rsp;
-    let qb = rspF.first;  rspF.deq;
-    rspCount <= rspCount + 1;
-  endrule
-
-  mkConnection(a4lm, a4ls.s_axi);
-
-  rule advance_cycleCount;
-    cycleCount <= cycleCount + 1;
-  endrule
-
-  rule terminate (cycleCount==400);
-    $display("[%0d]: %m: Terminate rule fired in cycle:%0d", $time, cycleCount);
-    $finish;
-  endrule
-
 endmodule
 
 endpackage: HCrt
