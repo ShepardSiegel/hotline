@@ -96,6 +96,10 @@ module mkHCrt_TB1 (Empty);
 
 endmodule
 
+
+// Convienience function to get number of elements in a Vector...
+function Integer vsize (Vector#(n,t) v) = valueOf(n);
+
 interface GenCmdIfc;
   interface Put#(UInt#(12)) cnt;
   interface Get#(Bit#(32))  x; 

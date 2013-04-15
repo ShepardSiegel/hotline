@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# xsim v2013.1 (64-bit)
+# Build 248050 by xbuild on Wed Mar 27 17:11:51 MDT 2013
+# Start of session at: Mon Apr 15 15:27:12 2013
+# Process ID: 28681
+# Log file: /home/shep/projects/hotline/xsim.log
+# Journal file: /home/shep/projects/hotline/xsim.jou
+#-----------------------------------------------------------
+source xsim.dir/./out.xsim/xsim_script.tcl
+source ./out.xsim.tcl

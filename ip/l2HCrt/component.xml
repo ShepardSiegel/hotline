@@ -901,6 +901,11 @@
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:logicalName>work</spirit:logicalName>
       </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/mkL2HCrt.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:logicalName>work</spirit:logicalName>
+      </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
@@ -964,7 +969,7 @@
       <xilinx:displayName>AR Hotline Ethernet to AXI4-Lite Bridge</xilinx:displayName>
       <xilinx:vendorDisplayName>Atomic Rules LLC</xilinx:vendorDisplayName>
       <xilinx:vendorURL>http://www.atomicrules.com</xilinx:vendorURL>
-      <xilinx:coreCreationDateTime>2013-04-12T14:34:20</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2013-04-15T13:03:56</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
       </xilinx:tags>

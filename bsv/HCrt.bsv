@@ -134,7 +134,6 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   Reg#(Bool)                cmdIsDO       <- mkReg(False);  // True when command is a Discovery Operation (DO) 
   Reg#(Bool)                cmdIsRW       <- mkReg(False);  // True when command is a Read or Write Cycle
 
-
   Reg#(UInt#(12))           cmdAdlRemain  <- mkReg(0);      // Number of DWORDs, not incl CRH or Addr, that remain
   Reg#(UInt#(12))           rspAdlRemain  <- mkReg(0);
   Reg#(Maybe#(Bit#(4)))     lastTag       <- mkReg(tagged Invalid);  // The last tag captured (valid or not)
@@ -150,6 +149,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   Reg#(CmdAddr)             addrAccu      <- mkReg(tagged Invalid);  // The target read or write address
   Reg#(Bit#(32))            addrTmp       <- mkRegU;        // Temp storage for loading AM64 to addrAccu
   Reg#(UInt#(2))            addrCaptCnt   <- mkRegU;        // Number of address word captured this command
+  Reg#(Bool)                addrCaptOK    <- mkReg(False);  // True when OK to take inF words for Address
 
   Reg#(Bool)                crtBusy       <- mkReg(False);  // Used to enforce sequential command-response w/o overlap
 
@@ -177,6 +177,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
       cmdIsLast    <= unpack(x[31]);
       modActive    <= True;
       crtBusy      <= True;
+      addrCaptOK   <= True;
     end
   endrule
 
@@ -220,13 +221,17 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   // Load Address Accumulator with either A32 or A64 starting address
   // Rule to consume the one or two DWORDs of address that follow the CRH for Write and Read Commands
   // The cmd_write and cmd_read rules need only concern themsleves with incrementing the address and doing the accesses
-  rule cmd_addr(addrAccu==tagged Invalid && cmdIsRW &&& crtBusy);
+  rule cmd_addr(addrAccu==tagged Invalid && cmdIsRW &&& crtBusy &&& addrCaptOK);
     let x = crtCmdF.first; crtCmdF.deq;  // Take a DWORD from the HCrt stream in any case...
     addrTmp <= x; 
     if (cmdIsAM64) begin
-      if (addrCaptCnt==1) addrAccu <= tagged A64 unpack({addrTmp,x});
+      if (addrCaptCnt==1) begin
+        addrAccu <= tagged A64 unpack({addrTmp,x});
+        addrCaptOK <= False;
+      end
     end else begin
       addrAccu <= tagged A32 unpack(x);
+      addrCaptOK <= False;
     end
     addrCaptCnt <= addrCaptCnt + 1;
   endrule

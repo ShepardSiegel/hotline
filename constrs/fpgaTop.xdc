@@ -23,7 +23,7 @@ set_property PACKAGE_PIN K28 [get_ports sys2_clkp]
 set_property PACKAGE_PIN K29 [get_ports sys2_clkn]
 set_property IOSTANDARD LVDS_25 [get_ports sys2_clkp]
 set_property IOSTANDARD LVDS_25 [get_ports sys2_clkn]
-create_clock -period 6.734 -name sys2_clkp -waveform {0.000 3.367} [get_ports sys2_clkp] ;# 148.5 MHz
+create_clock -period 6.734 -name sys2_clkp -waveform {0.000 3.367} [get_ports sys2_clkp]
 #create_clock -period 6.400 -name sys2_clkp -waveform {0.000 3.200} [get_ports sys2_clkp] ;# 156.25 MHz
 
 # User SMA Inputs J11, J12
@@ -45,9 +45,9 @@ set_property PACKAGE_PIN J26 [get_ports {gmii_txd[4]}]
 set_property PACKAGE_PIN K26 [get_ports {gmii_txd[5]}]
 set_property PACKAGE_PIN L30 [get_ports {gmii_txd[6]}]
 set_property PACKAGE_PIN J28 [get_ports {gmii_txd[7]}]
-set_property PACKAGE_PIN M27 [get_ports  gmii_tx_en]
-set_property PACKAGE_PIN N29 [get_ports  gmii_tx_er] 
-set_property PACKAGE_PIN K30 [get_ports  gmii_gtx_clk]  ;# gtx_clk is 125MHz TX source-sync for TX data
+set_property PACKAGE_PIN M27 [get_ports gmii_tx_en]
+set_property PACKAGE_PIN N29 [get_ports gmii_tx_er]
+set_property PACKAGE_PIN K30 [get_ports gmii_gtx_clk]
 #set_property PACKAGE_PIN M28 [get_ports gmii_tx_clk]   ;# output from PHY only in 10,100 Mb modes; not used 1Gb
 set_property PACKAGE_PIN U30 [get_ports {gmii_rxd[0]}]
 set_property PACKAGE_PIN U25 [get_ports {gmii_rxd[1]}]
@@ -57,13 +57,13 @@ set_property PACKAGE_PIN R19 [get_ports {gmii_rxd[4]}]
 set_property PACKAGE_PIN T27 [get_ports {gmii_rxd[5]}]
 set_property PACKAGE_PIN T26 [get_ports {gmii_rxd[6]}]
 set_property PACKAGE_PIN T28 [get_ports {gmii_rxd[7]}]
-set_property PACKAGE_PIN R28 [get_ports  gmii_rx_dv]
-set_property PACKAGE_PIN V26 [get_ports  gmii_rx_er]
-set_property PACKAGE_PIN U27 [get_ports  gmii_rx_clk]
-set_property PACKAGE_PIN W19 [get_ports  gmii_col]
-set_property PACKAGE_PIN R30 [get_ports  gmii_crs]
-set_property PACKAGE_PIN N30 [get_ports  gmii_intr]
-set_property PACKAGE_PIN L20 [get_ports  gmii_rstn]
+set_property PACKAGE_PIN R28 [get_ports gmii_rx_dv]
+set_property PACKAGE_PIN V26 [get_ports gmii_rx_er]
+set_property PACKAGE_PIN U27 [get_ports gmii_rx_clk]
+set_property PACKAGE_PIN W19 [get_ports gmii_col]
+set_property PACKAGE_PIN R30 [get_ports gmii_crs]
+set_property PACKAGE_PIN N30 [get_ports gmii_intr]
+set_property PACKAGE_PIN L20 [get_ports gmii_rstn]
 set_property IOSTANDARD LVCMOS25 [get_ports gmii_*]
 ## GbE MDIO...
 set_property PACKAGE_PIN R23 [get_ports mdio_mdc]
@@ -92,7 +92,7 @@ create_clock -period 8.000 -name gmiiTx_clk -waveform {0.000 4.000} [get_ports g
 #set_output_delay -clock $gmiiTx_pos_generated_clk -max [expr $gmiiTx_pos_period - $gmiiTx_max_pos_skew] [get_ports $gmiiTx_pos_out_ports];
 #set_output_delay -clock $gmiiTx_pos_generated_clk -min $gmiiTx_neg_pos_skew [get_ports $gmiiTx_pos_out_ports]
 #report_timing -to [get_ports $gmiiTx_pos_out_ports] -max_paths 20 -nworst 1 -delay_type min_max -name src_sync_pos_out
-   
+
 
 
 # LEDs
@@ -324,7 +324,7 @@ set_property PACKAGE_PIN Y30 [get_ports fmcl_la32_p]
 set_property IOSTANDARD LVCMOS25 [get_ports fmcl_*]
 
 # System level DDR3 DCI slave banks...
-set_property DCI_CASCADE {32 34} [get_iobanks 33] 
+set_property DCI_CASCADE {32 34} [get_iobanks 33]
 
 # Null Sync clock domain crossing...
 #set_false_path -from [get_pins {dipsw_r_reg*/C}] -to [get_pins {vsel_reg*/D}]
@@ -338,9 +338,15 @@ set_property DCI_CASCADE {32 34} [get_iobanks 33]
 #set_false_path -from [get_clocks {gmiirx_clk}] -to [get_clocks {sys1_clkp}]
 
 # Asynchronous Clock Groups...
-set_clock_groups -asynchronous \
- -group [get_clocks -include_generated_clocks {sys0_clkp}]  \
- -group [get_clocks -include_generated_clocks {sys1_clkp}]  \
- -group [get_clocks -include_generated_clocks {sys2_clkp}]  \
- -group [get_clocks -include_generated_clocks {gmiirx_clk}] 
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks sys0_clkp] -group [get_clocks -include_generated_clocks sys1_clkp] -group [get_clocks -include_generated_clocks sys2_clkp] -group [get_clocks -include_generated_clocks gmiirx_clk]
 
+
+set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_rsp_nop]
+set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_rsp_read]
+set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_drain_rsp_read]
+set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_cmd_crh]
+set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_cmd_addr]
+set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_cmd_nop]
+set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_cmd_write]
+set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_cmd_read]
+set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_rsp_write]
