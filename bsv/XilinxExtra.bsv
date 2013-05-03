@@ -1075,8 +1075,8 @@ module vMkIDELAYE2#(IDELAYE2Params params)(VIDELAYE2#(a))
 // parameter REFCLK_FREQUENCY         = 200.0;
 // parameter SIGNAL_PATTEN            = "DATA";
 
-   parameter IODELAY_GROUP  = params.idelay_group;
-   parameter IDELAY_VALUE   = params.idelay_value;
+   parameter IODELAY_GRP   = params.idelay_group;
+   parameter IDELAY_VALUE  = params.idelay_value;
 
    // Tie-off primitive inputs that may need tie-off...
    //port C   = False;
