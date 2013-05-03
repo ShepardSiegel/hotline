@@ -1053,7 +1053,7 @@ interface IDELAYE2#(type a);
   (* always_ready *)   method   a            o;
 endinterface: IDELAYE2
 
-import "BVI" IDELAYE2 = 
+import "BVI" AR_IDELAYE2 = 
 module vMkIDELAYE2#(IDELAYE2Params params)(VIDELAYE2#(a))
    provisos(Bits#(a, 1));
 
