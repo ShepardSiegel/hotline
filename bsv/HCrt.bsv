@@ -136,6 +136,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
 
   Reg#(UInt#(12))           cmdAdlRemain  <- mkReg(0);      // Number of DWORDs, not incl CRH or Addr, that remain
   Reg#(UInt#(12))           rspAdlRemain  <- mkReg(0);
+  Reg#(UInt#(12))           lclRspRemain  <- mkReg(0);      // Number of local responses remaining (used for aggregation)
   Reg#(Maybe#(Bit#(4)))     lastTag       <- mkReg(tagged Invalid);  // The last tag captured (valid or not)
 
   FIFO#(QABS)               respBufF      <- mkSizedFIFO(respBufSize/4);
@@ -166,8 +167,8 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
       TagCRH t = ?;
       case (cmt)
         NOP:      action t = (tagged NOP      unpack(x)); cmdAdlRemain<=unpack(x[27:16]); endaction
-        Write:    action t = (tagged Write    unpack(x)); cmdAdlRemain<=unpack(x[27:16]); cmdIsRW<=True; endaction
-        Read:     action t = (tagged Read     unpack(x)); cmdAdlRemain<=unpack(x[27:16]); cmdIsRW<=True; endaction
+        Write:    action t = (tagged Write    unpack(x)); cmdAdlRemain<=unpack(x[27:16]); lclRspRemain<=unpack(x[27:16]); cmdIsRW<=True; endaction
+        Read:     action t = (tagged Read     unpack(x)); cmdAdlRemain<=unpack(x[27:16]); lclRspRemain<=unpack(x[27:16]); cmdIsRW<=True; endaction
         Response: action modFaulted<=True; endaction // Completer does not expect a Response
       endcase
       cmdCRH <= t; // update state variable
@@ -267,23 +268,31 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     modActive <= True;
   endrule
 
-  // Rule to respond to Write Command Requests...
-  rule rsp_write (rspCRH matches tagged RespWrite .n &&& crtBusy);
-    Bool isEOM = True;
-    // TODO: Write Response Processing Here
+
+  // Rule to aggregate local Write Command Completions, prior to issuing a response
+  // Used to dequeue write responses from AXI until all have arrived
+  rule agg_write (rspCRH matches tagged RespWrite .n &&& crtBusy &&& lclRspRemain>0);
     let awr = a4l.f.wrResp.first; //TODO: look at AXI write response code (assume OKAY for now)
     a4l.f.wrResp.deq;             // Implicit condition of read blocks until resp
-    $display("[%0d]: %m: Hcrt rsp_write", $time);
-    QABS resp = qabsFromDword(pack(n), True);
-    crtRespF.enq(resp);
-    //if (!cmdIsDO) respBufferF.enq(resp);
-    rspCRH <= tagged Invalid;
-    if (isEOM) begin
-      cmdIsDO   <= False;
-      cmdIsLast <= False;
-      crtBusy   <= False;
-    end
+    $display("[%0d]: %m: Hcrt agg_write, lclRspRemain:%0d", $time, lclRspRemain);
+    lclRspRemain <= lclRspRemain-1;
     modActive <= True;
+  endrule
+
+  // Write Response does Acknowledge Aggregation
+  // Do not make a Write Response until all the Writes have been posted
+  // Make ONLY ONE Write Response for a write of N DWORDs
+
+  // Rule to respond to Write Command Requests...
+  rule rsp_write (rspCRH matches tagged RespWrite .n &&& crtBusy &&& lclRspRemain==0);
+   QABS resp = qabsFromDword(pack(n), True);
+   crtRespF.enq(resp);
+   rspCRH <= tagged Invalid;
+   cmdIsDO   <= False;
+   cmdIsLast <= False;
+   crtBusy   <= False;
+   modActive <= True;
+   $display("[%0d]: %m: Hcrt rsp_write sending aggregated write response", $time);
   endrule
 
 

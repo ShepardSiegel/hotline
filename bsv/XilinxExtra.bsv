@@ -1028,4 +1028,104 @@ module mkClockODDR2#(ODDR2Prms#(a) params, Bit#(1) d0, Bit#(1) d1)(Clock);
 endmodule: mkClockODDR2
 
 
+
+// IDELAYE2 - Series 7 Added sls 2013-04-20
+
+typedef struct {
+   String  idelay_group;
+   Integer idelay_value;
+   } IDELAYE2Params;
+
+instance DefaultValue#(IDELAYE2Params);
+   defaultValue = IDELAYE2Params {
+      idelay_group:  "",
+      idelay_value: 0
+      };
+endinstance
+
+interface VIDELAYE2#(type a);
+   (* always_enabled *) method   Action       i(a i);
+   (* always_ready *)   method   a            o;
+endinterface: VIDELAYE2
+
+interface IDELAYE2#(type a);
+  (* always_enabled *) method   Action       i(a i);
+  (* always_ready *)   method   a            o;
+endinterface: IDELAYE2
+
+import "BVI" IDELAYE2 = 
+module vMkIDELAYE2#(IDELAYE2Params params)(VIDELAYE2#(a))
+   provisos(Bits#(a, 1));
+
+   if (params.idelay_value < 0 || params.idelay_value > 31)
+      error("There are only 31 total taps on the IDELAYE2 cell.  Specify a quantity between 0 and 31.");
+
+// if (params.iobdelay_type != "FIXED")
+//    error("Only FIXED is supported");
+
+   default_clock clk(C);
+   default_reset rst(REGRST);  // Active-High and Syncronous to Clock C
+
+// parameter CINVVTRL_SEL             = "FALSE";
+// parameter DELAY_SRC                = "IDATAIN";
+// parameter HIGH_PERFORMANCE_MODE    = "FALSE";
+// parameter IDELAY_TYPE              = "FIXED";
+// parameter IDELAY_VALUE             = 0;
+// parameter PIPE_SEL                 = "FALSE";
+// parameter REFCLK_FREQUENCY         = 200.0;
+// parameter SIGNAL_PATTEN            = "DATA";
+
+   parameter IODELAY_GROUP  = params.idelay_group;
+   parameter IDELAY_VALUE   = params.idelay_value;
+
+   // Tie-off primitive inputs that may need tie-off...
+   //port C   = False;
+   port CE  = False;
+   port INC = False;
+   port LD  = False;
+
+   method DATAOUT   o             reset_by(no_reset);
+   method           i(IDATAIN)    enable((*inhigh*)en0) reset_by(no_reset);
+
+   path(I, O);
+
+   schedule i   SB o;
+   schedule i   C  i;
+   schedule o   CF o;
+
+endmodule: vMkIDELAYE2
+
+module mkIDELAYE2#(IDELAYE2Params params)(IDELAYE2#(a))
+   provisos(Bits#(a, sa));
+
+   Reset reset <- invertCurrentReset;  // 
+
+   Vector#(sa, IDELAYE2Params) _params = ?;
+   for(Integer k = 0; k < valueof(sa); k = k + 1) begin
+      _params[k].idelay_group = params.idelay_group;
+      _params[k].idelay_value = params.idelay_value;
+   end
+
+   Vector#(sa, VIDELAYE2#(Bit#(1))) _idelaye2 = ?;
+   for(Integer k = 0; k < valueof(sa); k = k + 1) begin
+      _idelaye2[k] <- vMkIDELAYE2(_params[k], reset_by reset);
+   end
+
+   function Bit#(1) getO(VIDELAYE2#(Bit#(1)) idly);
+      return idly.o;
+   endfunction
+
+   method a o();
+      return unpack(pack(map(getO, _idelaye2)));
+   endmethod
+
+   method Action i(a x);
+      for(Integer k = 0; k < valueof(sa); k = k + 1) begin
+         _idelaye2[k].i(pack(x)[k]);
+      end
+   endmethod
+
+endmodule: mkIDELAYE2
+
+
 endpackage: XilinxExtra

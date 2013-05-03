@@ -60,7 +60,7 @@ module mkHCrt_TB1 (Empty);
    32'h0000_7777);
 
   rule trigger_read;
-    if (cycleCount==0 || cycleCount==16) gcr.cnt.put(?);
+    if (cycleCount==0 || cycleCount==16 || cycleCount==32) gcr.cnt.put(?);
   endrule
 
   rule produce_commands; 
@@ -111,13 +111,21 @@ module mkGenCmd (GenCmdIfc);
   Reg#(UInt#(12))    ptr <- mkReg(0);
 
  Vector#(2, Bit#(32)) v1 = vec(
-   32'h8003_FFA0,
+   32'h8003_FFA0,  // Read 3
    32'h0000_0010);
 
+ Vector#(5, Bit#(32)) v2 = vec(
+   32'h8003_FF90,  // Write 3
+   32'h0000_0000,  // Addr
+   32'h0000_0010,  //00
+   32'h0000_0020,  //04
+   32'h0000_0030); //08
+
   rule push_cmd (cF.notEmpty);
-    if (ptr==1) cF.deq();
-    ptr <= (ptr==1) ? 0 : ptr+1;
-    xF.enq(v1[ptr]);
+    UInt#(12) eov = fromInteger(vsize(v2)-1); // How many words to make
+    if (ptr==eov) cF.deq();
+    ptr <= (ptr==eov) ? 0 : ptr+1;
+    xF.enq(v2[ptr]);
   endrule
 
   interface Put cnt = toPut(cF);

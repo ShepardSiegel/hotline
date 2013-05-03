@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.43 (w)1999-2012 BSI
-[*] Fri Apr 12 17:55:44 2013
+[*] Fri May  3 14:40:03 2013
 [*]
 [dumpfile] "/home/shep/projects/hotline/sim/dump.vcd"
-[dumpfile_mtime] "Fri Apr 12 17:53:55 2013"
-[dumpfile_size] 36260
+[dumpfile_mtime] "Fri May  3 14:30:34 2013"
+[dumpfile_size] 65803
 [savefile] "/home/shep/projects/hotline/gtkwave/gtkw1.gtkw"
 [timestart] 0
-[size] 1951 1351
+[size] 1811 1343
 [pos] -1 -1
-*-4.911511 163 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.911511 145 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [sst_width] 240
 [signals_width] 471
 [sst_expanded] 1
@@ -31,7 +31,7 @@
 -
 @22
 +{main.top.crt2axi.WILL_FIRE_RL_cmd_crh [Bool]} main.top.crt2axi.WILL_FIRE_RL_cmd_crh
-@c00022
+@c00023
 +{main.top.crt2axi.cmdCRH [+] [TagCRH]} main.top.crt2axi.cmdCRH[34:0]
 @4022
 ^>1 enum HCrt::NOP HCrt::Write HCrt::Read HCrt::RespNOP HCrt::RespWrite HCrt::RespRead HCrt::Invalid
@@ -167,6 +167,7 @@
 @1401200
 -group_end
 -group_end
+@1401201
 -group_end
 @22
 +{main.top.crt2axi.cmdIsAM64 [Bool]} main.top.crt2axi.cmdIsAM64
@@ -375,6 +376,11 @@
 @200
 -
 @22
++{main.top.crt2axi.lclRspRemain [UInt#(12)]} main.top.crt2axi.lclRspRemain[11:0]
++{main.top.crt2axi.WILL_FIRE_RL_agg_write [Bool]} main.top.crt2axi.WILL_FIRE_RL_agg_write
+@200
+-
+@22
 +{main.top.crt2axi.WILL_FIRE_RL_rsp_write [Bool]} main.top.crt2axi.WILL_FIRE_RL_rsp_write
 @200
 -
@@ -429,5 +435,13 @@
 +{main.top.rspCount [UInt#(16)]} main.top.rspCount[15:0]
 +{main.top.validResp [Bool]} main.top.validResp
 +{main.top.rDat [Bit#(32)]} main.top.rDat[31:0]
+@200
+-
+-AXI-Slave
+@22
++{main.top.a4ls.WILL_FIRE_RL_a4l_cfwr [Bool]} main.top.a4ls.WILL_FIRE_RL_a4l_cfwr
++{main.top.a4ls.lastWriteAddr [Bit#(32)]} main.top.a4ls.lastWriteAddr[31:0]
++{main.top.a4ls.WILL_FIRE_RL_a4l_cfrd [Bool]} main.top.a4ls.WILL_FIRE_RL_a4l_cfrd
++{main.top.a4ls.lastReadAddr [Bit#(32)]} main.top.a4ls.lastReadAddr[31:0]
 [pattern_trace] 1
 [pattern_trace] 0
