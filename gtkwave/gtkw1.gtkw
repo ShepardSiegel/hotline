@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.43 (w)1999-2012 BSI
-[*] Fri May  3 14:40:03 2013
+[*] Wed May 15 17:25:13 2013
 [*]
 [dumpfile] "/home/shep/projects/hotline/sim/dump.vcd"
-[dumpfile_mtime] "Fri May  3 14:30:34 2013"
-[dumpfile_size] 65803
+[dumpfile_mtime] "Wed May 15 17:20:03 2013"
+[dumpfile_size] 47367
 [savefile] "/home/shep/projects/hotline/gtkwave/gtkw1.gtkw"
-[timestart] 0
-[size] 1811 1343
+[timestart] 84
+[size] 1889 1359
 [pos] -1 -1
-*-5.911511 145 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.911511 250 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [sst_width] 240
 [signals_width] 471
 [sst_expanded] 1
@@ -31,7 +31,7 @@
 -
 @22
 +{main.top.crt2axi.WILL_FIRE_RL_cmd_crh [Bool]} main.top.crt2axi.WILL_FIRE_RL_cmd_crh
-@c00023
+@c00022
 +{main.top.crt2axi.cmdCRH [+] [TagCRH]} main.top.crt2axi.cmdCRH[34:0]
 @4022
 ^>1 enum HCrt::NOP HCrt::Write HCrt::Read HCrt::RespNOP HCrt::RespWrite HCrt::RespRead HCrt::Invalid
@@ -167,7 +167,6 @@
 @1401200
 -group_end
 -group_end
-@1401201
 -group_end
 @22
 +{main.top.crt2axi.cmdIsAM64 [Bool]} main.top.crt2axi.cmdIsAM64
@@ -443,5 +442,11 @@
 +{main.top.a4ls.lastWriteAddr [Bit#(32)]} main.top.a4ls.lastWriteAddr[31:0]
 +{main.top.a4ls.WILL_FIRE_RL_a4l_cfrd [Bool]} main.top.a4ls.WILL_FIRE_RL_a4l_cfrd
 +{main.top.a4ls.lastReadAddr [Bit#(32)]} main.top.a4ls.lastReadAddr[31:0]
+@200
+-
+@23
++{main.top.crt2axi.WILL_FIRE_RL_drain_rsp_read [Bool]} main.top.crt2axi.WILL_FIRE_RL_drain_rsp_read
+@22
++{main.top.crt2axi.respBufTrig [Bool]} main.top.crt2axi.respBufTrig
 [pattern_trace] 1
 [pattern_trace] 0

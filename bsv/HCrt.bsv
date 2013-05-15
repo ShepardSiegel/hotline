@@ -119,7 +119,7 @@ endinterface
 (* synthesize *)
 module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
 
-  Integer respBufSize = 64;
+  Integer respBufSize = 256+4;  // 64 DWORDs
 
   // HCrt Command/Response FIFOs...
   FIFO#(Bit#(32))           crtCmdF       <- mkFIFO;        // Inbound  HCrt Commands
@@ -251,13 +251,13 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
     if (True) begin
       if (commitWrite) a4l.f.wrAddr.enq(A4LAddrCmd{addr:pack(a), prot:aProtDflt});
       if (commitWrite) a4l.f.wrData.enq(A4LWrData {strb:n.firstBE,  data:x});
-      if (doneWithWrite) cmdCRH   <= tagged Invalid;
+      if (doneWithWrite) cmdCRH   <= tagged Invalid; // Finalize this rule
       addrAccu <= (doneWithWrite)  ? tagged Invalid : tagged A32 (a+4); // Write address processing
       // Blind ACK the Write regardless if tag match or not...
       //TODO: When write responses are non-blind (from non-posted requests), make write machine use lastResp like Read
       //
-      // make the response when we issuie the last write. Should really count N good OKs
-      if (doneWithWrite)
+      // Make the response as soon as we can, even though it will not be issued until after N OK responses return
+      // Having rspCRH tagged RespWrite will enable agg_write and rsp_write
       rspCRH <= tagged RespWrite CRHResp {isLast:True,rsvd28:0,adl:0,rsvd12:0,respt:OK,
                                  c0:CRH0{isDO:False,isAM64:False,mesgt:Response,tag:n.c0.tag}};
       $display("[%0d]: %m: Hcrt cmd_write address:%0x data:%0x", $time, a, x);
