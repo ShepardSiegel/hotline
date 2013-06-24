@@ -298,18 +298,18 @@ IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset 
 
  design_1 d1_i(
   .sys1_rstn          (!sys0_rst),    // Inverted to make reset rstn active-low
-  .sys1_clk_p          (sys1_clkp),
-  .sys1_clk_n          (sys1_clkn),
+  .sys1_clk_p         (sys1_clkp),    // 125 MHz 
+  .sys1_clk_n         (sys1_clkn),
 
-  .gmii_rstn          (gmii_rstn),
-  .gmii_txd           (gmii_txd),
-  .gmii_tx_en         (gmii_tx_en),
-  .gmii_tx_er         (gmii_tx_er),
-  .gmii_rxd           (gmii_rxd),
-  .gmii_rx_dv         (gmii_rx_dv),
-  .gmii_rx_er         (gmii_rx_er),
-  .gmii_gtx_clk       (gmii_gtx_clk),
-  .gmii_rx_clk        (gmii_rx_clk)
+  .gmii_rstn          (gmii_rstn),    // GMII PHY reset (active-low)
+  .gmii_gtx_clk       (gmii_gtx_clk), // TX Group Clock
+  .gmii_txd           (gmii_txd),     // TX Data
+  .gmii_tx_en         (gmii_tx_en),   // TX Enable
+  .gmii_tx_er         (gmii_tx_er),   // TX Error
+  .gmii_rx_clk        (gmii_rx_clk)   // RX Group Clock
+  .gmii_rxd           (gmii_rxd),     // RX Data
+  .gmii_rx_dv         (gmii_rx_dv),   // RX Data Valid
+  .gmii_rx_er         (gmii_rx_er),   // RX Error
 //.mdio_mdc           (mdio_mdc),
 //.mdio_mdd           (mdio_mdd)
 );

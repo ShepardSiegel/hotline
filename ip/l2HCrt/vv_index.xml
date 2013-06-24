@@ -27,6 +27,8 @@
 			<Taxonomy value="/BaseIP">
 			</Taxonomy>
 		</Taxonomies>
+		<LockPrevVersions value="false">
+		</LockPrevVersions>
 		<Interfaces>
 			<Interface value="AXI4">
 			</Interface>
