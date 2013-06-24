@@ -5,6 +5,7 @@
 
 package ABS;
 
+import BuildVector       ::*;
 import ClientServer      ::*; 
 import Clocks            ::*;
 import Connectable       ::*;
@@ -222,6 +223,26 @@ endmodule: mkABSMerge
 
 // ABS-QABS Conversion Modules...
 
+
+// 2013-06-24 cms observed and explained incorrect behavior with original in unalligned case;
+// sls addeed doc below and re-wrote un-funnel to position the EOP correctly.
+// Previously, EOP in un-alligned case would make it impossible to deduce number of valid words!
+//
+// mkABS2QBS converts, "un-funnels", an ABS stream to a QABS stream.
+// In the absense of an EOP condition, the module shifts in ABS data to shift-regsiter sr at 0 (left shift up)
+// This data is shifted in from 0, so that on the third cycle of the alphabet, we would have ABC in (sr)
+// On the fourth cycle, when ptr==3, we have QABS rslt = ABCD, which has the 'A' in the MS and the 'D' in the LS
+// We reverse ABCD to DCBA so that the first-received ABS of data is in the QABS LS.
+// In the presense of an EOP condition, the same logic is followed. However we will push our result as soon as
+// we detect EOP. This could happen on the 0,1,2,or 3 cycle, (or not at all, as covered previously).
+// In order to determine if and where the EOP condition exists, downstream logic must examine the four ABS within QABS:
+// [3]   [2]   [1]   [0]      ( X = dont-care)
+// noEOP noEOP noEOP noEOP  = Four  ABS of data      (none with EOP)
+//  X     X     X    EOP    = One   ABS of data in [0]    (EOP in 0)
+//  X     X    EOP   noEOP  = Two   ABS of data in [1:0]  (EOP in 1)
+//  X    EOP   noEOP noEOP  = Three ABS of data in [2:0]  (EOP in 2)
+// EOP   noEOP noEOP noEOP  = Four  ABS of data in [3:0]  (EOP in 3)
+
 interface ABS2QABSIfc;
   interface Put#(ABS)      putSerial;
   interface Get#(QABS)     getVector;
@@ -234,13 +255,29 @@ module mkABS2QABS (ABS2QABSIfc);  // make a QABS vector from serial ABS stream..
   Reg#(Vector#(3,ABS)) sr    <-  mkRegU; 
   Reg#(UInt#(2))       ptr   <-  mkReg(0);
 
-  rule unfunnel; 
+  // This was the original, pre June-2013 implementation, which did not handle un-alligned words correctly...
+  rule unfunnel_original (False); 
     let b = inF.first; inF.deq;     // take the new ABS element b
     sr <= shiftInAt0(sr, b);        // shift it in to the shift register
     ptr <= isEOP(b) ? 0 : ptr+1;    // reset the pointer on EOP, else inc
     QABS rslt = cons(b, sr);        // candidate for QABS enq
     if (ptr==3 || isEOP(b))         // enq outF on 4th, or at EOP
       outF.enq(reverse(rslt));      // reverse to place first octet in QABS LSBs
+  endrule
+
+  // This is the new June-2013 implementation, that handles un-alligned words correctly...
+  rule unfunnel;
+    let b = inF.first; inF.deq;     // take the new ABS element b
+    sr <= shiftInAt0(sr, b);        // shift it in to the shift register
+    ptr <= isEOP(b) ? 0 : ptr+1;    // reset the pointer on EOP, else inc
+    QABS rslt = ?;
+    case (ptr)  // This case statement both reverses the data and positions un-alligned data correctly...
+      0: rslt = vec(?,    ?,    ?,     b ); // 1 ABS of data
+      1: rslt = vec(?,    ?,    b,  sr[0]); // 2 ABS of data
+      2: rslt = vec(?,    b, sr[0], sr[1]); // 3 ABS of data
+      3: rslt = vec(b, sr[0],sr[1], sr[2]); // 4 ABS of data
+    endcase   
+    if (ptr==3 || isEOP(b)) outF.enq(rslt); // enq outF on 4th, or at EOP
   endrule
 
   interface Put  putSerial = toPut(inF);
