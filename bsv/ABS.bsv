@@ -326,8 +326,10 @@ module mkABS_TB1 (Empty);
   rule produce_input;
     iptr <= iptr + 1;
     case (iptr)
-      0: funnel.putVector.put(qabsFromDword(32'h03020100, False));
-      1: funnel.putVector.put(qabsFromDword(32'h07060504, True));
+      0: funnel.putVector.put(qabsFromBits(32'h03020100, 4'b0000));
+      1: funnel.putVector.put(qabsFromBits(32'h07060504, 4'b1000));
+      2: funnel.putVector.put(qabsFromBits(32'h0B0A0908, 4'b0010));
+      3: funnel.putVector.put(qabsFromBits(32'h0F0E0D0C, 4'b0001));
     endcase
   endrule
 
