@@ -223,6 +223,9 @@ endmodule: mkABSMerge
 
 // ABS-QABS Conversion Modules...
 
+// Note that these interconversion modules are both LITTLE-ENDIAN
+// For QABS2ABS the LS Byte is the first on the byte-serial ABS wire
+// FOR ABS2QABS the first Byte from the byte-serial ABS wire lands in the LS Byte of QABS
 
 // 2013-06-24 cms observed and explained incorrect behavior with original in unalligned case;
 // sls addeed doc below and re-wrote un-funnel to position the EOP correctly.
@@ -266,16 +269,17 @@ module mkABS2QABS (ABS2QABSIfc);  // make a QABS vector from serial ABS stream..
   endrule
 
   // This is the new June-2013 implementation, that handles un-alligned words correctly...
-  rule unfunnel;
+  rule unfunnel(True);
     let b = inF.first; inF.deq;     // take the new ABS element b
     sr <= shiftInAt0(sr, b);        // shift it in to the shift register
     ptr <= isEOP(b) ? 0 : ptr+1;    // reset the pointer on EOP, else inc
     QABS rslt = ?;
     case (ptr)  // This case statement both reverses the data and positions un-alligned data correctly...
-      0: rslt = vec(?,    ?,    ?,     b ); // 1 ABS of data
-      1: rslt = vec(?,    ?,    b,  sr[0]); // 2 ABS of data
-      2: rslt = vec(?,    b, sr[0], sr[1]); // 3 ABS of data
-      3: rslt = vec(b, sr[0],sr[1], sr[2]); // 4 ABS of data
+      //           [0]    [1]    [2]    [3]  Note Zeroth element of vec() function on lhs
+      0: rslt = vec(b,     ?,     ?,     ?); // 1 ABS of data
+      1: rslt = vec(sr[0], b,     ?,     ?); // 2 ABS of data
+      2: rslt = vec(sr[1], sr[0], b,     ?); // 3 ABS of data
+      3: rslt = vec(sr[2], sr[1], sr[0], b); // 4 ABS of data
     endcase   
     if (ptr==3 || isEOP(b)) outF.enq(rslt); // enq outF on 4th, or at EOP
   endrule
@@ -311,6 +315,39 @@ module mkQABS2ABS (QABS2ABSIfc);  // make a serial ABS stream from a QABS vector
   interface Put putVector = toPut(inF);
   interface Get getSerial = toGet(outF);
 endmodule
+
+// Testbench for ABS/QABS Interchange
+module mkABS_TB1 (Empty);
+  Reg#(UInt#(16)) iptr     <- mkReg(0);
+  Reg#(UInt#(16)) cycle    <- mkReg(0);
+  QABS2ABSIfc     funnel   <- mkQABS2ABS;
+  ABS2QABSIfc     unfunnel <- mkABS2QABS;
+
+  rule produce_input;
+    iptr <= iptr + 1;
+    case (iptr)
+      0: funnel.putVector.put(qabsFromDword(32'h03020100, False));
+      1: funnel.putVector.put(qabsFromDword(32'h07060504, True));
+    endcase
+  endrule
+
+  mkConnection(funnel.getSerial, unfunnel.putSerial);
+
+  rule consume_output;
+    let r <- unfunnel.getVector.get;
+    $display("[%0d]: %m: Got output in cycle:%0d", $time, cycle);
+  endrule
+
+  rule cycle_count;
+    cycle <= cycle + 1;
+  endrule
+  rule terminate (cycle==100);
+    $display("[%0d]: %m: Terminate rule fired in cycle:%0d", $time, cycle);
+    $finish;
+  endrule
+
+endmodule
+
 
 // QABS Utility Modules...
 
