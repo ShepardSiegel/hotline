@@ -306,7 +306,7 @@ IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset 
   .gmii_txd           (gmii_txd),     // TX Data
   .gmii_tx_en         (gmii_tx_en),   // TX Enable
   .gmii_tx_er         (gmii_tx_er),   // TX Error
-  .gmii_rx_clk        (gmii_rx_clk)   // RX Group Clock
+  .gmii_rx_clk        (gmii_rx_clk),  // RX Group Clock
   .gmii_rxd           (gmii_rxd),     // RX Data
   .gmii_rx_dv         (gmii_rx_dv),   // RX Data Valid
   .gmii_rx_er         (gmii_rx_er),   // RX Error
