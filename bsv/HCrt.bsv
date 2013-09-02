@@ -7,6 +7,7 @@ import ABS          ::*;
 import ARAXI4L      ::*; 
 import A4LS         ::*;   // for TB
 
+import BRAMFIFO     ::*;
 import ClientServer ::*; 
 import Clocks       ::*;
 import Connectable  ::*;
@@ -119,7 +120,7 @@ endinterface
 (* synthesize *)
 module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
 
-  Integer respBufSize = 256+4;  // 64 DWORDs
+  Integer respBufSizeDW = 1024;  // 1024 DWORDs = 4KB
 
   // HCrt Command/Response FIFOs...
   FIFO#(Bit#(32))           crtCmdF       <- mkFIFO;        // Inbound  HCrt Commands
@@ -139,7 +140,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   Reg#(UInt#(12))           lclRspRemain  <- mkReg(0);      // Number of local responses remaining (used for aggregation)
   Reg#(Maybe#(Bit#(4)))     lastTag       <- mkReg(tagged Invalid);  // The last tag captured (valid or not)
 
-  FIFO#(QABS)               respBufF      <- mkSizedFIFO(respBufSize/4);
+  FIFO#(QABS)               respBufF      <- mkSizedBRAMFIFO(respBufSizeDW+1);
   Reg#(UInt#(12))           respBufCnt    <- mkReg(0);
   Reg#(Bool)                respBufTrig   <- mkReg(False);
 
@@ -157,7 +158,7 @@ module mkHCrtCompleter2Axi (HCrtCompleter2AxiIfc);
   Reg#(Bool)                cmdRdHead     <- mkReg(True);
   Reg#(Bit#(32))            cmdAddrAccu   <- mkRegU;
 
-  Bit#(32) targAdvert = fromInteger(respBufSize);
+  Bit#(32) targAdvert = fromInteger(respBufSizeDW*4);
 
   // Fire and take a new CRH DWORD...
   rule cmd_crh (cmdCRH matches tagged Invalid .crh &&& !crtBusy);

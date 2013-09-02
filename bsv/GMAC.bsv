@@ -3,6 +3,9 @@
 
 // See IEEE 802.3-2008 section 35 Reconciliation Sublayer (RS) and Gigabit Media Independent Interface (GMII)
 
+//  Use `define SPARTAN to target the Ettus N210 or similar platform
+//  Use `define NO_IOB to remove MAC/RS TX and RX IOB features such as DDR or IOELAY (use with ext GMII, RGMII, SGMII)
+
 package GMAC;
 
 import ABS               ::*;
@@ -123,6 +126,8 @@ module mkGMAC#(Clock rxClk, Clock txClk)(GMACIfc);
 
 `ifdef SPARTAN
   Clock         rxClk_BUFR       = rxClk;
+`elsif NO_IOB
+  Clock         rxClk_BUFR       = rxClk; 
 `else
   ClockIODELAY  gmii_rxc_dly     <-  vClockIODELAY("FIXED", 0, "I", clocked_by rxClk);
   Clock         gmii_rx_clk_dly  =   gmii_rxc_dly.delayed;
@@ -368,6 +373,17 @@ module mkTxRSAsync#(Clock txClk) (TxRSIfc);
     iobTxErr.d0(pack(txER)); iobTxErr.d1(pack(txER));  iobTxErr.ce(True);   iobTxErr.s(False);
   endrule
 
+`elsif NO_IOB
+
+  Reg#(Bit#(8)) txDataReg <- mkRegU(  clocked_by txClk, reset_by txRst);
+  Reg#(Bit#(1)) txEnaReg  <- mkReg(0, clocked_by txClk, reset_by txRst);
+  Reg#(Bit#(1)) txErrReg  <- mkReg(0, clocked_by txClk, reset_by txRst);
+  (* fire_when_enabled, no_implicit_conditions *)
+  rule tx_output_flops;
+    txDataReg <= txData;
+    txEnaReg  <= txEna;
+    txErrReg  <= txErr;
+  endrule
 
 `else
 
@@ -390,11 +406,19 @@ module mkTxRSAsync#(Clock txClk) (TxRSIfc);
   interface Put tx = toPut(txF);
   method  Action  txOperate = txOperateD._write(True);
   method  Bool txUnderFlow = unpack(unfBit.read);
+`ifdef NO_IOB
+  interface GMII_TX_RS gmii;
+    interface Clock   gtx_clk = txClk;      // This clock needs to be inverted for GMII, or used as is for SGMII bridge
+    method    Bit#(8) txd     = txDataReg;
+    method    Bit#(1) tx_en   = txEnaReg;
+    method    Bit#(1) tx_er   = txErrReg;
+`else
   interface GMII_TX_RS gmii;
     interface Clock   gtx_clk = iobTxClk;    // The 1GbE TX clock FPGA->PHY is called "GTX_CLK"
     method    Bit#(8) txd     = iobTxData.q;
     method    Bit#(1) tx_en   = iobTxEna.q;
     method    Bit#(1) tx_er   = iobTxErr.q;
+`endif
   endinterface: gmii
 endmodule: mkTxRSAsync
 
