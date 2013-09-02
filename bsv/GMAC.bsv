@@ -5,6 +5,7 @@
 
 //  Use `define SPARTAN to target the Ettus N210 or similar platform
 //  Use `define NO_IOB to remove MAC/RS TX and RX IOB features such as DDR or IOELAY (use with ext GMII, RGMII, SGMII)
+`define NO_IOB
 
 package GMAC;
 
@@ -381,8 +382,8 @@ module mkTxRSAsync#(Clock txClk) (TxRSIfc);
   (* fire_when_enabled, no_implicit_conditions *)
   rule tx_output_flops;
     txDataReg <= txData;
-    txEnaReg  <= txEna;
-    txErrReg  <= txErr;
+    txEnaReg  <= pack(txDV);
+    txErrReg  <= pack(txER);
   endrule
 
 `else

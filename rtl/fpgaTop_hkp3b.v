@@ -296,20 +296,44 @@ BUFG    sys0_bufg(.O(sys0_clk), .I(sys0_clki));
 
 IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset is active-high
 
+
+`define GMII_IOB_LOGIC
+`ifdef  GMII_IOB_LOGIC
+wire mac_gtx_clk, mac_tx_en, mac_tx_er;
+wire mac_rx_clk,  mac_rx_dv, mac_rx_er;
+wire [7:0] mac_txd, max_rxd;
+
+assign gmii_gtx_clk = !mac_gtx_clk; // Invert TX clock sent to PHY
+always@(posedge mac_gtx_clk) begin
+  gmii_txd   <= mac_txd;
+  gmii_tx_en <= mac_tx_en;
+  gmii_tx_er <= mac_tx_er;
+end
+
+always@(negedge gmii_rx_clk) begin  // Capture on the other edge
+  mac_rxd   <= gmii_rxd;
+  mac_rx_dv <= gmii_rx_dv;
+  mac_rx_er <= gmii_rx_er;
+end
+`endif
+
+
+
+
  design_1 d1_i(
   .sys1_rstn          (!sys0_rst),    // Inverted to make reset rstn active-low
   .sys1_clk_p         (sys1_clkp),    // 125 MHz 
   .sys1_clk_n         (sys1_clkn),
 
   .gmii_rstn          (gmii_rstn),    // GMII PHY reset (active-low)
-  .gmii_gtx_clk       (gmii_gtx_clk), // TX Group Clock
-  .gmii_txd           (gmii_txd),     // TX Data
-  .gmii_tx_en         (gmii_tx_en),   // TX Enable
-  .gmii_tx_er         (gmii_tx_er),   // TX Error
-  .gmii_rx_clk        (gmii_rx_clk),  // RX Group Clock
-  .gmii_rxd           (gmii_rxd),     // RX Data
-  .gmii_rx_dv         (gmii_rx_dv),   // RX Data Valid
-  .gmii_rx_er         (gmii_rx_er)    // RX Error
+  .gmii_gtx_clk       (mac_gtx_clk), // TX Group Clock
+  .gmii_txd           (mac_txd),     // TX Data
+  .gmii_tx_en         (mac_tx_en),   // TX Enable
+  .gmii_tx_er         (mac_tx_er),   // TX Error
+  .gmii_rx_clk        (mac_rx_clk),  // RX Group Clock
+  .gmii_rxd           (mac_rxd),     // RX Data
+  .gmii_rx_dv         (mac_rx_dv),   // RX Data Valid
+  .gmii_rx_er         (mac_rx_er)    // RX Error
 //.mdio_mdc           (mdio_mdc),
 //.mdio_mdd           (mdio_mdd)
 );
