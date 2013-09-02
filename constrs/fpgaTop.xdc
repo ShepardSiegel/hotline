@@ -340,13 +340,3 @@ set_property DCI_CASCADE {32 34} [get_iobanks 33]
 # Asynchronous Clock Groups...
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks sys0_clkp] -group [get_clocks -include_generated_clocks sys1_clkp] -group [get_clocks -include_generated_clocks sys2_clkp] -group [get_clocks -include_generated_clocks gmiirx_clk]
 
-
-set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_rsp_nop]
-set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_rsp_read]
-set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_drain_rsp_read]
-set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_cmd_crh]
-set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_cmd_addr]
-set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_cmd_nop]
-set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_cmd_write]
-set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_cmd_read]
-set_property MARK_DEBUG true [get_nets d1_i/mkL2HCrt_1/inst/crt2axi/WILL_FIRE_RL_rsp_write]

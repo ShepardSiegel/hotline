@@ -297,24 +297,35 @@ BUFG    sys0_bufg(.O(sys0_clk), .I(sys0_clki));
 IDELAYCTRL idc(.REFCLK(sys0_clk), .RST(sys0_rst), .RDY());  // IDELAYCTRL reset is active-high
 
 
-`define GMII_IOB_LOGIC
-`ifdef  GMII_IOB_LOGIC
+`define GMII_IOB_FLOPS
+`ifdef  GMII_IOB_FLOPS
 wire mac_gtx_clk, mac_tx_en, mac_tx_er;
 wire mac_rx_clk,  mac_rx_dv, mac_rx_er;
-wire [7:0] mac_txd, max_rxd;
+wire [7:0] mac_txd, mac_rxd;
+reg macr_tx_en, macr_tx_er;
+reg macr_rx_clk,  macr_rx_dv, macr_rx_er;
+reg [7:0] macr_txd, macr_rxd;
 
 assign gmii_gtx_clk = !mac_gtx_clk; // Invert TX clock sent to PHY
 always@(posedge mac_gtx_clk) begin
-  gmii_txd   <= mac_txd;
-  gmii_tx_en <= mac_tx_en;
-  gmii_tx_er <= mac_tx_er;
+  macr_txd   <= mac_txd;
+  macr_tx_en <= mac_tx_en;
+  macr_tx_er <= mac_tx_er;
 end
+assign gmii_txd   = macr_txd;
+assign gmii_tx_en = macr_tx_en;
+assign gmii_tx_er = macr_tx_er;
 
+assign mac_rx_clk = gmii_rx_clk;
 always@(negedge gmii_rx_clk) begin  // Capture on the other edge
-  mac_rxd   <= gmii_rxd;
-  mac_rx_dv <= gmii_rx_dv;
-  mac_rx_er <= gmii_rx_er;
+  macr_rxd   <= gmii_rxd;
+  macr_rx_dv <= gmii_rx_dv;
+  macr_rx_er <= gmii_rx_er;
 end
+assign mac_rxd   = macr_rxd;
+assign mac_rx_dv = macr_rx_dv;
+assign mac_rx_er = macr_rx_er;
+
 `endif
 
 
