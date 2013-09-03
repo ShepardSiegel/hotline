@@ -11,3 +11,6 @@ clean:
 	@rm -fR info obj sim
 	@mkdir info obj sim
 	@echo -n "Size after: ";du -sh .
+
+tar1:
+	tar czvf ../hotline-`date +%Y%m%d_%H%M`.tar.-gz doc if tcl constrs data rtl bin ip lib vivado
