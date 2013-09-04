@@ -344,6 +344,9 @@
         <spirit:language>verilog</spirit:language>
         <spirit:modelName>mkL2HCrt</spirit:modelName>
         <spirit:fileSetRef>
+          <spirit:localName>xilinx_verilogsynthesis_xilinx_com_ip_bsv_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
           <spirit:localName>xilinx_verilogsynthesis_view_fileset</spirit:localName>
         </spirit:fileSetRef>
       </spirit:view>
@@ -940,6 +943,14 @@
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_verilogsynthesis_xilinx_com_ip_bsv_1_0__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="bsv" xilinx:version="1.0"/>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
   </spirit:fileSets>
   <spirit:description>mkL2HCrt_v1_0</spirit:description>
   <spirit:parameters>
@@ -960,7 +971,7 @@
       <xilinx:vendorDisplayName>Atomic Rules LLC</xilinx:vendorDisplayName>
       <xilinx:vendorURL>http://www.atomicrules.com</xilinx:vendorURL>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2013-08-31T16:49:42</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2013-09-04T14:33:44</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
       </xilinx:tags>

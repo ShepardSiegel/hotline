@@ -23,14 +23,15 @@ set_property PACKAGE_PIN AB7 [get_ports sys0_rst]
 set_property IOSTANDARD LVCMOS15 [get_ports sys0_rst]
 
 ## GbE SGMII
-set_property PACKAGE_PIN J4  [get_ports sgmii_txp]
-set_property PACKAGE_PIN J3  [get_ports sgmii_txn]
-set_property PACKAGE_PIN H6  [get_ports sgmii_rxp]
-set_property PACKAGE_PIN H5  [get_ports sgmii_rxn]
+set_property LOC GTXE2_CHANNEL_X0Y9 [get_cells pcspma_i/inst/transceiver_inst/gtwizard_inst/gtwizard_i/inst/gt0_GTWIZARD_i/gtxe2_i]
+set_property PACKAGE_PIN J3 [get_ports sgmii_txn]
+set_property PACKAGE_PIN H5 [get_ports sgmii_rxn]
+set_property PACKAGE_PIN H6 [get_ports sgmii_rxp]
+set_property PACKAGE_PIN J4 [get_ports sgmii_txp]
 
 ## PHY Reset..
 set_property PACKAGE_PIN L20 [get_ports gmii_rstn]
-set_property IOSTANDARD LVCMOS25 [get_ports gmii_*]
+set_property IOSTANDARD LVCMOS25 [get_ports gmii_rstn]
 
 # LEDs
 set_property PACKAGE_PIN AB8 [get_ports {led[0]}]
@@ -55,4 +56,5 @@ set_property DRIVE 4 [get_ports {led[*]}]
 
 # Asynchronous Clock Groups...
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks sys0_clkp] -group [get_clocks -include_generated_clocks sys1_clkp]
+
 

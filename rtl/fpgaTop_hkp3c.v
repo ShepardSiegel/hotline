@@ -148,7 +148,7 @@ BUFG bufg_userclk  (.I(clkout1), .O(userclk));
 BUFG bufg_txoutclk (.I(txoutclk), .O(txoutclk_bufg));
 
 
-gig_ethernet_pcs_pma_0  #(.EXAMPLE_SIMULATION (1))
+gig_ethernet_pcs_pma_0  #(.EXAMPLE_SIMULATION (0))  // Must be 0 for implementation
   pcspma_i (
   .drpaddr_in             (9'b0),
   .drpclk_in              (userclk2),  // 125 MHz
