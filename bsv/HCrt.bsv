@@ -113,8 +113,8 @@ endinterface
 interface HCrtCompleter2AxiIfc;
   interface Server#(Bit#(32),QABS)  crtS0; 
   interface A4LMIfc                 axiM0;
-  method Bool isActive;
-  method Bool isFaulted;
+  (*always_ready*) method Bool      isActive;
+  (*always_ready*) method Bool      isFaulted;
 endinterface 
 
 (* synthesize *)
