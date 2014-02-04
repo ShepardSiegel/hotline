@@ -142,6 +142,7 @@ endmodule
 interface A4LSBIfc;
   interface A4L_Es s;
   (*always_ready*) method Bit#(32) ctl;
+  (*always_ready*) method Action sts (Bit#(32) arg);
 endinterface
 
 (* synthesize, default_clock_osc="s_axi_aclk", default_reset="s_axi_aresetn" *)
@@ -157,6 +158,7 @@ module mkA4LSB (A4LSBIfc);
   Reg#(Bit#(32))  lastReadAddr  <- mkReg(0);
   Reg#(Bit#(32))  lastWriteAddr <- mkReg(0);
   Reg#(Bit#(32))  r40           <- mkReg(0);
+  Reg#(Bit#(32))  r44           <- mkRegU;
   Reg#(Bit#(32))  axiCount      <- mkReg(0);
   Reg#(Bit#(32))  axiWtCount    <- mkReg(0);
   Reg#(Bit#(32))  axiRdCount    <- mkReg(0);
@@ -166,17 +168,17 @@ rule a4l_cfwr; // AXI4-Lite Configuration Property Writes...
   let wa = a4l.f.wrAddr.first; a4l.f.wrAddr.deq;  // Get the write address
   let wd = a4l.f.wrData.first; a4l.f.wrData.deq;  // Get the write data
   lastWriteAddr <= wa.addr;                       // Capture this write address
-  case (wa.addr[7:0]) matches                     // Take some action with it...
-    'h00 : r0  <= unpack(wd.data);
-    'h04 : r4  <= unpack(wd.data);
-    'h08 : r8  <= unpack(wd.data);
-    'h18 : begin
+  case (wa.addr[11:0]) matches                    // Take some action with it...
+    'h000 : r0  <= unpack(wd.data);
+    'h004 : r4  <= unpack(wd.data);
+    'h008 : r8  <= unpack(wd.data);
+    'h018 : begin
         if (wd.strb[0]==1) b18 <=wd.data[ 7: 0];
         if (wd.strb[1]==1) b19 <=wd.data[15: 8];
         if (wd.strb[2]==1) b1A <=wd.data[23:16];
         if (wd.strb[3]==1) b1B <=wd.data[31:24];
       end
-    'h40 : r40 <= unpack(wd.data);  // control data out
+    'h040 : r40 <= unpack(wd.data);  // control data out
   endcase
   axiWtCount <= axiWtCount+1;
   a4l.f.wrResp.enq(A4LWrResp{resp:OKAY});         // Acknowledge the write
@@ -187,19 +189,20 @@ rule a4l_cfrd;  // AXI4-Lite Configuration Property Reads...
   let ra = a4l.f.rdAddr.first; a4l.f.rdAddr.deq;    // Get the read address
   lastReadAddr <= ra.addr;                          // Capture this read address
   Bit#(32) rdat = ?;                                
-  case (ra.addr[7:0]) matches                     
-    'h00 : rdat = pack(r0);           // return r0
-    'h04 : rdat = pack(r4);           // return r4
-    'h08 : rdat = pack(r8);           // return r8
-    'h0C : rdat = axiCount;           // return axiCount
-    'h10 : rdat = 32'hF00DFACE;       // return a constant
-    'h14 : rdat = 32'hFEEDC0DE;       // return another constant
-    'h18 : rdat = {b1B,b1A,b19,b18};  // return little-endian
-    'h20 : rdat = lastWriteAddr;      // return the address last written
-    'h24 : rdat = lastReadAddr;       // return the address last read
-    'h28 : rdat = axiWtCount;         // return the AXI write count
-    'h2C : rdat = axiRdCount;         // return the AXI read count
-    'h40 : rdat = pack(r40);          // return r40
+  case (ra.addr[11:0]) matches                     
+    'h000 : rdat = pack(r0);           // return r0
+    'h004 : rdat = pack(r4);           // return r4
+    'h008 : rdat = pack(r8);           // return r8
+    'h00C : rdat = axiCount;           // return axiCount
+    'h010 : rdat = 32'hF00DFACE;       // return a constant
+    'h014 : rdat = 32'hFEEDC0DE;       // return another constant
+    'h018 : rdat = {b1B,b1A,b19,b18};  // return little-endian
+    'h020 : rdat = lastWriteAddr;      // return the address last written
+    'h024 : rdat = lastReadAddr;       // return the address last read
+    'h028 : rdat = axiWtCount;         // return the AXI write count
+    'h02C : rdat = axiRdCount;         // return the AXI read count
+    'h040 : rdat = pack(r40);          // return r40
+    'h044 : rdat = pack(r44);          // return r44
   endcase
   axiRdCount <= axiRdCount+1;
   a4l.f.rdResp.enq(A4LRdResp{data:rdat,resp:OKAY}); // Return the read data
@@ -212,5 +215,6 @@ rule inc_count; axiCount<=axiCount+1; endrule
   A4L_Es a4ls <- mkA4StoEs(a4l.a4ls); // return the expanded interface...
   interface A4L_Es s = a4ls; 
   method Bit#(32) ctl = r40;
+  method Action sts (Bit#(32) arg) = r44._write(arg);
 endmodule
 
