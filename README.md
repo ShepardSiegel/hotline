@@ -4,8 +4,8 @@ Copyright (c) 2013,2014 Atomic Rules LLC - ALL RIGHTS RESERVED
 
 Design Variants
 ---------------------
-hkp3b - KC705 1GbE to AXI
-hkp3c - SGMII Variant (using Xilinx PCS/PMA core)
+- hkp3b KC705 1GbE to AXI
+- hkp3c SGMII Variant (using Xilinx PCS/PMA core)
 
 Directory Structure
 ---------------------
