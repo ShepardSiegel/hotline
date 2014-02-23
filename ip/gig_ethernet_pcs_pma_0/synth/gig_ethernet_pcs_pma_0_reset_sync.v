@@ -70,11 +70,24 @@ module gig_ethernet_pcs_pma_0_reset_sync #(
 );
 
 
+  (* shreg_extract = "no", ASYNC_REG = "TRUE" *)
   wire  reset_stage1;
 
+  (* shreg_extract = "no", ASYNC_REG = "TRUE" *)
   wire  reset_stage2;
 
-  (* shreg_extract = "no", ASYNC_REG = "true" *)
+  (* shreg_extract = "no", ASYNC_REG = "TRUE" *)
+  wire  reset_stage3;
+
+  (* shreg_extract = "no", ASYNC_REG = "TRUE" *)
+  wire  reset_stage4;
+
+  (* shreg_extract = "no", ASYNC_REG = "TRUE" *)
+  wire  reset_stage5;
+
+  (* shreg_extract = "no", ASYNC_REG = "TRUE" *)
+  wire  reset_stage6;
+
   FDP #(
    .INIT (INITIALISE[0])
   ) reset_sync1 (
@@ -84,7 +97,6 @@ module gig_ethernet_pcs_pma_0_reset_sync #(
   .Q  (reset_stage1) 
   );
   
-  (* shreg_extract = "no", ASYNC_REG = "true" *)
   FDP #(
    .INIT (INITIALISE[1])
   ) reset_sync2 (
@@ -94,8 +106,43 @@ module gig_ethernet_pcs_pma_0_reset_sync #(
   .Q  (reset_stage2) 
   );
 
+  FDP #(
+   .INIT (INITIALISE[1])
+  ) reset_sync3 (
+  .C  (clk), 
+  .PRE(reset_in),
+  .D  (reset_stage2),
+  .Q  (reset_stage3) 
+  );
 
-assign reset_out = reset_stage2;
+  FDP #(
+   .INIT (INITIALISE[1])
+  ) reset_sync4 (
+  .C  (clk), 
+  .PRE(reset_in),
+  .D  (reset_stage3),
+  .Q  (reset_stage4) 
+  );
+
+  FDP #(
+   .INIT (INITIALISE[1])
+  ) reset_sync5 (
+  .C  (clk), 
+  .PRE(reset_in),
+  .D  (reset_stage4),
+  .Q  (reset_stage5) 
+  );
+
+  FDP #(
+   .INIT (INITIALISE[1])
+  ) reset_sync6 (
+  .C  (clk), 
+  .PRE(1'b0),
+  .D  (reset_stage5),
+  .Q  (reset_stage6) 
+  );
+
+assign reset_out = reset_stage6;
 
 
 

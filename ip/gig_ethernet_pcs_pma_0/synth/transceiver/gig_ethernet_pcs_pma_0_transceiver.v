@@ -58,24 +58,19 @@
 //------------------------------------------------------------------------------
 
 `timescale 1 ps / 1 ps
+(* DowngradeIPIdentifiedWarnings="yes" *)
 
 module gig_ethernet_pcs_pma_0_transceiver #
 (
     parameter EXAMPLE_SIMULATION                     =  0         // Set to 1 for simulation
 )
 (
-   input   [8:0]    drpaddr_in,
-   input            drpclk_in,
-   input   [15:0]   drpdi_in,
-   output  [15:0]   drpdo_out,
-   input            drpen_in,
-   output           drprdy_out,
-   input            drpwe_in,
    input            encommaalign,
-   input            loopback,
    input            powerdown,
    input            usrclk,
    input            usrclk2,
+   input            rxusrclk,
+   input            rxusrclk2,
    input            data_valid,
    input            independent_clock,
    input            txreset,
@@ -95,6 +90,7 @@ module gig_ethernet_pcs_pma_0_transceiver #
    output reg       txbuferr,
    output           plllkdet,
    output           txoutclk,
+   output           rxoutclk,
    output           txn,
    output           txp,
    input            rxn,
@@ -102,7 +98,50 @@ module gig_ethernet_pcs_pma_0_transceiver #
    input            gtrefclk,
    input            pmareset,
    input            mmcm_locked,
-   output           resetdone
+   output           resetdone,
+   output           gt0_rxbyteisaligned_out,
+   output           gt0_rxbyterealign_out,
+   output           gt0_rxcommadet_out,
+   input            gt0_txpolarity_in,
+   input   [3:0]    gt0_txdiffctrl_in,
+   input   [4:0]    gt0_txpostcursor_in,
+   input   [4:0]    gt0_txprecursor_in,
+   input            gt0_rxpolarity_in,
+   input            gt0_rxdfelpmreset_in,
+   input            gt0_rxdfeagcovrden_in,
+   input            gt0_rxlpmen_in,
+   input   [2:0]    gt0_txprbssel_in,
+   input            gt0_txprbsforceerr_in,
+   input            gt0_rxprbscntreset_in,
+   output           gt0_rxprbserr_out,
+   input   [2:0]    gt0_rxprbssel_in,
+   input   [2:0]    gt0_loopback_in,
+   output           gt0_txresetdone_out,
+   output           gt0_rxresetdone_out,
+   input            gt0_eyescanreset_in,
+   output           gt0_eyescandataerror_out,
+   input            gt0_eyescantrigger_in,
+   input            gt0_rxcdrhold_in,
+   output  [6:0]    gt0_rxmonitorout_out,
+   input   [1:0]    gt0_rxmonitorsel_in,
+   input   [8:0]    gt0_drpaddr_in,
+   input            gt0_drpclk_in,
+   input   [15:0]   gt0_drpdi_in,
+   output  [15:0]   gt0_drpdo_out,
+   input            gt0_drpen_in,
+   output           gt0_drprdy_out,
+   input            gt0_drpwe_in,
+   input            gt0_txpmareset_in      ,
+   input            gt0_txpcsreset_in      ,
+   input            gt0_rxpmareset_in      ,
+   input            gt0_rxpcsreset_in      ,
+   input            gt0_rxbufreset_in      ,
+   output           gt0_rxpmaresetdone_out ,
+   output [2:0]     gt0_rxbufstatus_out    ,
+   output [1:0]     gt0_txbufstatus_out    ,   
+   output [7:0]    gt0_dmonitorout_out    ,   
+   input           gt0_qplloutclk,                    
+   input           gt0_qplloutrefclk  
 
 );
 
@@ -119,7 +158,6 @@ module gig_ethernet_pcs_pma_0_transceiver #
    wire             pcsreset;
    (* KEEP = "TRUE" *) reg              data_valid_reg;
    wire             data_valid_reg2;
-   wire      [2:0]  rxbufstatus;
    wire      [1:0]  txbufstatus;
    reg       [1:0]  txbufstatus_reg;
    reg              txpowerdown_reg = 1'b0;
@@ -155,8 +193,6 @@ module gig_ethernet_pcs_pma_0_transceiver #
    reg        [1:0] txcharisk_int;
 
    // Signals for GT data reception
-   wire             rxrecclk;
-   wire             rxrecclk_bufmr;
    wire       [1:0] rxchariscomma_rec;
    wire       [1:0] rxnotintable_rec;
    wire       [1:0] rxcharisk_rec;
@@ -167,6 +203,7 @@ module gig_ethernet_pcs_pma_0_transceiver #
    wire        [1:0] rxpowerdown_int;
 
 
+   assign gt0_txbufstatus_out = txbufstatus;
    assign txpowerdown_int = {2{txpowerdown}};
    assign rxpowerdown_int = {2{rxpowerdown_reg}};
    // rxpowerdown given on usrclk2 since since recclk stops at powerdown hence there will be an issue in clearing of powerdown
@@ -180,7 +217,7 @@ module gig_ethernet_pcs_pma_0_transceiver #
 
   // Reclock encommaalign
   gig_ethernet_pcs_pma_0_reset_sync reclock_encommaalign (
-     .clk       (rxrecclk),
+     .clk       (rxusrclk2),
      .reset_in  (encommaalign),
      .reset_out (encommaalign_rec)
   );
@@ -197,7 +234,7 @@ module gig_ethernet_pcs_pma_0_transceiver #
 
   // Reclock rxreset
   gig_ethernet_pcs_pma_0_reset_sync reclock_rxreset (
-     .clk       (rxrecclk),
+     .clk       (rxusrclk2),
      .reset_in  (rxreset),
      .reset_out (rxreset_rec)
   );
@@ -287,25 +324,59 @@ module gig_ethernet_pcs_pma_0_transceiver #
    // Instantiate the Series-7 GTX
    //---------------------------------------------------------------------------
    // Direct from the Transceiver Wizard output
-   gig_ethernet_pcs_pma_0_GTWIZARD_init #
-   (
-        .EXAMPLE_SIM_GTRESET_SPEEDUP     ("TRUE"),
-        .EXAMPLE_SIMULATION              (EXAMPLE_SIMULATION)
-   )
+   gig_ethernet_pcs_pma_0_GTWIZARD 
    gtwizard_inst
    (
-        .gt0_drpaddr_in                  (drpaddr_in) ,
-        .gt0_drpclk_in                   (drpclk_in ) ,
-        .gt0_drpdi_in                    (drpdi_in  ) ,
-        .gt0_drpdo_out                   (drpdo_out ) ,
-        .gt0_drpen_in                    (drpen_in  ) ,
-        .gt0_drprdy_out                  (drprdy_out) ,
-        .gt0_drpwe_in                    (drpwe_in  ) ,
+       //----------------------------- Loopback Ports -----------------------------
+        .gt0_loopback_in                (gt0_loopback_in),
+    //------------------- RX Initialization and Reset Ports --------------------
+        .gt0_eyescanreset_in            (gt0_eyescanreset_in),
+    //------------------------ RX Margin Analysis Ports ------------------------
+        .gt0_eyescandataerror_out       (gt0_eyescandataerror_out),
+        .gt0_eyescantrigger_in          (gt0_eyescantrigger_in),
+    //----------------------- Receive Ports - CDR Ports ------------------------
+        .gt0_rxcdrlock_out              (),
+    //----------------- Receive Ports - Pattern Checker Ports ------------------
+        .gt0_rxprbserr_out              (gt0_rxprbserr_out),
+        .gt0_rxprbssel_in               (gt0_rxprbssel_in),
+    //----------------- Receive Ports - Pattern Checker ports ------------------
+        .gt0_rxprbscntreset_in          (gt0_rxprbscntreset_in),
+    //------------ Receive Ports - RX Byte and Word Alignment Ports ------------
+        .gt0_rxbyteisaligned_out        (gt0_rxbyteisaligned_out),
+        .gt0_rxbyterealign_out          (gt0_rxbyterealign_out),
+        .gt0_rxcommadet_out             (gt0_rxcommadet_out),
+    //------------------- Receive Ports - RX Equalizer Ports -------------------
+        .gt0_rxdfeagcovrden_in          (gt0_rxdfeagcovrden_in),
+        .gt0_rxdfelpmreset_in           (gt0_rxdfelpmreset_in),
+        .gt0_rxmonitorout_out           (gt0_rxmonitorout_out),
+        .gt0_rxmonitorsel_in            (gt0_rxmonitorsel_in),
+    //---------------- Receive Ports - RX Margin Analysis ports ----------------
+        .gt0_rxlpmen_in                 (gt0_rxlpmen_in),
+    //--------------- Receive Ports - RX Polarity Control Ports ----------------
+        .gt0_rxpolarity_in              (gt0_rxpolarity_in),
+    //---------------------- TX Configurable Driver Ports ----------------------
+        .gt0_txpostcursor_in            (gt0_txpostcursor_in),
+        .gt0_txprecursor_in             (gt0_txprecursor_in),
+    //---------------- Transmit Ports - Pattern Generator Ports ----------------
+        .gt0_txprbsforceerr_in          (gt0_txprbsforceerr_in),
+    //------------- Transmit Ports - TX Configurable Driver Ports --------------
+        .gt0_txdiffctrl_in              (gt0_txdiffctrl_in),
+    //--------------- Transmit Ports - TX Polarity Control Ports ---------------
+        .gt0_txpolarity_in              (gt0_txpolarity_in),
+    //---------------- Transmit Ports - pattern Generator Ports ----------------
+        .gt0_txprbssel_in               (gt0_txprbssel_in),
+        .gt0_drpaddr_in                  (gt0_drpaddr_in) ,
+        .gt0_drpclk_in                   (gt0_drpclk_in ) ,
+        .gt0_drpdi_in                    (gt0_drpdi_in  ) ,
+        .gt0_drpdo_out                   (gt0_drpdo_out ) ,
+        .gt0_drpen_in                    (gt0_drpen_in  ) ,
+        .gt0_drprdy_out                  (gt0_drprdy_out) ,
+        .gt0_drpwe_in                    (gt0_drpwe_in  ) ,
         .sysclk_in                       (independent_clock),
         .soft_reset_in                   (pmareset),
         .dont_reset_on_data_error_in    (1'b1),
-        .gt0_tx_fsm_reset_done_out       (),
-        .gt0_rx_fsm_reset_done_out       (),
+        .gt0_tx_fsm_reset_done_out       (resetdone_tx),
+        .gt0_rx_fsm_reset_done_out       (resetdone_rx),
         .gt0_data_valid_in               (data_valid_reg2),
         //----------------------- channel - ref clock ports //------------------
         .gt0_gtrefclk0_in                (gtrefclk),
@@ -314,10 +385,7 @@ module gig_ethernet_pcs_pma_0_transceiver #
         .gt0_cplllock_out                (cplllock),
         .gt0_cplllockdetclk_in           (independent_clock),
         .gt0_cpllreset_in                (pmareset),
-        //----------------------------- eye scan ports //-----------------------
-        .gt0_eyescandataerror_out        (),
         //---------------------- loopback and powerdown ports //----------------
-        .gt0_loopback_in                 (3'b0),
         .gt0_rxpd_in                     (rxpowerdown_int),
         .gt0_txpd_in                     (txpowerdown_int),
         //----------------------------- receive ports --------------------------
@@ -332,20 +400,19 @@ module gig_ethernet_pcs_pma_0_transceiver #
         .gt0_rxpcommaalignen_in          (encommaalign_rec),
         //----------------- receive ports - rx data path interface //-----------
         .gt0_gtrxreset_in                (gt_reset_rx),
-        .gt0_rxpmareset_in                (1'b0),
+        .gt0_rxpmareset_in                (gt0_rxpmareset_in),
         .gt0_rxdata_out                  (rxdata_rec),
-        .gt0_rxoutclk_out                (rxrecclk),
-        .gt0_rxusrclk_in                 (rxrecclk),
-        .gt0_rxusrclk2_in                (rxrecclk),
+        .gt0_rxoutclk_out                (rxoutclk),
+        .gt0_rxusrclk_in                 (rxusrclk),
+        .gt0_rxusrclk2_in                (rxusrclk2),
         //----- receive ports - rx driver),oob signalling),coupling and eq.),cdr //
         .gt0_gtxrxn_in                   (rxn),
         .gt0_gtxrxp_in                   (rxp),
-        .gt0_rxcdrlock_out               (),
         //------ receive ports - rx elastic buffer and phase alignment ports //-
-        .gt0_rxbufreset_in               (1'b0),
-        .gt0_rxbufstatus_out             (rxbufstatus),
+        .gt0_rxbufreset_in               (gt0_rxbufreset_in),
+        .gt0_rxbufstatus_out             (gt0_rxbufstatus_out),
         //---------------------- receive ports - rx pll ports //----------------
-        .gt0_rxresetdone_out             (resetdone_rx),
+        .gt0_rxresetdone_out             (),
         //----------------------------- transmit ports -------------------------
         .gt0_txuserrdy_in                (mmcm_locked),
         //-------------- transmit ports - 8b10b encoder control ports //--------
@@ -366,16 +433,19 @@ module gig_ethernet_pcs_pma_0_transceiver #
         //--------- transmit ports - tx elastic buffer and phase alignment //---
         .gt0_txbufstatus_out             (txbufstatus),
         //--------------------- transmit ports - tx pll ports //----------------
-        .gt0_txresetdone_out             (resetdone_tx),
+        .gt0_txresetdone_out             (),
     //--------------- transmit ports - tx ports for pci express ----------------
         .gt0_txelecidle_in               (txpowerdown),
         //____________________________common ports________________________________
+        .gt0_txpmareset_in        (gt0_txpmareset_in)        ,   
+        .gt0_txpcsreset_in        (gt0_txpcsreset_in)        ,   
+        .gt0_rxpcsreset_in        (gt0_rxpcsreset_in)        ,   
+        .gt0_rxpmaresetdone_out   (gt0_rxpmaresetdone_out)   ,   
+        .gt0_dmonitorout_out      (gt0_dmonitorout_out)      ,   
         //-------------------- common block  - ref clock ports ---------------------
-        .gt0_gtrefclk0_common_in (gtrefclk),
-        //----------------------- common block - qpll ports ------------------------
-        .gt0_qplllock_out        () ,
-        .gt0_qplllockdetclk_in   (independent_clock),
-        .gt0_qpllreset_in        (1'b0) 
+
+       .gt0_qplloutclk_in                 (gt0_qplloutclk),                    
+        .gt0_qplloutrefclk_in              (gt0_qplloutrefclk)
    );
 
 
@@ -401,7 +471,7 @@ module gig_ethernet_pcs_pma_0_transceiver #
    // between the user clock and the clock recovered from the data.
    gig_ethernet_pcs_pma_0_rx_elastic_buffer rx_elastic_buffer_inst (
       // Signals from the GTX on RXRECCLK
-      .rxrecclk          (rxrecclk),
+      .rxrecclk          (rxusrclk2),
       .rxrecreset        (rxreset_rec),
       .rxchariscomma_rec (rxchariscomma_rec),
       .rxcharisk_rec     (rxcharisk_rec),
@@ -430,6 +500,8 @@ module gig_ethernet_pcs_pma_0_transceiver #
    assign gt_reset_rx = (rxreset    & resetdone_rx) ;
    assign gt_reset_tx = (txreset_int & resetdone_tx) ;
 
+   assign gt0_rxresetdone_out = resetdone_rx;
+   assign gt0_txresetdone_out = resetdone_tx;
 
    // Output the PLL locked status
    assign plllkdet = cplllock;

@@ -43,7 +43,7 @@ set mkL2HCrt_1 [ create_bd_cell -type ip -vlnv atomicrules.com:hotline:mkL2HCrt:
 set mkA4LS_2 [ create_bd_cell -type ip -vlnv atomicrules.com:hotline:mkA4LS:1.0 mkA4LS_2 ]
 
 # Create instance: axi_interconnect_1, and set properties
-set axi_interconnect_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.0 axi_interconnect_1 ]
+set axi_interconnect_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_interconnect_1 ]
 set_property -dict [ list CONFIG.NUM_SI {1} CONFIG.NUM_MI {3}  ] $axi_interconnect_1
 
 # Create instance: axi_bram_ctrl_1, and set properties
@@ -51,7 +51,7 @@ set axi_bram_ctrl_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:
 set_property -dict [ list CONFIG.PROTOCOL {AXI4LITE} CONFIG.SINGLE_PORT_BRAM {1}  ] $axi_bram_ctrl_1
 
 # Create instance: blk_mem_gen_1, and set properties
-set blk_mem_gen_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.0 blk_mem_gen_1 ]
+set blk_mem_gen_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.1 blk_mem_gen_1 ]
 
 # Create interface connections
 connect_bd_intf_net -intf_net mkl2hcrt_1_m_axi [get_bd_intf_pins mkL2HCrt_1/m_axi] [get_bd_intf_pins axi_interconnect_1/S00_AXI]

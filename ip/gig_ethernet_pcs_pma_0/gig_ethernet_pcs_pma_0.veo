@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2013 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2014 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -46,7 +46,7 @@
 // 
 // DO NOT MODIFY THIS FILE.
 
-// IP VLNV: xilinx.com:ip:gig_ethernet_pcs_pma:13.0
+// IP VLNV: xilinx.com:ip:gig_ethernet_pcs_pma:14.1
 // IP Revision: 0
 
 // The following must be inserted into your Verilog file for this
@@ -55,41 +55,40 @@
 
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 gig_ethernet_pcs_pma_0 your_instance_name (
-  .gtrefclk(gtrefclk), // input gtrefclk
-  .txn(txn), // output txn
-  .txp(txp), // output txp
-  .rxn(rxn), // input rxn
-  .rxp(rxp), // input rxp
-  .txoutclk(txoutclk), // output txoutclk
-  .resetdone(resetdone), // output resetdone
-  .mmcm_locked(mmcm_locked), // input mmcm_locked
-  .userclk(userclk), // input userclk
-  .userclk2(userclk2), // input userclk2
-  .independent_clock_bufg(independent_clock_bufg), // input independent_clock_bufg
-  .drpaddr_in(drpaddr_in), // input [8 : 0] drpaddr_in
-  .drpclk_in(drpclk_in), // input drpclk_in
-  .drpdi_in(drpdi_in), // input [15 : 0] drpdi_in
-  .drpdo_out(drpdo_out), // output [15 : 0] drpdo_out
-  .drpen_in(drpen_in), // input drpen_in
-  .drprdy_out(drprdy_out), // output drprdy_out
-  .drpwe_in(drpwe_in), // input drpwe_in
-  .pma_reset(pma_reset), // input pma_reset
-  .sgmii_clk_r(sgmii_clk_r), // output sgmii_clk_r
-  .sgmii_clk_f(sgmii_clk_f), // output sgmii_clk_f
-  .sgmii_clk_en(sgmii_clk_en), // output sgmii_clk_en
-  .gmii_txd(gmii_txd), // input [7 : 0] gmii_txd
-  .gmii_tx_en(gmii_tx_en), // input gmii_tx_en
-  .gmii_tx_er(gmii_tx_er), // input gmii_tx_er
-  .gmii_rxd(gmii_rxd), // output [7 : 0] gmii_rxd
-  .gmii_rx_dv(gmii_rx_dv), // output gmii_rx_dv
-  .gmii_rx_er(gmii_rx_er), // output gmii_rx_er
-  .gmii_isolate(gmii_isolate), // output gmii_isolate
-  .configuration_vector(configuration_vector), // input [4 : 0] configuration_vector
-  .speed_is_10_100(speed_is_10_100), // input speed_is_10_100
-  .speed_is_100(speed_is_100), // input speed_is_100
-  .status_vector(status_vector), // output [15 : 0] status_vector
-  .reset(reset), // input reset
-  .signal_detect(signal_detect) // input signal_detect
+  .gtrefclk(gtrefclk),                              // input wire gtrefclk
+  .txn(txn),                                        // output wire txn
+  .txp(txp),                                        // output wire txp
+  .rxn(rxn),                                        // input wire rxn
+  .rxp(rxp),                                        // input wire rxp
+  .independent_clock_bufg(independent_clock_bufg),  // input wire independent_clock_bufg
+  .txoutclk(txoutclk),                              // output wire txoutclk
+  .rxoutclk(rxoutclk),                              // output wire rxoutclk
+  .resetdone(resetdone),                            // output wire resetdone
+  .cplllock(cplllock),                              // output wire cplllock
+  .userclk(userclk),                                // input wire userclk
+  .userclk2(userclk2),                              // input wire userclk2
+  .pma_reset(pma_reset),                            // input wire pma_reset
+  .mmcm_locked(mmcm_locked),                        // input wire mmcm_locked
+  .rxuserclk(rxuserclk),                            // input wire rxuserclk
+  .rxuserclk2(rxuserclk2),                          // input wire rxuserclk2
+  .sgmii_clk_r(sgmii_clk_r),                        // output wire sgmii_clk_r
+  .sgmii_clk_f(sgmii_clk_f),                        // output wire sgmii_clk_f
+  .sgmii_clk_en(sgmii_clk_en),                      // output wire sgmii_clk_en
+  .gmii_txd(gmii_txd),                              // input wire [7 : 0] gmii_txd
+  .gmii_tx_en(gmii_tx_en),                          // input wire gmii_tx_en
+  .gmii_tx_er(gmii_tx_er),                          // input wire gmii_tx_er
+  .gmii_rxd(gmii_rxd),                              // output wire [7 : 0] gmii_rxd
+  .gmii_rx_dv(gmii_rx_dv),                          // output wire gmii_rx_dv
+  .gmii_rx_er(gmii_rx_er),                          // output wire gmii_rx_er
+  .gmii_isolate(gmii_isolate),                      // output wire gmii_isolate
+  .configuration_vector(configuration_vector),      // input wire [4 : 0] configuration_vector
+  .speed_is_10_100(speed_is_10_100),                // input wire speed_is_10_100
+  .speed_is_100(speed_is_100),                      // input wire speed_is_100
+  .status_vector(status_vector),                    // output wire [15 : 0] status_vector
+  .reset(reset),                                    // input wire reset
+  .signal_detect(signal_detect),                    // input wire signal_detect
+  .gt0_qplloutclk_in(gt0_qplloutclk_in),            // input wire gt0_qplloutclk_in
+  .gt0_qplloutrefclk_in(gt0_qplloutrefclk_in)      // input wire gt0_qplloutrefclk_in
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 
