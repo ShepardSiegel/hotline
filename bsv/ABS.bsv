@@ -258,6 +258,7 @@ module mkABS2QABS (ABS2QABSIfc);  // make a QABS vector from serial ABS stream..
   Reg#(Vector#(3,ABS)) sr    <-  mkRegU; 
   Reg#(UInt#(2))       ptr   <-  mkReg(0);
 
+`ifdef OLD_CODE_UNFUNNEL
   // This was the original, pre June-2013 implementation, which did not handle un-alligned words correctly...
   rule unfunnel_original (False); 
     let b = inF.first; inF.deq;     // take the new ABS element b
@@ -267,6 +268,7 @@ module mkABS2QABS (ABS2QABSIfc);  // make a QABS vector from serial ABS stream..
     if (ptr==3 || isEOP(b))         // enq outF on 4th, or at EOP
       outF.enq(reverse(rslt));      // reverse to place first octet in QABS LSBs
   endrule
+`endif
 
   // This is the new June-2013 implementation, that handles un-alligned words correctly...
   rule unfunnel(True);

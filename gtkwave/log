@@ -1,0 +1,86 @@
+
+GTKWave Analyzer v3.3.57 (w)1999-2014 BSI
+
+Interpreter id is gtkwave_11726
+read event
+Got: gtkwave::getDumpType
+returing: 0 UNKNOWN
+read event
+Got: gtkwave::loadFile /home/shep/projects/hotline/sim/dump.vcd
+
+GTKWave Analyzer v3.3.57 (w)1999-2014 BSI
+
+[0] start time.
+[1005] end time.
+returing: 0 
+Got: gtkwave::presentWindow
+returing: 0 
+Got: gtkwave::getDumpType
+returing: 0 VCD
+read event
+Got: gtkwave::getDumpType
+returing: 0 VCD
+read event
+Got: gtkwave::getDumpType
+returing: 0 VCD
+read event
+Got: gtkwave::loadFile /tmp/tcl/_gen_3_tcl_tmp_11662.sav
+returing: 0 
+read event
+Got: gtkwave::presentWindow
+returing: 0 
+read event
+Got: gtkwave::showSignal 1000 0
+returing: 0 
+Got: gtkwave::presentWindow
+returing: 0 
+read event
+Got: gtkwave::getDumpType
+returing: 0 VCD
+read event
+Got: gtkwave::loadFile /tmp/tcl/_gen_4_tcl_tmp_11662.sav
+returing: 0 
+Got: gtkwave::presentWindow
+returing: 0 
+Got: gtkwave::showSignal 1000 0
+returing: 0 
+Got: gtkwave::presentWindow
+returing: 0 
+read event
+Got: gtkwave::getDumpType
+returing: 0 VCD
+read event
+Got: gtkwave::getDumpType
+returing: 0 VCD
+read event
+Got: gtkwave::getDumpType
+returing: 0 VCD
+read event
+Got: gtkwave::getDumpType
+returing: 0 VCD
+read event
+Got: gtkwave::getDumpType
+returing: 0 VCD
+read event
+Got: gtkwave::getDumpType
+returing: 0 VCD
+read event
+Got: gtkwave::getDumpType
+returing: 0 VCD
+read event
+Got: gtkwave::getDumpType
+returing: 0 VCD
+read event
+Got: gtkwave::getDumpType
+returing: 0 VCD
+read event
+Got: gtkwave::loadFile /tmp/tcl/_gen_61_tcl_tmp_11662.sav
+returing: 0 
+Got: gtkwave::presentWindow
+returing: 0 
+Got: gtkwave::showSignal 1000 0
+returing: 0 
+Got: gtkwave::presentWindow
+returing: 0 
+read event
+Got: exit
