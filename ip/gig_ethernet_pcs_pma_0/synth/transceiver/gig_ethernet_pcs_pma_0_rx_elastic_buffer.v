@@ -158,6 +158,13 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   reg           k28p5_wr_reg;          // k28p5_wr registered.
   reg           d16p2_wr_reg;          // d16p2_wr registered.
   reg           remove_idle;           // An Idle is removed before writing it into the FIFO.
+  reg           initialize_ram;        // Start of ram Indication
+  reg           start = 1'b1;          // Initial stage    
+  reg           reset_modified = 1'b0; // Modified reset sequence
+  reg    [4:0]  initialize_counter;            
+  reg           initialize_ram_complete;       // Indication that the ram has been initialized with zeros
+  reg           initialize_ram_complete_pulse; // Indication that the ram has been initialized with zeros
+  reg           initialize_ram_complete_reg;   // Indication that the ram has been initialized with zeros
 
 
   // Read domain logic (RXUSRCLK2)
@@ -184,6 +191,9 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   reg           insert_idle;           // An Idle is inserted whilst reading it out of the FIFO.
   reg           insert_idle_reg;       // insert_idle is registered.
   reg   [2:0]   rxclkcorcnt;           // derive RXCLKCORCNT to mimic tranceiver behaviour.
+  wire          initialize_ram_complete_sync;       // Indication that the ram has been initialized with zeros
+  reg           initialize_ram_complete_sync_reg1;
+  reg           initialize_ram_complete_sync_ris_edg = 1'b0;
 
 
 
@@ -196,7 +206,7 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   // Reclock the tranceiver data and format for storing in the RAM.
   always @(posedge rxrecclk)
   begin : gen_wr_data
-    if (rxrecreset == 1'b1)
+    if (rxrecreset == 1'b1 || initialize_ram_complete == 1'b0)
     begin
       wr_data            <= 36'b0;
       wr_data_reg        <= 36'b0;
@@ -263,7 +273,9 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
 
       // Idle removal (always leave the first /I2/ Idle, then every
       // alternate Idle can be removed.
-      if (k28p5_wr == 1'b1 && d16p2_wr == 1'b1 &&
+      if (initialize_ram_complete == 1'b0) 
+        wr_enable   <= 1'b1;
+      else if (k28p5_wr == 1'b1 && d16p2_wr == 1'b1 &&
           k28p5_wr_reg == 1'b1 && d16p2_wr_reg == 1'b1 &&
         filling == 1'b1 && remove_idle == 1'b0)
 
@@ -290,11 +302,15 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   begin : gen_wr_addr
     if (rxrecreset == 1'b1)
     begin
+      wr_addr_plus2 <= 6'b000010;
+      wr_addr_plus1 <= 6'b000001;
+      wr_addr       <= 6'b000000;
+    end else if (initialize_ram_complete_pulse == 1'b1)
+    begin
       wr_addr_plus2 <= 6'b100010;
       wr_addr_plus1 <= 6'b100001;
       wr_addr       <= 6'b100000;
-    end
-    else if (wr_enable == 1'b1)
+    end else if (wr_enable == 1'b1)
     begin
       wr_addr_plus2 <= wr_addr_plus2 + 6'b1;
       wr_addr_plus1 <= wr_addr_plus2;
@@ -321,6 +337,42 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   end // wr_addrgray_bits;
 
 
+  //----------------------------------------------------------------------------
+  // Logic to initialize the lower half of buffer with zeros. 
+  // This prevents wrong link up due to residual idles in the buffer.
+  //----------------------------------------------------------------------------
+  always @(posedge rxrecclk)
+  begin : init_wr_logic 
+    if (rxrecreset == 1'b1 || start == 1'b1)
+      initialize_ram <= 1'b1;
+    else if (initialize_ram_complete == 1'b1)
+         initialize_ram <= 1'b0;
+  end // init_wr_logic;
+
+  always @(posedge rxrecclk)
+  begin : init_counter_logic 
+    if (rxrecreset == 1'b1  || start == 1'b1)
+      initialize_counter <= 5'b00000;
+    else if ((initialize_ram == 1'b1) && (initialize_counter != 5'b11111))
+      initialize_counter <= initialize_counter + 5'b1;
+  end // init_counter_logic;
+
+  always @(posedge rxrecclk)
+  begin : init_complete_logic 
+    start <= 1'b0;
+    if (rxrecreset == 1'b1  || start == 1'b1)
+      initialize_ram_complete <= 1'b0;
+    else if (initialize_counter == 5'b11111)
+      initialize_ram_complete <= 1'b1;
+
+    if (rxrecreset == 1'b1  || start == 1'b1) begin
+      initialize_ram_complete_reg   <= 1'b0;
+      initialize_ram_complete_pulse <= 1'b0;
+    end else begin
+      initialize_ram_complete_reg <= initialize_ram_complete;
+      initialize_ram_complete_pulse <= initialize_ram_complete && ~initialize_ram_complete_reg;
+    end
+  end // init_complete_logic;
 
   //----------------------------------------------------------------------------
   // Instantiate a dual port RAM
@@ -364,7 +416,7 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
      // Register the distributed RAM read data.
      always @(posedge rxusrclk2)
      begin: reg_rd_data_ram
-        if (rxreset == 1'b1)
+        if (reset_modified == 1'b1)
            rd_data[I] <= 1'b0;
         else
            rd_data[I] <= rd_data_ram[I];
@@ -443,7 +495,7 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   // Register the RAM data.
   always @(posedge rxusrclk2)
   begin : reg_rd_data
-    if (rxreset == 1'b1)
+    if (reset_modified == 1'b1)
       rd_data_reg   <= 36'b0;
 
     else if (rd_enable == 1'b1)
@@ -467,7 +519,7 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   // FIFO read_enable whilst an Idle is present on the data.
   always @(posedge rxusrclk2)
   begin : gen_rd_enable
-    if (rxreset == 1'b1)
+    if (reset_modified == 1'b1)
     begin
       even            <= 1'b1;
       rd_enable       <= 1'b0;
@@ -504,7 +556,7 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   // boundary.
   always @(posedge rxusrclk2)
   begin : gen_rd_addr
-    if (rxreset == 1'b1)
+    if (reset_modified == 1'b1)
     begin
       rd_addr_plus2 <= 6'b000010;
       rd_addr_plus1 <= 6'b000001;
@@ -523,7 +575,7 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   // Convert look-ahead read address pointer into a gray code
   always @(posedge rxusrclk2)
   begin : rd_addrgray_bits
-    if (rxreset == 1'b1)
+    if (reset_modified == 1'b1)
       rd_addr_gray <= 6'b0;
     else if (rd_enable == 1'b1)
     begin
@@ -541,7 +593,7 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   // Multiplex the double width FIFO words to single words.
   always @(posedge rxusrclk2)
   begin : gen_mux
-    if (rxreset == 1'b1)
+    if (reset_modified == 1'b1)
     begin
       rxchariscomma_usr   <= 1'b0;
       rxcharisk_usr       <= 1'b0;
@@ -579,7 +631,7 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   // removing Idles.
   always @(posedge rxusrclk2)
   begin : gen_rxclkcorcnt
-    if (rxreset == 1'b1)
+    if (reset_modified == 1'b1 )
       rxclkcorcnt   <= 3'b0;
     else
     begin
@@ -620,7 +672,25 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
     end
   endgenerate
 
+  // Syncing initialize_ram_complete
+  gig_ethernet_pcs_pma_0_sync_block sync_initialize_ram_comp 
+  (
+    .clk       (rxusrclk2),
+    .data_in   (initialize_ram_complete),
+    .data_out  (initialize_ram_complete_sync)
+  );
 
+
+  // Modify Reset sequence for read side.
+  always @(posedge rxusrclk2)
+  begin : reset_seq
+    initialize_ram_complete_sync_reg1     <= initialize_ram_complete_sync;
+    initialize_ram_complete_sync_ris_edg  <= initialize_ram_complete_sync & !initialize_ram_complete_sync_reg1;
+    if (rxreset == 1'b1 && reset_modified == 1'b0)
+       reset_modified <= 1'b1;
+    else if (initialize_ram_complete_sync_ris_edg == 1'b1)
+       reset_modified <= 1'b0;
+  end // reset_seq
 
   // Convert the resync'd Write Address Pointer grey code back to binary
   assign rd_wr_addr[5] = rd_wr_addr_gray[5];
@@ -646,7 +716,7 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   // Determine the occupancy of the FIFO as observed in the read domain.
   always @(posedge rxusrclk2)
   begin : gen_rd_occupancy
-    if (rxreset == 1'b1)
+    if (reset_modified == 1'b1 )
       rd_occupancy <= 6'b100000;
     else
       rd_occupancy <= rd_wr_addr - rd_addr[5:0];
@@ -673,7 +743,7 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   // Like the tranceiver, this will persist until a reset is issued.
   always @(posedge rxusrclk2)
   begin : gen_buffer_error
-    if (rxreset == 1'b1)
+    if (reset_modified == 1'b1 )
       rxbuferr <= 1'b0;
     else if (overflow == 1'b1 || underflow == 1'b1)
       rxbuferr <= 1'b1;
@@ -706,7 +776,6 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   endgenerate
 
 
-
   // Convert the resync'd Read Address Pointer grey code back to binary
   assign wr_rd_addr[5] = wr_rd_addr_gray[5];
 
@@ -731,7 +800,7 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   // Determine the occupancy of the FIFO as observed in the write domain.
   always @(posedge rxrecclk)
   begin : gen_wr_occupancy
-    if (rxrecreset == 1'b1)
+    if (rxrecreset == 1'b1 || initialize_ram_complete == 1'b0)
       wr_occupancy <= 6'b100000;
     else
       wr_occupancy <= wr_addr[5:0] - wr_rd_addr;

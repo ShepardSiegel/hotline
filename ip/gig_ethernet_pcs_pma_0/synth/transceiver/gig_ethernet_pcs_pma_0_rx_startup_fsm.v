@@ -3,7 +3,7 @@
 //   ____  ____
 //  /   /\/   /
 // /___/  \  /    Vendor: Xilinx
-// \   \   \/     Version : 2.5
+// \   \   \/     Version : 3.1
 //  \   \         Application : 7 Series FPGAs Transceivers Wizard
 //  /   /         Filename : gig_ethernet_pcs_pma_0_rx_startup_fsm.v
 // /___/   /\
@@ -70,6 +70,7 @@
 
 `timescale 1ns / 1ps
 `define DLY #1
+(* DowngradeIPIdentifiedWarnings="yes" *)           
 
 
 module gig_ethernet_pcs_pma_0_RX_STARTUP_FSM #
@@ -102,8 +103,8 @@ module gig_ethernet_pcs_pma_0_RX_STARTUP_FSM #
        input       wire     DATA_VALID,
        input       wire     TXUSERRDY,               //TXUSERRDY from GT
        input       wire     DONT_RESET_ON_DATA_ERROR, //Used to control the Auto-Reset of FSM when Data Error is detected
-       output      reg      GTRXRESET = 1'b0,
-       output      reg      MMCM_RESET = 1'b1,
+       output            GTRXRESET ,
+       output            MMCM_RESET ,
        output      reg      QPLL_RESET = 1'b0,       //Reset QPLL (only if RX usese QPLL)
        output      reg      CPLL_RESET = 1'b0,       //Reset CPLL (only if RX usese CPLL)
        output               RX_FSM_RESET_DONE,       //Reset-sequence has sucessfully been finished.
@@ -133,23 +134,25 @@ module gig_ethernet_pcs_pma_0_RX_STARTUP_FSM #
   localparam [3:0]
              INIT                 = 4'b0000,
              ASSERT_ALL_RESETS    = 4'b0001,
-             RELEASE_PLL_RESET    = 4'b0010,
-             VERIFY_RECCLK_STABLE = 4'b0011,
-             RELEASE_MMCM_RESET   = 4'b0100,
-             WAIT_RESET_DONE      = 4'b0101,
-             DO_PHASE_ALIGNMENT   = 4'b0110,
-             MONITOR_DATA_VALID   = 4'b0111,
-             FSM_DONE             = 4'b1000;
-
+             WAIT_FOR_PLL_LOCK    = 4'b0010,
+             RELEASE_PLL_RESET    = 4'b0011,
+             VERIFY_RECCLK_STABLE = 4'b0100,
+             RELEASE_MMCM_RESET   = 4'b0101,
+             WAIT_FOR_RXUSRCLK    = 4'b0110,
+             WAIT_RESET_DONE      = 4'b0111,
+             DO_PHASE_ALIGNMENT   = 4'b1000,
+             MONITOR_DATA_VALID   = 4'b1001,
+             FSM_DONE             = 4'b1010;
+    
   reg [3:0] rx_state = INIT;
 
-  //This function decides how many clock-cycle need to be waited until
+  //This function decides how many clock-cycle need to be waited until 
   // a time-out occurs for bypassing the TX-Buffer
   function [12:0] get_max_wait_bypass;
     input manual_mode;
     reg [12:0] max_wait_cnt;
   begin
-    if (manual_mode == "TRUE")
+    if (manual_mode == "TRUE") 
       max_wait_cnt = 5000;
     else
       max_wait_cnt = 3100;
@@ -157,18 +160,19 @@ module gig_ethernet_pcs_pma_0_RX_STARTUP_FSM #
   end
   endfunction
 
-  localparam MMCM_LOCK_CNT_MAX = 1024;
-  localparam STARTUP_DELAY = 500;//AR43482: Transceiver needs to wait for 500 ns after configuration
-  localparam WAIT_CYCLES = STARTUP_DELAY / STABLE_CLOCK_PERIOD; // Number of Clock-Cycles to wait after configuration
-  localparam WAIT_MAX = WAIT_CYCLES + 10;                       // 500 ns plus some additional margin
-
-  localparam WAIT_TIMEOUT_2ms   = 2000000 / STABLE_CLOCK_PERIOD;  //2 ms time-out
-  localparam WAIT_TLOCK_MAX     = 100000 / STABLE_CLOCK_PERIOD;   //100 us time-out
-  localparam WAIT_TIMEOUT_500us = 500000 / STABLE_CLOCK_PERIOD;   //500 us time-out
-  localparam WAIT_TIMEOUT_1us   = 1000 / STABLE_CLOCK_PERIOD;     //1 us time-out
-  localparam WAIT_TIMEOUT_100us = 100000 / STABLE_CLOCK_PERIOD;   //100us time-out
+  localparam integer MMCM_LOCK_CNT_MAX = 1024;
+  localparam integer STARTUP_DELAY = 500;//AR43482: Transceiver needs to wait for 500 ns after configuration
+  localparam integer WAIT_CYCLES = STARTUP_DELAY / STABLE_CLOCK_PERIOD; // Number of Clock-Cycles to wait after configuration
+  localparam integer WAIT_MAX = WAIT_CYCLES + 10;                       // 500 ns plus some additional margin
+  localparam integer WAIT_TIMEOUT_2ms   = 2000000 / STABLE_CLOCK_PERIOD;  //2 ms time-out
+  localparam integer WAIT_TLOCK_MAX     = 100000 / STABLE_CLOCK_PERIOD;   //100 us time-out
+  localparam integer WAIT_TIMEOUT_500us = 500000 / STABLE_CLOCK_PERIOD;   //500 us time-out
+  localparam integer WAIT_TIMEOUT_1us   = 1000 / STABLE_CLOCK_PERIOD;     //1 us time-out
+  localparam integer WAIT_TIMEOUT_100us = 100000 / STABLE_CLOCK_PERIOD;   //100us time-out
   integer    WAIT_TIME_ADAPT    = (37000000 /1.25)/STABLE_CLOCK_PERIOD;
+  localparam integer WAIT_TIME_MAX   = EXAMPLE_SIMULATION? 100 : 10000 / STABLE_CLOCK_PERIOD;
 
+    
   reg [7:0] init_wait_count = 0;
   reg       init_wait_done = 1'b0;
   reg       pll_reset_asserted = 1'b0;
@@ -177,80 +181,100 @@ module gig_ethernet_pcs_pma_0_RX_STARTUP_FSM #
   wire      rx_fsm_reset_done_int_s2;
   reg       rx_fsm_reset_done_int_s3 = 1'b0;
 
-  localparam MAX_RETRIES = 2**RETRY_COUNTER_BITWIDTH-1;
-  reg [7:0]  retry_counter_int = 0;
+  localparam integer MAX_RETRIES = 2**RETRY_COUNTER_BITWIDTH-1; 
+  reg [7:0]  retry_counter_int = 0;  
   reg [18:0] time_out_counter = 0;
   reg [1:0]  recclk_mon_restart_count = 0 ;
   reg        recclk_mon_count_reset = 0;
-
+  
   reg        reset_time_out = 1'b0;
-  reg        time_out_2ms = 1'b0;  //--\Flags that the various time-out points
+  reg        time_out_2ms = 1'b0;  //--\Flags that the various time-out points 
   reg        time_tlock_max = 1'b0; //--|have been reached.
   reg        time_out_500us = 1'b0; //--|
   reg        time_out_1us = 1'b0;   //--|
   reg        time_out_100us = 1'b0;  //--/
   reg        check_tlock_max = 1'b0;
-
+    
   reg [9:0]  mmcm_lock_count = 1'b0;
   reg        mmcm_lock_int = 1'b0;
-  wire       mmcm_lock_reclocked_sync ;
-  reg [3:0]  mmcm_lock_reclocked = 1'b0;
-
+  wire       mmcm_lock_i;
+  reg        mmcm_lock_reclocked = 1'b0;
+    
+  wire       cpllrefclklost_sync;
   reg       run_phase_alignment_int = 1'b0;
   wire      run_phase_alignment_int_s2;
   reg       run_phase_alignment_int_s3 = 1'b0;
 
 
-  localparam MAX_WAIT_BYPASS = 5000;//5000 RXUSRCLK cycles is the max time for Multi Lane designs
+  localparam integer MAX_WAIT_BYPASS = 5000;//5000 RXUSRCLK cycles is the max time for Multi Lane designs
 
   reg [12:0] wait_bypass_count = 0;
   reg        time_out_wait_bypass = 1'b0;
   wire       time_out_wait_bypass_s2;
   reg        time_out_wait_bypass_s3 = 1'b0;
+  reg        gtrxreset_i = 1'b0;
+  reg        mmcm_reset_i = 1'b1;
+  reg        rxpmaresetdone_i = 1'b0;
 
   wire       refclk_lost;
+  wire       rxpmaresetdone_sync;
+  wire       rxpmaresetdone_s;
+  reg       rxpmaresetdone_ss = 1'b0;
+  reg       pmaresetdone_fallingedge_detect = 1'b0;
 
   wire      rxresetdone_s2;
   reg       rxresetdone_s3 = 1'b0;
   wire      data_valid_sync;
 
   wire      cplllock_sync;
-//  wire      qplllock_sync;
+  reg       cplllock_ris_edge = 1'b0;
+  reg       qplllock_ris_edge = 1'b0;
+  reg       cplllock_prev;
+  reg       qplllock_prev;
 
   integer    adapt_count = 0;
   reg        time_out_adapt = 1'b0;
   reg        adapt_count_reset = 1'b0;
+  reg   [15:0] wait_time_cnt;
+  wire  wait_time_done; 
 
   //Alias section, signals used within this module mapped to output ports:
   assign    RETRY_COUNTER     = retry_counter_int;
   assign    RUN_PHALIGNMENT   = run_phase_alignment_int;
   assign    RX_FSM_RESET_DONE = rx_fsm_reset_done_int;
+  assign    GTRXRESET = gtrxreset_i;
+  assign    MMCM_RESET = mmcm_reset_i;
 
-  always @(posedge STABLE_CLOCK)
+ always @(posedge STABLE_CLOCK or posedge SOFT_RESET)
   begin
-      // The counter starts running when configuration has finished and
+      // The counter starts running when configuration has finished and 
       // the clock is stable. When its maximum count-value has been reached,
       // the 500 ns from Answer Record 43482 have been passed.
-      if (init_wait_count == WAIT_MAX)
+     if(SOFT_RESET)
+      begin
+          init_wait_count <= `DLY 8'h0;
+          init_wait_done  <= `DLY 1'b0;
+      end
+      else if (init_wait_count == WAIT_MAX) 
           init_wait_done <= `DLY  1'b1;
       else
         init_wait_count <= `DLY  init_wait_count + 1;
-  end
+  end 
 
-
+ 
 
   always @(posedge STABLE_CLOCK)
   begin
     //This counter monitors, how many retries the CDR Lock Detection
-    //runs. If during startup too many retries are necessary, the whole
+    //runs. If during startup too many retries are necessary, the whole 
     //initialisation-process of the transceivers gets restarted.
       if (recclk_mon_count_reset == 1)
         recclk_mon_restart_count <= `DLY  0;
-      else if (RECCLK_MONITOR_RESTART == 1)
+      else if (RECCLK_MONITOR_RESTART == 1) 
       begin
         if (recclk_mon_restart_count == 3)
           recclk_mon_restart_count <= `DLY  0;
-        else
+        else 
           recclk_mon_restart_count <= `DLY  recclk_mon_restart_count + 1;
       end
   end
@@ -261,7 +285,7 @@ generate
     always @(posedge STABLE_CLOCK)
     begin
         time_out_adapt <= `DLY  1'b1;
-    end
+    end 
  end
 
  else
@@ -273,16 +297,16 @@ generate
         adapt_count    <= `DLY  0;
         time_out_adapt <= `DLY  1'b0;
       end
-      else
+      else 
       begin
-        if (adapt_count == WAIT_TIME_ADAPT -1 )
+        if (adapt_count == WAIT_TIME_ADAPT -1)
           time_out_adapt <= `DLY  1'b1;
-        else
+        else 
           adapt_count <= `DLY  adapt_count + 1;
       end
   end
 
- end
+ end 
 endgenerate
 
   always @(posedge STABLE_CLOCK)
@@ -305,7 +329,7 @@ endgenerate
           time_out_2ms <= `DLY  1'b1;
         else
           time_out_counter <= `DLY  time_out_counter + 1;
-
+        
         if (time_out_counter > WAIT_TLOCK_MAX && check_tlock_max == 1)
         begin
           time_tlock_max <= `DLY  1'b1;
@@ -329,43 +353,27 @@ endgenerate
       end
   end
 
-  always @(posedge RXUSERCLK)
+  always @(posedge STABLE_CLOCK)
   begin
-    //The lock-signal from the MMCM is not immediately used but
+    //The lock-signal from the MMCM is not immediately used but 
     //enabling a counter. Only when the counter hits its maximum,
-    //the MMCM is considered as "really" locked.
-    //The counter avoids that the FSM already starts on only a
+    //the MMCM is considered as "really" locked. 
+    //The counter avoids that the FSM already starts on only a 
     //coarse lock of the MMCM (=toggling of the LOCK-signal).
-      if (MMCM_LOCK == 1'b0)
+      if (mmcm_lock_i == 1'b0)
       begin
         mmcm_lock_count <= `DLY  0;
-        mmcm_lock_int   <= `DLY  1'b0;
+        mmcm_lock_reclocked   <= `DLY  1'b0;
       end
       else
-      begin
+      begin       
         if (mmcm_lock_count < MMCM_LOCK_CNT_MAX - 1)
           mmcm_lock_count <= `DLY  mmcm_lock_count + 1;
         else
-          mmcm_lock_int <= `DLY  1'b1;
+          mmcm_lock_reclocked <= `DLY  1'b1;
       end
-  end
-
-  always @(posedge STABLE_CLOCK)
-  //Reclocking onto the FSM-clock.
-  begin
-      if (MMCM_LOCK == 1'b0)
-        //The reset-signal is here on purpose. This avoids
-        //getting the shift-register targetted to an SRL.
-        //The reason for this is that an SRL will not help
-        //on the cross-clock domain but "real" Flip-flops will.
-
-        mmcm_lock_reclocked <= `DLY  4'b0000;
-      else
-      begin
-        mmcm_lock_reclocked[3]          <= `DLY  mmcm_lock_reclocked_sync;
-        mmcm_lock_reclocked[2:0] <= `DLY  mmcm_lock_reclocked[3:1];
-      end
-  end
+  end 
+  
 
   //Clock Domain Crossing
 
@@ -382,13 +390,14 @@ endgenerate
            .data_in         (rx_fsm_reset_done_int),
            .data_out        (rx_fsm_reset_done_int_s2)
         );
+
+
   always @(posedge RXUSERCLK)
   begin
      run_phase_alignment_int_s3 <= `DLY run_phase_alignment_int_s2;
 
      rx_fsm_reset_done_int_s3   <= `DLY rx_fsm_reset_done_int_s2;
   end
-
 
  gig_ethernet_pcs_pma_0_sync_block sync_time_out_wait_bypass 
         (
@@ -407,10 +416,11 @@ endgenerate
  gig_ethernet_pcs_pma_0_sync_block sync_mmcm_lock_reclocked
         (
            .clk             (STABLE_CLOCK),
-           .data_in         (mmcm_lock_int),
-           .data_out        (mmcm_lock_reclocked_sync)
+           .data_in         (MMCM_LOCK),
+           .data_out        (mmcm_lock_i)
         );
-  gig_ethernet_pcs_pma_0_sync_block sync_data_valid
+
+ gig_ethernet_pcs_pma_0_sync_block sync_data_valid
         (
            .clk             (STABLE_CLOCK),
            .data_in         (DATA_VALID),
@@ -418,32 +428,33 @@ endgenerate
         );
 
 
- gig_ethernet_pcs_pma_0_sync_block sync_cplllock
+gig_ethernet_pcs_pma_0_sync_block sync_cplllock
         (
            .clk             (STABLE_CLOCK),
            .data_in         (CPLLLOCK),
            .data_out        (cplllock_sync)
         );
 
-//  gig_ethernet_pcs_pma_0_sync_block sync_qplllock
-//         (
-//            .clk             (STABLE_CLOCK),
-//            .data_in         (QPLLLOCK),
-//            .data_out        (qplllock_sync)
-//         );
+gig_ethernet_pcs_pma_0_sync_block sync_cpllrefclklost
+        (
+           .clk             (STABLE_CLOCK),
+           .data_in         (CPLLREFCLKLOST),
+           .data_out        (cpllrefclklost_sync)
+        );
+
+
   always @(posedge STABLE_CLOCK)
   begin
      time_out_wait_bypass_s3   <= `DLY time_out_wait_bypass_s2;
 
      rxresetdone_s3            <= `DLY rxresetdone_s2;
   end
-
-
+ 
 
   always @(posedge RXUSERCLK)
   begin
       if (run_phase_alignment_int_s3 == 1'b0)
-      begin
+      begin 
         wait_bypass_count     <= `DLY  0;
         time_out_wait_bypass  <= `DLY  1'b0;
       end
@@ -456,35 +467,51 @@ endgenerate
       end
   end
 
-   assign refclk_lost = ( RX_QPLL_USED == "TRUE"  && QPLLREFCLKLOST == 1'b1) ? 1'b1 :
-                       ( RX_QPLL_USED == "FALSE" && CPLLREFCLKLOST == 1'b1) ? 1'b1 : 1'b0;
+  assign refclk_lost = ( RX_QPLL_USED == "TRUE"  && QPLLREFCLKLOST == 1'b1) ? 1'b1 : 
+                       ( RX_QPLL_USED == "FALSE" && cpllrefclklost_sync == 1'b1) ? 1'b1 : 1'b0;
 
 
-  //FSM for resetting the GTX/GTH/GTP in the 7-series.
+  always @(posedge STABLE_CLOCK )
+  begin
+    if((rx_state == ASSERT_ALL_RESETS) |
+       (rx_state == RELEASE_MMCM_RESET))
+    begin
+        wait_time_cnt <= `DLY WAIT_TIME_MAX;
+    end else if (wait_time_cnt != 16'h0)
+    begin
+        wait_time_cnt <= wait_time_cnt - 16'h1;
+    end
+
+  end
+
+  assign wait_time_done = (wait_time_cnt == 16'h0);
+
+  //FSM for resetting the GTX/GTH/GTP in the 7-series. 
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   //
   // Following steps are performed:
-  // 1) After configuration wait for approximately 500 ns as specified in
+  // 1) After configuration wait for approximately 500 ns as specified in 
   //    answer-record 43482
-  // 2) Assert all resets on the GT and on an MMCM potentially connected.
+  // 2) Assert all resets on the GT and on an MMCM potentially connected. 
   //    After that wait until a reference-clock has been detected.
   // 3) Release the reset to the GT and wait until the GT-PLL has locked.
   // 4) Release the MMCM-reset and wait until the MMCM has signalled lock.
   //    Also get info from the TX-side which PLL has been reset.
   // 5) Wait for the RESET_DONE-signal from the GT.
-  // 6) Signal to start the phase-alignment procedure and wait for it to
+  // 6) Signal to start the phase-alignment procedure and wait for it to 
   //    finish.
-  // 7) Reset-sequence has successfully run through. Signal this to the
+  // 7) Reset-sequence has successfully run through. Signal this to the 
   //    rest of the design by asserting RX_FSM_RESET_DONE.
-
-  always @(posedge STABLE_CLOCK)
+  
+  always @(posedge STABLE_CLOCK) 
   begin
-      if (SOFT_RESET == 1'b1 || (rx_state != INIT && rx_state != ASSERT_ALL_RESETS && refclk_lost == 1'b1))
-      begin
+      if (SOFT_RESET == 1'b1)
+      //if (SOFT_RESET == 1'b1 || (rx_state != INIT && rx_state != ASSERT_ALL_RESETS && refclk_lost == 1'b1))
+      begin 
         rx_state                <= `DLY  INIT;
         RXUSERRDY               <= `DLY  1'b0;
-        GTRXRESET               <= `DLY  1'b0;
-        MMCM_RESET              <= `DLY  1'b1;
+        gtrxreset_i             <= `DLY  1'b0;
+        mmcm_reset_i            <= `DLY  1'b0;
         rx_fsm_reset_done_int   <= `DLY  1'b0;
         QPLL_RESET              <= `DLY  1'b0;
         CPLL_RESET              <= `DLY  1'b0;
@@ -503,22 +530,22 @@ endgenerate
       end
       else
       begin
-
+        
         case (rx_state)
            INIT :
-           begin
+           begin 
             //Initial state after configuration. This state will be left after
-            //approx. 500 ns and not be re-entered.
+            //approx. 500 ns and not be re-entered. 
             if (init_wait_done == 1'b1)
               rx_state  <= `DLY  ASSERT_ALL_RESETS;
            end
 
            ASSERT_ALL_RESETS :
-           begin
+           begin 
             //This is the state into which the FSM will always jump back if any
-            //time-outs will occur.
-            //The number of retries is reported on the output RETRY_COUNTER. In
-            //case the transceiver never comes up for some reason, this machine
+            //time-outs will occur. 
+            //The number of retries is reported on the output RETRY_COUNTER. In 
+            //case the transceiver never comes up for some reason, this machine 
             //will still continue its best and rerun until the FPGA is turned off
             //or the transceivers come up correctly.
              if (RX_QPLL_USED == "TRUE" && TX_QPLL_USED == "FALSE")
@@ -530,7 +557,7 @@ endgenerate
               end
               else
                 QPLL_RESET          <= `DLY  1'b0;
-             end
+             end 
             else if (RX_QPLL_USED == "FALSE" && TX_QPLL_USED)
             begin
               if (pll_reset_asserted == 1'b0)
@@ -542,53 +569,67 @@ endgenerate
                 CPLL_RESET          <= `DLY  1'b0;
             end
             RXUSERRDY               <= `DLY  1'b0;
-            GTRXRESET               <= `DLY  1'b1;
-            MMCM_RESET              <= `DLY  1'b1;
-            run_phase_alignment_int <= `DLY  1'b0;
+            gtrxreset_i             <= `DLY  1'b1;
+            mmcm_reset_i            <= `DLY  1'b1;
+            run_phase_alignment_int <= `DLY  1'b0;    
             RESET_PHALIGNMENT       <= `DLY  1'b1;
             check_tlock_max         <= `DLY  1'b0;
             recclk_mon_count_reset  <= `DLY  1'b1;
             adapt_count_reset       <= `DLY  1'b1;
-
-            if ((RX_QPLL_USED == "TRUE" && TX_QPLL_USED == "FALSE" && QPLLREFCLKLOST == 1'b0 && pll_reset_asserted) ||
-                (RX_QPLL_USED == "FALSE"&& TX_QPLL_USED == "TRUE"  && CPLLREFCLKLOST == 1'b0 && pll_reset_asserted) ||
-                (RX_QPLL_USED == "TRUE" && TX_QPLL_USED == "TRUE"  && QPLLREFCLKLOST == 1'b0 ) ||
-                (RX_QPLL_USED == "FALSE"&& TX_QPLL_USED == "FALSE" && CPLLREFCLKLOST == 1'b0 )
-               )
+            
+            if ((RX_QPLL_USED == "TRUE" && TX_QPLL_USED == "FALSE"   && QPLLLOCK == 1'b0 && pll_reset_asserted) ||
+                (RX_QPLL_USED == "FALSE"&& TX_QPLL_USED == "TRUE"    && cplllock_sync == 1'b0 && pll_reset_asserted) ||
+                (RX_QPLL_USED == "TRUE" && TX_QPLL_USED == "TRUE"   ) ||
+                (RX_QPLL_USED == "FALSE"&& TX_QPLL_USED == "FALSE"  ) 
+               ) 
            begin
-              rx_state              <= `DLY  RELEASE_PLL_RESET;
+              rx_state              <= `DLY  WAIT_FOR_PLL_LOCK;
               reset_time_out        <= `DLY  1'b1;
-           end
-           end
-
-           RELEASE_PLL_RESET :
+           end 
+           end           
+           
+           WAIT_FOR_PLL_LOCK :
+           begin
+              if(wait_time_done)
+                 rx_state        <= `DLY RELEASE_PLL_RESET;  
+           end     
+ 
+           RELEASE_PLL_RESET : 
            begin
             //PLL-Reset of the GTX gets released and the time-out counter
             //starts running.
             pll_reset_asserted  <= `DLY  1'b0;
             reset_time_out      <= `DLY  1'b0;
-
-            if ((RX_QPLL_USED == "TRUE" && QPLLLOCK == 1'b1) ||
-               (RX_QPLL_USED == "FALSE" && cplllock_sync == 1'b1))
-            begin
+            
+            if ((RX_QPLL_USED == "TRUE"  && TX_QPLL_USED == "FALSE" && QPLLLOCK == 1'b1) ||
+                (RX_QPLL_USED == "FALSE" && TX_QPLL_USED == "TRUE"  && cplllock_sync == 1'b1))
+            begin 
               rx_state                <= `DLY  VERIFY_RECCLK_STABLE;
               reset_time_out          <= `DLY  1'b1;
               recclk_mon_count_reset  <= `DLY  1'b0;
               adapt_count_reset       <= `DLY  1'b0;
             end
-
-            if (time_out_2ms == 1'b1)
+            else if ((RX_QPLL_USED == "TRUE"  && QPLLLOCK == 1'b1) ||
+                     (RX_QPLL_USED == "FALSE" && cplllock_sync == 1'b1))
+            begin 
+              rx_state                <= `DLY  VERIFY_RECCLK_STABLE;
+              reset_time_out          <= `DLY  1'b1;
+              recclk_mon_count_reset  <= `DLY  1'b0;
+              adapt_count_reset       <= `DLY  1'b0;
+            end
+           
+            if (time_out_2ms == 1'b1) 
             begin
-              if (retry_counter_int == MAX_RETRIES)
-                // If too many retries are performed compared to what is specified in
+              if (retry_counter_int == MAX_RETRIES) 
+                // If too many retries are performed compared to what is specified in 
                 // the generic, the counter simply wraps around.
                 retry_counter_int <= `DLY  0;
               else
               begin
                 retry_counter_int <= `DLY  retry_counter_int + 1;
               end
-              rx_state            <= `DLY  ASSERT_ALL_RESETS;
-            end
+              rx_state            <= `DLY  ASSERT_ALL_RESETS; 
+            end            
            end
 
            VERIFY_RECCLK_STABLE :
@@ -596,56 +637,63 @@ endgenerate
             //reset_time_out  <= `DLY  '0';
             //Time-out counter is not released in this state as here the FSM
             //does not wait for a certain period of time but checks on the number
-            //of retries in the CDR PPM detector.
-            GTRXRESET <= `DLY  1'b0;
+            //of retries in the CDR PPM detector. 
+            gtrxreset_i <= `DLY  1'b0;
             if (RECCLK_STABLE == 1'b1)
             begin
               rx_state        <= `DLY  RELEASE_MMCM_RESET;
               reset_time_out  <= `DLY  1'b1;
-            end
+            end           
 
             if (recclk_mon_restart_count == 2)
             begin
-              //If two retries are performed in the CDR "Lock" (=CDR PPM-detector)
+              //If two retries are performed in the CDR "Lock" (=CDR PPM-detector) 
               //the whole initialisation-sequence gets restarted.
-              if (retry_counter_int == MAX_RETRIES)
-                // If too many retries are performed compared to what is specified in
+              if (retry_counter_int == MAX_RETRIES) 
+                // If too many retries are performed compared to what is specified in 
                 // the generic, the counter simply wraps around.
                 retry_counter_int <= `DLY  0;
               else
               begin
                 retry_counter_int <= `DLY  retry_counter_int + 1;
-              end
-              rx_state            <= `DLY  ASSERT_ALL_RESETS;
-            end
-           end
-
+              end 
+              rx_state            <= `DLY  ASSERT_ALL_RESETS; 
+            end   
+           end          
+          
            RELEASE_MMCM_RESET :
-           begin
+           begin 
             //Release of the MMCM-reset. Waiting for the MMCM to lock.
-            reset_time_out  <= `DLY  1'b0;
             check_tlock_max <= `DLY  1'b1;
-
-            MMCM_RESET <= `DLY  1'b0;
-            if (mmcm_lock_reclocked[0] == 1'b1)
+            
+            mmcm_reset_i <= `DLY  1'b0;
+            reset_time_out  <= `DLY  1'b0;
+        
+            if (mmcm_lock_reclocked == 1'b1)
             begin
-              rx_state <= `DLY  WAIT_RESET_DONE;
+              rx_state <= `DLY  WAIT_FOR_RXUSRCLK;
               reset_time_out  <= `DLY  1'b1;
-            end
-
-            if (time_tlock_max == 1'b1)
+            end           
+            
+            if (time_tlock_max == 1'b1 && reset_time_out  == 1'b0 )
             begin
               if (retry_counter_int == MAX_RETRIES)
-                // If too many retries are performed compared to what is specified in
+                // If too many retries are performed compared to what is specified in 
                 // the generic, the counter simply wraps around.
                 retry_counter_int <= `DLY  0;
               else
               begin
                 retry_counter_int <= `DLY  retry_counter_int + 1;
               end
-              rx_state            <= `DLY  ASSERT_ALL_RESETS;
-            end
-           end
+              rx_state            <= `DLY  ASSERT_ALL_RESETS; 
+            end 
+           end            
+           
+           WAIT_FOR_RXUSRCLK :
+           begin
+              if(wait_time_done)
+               rx_state <= `DLY WAIT_RESET_DONE;  
+           end  
 
            WAIT_RESET_DONE :
            begin
@@ -654,102 +702,102 @@ endgenerate
 
             if(TXUSERRDY)
                RXUSERRDY    <= `DLY  1'b1;
-
+ 
             reset_time_out  <= `DLY  1'b0;
             if (rxresetdone_s3 == 1'b1)
             begin
-              rx_state        <= `DLY  DO_PHASE_ALIGNMENT;
+              rx_state        <= `DLY  DO_PHASE_ALIGNMENT; 
               reset_time_out  <= `DLY  1'b1;
-            end
+            end           
 
-            if (time_out_2ms == 1'b1)
+            if (time_out_2ms == 1'b1 && reset_time_out  == 1'b0)
             begin
-              if (retry_counter_int == MAX_RETRIES)
-                // If too many retries are performed compared to what is specified in
+              if (retry_counter_int == MAX_RETRIES) 
+                // If too many retries are performed compared to what is specified in 
                 // the generic, the counter simply wraps around.
                 retry_counter_int <= `DLY  0;
-              else
+              else 
               begin
                 retry_counter_int <= `DLY  retry_counter_int + 1;
-              end
-              rx_state            <= `DLY  ASSERT_ALL_RESETS;
-            end
-           end
-
+              end 
+              rx_state            <= `DLY  ASSERT_ALL_RESETS; 
+            end 
+           end            
+          
            DO_PHASE_ALIGNMENT :
-           begin
+           begin 
             //The direct handling of the signals for the Phase Alignment is done outside
-            //this state-machine.
+            //this state-machine. 
             RESET_PHALIGNMENT       <= `DLY  1'b0;
             run_phase_alignment_int <= `DLY  1'b1;
             reset_time_out          <= `DLY  1'b0;
-
+            
             if (PHALIGNMENT_DONE == 1'b1)
             begin
               rx_state        <= `DLY  MONITOR_DATA_VALID;
               reset_time_out  <= `DLY  1'b1;
-            end
-
+            end 
+            
             if (time_out_wait_bypass_s3 == 1'b1)
             begin
               if (retry_counter_int == MAX_RETRIES)
-                // If too many retries are performed compared to what is specified in
+                // If too many retries are performed compared to what is specified in 
                 // the generic, the counter simply wraps around.
                 retry_counter_int <= `DLY  0;
               else
               begin
                 retry_counter_int <= `DLY   retry_counter_int + 1;
-              end
-              rx_state            <= `DLY  ASSERT_ALL_RESETS;
-            end
+              end 
+              rx_state            <= `DLY  ASSERT_ALL_RESETS; 
+            end            
            end
-
+         
            MONITOR_DATA_VALID :
-           begin
+           begin 
             reset_time_out  <= `DLY  1'b0;
 
-            if (data_valid_sync == 1'b0 && time_out_100us == 1'b1 && DONT_RESET_ON_DATA_ERROR == 1'b0)
+            if (data_valid_sync == 1'b0 && time_out_100us == 1'b1 && DONT_RESET_ON_DATA_ERROR == 1'b0 && reset_time_out  == 1'b0)
             begin
-              rx_state              <= `DLY  ASSERT_ALL_RESETS;
+              rx_state              <= `DLY  ASSERT_ALL_RESETS; 
               rx_fsm_reset_done_int <= `DLY  1'b0;
             end
             else if (data_valid_sync == 1'b1)
             begin
-              rx_state              <= `DLY  FSM_DONE;
+              rx_state              <= `DLY  FSM_DONE; 
               rx_fsm_reset_done_int <= `DLY  1'b0;
               reset_time_out        <= `DLY  1'b1;
             end
 
-           end
-
+           end            
+          
            FSM_DONE :
-           begin
+           begin 
             reset_time_out        <= `DLY  1'b0;
 
             if (data_valid_sync == 1'b0)
             begin
                rx_fsm_reset_done_int <= `DLY  1'b0;
                reset_time_out        <= `DLY  1'b1;
-               rx_state              <= `DLY  MONITOR_DATA_VALID;
+               rx_state              <= `DLY  MONITOR_DATA_VALID; 
             end
-            else if(time_out_1us == 1'b1)
+            else if(time_out_1us == 1'b1 && reset_time_out  == 1'b0)  
                rx_fsm_reset_done_int <= `DLY  1'b1;
 
-             if(time_out_adapt)
+            if(time_out_adapt)
             begin
-               if((GT_TYPE == "GTX" || GT_TYPE == "GTH") && EQ_MODE == "DFE")
+               if(GT_TYPE == "GTX"  && EQ_MODE == "DFE")
                begin
                   RXDFEAGCHOLD  <= `DLY 1'b1;
                   RXDFELFHOLD   <= `DLY 1'b1;
                end
-               else if(GT_TYPE == "GTH" && EQ_MODE == "LPM")
+               else
                begin
-                  RXLPMHFHOLD   <= `DLY 1'b1;
-                  RXLPMLFHOLD   <= `DLY 1'b1;
+                  RXDFEAGCHOLD  <= `DLY 1'b0;
+                  RXDFELFHOLD   <= `DLY 1'b0;
+                  RXLPMHFHOLD   <= `DLY 1'b0;
+                  RXLPMLFHOLD   <= `DLY 1'b0;
                end
             end
-
-
            end
            default:
              rx_state                <= `DLY  INIT;

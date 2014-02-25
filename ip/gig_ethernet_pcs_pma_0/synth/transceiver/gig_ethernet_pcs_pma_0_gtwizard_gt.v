@@ -3,7 +3,7 @@
 //   ____  ____ 
 //  /   /\/   /
 // /___/  \  /    Vendor: Xilinx
-// \   \   \/     Version : 2.5
+// \   \   \/     Version : 3.1
 //  \   \         Application : 7 Series FPGAs Transceivers Wizard
 //  /   /         Filename : gig_ethernet_pcs_pma_0_gtwizard_gt.v
 // /___/   /\     
@@ -73,7 +73,7 @@ module gig_ethernet_pcs_pma_0_GTWIZARD_GT #
 (
     // Simulation attributes
     parameter   GT_SIM_GTRESET_SPEEDUP   =   "FALSE",       // Set to 1 to speed up sim reset;
-    parameter   RX_DFE_KL_CFG2_IN        =   32'h3010D90C,
+    parameter   RX_DFE_KL_CFG2_IN        =   32'h301148AC,
     parameter   PMA_RSV_IN               =   32'h00018480,
     parameter   PCS_RSVD_ATTR_IN         =   48'h000000000000
 )
@@ -103,9 +103,11 @@ module gig_ethernet_pcs_pma_0_GTWIZARD_GT #
     input   [1:0]   rxpd_in,
     input   [1:0]   txpd_in,
     //------------------- RX Initialization and Reset Ports --------------------
+    input           eyescanreset_in,
     input           rxuserrdy_in,
     //------------------------ RX Margin Analysis Ports ------------------------
     output          eyescandataerror_out,
+    input           eyescantrigger_in,
     //----------------------- Receive Ports - CDR Ports ------------------------
     output          rxcdrlock_out,
     //---------------- Receive Ports - FPGA RX Interface Ports -----------------
@@ -113,6 +115,11 @@ module gig_ethernet_pcs_pma_0_GTWIZARD_GT #
     input           rxusrclk2_in,
     //---------------- Receive Ports - FPGA RX interface Ports -----------------
     output  [15:0]  rxdata_out,
+    //----------------- Receive Ports - Pattern Checker Ports ------------------
+    output          rxprbserr_out,
+    input   [2:0]   rxprbssel_in,
+    //----------------- Receive Ports - Pattern Checker ports ------------------
+    input           rxprbscntreset_in,
     //---------------- Receive Ports - RX 8B/10B Decoder Ports -----------------
     output  [1:0]   rxdisperr_out,
     output  [1:0]   rxnotintable_out,
@@ -124,21 +131,37 @@ module gig_ethernet_pcs_pma_0_GTWIZARD_GT #
     input           rxbufreset_in,
     output  [2:0]   rxbufstatus_out,
     //------------ Receive Ports - RX Byte and Word Alignment Ports ------------
+    output          rxbyteisaligned_out,
+    output          rxbyterealign_out,
+    output          rxcommadet_out,
     input           rxmcommaalignen_in,
     input           rxpcommaalignen_in,
     //------------------- Receive Ports - RX Equalizer Ports -------------------
     input           rxdfeagchold_in,
+    input           rxdfeagcovrden_in,
+    input           rxdfelfhold_in,
+    input           rxdfelpmreset_in,
+    output  [6:0]   rxmonitorout_out,
+    input   [1:0]   rxmonitorsel_in,
+    output  [7:0]   dmonitorout_out,
     //------------- Receive Ports - RX Fabric Output Control Ports -------------
     output          rxoutclk_out,
     //----------- Receive Ports - RX Initialization and Reset Ports ------------
     input           gtrxreset_in,
     input           rxpcsreset_in,
     input           rxpmareset_in,
+    //---------------- Receive Ports - RX Margin Analysis ports ----------------
+    input           rxlpmen_in,
+    //--------------- Receive Ports - RX Polarity Control Ports ----------------
+    input           rxpolarity_in,
     //----------------- Receive Ports - RX8B/10B Decoder Ports -----------------
     output  [1:0]   rxchariscomma_out,
     output  [1:0]   rxcharisk_out,
     //------------ Receive Ports -RX Initialization and Reset Ports ------------
     output          rxresetdone_out,
+    //---------------------- TX Configurable Driver Ports ----------------------
+    input   [4:0]   txpostcursor_in,
+    input   [4:0]   txprecursor_in,
     //------------------- TX Initialization and Reset Ports --------------------
     input           gttxreset_in,
     input           txuserrdy_in,
@@ -150,8 +173,12 @@ module gig_ethernet_pcs_pma_0_GTWIZARD_GT #
     input           txusrclk2_in,
     //------------------- Transmit Ports - PCI Express Ports -------------------
     input           txelecidle_in,
+    //---------------- Transmit Ports - Pattern Generator Ports ----------------
+    input           txprbsforceerr_in,
     //-------------------- Transmit Ports - TX Buffer Ports --------------------
     output  [1:0]   txbufstatus_out,
+    //------------- Transmit Ports - TX Configurable Driver Ports --------------
+    input   [3:0]   txdiffctrl_in,
     //---------------- Transmit Ports - TX Data Path interface -----------------
     input   [15:0]  txdata_in,
     //-------------- Transmit Ports - TX Driver and OOB signaling --------------
@@ -165,7 +192,12 @@ module gig_ethernet_pcs_pma_0_GTWIZARD_GT #
     input   [1:0]   txcharisk_in,
     //----------- Transmit Ports - TX Initialization and Reset Ports -----------
     input           txpcsreset_in,
-    output          txresetdone_out
+    input           txpmareset_in,
+    output          txresetdone_out,
+    //--------------- Transmit Ports - TX Polarity Control Ports ---------------
+    input           txpolarity_in,
+    //---------------- Transmit Ports - pattern Generator Ports ----------------
+    input   [2:0]   txprbssel_in
 
 
 );
@@ -373,7 +405,7 @@ wire            rxstartofseq_float_i;
             .GEARBOX_MODE                           (3'b000),
 
            //-----------------------PRBS Detection Attribute-----------------------
-            .RXPRBS_ERR_LOOPBACK                    (1'b0),
+            .RXPRBS_ERR_LOOPBACK                    (1'b1),
 
            //-----------Power-Down Attributes----------
             .PD_TRANS_TIME_FROM_P2                  (12'h03c),
@@ -534,7 +566,7 @@ wire            rxstartofseq_float_i;
         .RXSYSCLKSEL                    (2'b00),
         .TXSYSCLKSEL                    (2'b00),
         //------------------------- Digital Monitor Ports --------------------------
-        .DMONITOROUT                    (),
+        .DMONITOROUT                    (dmonitorout_out),
         //--------------- FPGA TX Interface Datapath Configuration  ----------------
         .TX8B10BEN                      (tied_to_vcc_i),
         //----------------------------- Loopback Ports -----------------------------
@@ -549,12 +581,12 @@ wire            rxstartofseq_float_i;
         //------------------------ RX 8B/10B Decoder Ports -------------------------
         .SETERRSTATUS                   (tied_to_ground_i),
         //------------------- RX Initialization and Reset Ports --------------------
-        .EYESCANRESET                   (tied_to_ground_i),
+        .EYESCANRESET                   (eyescanreset_in),
         .RXUSERRDY                      (rxuserrdy_in),
         //------------------------ RX Margin Analysis Ports ------------------------
         .EYESCANDATAERROR               (eyescandataerror_out),
         .EYESCANMODE                    (tied_to_ground_i),
-        .EYESCANTRIGGER                 (tied_to_ground_i),
+        .EYESCANTRIGGER                 (eyescantrigger_in),
         //----------------------- Receive Ports - CDR Ports ------------------------
         .RXCDRFREQRESET                 (tied_to_ground_i),
         .RXCDRHOLD                      (tied_to_ground_i),
@@ -572,12 +604,12 @@ wire            rxstartofseq_float_i;
         //---------------- Receive Ports - FPGA RX interface Ports -----------------
         .RXDATA                         (rxdata_i),
         //----------------- Receive Ports - Pattern Checker Ports ------------------
-        .RXPRBSERR                      (),
-        .RXPRBSSEL                      (tied_to_ground_vec_i[2:0]),
+        .RXPRBSERR                      (rxprbserr_out),
+        .RXPRBSSEL                      (rxprbssel_in),
         //----------------- Receive Ports - Pattern Checker ports ------------------
-        .RXPRBSCNTRESET                 (tied_to_ground_i),
+        .RXPRBSCNTRESET                 (rxprbscntreset_in),
         //------------------ Receive Ports - RX  Equalizer Ports -------------------
-        .RXDFEXYDEN                     (tied_to_ground_i),
+        .RXDFEXYDEN                     (tied_to_vcc_i),
         .RXDFEXYDHOLD                   (tied_to_ground_i),
         .RXDFEXYDOVRDEN                 (tied_to_ground_i),
         //---------------- Receive Ports - RX 8B/10B Decoder Ports -----------------
@@ -606,9 +638,9 @@ wire            rxstartofseq_float_i;
         .RXPHSLIPMONITOR                (),
         .RXSTATUS                       (),
         //------------ Receive Ports - RX Byte and Word Alignment Ports ------------
-        .RXBYTEISALIGNED                (),
-        .RXBYTEREALIGN                  (),
-        .RXCOMMADET                     (),
+        .RXBYTEISALIGNED                (rxbyteisaligned_out),
+        .RXBYTEREALIGN                  (rxbyterealign_out),
+        .RXCOMMADET                     (rxcommadet_out),
         .RXCOMMADETEN                   (tied_to_vcc_i),
         .RXMCOMMAALIGNEN                (rxmcommaalignen_in),
         .RXPCOMMAALIGNEN                (rxpcommaalignen_in),
@@ -622,13 +654,17 @@ wire            rxstartofseq_float_i;
         //--------------- Receive Ports - RX Channel Bonding Ports  ----------------
         .RXCHANISALIGNED                (),
         .RXCHANREALIGN                  (),
+        //------------------ Receive Ports - RX Equailizer Ports -------------------
+        .RXLPMHFHOLD                    (tied_to_ground_i),
+        .RXLPMHFOVRDEN                  (tied_to_ground_i),
+        .RXLPMLFHOLD                    (tied_to_ground_i),
         //------------------- Receive Ports - RX Equalizer Ports -------------------
         .RXDFEAGCHOLD                   (rxdfeagchold_in),
-        .RXDFEAGCOVRDEN                 (tied_to_ground_i),
+        .RXDFEAGCOVRDEN                 (rxdfeagcovrden_in),
         .RXDFECM1EN                     (tied_to_ground_i),
-        .RXDFELFHOLD                    (tied_to_ground_i),
+        .RXDFELFHOLD                    (rxdfelfhold_in),
         .RXDFELFOVRDEN                  (tied_to_vcc_i),
-        .RXDFELPMRESET                  (tied_to_ground_i),
+        .RXDFELPMRESET                  (rxdfelpmreset_in),
         .RXDFETAP2HOLD                  (tied_to_ground_i),
         .RXDFETAP2OVRDEN                (tied_to_ground_i),
         .RXDFETAP3HOLD                  (tied_to_ground_i),
@@ -643,14 +679,10 @@ wire            rxstartofseq_float_i;
         .RXDFEVPOVRDEN                  (tied_to_ground_i),
         .RXDFEVSEN                      (tied_to_ground_i),
         .RXLPMLFKLOVRDEN                (tied_to_ground_i),
-        .RXMONITOROUT                   (),
-        .RXMONITORSEL                   (2'b00),
+        .RXMONITOROUT                   (rxmonitorout_out),
+        .RXMONITORSEL                   (rxmonitorsel_in),
         .RXOSHOLD                       (tied_to_ground_i),
         .RXOSOVRDEN                     (tied_to_ground_i),
-        //------------------- Receive Ports - RX Equilizer Ports -------------------
-        .RXLPMHFHOLD                    (tied_to_ground_i),
-        .RXLPMHFOVRDEN                  (tied_to_ground_i),
-        .RXLPMLFHOLD                    (tied_to_ground_i),
         //---------- Receive Ports - RX Fabric ClocK Output Control Ports ----------
         .RXRATEDONE                     (),
         //------------- Receive Ports - RX Fabric Output Control Ports -------------
@@ -671,7 +703,7 @@ wire            rxstartofseq_float_i;
         .RXPCSRESET                     (rxpcsreset_in),
         .RXPMARESET                     (rxpmareset_in),
         //---------------- Receive Ports - RX Margin Analysis ports ----------------
-        .RXLPMEN                        (tied_to_ground_i),
+        .RXLPMEN                        (rxlpmen_in),
         //----------------- Receive Ports - RX OOB Signaling ports -----------------
         .RXCOMSASDET                    (),
         .RXCOMWAKEDET                   (),
@@ -681,7 +713,7 @@ wire            rxstartofseq_float_i;
         .RXELECIDLE                     (),
         .RXELECIDLEMODE                 (2'b11),
         //--------------- Receive Ports - RX Polarity Control Ports ----------------
-        .RXPOLARITY                     (tied_to_ground_i),
+        .RXPOLARITY                     (rxpolarity_in),
         //-------------------- Receive Ports - RX gearbox ports --------------------
         .RXSLIDE                        (tied_to_ground_i),
         //----------------- Receive Ports - RX8B/10B Decoder Ports -----------------
@@ -698,9 +730,9 @@ wire            rxstartofseq_float_i;
         //------------------------- TX Buffer Bypass Ports -------------------------
         .TXPHDLYTSTCLK                  (tied_to_ground_i),
         //---------------------- TX Configurable Driver Ports ----------------------
-        .TXPOSTCURSOR                   (5'b00000),
+        .TXPOSTCURSOR                   (txpostcursor_in),
         .TXPOSTCURSORINV                (tied_to_ground_i),
-        .TXPRECURSOR                    (tied_to_ground_vec_i[4:0]),
+        .TXPRECURSOR                    (txprecursor_in),
         .TXPRECURSORINV                 (tied_to_ground_i),
         .TXQPIBIASEN                    (tied_to_ground_i),
         .TXQPISTRONGPDOWN               (tied_to_ground_i),
@@ -725,7 +757,7 @@ wire            rxstartofseq_float_i;
         .TXRATE                         (tied_to_ground_vec_i[2:0]),
         .TXSWING                        (tied_to_ground_i),
         //---------------- Transmit Ports - Pattern Generator Ports ----------------
-        .TXPRBSFORCEERR                 (tied_to_ground_i),
+        .TXPRBSFORCEERR                 (txprbsforceerr_in),
         //---------------- Transmit Ports - TX Buffer Bypass Ports -----------------
         .TXDLYBYPASS                    (tied_to_vcc_i),
         .TXDLYEN                        (tied_to_ground_i),
@@ -747,7 +779,7 @@ wire            rxstartofseq_float_i;
         //------------- Transmit Ports - TX Configurable Driver Ports --------------
         .TXBUFDIFFCTRL                  (3'b100),
         .TXDEEMPH                       (tied_to_ground_i),
-        .TXDIFFCTRL                     (4'b1010),
+        .TXDIFFCTRL                     (txdiffctrl_in),
         .TXDIFFPD                       (tied_to_ground_i),
         .TXINHIBIT                      (tied_to_ground_i),
         .TXMAINCURSOR                   (7'b0000000),
@@ -771,7 +803,7 @@ wire            rxstartofseq_float_i;
         .TXSTARTSEQ                     (tied_to_ground_i),
         //----------- Transmit Ports - TX Initialization and Reset Ports -----------
         .TXPCSRESET                     (txpcsreset_in),
-        .TXPMARESET                     (tied_to_ground_i),
+        .TXPMARESET                     (txpmareset_in),
         .TXRESETDONE                    (txresetdone_out),
         //---------------- Transmit Ports - TX OOB signalling Ports ----------------
         .TXCOMFINISH                    (),
@@ -780,13 +812,13 @@ wire            rxstartofseq_float_i;
         .TXCOMWAKE                      (tied_to_ground_i),
         .TXPDELECIDLEMODE               (tied_to_ground_i),
         //--------------- Transmit Ports - TX Polarity Control Ports ---------------
-        .TXPOLARITY                     (tied_to_ground_i),
+        .TXPOLARITY                     (txpolarity_in),
         //------------- Transmit Ports - TX Receiver Detection Ports  --------------
         .TXDETECTRX                     (tied_to_ground_i),
         //---------------- Transmit Ports - TX8b/10b Encoder Ports -----------------
         .TX8B10BBYPASS                  (tied_to_ground_vec_i[7:0]),
         //---------------- Transmit Ports - pattern Generator Ports ----------------
-        .TXPRBSSEL                      (tied_to_ground_vec_i[2:0]),
+        .TXPRBSSEL                      (txprbssel_in),
         //--------------------- Tx Configurable Driver  Ports ----------------------
         .TXQPISENN                      (),
         .TXQPISENP                      ()

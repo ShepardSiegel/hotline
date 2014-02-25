@@ -91,41 +91,35 @@
 
 
 `timescale 1 ps/1 ps
+(* DowngradeIPIdentifiedWarnings="yes" *)
 
 //------------------------------------------------------------------------------
 // The module declaration for the Core Block wrapper.
 //------------------------------------------------------------------------------
 
-module gig_ethernet_pcs_pma_0  #
-(
-    parameter EXAMPLE_SIMULATION                     = 0         // Set to 1 for simulation
-)
+module gig_ethernet_pcs_pma_0  
 
    (
       // Transceiver Interface
       //----------------------
 
-      input   [8:0]    drpaddr_in,
-      input            drpclk_in,
-      input   [15:0]   drpdi_in,
-      output  [15:0]   drpdo_out,
-      input            drpen_in,
-      output           drprdy_out,
-      input            drpwe_in,
-      input        gtrefclk,              // Very high quality 125MHz clock for GT transceiver.
+
+      input        gtrefclk,                  // Very high quality 125MHz clock for GT transceiver.
       output       txp,                   // Differential +ve of serial transmission from PMA to PMD.
       output       txn,                   // Differential -ve of serial transmission from PMA to PMD.
       input        rxp,                   // Differential +ve for serial reception from PMD to PMA.
       input        rxn,                   // Differential -ve for serial reception from PMD to PMA.
-
-      output       txoutclk,              // txoutclk from GT transceiver (62.5MHz)
-      output       resetdone,             // The GT transceiver has completed its reset cycle
-      input        mmcm_locked,           // locked indication from MMCM
-      input        userclk,               // 62.5MHz global clock.
-      input        userclk2,              // 125MHz global clock.
+      output       resetdone,                 // The GT transceiver has completed its reset cycle
+      output       cplllock,
+      output       txoutclk,                  // txoutclk from GT transceiver (62.5MHz)
+      output       rxoutclk,                  // txoutclk from GT transceiver (62.5MHz)
+      input        userclk,                   // 125MHz global clock.
+      input        userclk2,                  // 125MHz global clock.
+      input        rxuserclk,                   // 125MHz global clock.
+      input        rxuserclk2,                  // 125MHz global clock.
       input        independent_clock_bufg,// 200MHz Independent clock,
-      input        pma_reset,             // transceiver PMA reset signal
-
+      input        pma_reset,                 // transceiver PMA reset signal
+      input        mmcm_locked,               // MMCM Locked
       // GMII Interface
       //---------------
       output       sgmii_clk_r,             // Clock for client MAC (125Mhz, 12.5MHz or 1.25MHz).
@@ -152,42 +146,43 @@ module gig_ethernet_pcs_pma_0  #
       // General IO's
       //-------------
       output [15:0] status_vector,         // Core status.
-      input        reset,                 // Asynchronous reset for entire core.
-      input        signal_detect          // Input from PMD to indicate presence of optical input.
+      input        reset,                 // Asynchronous reset for entire core
+    
+      input        signal_detect,          // Input from PMD to indicate presence of optical input.
+      input            gt0_qplloutclk_in,
+      input            gt0_qplloutrefclk_in
+     
+     
 
    );
 
-(* CORE_GENERATION_INFO = "gig_ethernet_pcs_pma_0,gig_ethernet_pcs_pma_v13_0,{x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=gig_ethernet_pcs_pma,x_ipVersion=13.0,x_ipLanguage=VERILOG,c_family=kintex7,c_component_name=gig_ethernet_pcs_pma_0,c_is_sgmii=true,c_use_transceiver=true,c_use_tbi=false,c_use_lvds=false,c_has_an=false,c_has_mdio=false,c_sgmii_phy_mode=false,c_dynamic_switching=false,c_transceiver_mode=A,c_sgmii_fabric_buffer=true,c_1588=0,C_PHYADDR=1}" *)
-gig_ethernet_pcs_pma_0_block #
-   (
-        .EXAMPLE_SIMULATION              (EXAMPLE_SIMULATION)
-   )
+
+
+(* CORE_GENERATION_INFO = "gig_ethernet_pcs_pma_0,gig_ethernet_pcs_pma_v14_1,{x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=gig_ethernet_pcs_pma,x_ipVersion=14.1,x_ipLanguage=VERILOG,c_family=kintex7,c_component_name=gig_ethernet_pcs_pma_0,c_is_sgmii=true,c_use_transceiver=true,c_use_tbi=false,c_use_lvds=false,c_has_an=false,c_has_mdio=false,c_sgmii_phy_mode=false,c_dynamic_switching=false,c_transceiver_mode=A,c_sgmii_fabric_buffer=true,c_1588=0,C_PHYADDR=1}" *)
+(* X_CORE_INFO = "gig_ethernet_pcs_pma_0_block,Vivado 2013.3.0" *)
+
+gig_ethernet_pcs_pma_0_block 
 inst
    (
       // Transceiver Interface
       //----------------------
-      .drpaddr_in            (drpaddr_in),
-      .drpclk_in             (drpclk_in ),
-      .drpdi_in              (drpdi_in  ),
-      .drpdo_out             (drpdo_out ),
-      .drpen_in              (drpen_in  ),
-      .drprdy_out            (drprdy_out),
-      .drpwe_in              (drpwe_in  ),
 
-      .gtrefclk                      (gtrefclk),
+      .gtrefclk                             (gtrefclk),
       .txp                           (txp),
       .txn                           (txn),
       .rxp                           (rxp),
       .rxn                           (rxn),
-
-      .txoutclk                      (txoutclk),
-      .resetdone                     (resetdone),
-      .mmcm_locked                   (mmcm_locked),
-      .userclk                       (userclk),
-      .userclk2                      (userclk2),
+      .resetdone                            (resetdone),
+      .cplllock                     (cplllock),
+      .txoutclk                             (txoutclk),
+      .rxoutclk                             (rxoutclk),
+      .userclk                              (userclk),
+      .userclk2                             (userclk2),
+      .rxuserclk                              (rxuserclk),
+      .rxuserclk2                             (rxuserclk2),
       .independent_clock_bufg        (independent_clock_bufg),
-      .pma_reset                     (pma_reset),
-
+      .pma_reset                            (pma_reset),
+      .mmcm_locked                          (mmcm_locked),
       // GMII Interface
       //---------------
       .sgmii_clk_r                     (sgmii_clk_r),
@@ -215,7 +210,11 @@ inst
       //-------------
       .status_vector                 (status_vector),
       .reset                         (reset),
-      .signal_detect                 (signal_detect)
+    
+ 
+      .signal_detect                 (signal_detect),
+      .gt0_qplloutclk_in                 (gt0_qplloutclk_in),
+      .gt0_qplloutrefclk_in              (gt0_qplloutrefclk_in)
 
    );
 

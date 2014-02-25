@@ -3,7 +3,7 @@
 //   ____  ____ 
 //  /   /\/   / 
 // /___/  \  /    Vendor: Xilinx 
-// \   \   \/     Version : 2.5
+// \   \   \/     Version : 3.1
 //  \   \         Application : 7 Series FPGAs Transceivers Wizard 
 //  /   /         Filename : gig_ethernet_pcs_pma_0_tx_startup_fsm.v
 // /___/   /\     
@@ -70,13 +70,14 @@
 
 `timescale 1ns / 1ps
 `define DLY #1
+(* DowngradeIPIdentifiedWarnings="yes" *)
 
 
 module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
    (
-      parameter     GT_TYPE                  = "GTX",
       parameter     STABLE_CLOCK_PERIOD      = 8,        // Period of the stable clock driving this state-machine, unit is [ns]
       parameter     RETRY_COUNTER_BITWIDTH   = 8, 
+      parameter     EXAMPLE_SIMULATION       = 0, 
       parameter     TX_QPLL_USED             = "FALSE",  // the TX and RX Reset FSMs must
       parameter     RX_QPLL_USED             = "FALSE",  // share these two generic values
       parameter     PHASE_ALIGNMENT_MANUAL   = "TRUE"    // Decision if a manual phase-alignment is necessary or the automatic 
@@ -93,12 +94,12 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
       input  wire      CPLLLOCK ,                //Lock Detect from the CPLL of the GT
       input  wire      TXRESETDONE,            
       input  wire      MMCM_LOCK,              
-      output reg       GTTXRESET  = 1'b0,              
+      output           GTTXRESET,              
       output reg       MMCM_RESET = 1'b1,             
       output reg       QPLL_RESET = 1'b0,        //Reset QPLL
       output reg       CPLL_RESET = 1'b0,        //Reset CPLL
       output           TX_FSM_RESET_DONE,        //Reset-sequence has sucessfully been finished.
-      output reg       TXUSERRDY  = 1'b0,        
+      output reg       TXUSERRDY = 1'b0 ,        
       output           RUN_PHALIGNMENT,  
       output reg       RESET_PHALIGNMENT = 1'b0,
       input  wire      PHALIGNMENT_DONE, 
@@ -117,26 +118,32 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
 // * 
 
 
-   localparam [2:0] 
-               INIT = 3'b000,
-               ASSERT_ALL_RESETS = 3'b001,
-               RELEASE_PLL_RESET = 3'b010,
-               RELEASE_MMCM_RESET = 3'b011,
-               WAIT_RESET_DONE = 3'b100,
-               DO_PHASE_ALIGNMENT = 3'b101,
-               RESET_FSM_DONE = 3'b110;
+   localparam [3:0] 
+               INIT = 4'b0000,
+               ASSERT_ALL_RESETS = 4'b0001,
+               WAIT_FOR_PLL_LOCK = 4'b0010,
+               RELEASE_PLL_RESET = 4'b0011,
+               WAIT_FOR_TXOUTCLK = 4'b0100,
+               RELEASE_MMCM_RESET = 4'b0101,
+               WAIT_FOR_TXUSRCLK = 4'b0110,
+               WAIT_RESET_DONE = 4'b0111,
+               DO_PHASE_ALIGNMENT = 4'b1000,
+               RESET_FSM_DONE = 4'b1001;
     
-  reg [2:0] tx_state = INIT;
+  reg [3:0] tx_state = INIT;
 
 
-  parameter MMCM_LOCK_CNT_MAX = 1024;
-  parameter STARTUP_DELAY    = 500;//AR43482: Transceiver needs to wait for 500 ns after configuration
-  parameter WAIT_CYCLES      = STARTUP_DELAY / STABLE_CLOCK_PERIOD; // Number of Clock-Cycles to wait after configuration
-  parameter WAIT_MAX         = WAIT_CYCLES + 10;                    // 500 ns plus some additional margin
+  localparam integer MMCM_LOCK_CNT_MAX = 1024;
+  localparam integer STARTUP_DELAY    = 500;//AR43482: Transceiver needs to wait for 500 ns after configuration
+  localparam integer WAIT_CYCLES      = STARTUP_DELAY / STABLE_CLOCK_PERIOD; // Number of Clock-Cycles to wait after configuration
+  localparam integer WAIT_MAX         = WAIT_CYCLES + 10;                    // 500 ns plus some additional margin
     
-  parameter WAIT_TIMEOUT_2ms   = 2000000 / STABLE_CLOCK_PERIOD;//  2 ms time-out
-  parameter WAIT_TLOCK_MAX     =  100000 / STABLE_CLOCK_PERIOD;//100 us time-out
-  parameter WAIT_TIMEOUT_500us =  500000 / STABLE_CLOCK_PERIOD;//100 us time-out
+  localparam integer WAIT_TIMEOUT_2ms   = 2000000 / STABLE_CLOCK_PERIOD;//  2 ms time-out
+  localparam integer WAIT_TLOCK_MAX     =  100000 / STABLE_CLOCK_PERIOD;//100 us time-out
+  localparam integer WAIT_TIMEOUT_500us =  500000 / STABLE_CLOCK_PERIOD;//100 us time-out
+  localparam integer WAIT_1us_CYCLES =  1000 / STABLE_CLOCK_PERIOD;//1 us time-out
+  localparam integer WAIT_1us =  WAIT_1us_CYCLES+10; //1us plus additional margin
+  localparam integer WAIT_TIME_MAX   = EXAMPLE_SIMULATION? 100 : 10000 / STABLE_CLOCK_PERIOD;
     
   reg [7:0] init_wait_count = 0;
   reg       init_wait_done = 1'b0;
@@ -146,9 +153,11 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
   wire      tx_fsm_reset_done_int_s2;
   reg       tx_fsm_reset_done_int_s3 = 1'b0;
     
-  parameter MAX_RETRIES          = 2**RETRY_COUNTER_BITWIDTH-1; 
+  localparam integer MAX_RETRIES          = 2**RETRY_COUNTER_BITWIDTH-1; 
   reg [7:0] retry_counter_int = 0;
   reg [18:0] time_out_counter = 0;
+  reg [10:0] count_1us= 0;
+  reg      count_1us_done   = 1'b0;  //--\Flags that the various time-out points 
     
   reg      reset_time_out = 1'b0;
   reg      time_out_2ms   = 1'b0;  //--\Flags that the various time-out points 
@@ -157,14 +166,14 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
     
   reg [9:0] mmcm_lock_count = 0;
   reg       mmcm_lock_int = 1'b0;
-  wire       mmcm_lock_reclocked_sync ;
-  reg [3:0] mmcm_lock_reclocked = 3'b0;
+  wire      mmcm_lock_i;
+  reg       mmcm_lock_reclocked = 1'b0;
     
+  wire      cpllrefclklost_sync;
   reg       run_phase_alignment_int = 1'b0;
   wire      run_phase_alignment_int_s2;
   reg       run_phase_alignment_int_s3 = 1'b0;
-
-  parameter MAX_WAIT_BYPASS      = 110000; //110000 TXUSRCLK cycles is the max time needed for Multilane designs
+  localparam integer MAX_WAIT_BYPASS      = 86784;
 
   reg [16:0] wait_bypass_count = 0;
   reg       time_out_wait_bypass    = 1'b0;
@@ -173,27 +182,38 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
 
   wire      txresetdone_s2;
   reg       txresetdone_s3 = 1'b0;
+  reg       gttxreset_i = 1'b0;
+  reg       txpmaresetdone_i = 1'b0;
+  wire      txpmaresetdone_sync;
 
   wire      refclk_lost;
   wire      cplllock_sync;
-//  wire      qplllock_sync;
+  reg   [15:0] wait_time_cnt;
+  wire  wait_time_done;      
 
   //Alias section, signals used within this module mapped to output ports:
  assign RETRY_COUNTER     = retry_counter_int;
  assign RUN_PHALIGNMENT   = run_phase_alignment_int;
  assign TX_FSM_RESET_DONE = tx_fsm_reset_done_int;
+ assign GTTXRESET = gttxreset_i;
 
 
-  always @(posedge STABLE_CLOCK)
+ 
+  always @(posedge STABLE_CLOCK or posedge SOFT_RESET)
   begin
       // The counter starts running when configuration has finished and 
       // the clock is stable. When its maximum count-value has been reached,
       // the 500 ns from Answer Record 43482 have been passed.
-      if (init_wait_count == WAIT_MAX) 
+     if(SOFT_RESET)
+      begin
+          init_wait_count <= `DLY 8'h0;
+          init_wait_done  <= `DLY 1'b0;
+      end
+      else if (init_wait_count == WAIT_MAX) 
           init_wait_done <= `DLY  1'b1;
       else
         init_wait_count <= `DLY  init_wait_count + 1;
-  end 
+   end 
 
  
   always @(posedge STABLE_CLOCK)
@@ -223,42 +243,24 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
       end
   end 
 
-  always @(posedge TXUSERCLK)
+  always @(posedge STABLE_CLOCK)
   begin
-      if (MMCM_LOCK == 1'b0)
+      if (mmcm_lock_i == 1'b0)
       begin
         mmcm_lock_count <= `DLY  0;
-        mmcm_lock_int   <= `DLY  1'b0;
+        mmcm_lock_reclocked   <= `DLY  1'b0;
       end
       else
       begin 
         if (mmcm_lock_count < MMCM_LOCK_CNT_MAX - 1)
           mmcm_lock_count <= `DLY  mmcm_lock_count + 1;
         else
-          mmcm_lock_int <= `DLY  1'b1;
+          mmcm_lock_reclocked <= `DLY  1'b1;
       end
   end
-  
-  always @(posedge STABLE_CLOCK)
-  //Reclocking onto the FSM-clock.
-  begin
-      if (MMCM_LOCK == 1'b0)
-        //The reset-signal is here on purpose. This avoids
-        //getting the shift-register targetted to an SRL.
-        //The reason for this is that an SRL will not help
-        //on the cross-clock domain but "real" Flip-flops will.
-
-        mmcm_lock_reclocked <= `DLY  4'b0000;
-      else
-      begin
-        mmcm_lock_reclocked[3]          <= `DLY  mmcm_lock_reclocked_sync;
-        mmcm_lock_reclocked[2:0] <= `DLY  mmcm_lock_reclocked[3:1];
-      end 
-  end
-
+   
 
   //Clock Domain Crossing
-
  gig_ethernet_pcs_pma_0_sync_block sync_run_phase_alignment_int 
         (
            .clk             (TXUSERCLK),
@@ -272,13 +274,12 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
            .data_in         (tx_fsm_reset_done_int),
            .data_out        (tx_fsm_reset_done_int_s2)
         );
+
   always @(posedge TXUSERCLK)
   begin
      run_phase_alignment_int_s3 <= `DLY run_phase_alignment_int_s2;
-
      tx_fsm_reset_done_int_s3   <= `DLY tx_fsm_reset_done_int_s2;
   end
-
 
  gig_ethernet_pcs_pma_0_sync_block sync_time_out_wait_bypass 
         (
@@ -297,28 +298,31 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
  gig_ethernet_pcs_pma_0_sync_block sync_mmcm_lock_reclocked
         (
            .clk             (STABLE_CLOCK),
-           .data_in         (mmcm_lock_int),
-           .data_out        (mmcm_lock_reclocked_sync)
+           .data_in         (MMCM_LOCK),
+           .data_out        (mmcm_lock_i)
         );
- gig_ethernet_pcs_pma_0_sync_block sync_cplllock
+
+gig_ethernet_pcs_pma_0_sync_block sync_cplllock
         (
            .clk             (STABLE_CLOCK),
            .data_in         (CPLLLOCK),
            .data_out        (cplllock_sync)
         );
 
-// gig_ethernet_pcs_pma_0_sync_block sync_qplllock
-//         (
-//            .clk             (STABLE_CLOCK),
-//            .data_in         (QPLLLOCK),
-//            .data_out        (qplllock_sync)
-//         );
+gig_ethernet_pcs_pma_0_sync_block sync_cpllrefclklost
+        (
+           .clk             (STABLE_CLOCK),
+           .data_in         (CPLLREFCLKLOST),
+           .data_out        (cpllrefclklost_sync)
+        );
+
+
   always @(posedge STABLE_CLOCK)
   begin
      time_out_wait_bypass_s3   <= `DLY time_out_wait_bypass_s2;
-
      txresetdone_s3            <= `DLY txresetdone_s2;
   end
+
 
   always @(posedge TXUSERCLK)
   begin
@@ -337,8 +341,24 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
   end
 
   assign refclk_lost = ( TX_QPLL_USED == "TRUE"  && QPLLREFCLKLOST == 1'b1) ? 1'b1 : 
-                       ( TX_QPLL_USED == "FALSE" && CPLLREFCLKLOST == 1'b1) ? 1'b1 : 1'b0;
+                       ( TX_QPLL_USED == "FALSE" && cpllrefclklost_sync == 1'b1) ? 1'b1 : 1'b0;
 
+
+  always @(posedge STABLE_CLOCK )
+  begin
+    if((tx_state == ASSERT_ALL_RESETS) |
+       (tx_state == RELEASE_PLL_RESET) | 
+       (tx_state == RELEASE_MMCM_RESET))
+    begin
+        wait_time_cnt <= `DLY WAIT_TIME_MAX;
+    end else if (wait_time_cnt != 16'h0)
+    begin
+        wait_time_cnt <= wait_time_cnt - 16'h1;
+    end
+
+  end
+
+  assign wait_time_done = (wait_time_cnt == 16'h0);
 
 
   //FSM for resetting the GTX/GTH/GTP in the 7-series. 
@@ -360,12 +380,13 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
   
   always @(posedge STABLE_CLOCK)
   begin
-      if (SOFT_RESET == 1'b1 || (tx_state != INIT && tx_state != ASSERT_ALL_RESETS && refclk_lost == 1'b1))
+      if (SOFT_RESET == 1'b1)
+      //if (SOFT_RESET == 1'b1 || (tx_state != INIT && tx_state != ASSERT_ALL_RESETS && refclk_lost == 1'b1))
       begin
         tx_state                <= `DLY  INIT;
         TXUSERRDY               <= `DLY  1'b0;
-        GTTXRESET               <= `DLY  1'b0;
-        MMCM_RESET              <= `DLY  1'b1;
+        gttxreset_i             <= `DLY  1'b0;
+        MMCM_RESET              <= `DLY  1'b0;
         tx_fsm_reset_done_int   <= `DLY  1'b0;
         QPLL_RESET              <= `DLY  1'b0;
         CPLL_RESET              <= `DLY  1'b0;
@@ -416,30 +437,37 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
                 CPLL_RESET          <= `DLY  1'b0;
             end
             TXUSERRDY               <= `DLY  1'b0;
-            GTTXRESET               <= `DLY  1'b1;
+            gttxreset_i             <= `DLY  1'b1;
             MMCM_RESET              <= `DLY  1'b1;
-            reset_time_out          <= `DLY  1'b0;
+            reset_time_out          <= `DLY  1'b1;
             run_phase_alignment_int <= `DLY  1'b0;     
             RESET_PHALIGNMENT       <= `DLY  1'b1;
             
-            if ((TX_QPLL_USED == "TRUE" && QPLLREFCLKLOST == 1'b0 && pll_reset_asserted) ||
-               (TX_QPLL_USED == "FALSE" && CPLLREFCLKLOST == 1'b0 && pll_reset_asserted)) 
-              tx_state  <= `DLY  RELEASE_PLL_RESET;
+            if ((TX_QPLL_USED == "TRUE" && QPLLLOCK == 1'b0 && pll_reset_asserted ) ||
+               (TX_QPLL_USED == "FALSE" && cplllock_sync == 1'b0 && pll_reset_asserted )) 
+              tx_state  <= `DLY  WAIT_FOR_PLL_LOCK; 
 
            end           
-            
+ 
+           WAIT_FOR_PLL_LOCK :
+           begin
+              if(wait_time_done)
+                 tx_state        <= `DLY RELEASE_PLL_RESET;  
+           end        
+    
            RELEASE_PLL_RESET :
            begin 
             //PLL-Reset of the GTX gets released and the time-out counter
             //starts running.
-            pll_reset_asserted  <= `DLY  1'b1;
+            pll_reset_asserted  <= `DLY  1'b0;
+            reset_time_out  <= `DLY  1'b0;
             
             if ((TX_QPLL_USED == "TRUE" && QPLLLOCK == 1'b1) ||
                (TX_QPLL_USED == "FALSE" && cplllock_sync == 1'b1)) 
            begin
-              tx_state  <= `DLY  RELEASE_MMCM_RESET;
+              tx_state  <= `DLY  WAIT_FOR_TXOUTCLK;
               reset_time_out  <= `DLY  1'b1;
-           end 
+           end
             
             if (time_out_2ms == 1'b1)
             begin
@@ -453,19 +481,27 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
             end
            end           
 
+           WAIT_FOR_TXOUTCLK :
+           begin
+            gttxreset_i <= `DLY  1'b0;
+              if(wait_time_done)
+               tx_state <= `DLY RELEASE_MMCM_RESET;  
+           end       
+
+
            RELEASE_MMCM_RESET :
            begin 
-            GTTXRESET <= `DLY  1'b0;
-            reset_time_out  <= `DLY  1'b0;
             //Release of the MMCM-reset. Waiting for the MMCM to lock.
             MMCM_RESET <= `DLY  1'b0;
-            if (mmcm_lock_reclocked[0] == 1'b1)
+            reset_time_out  <= `DLY  1'b0;
+            
+            if (mmcm_lock_reclocked == 1'b1)
             begin
-              tx_state <= `DLY  WAIT_RESET_DONE;
+              tx_state <= `DLY  WAIT_FOR_TXUSRCLK;
               reset_time_out  <= `DLY  1'b1;
             end
             
-            if (time_tlock_max == 1'b1 && mmcm_lock_reclocked[0] == 1'b0)
+            if (time_tlock_max == 1'b1 && mmcm_lock_reclocked == 1'b0 && reset_time_out == 1'b0)
             begin
               if (retry_counter_int == MAX_RETRIES)
                 // If too many retries are performed compared to what is specified in 
@@ -476,10 +512,16 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
               tx_state            <= `DLY  ASSERT_ALL_RESETS; 
             end
            end            
+
+           WAIT_FOR_TXUSRCLK :
+           begin
+              if(wait_time_done)
+               tx_state <= `DLY WAIT_RESET_DONE;  
+           end            
             
            WAIT_RESET_DONE :
            begin 
-            TXUSERRDY <= `DLY  1'b1;
+            TXUSERRDY   <= `DLY  1'b1;
             reset_time_out  <= `DLY  1'b0;
             if (txresetdone_s3 == 1'b1)
             begin              
@@ -487,7 +529,7 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
               reset_time_out  <= `DLY  1'b1;
             end          
 
-            if (time_out_500us == 1'b1)
+            if (time_out_500us == 1'b1 && reset_time_out == 1'b0)
             begin
               if (retry_counter_int == MAX_RETRIES) 
                 // If too many retries are performed compared to what is specified in 
@@ -527,9 +569,10 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
             reset_time_out        <= `DLY  1'b1;
             tx_fsm_reset_done_int <= `DLY  1'b1;
            end
-          
+
            default:
               tx_state            <= `DLY  INIT; 
+          
         endcase
       end
     end

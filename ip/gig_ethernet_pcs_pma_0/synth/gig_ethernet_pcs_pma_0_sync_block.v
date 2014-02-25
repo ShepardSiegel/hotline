@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-// File       : gig_ethernet_pcs_pma_0_sync_block.vhd
+// File       : gig_ethernet_pcs_pma_0_sync_block.v
 // Author     : Xilinx Inc.
 //------------------------------------------------------------------------------
 // Description: Used on signals crossing from one clock domain to
@@ -72,29 +72,68 @@ module gig_ethernet_pcs_pma_0_sync_block #(
   // Internal Signals
   wire data_sync1;
   wire data_sync2;
+  wire data_sync3;
+  wire data_sync4;
+  wire data_sync5;
+  wire data_sync6;
 
 
-  (* shreg_extract = "no", ASYNC_REG = "true", RLOC = "X0Y0" *)
+  (* shreg_extract = "no", ASYNC_REG = "TRUE" *)
   FD #(
     .INIT (INITIALISE[0])
-  ) data_sync (
+  ) data_sync_reg1 (
     .C  (clk),
     .D  (data_in),
     .Q  (data_sync1)
   );
 
 
-  (* shreg_extract = "no", ASYNC_REG = "true", RLOC = "X0Y0" *)
+  (* shreg_extract = "no", ASYNC_REG = "TRUE" *)
   FD #(
    .INIT (INITIALISE[1])
-  ) data_sync_reg (
+  ) data_sync_reg2 (
   .C  (clk),
   .D  (data_sync1),
   .Q  (data_sync2)
   );
 
 
-  assign data_out = data_sync2;
+  (* shreg_extract = "no", ASYNC_REG = "TRUE" *)
+  FD #(
+   .INIT (INITIALISE[1])
+  ) data_sync_reg3 (
+  .C  (clk),
+  .D  (data_sync2),
+  .Q  (data_sync3)
+  );
+
+  (* shreg_extract = "no", ASYNC_REG = "TRUE" *)
+  FD #(
+   .INIT (INITIALISE[1])
+  ) data_sync_reg4 (
+  .C  (clk),
+  .D  (data_sync3),
+  .Q  (data_sync4)
+  );
+
+  (* shreg_extract = "no", ASYNC_REG = "TRUE" *)
+  FD #(
+   .INIT (INITIALISE[1])
+  ) data_sync_reg5 (
+  .C  (clk),
+  .D  (data_sync4),
+  .Q  (data_sync5)
+  );
+
+  (* shreg_extract = "no", ASYNC_REG = "TRUE" *)
+  FD #(
+   .INIT (INITIALISE[1])
+  ) data_sync_reg6 (
+  .C  (clk),
+  .D  (data_sync5),
+  .Q  (data_sync6)
+  );
+  assign data_out = data_sync6;
 
 
 endmodule

@@ -91,26 +91,18 @@
 
 
 `timescale 1 ps/1 ps
+(* DowngradeIPIdentifiedWarnings="yes" *)
 
 //------------------------------------------------------------------------------
 // The module declaration for the Core Block wrapper.
 //------------------------------------------------------------------------------
 
-module gig_ethernet_pcs_pma_0_block #
-(
-    parameter EXAMPLE_SIMULATION                     =  0         // Set to 1 for simulation
-)
+module gig_ethernet_pcs_pma_0_block 
 
    (
       // Transceiver Interface
       //----------------------
-      input   [8:0]    drpaddr_in,
-      input            drpclk_in,
-      input   [15:0]   drpdi_in,
-      output  [15:0]   drpdo_out,
-      input            drpen_in,
-      output           drprdy_out,
-      input            drpwe_in,
+
       input        gtrefclk,              // Very high quality 125MHz clock for GT transceiver.
       output       txp,                   // Differential +ve of serial transmission from PMA to PMD.
       output       txn,                   // Differential -ve of serial transmission from PMA to PMD.
@@ -118,10 +110,14 @@ module gig_ethernet_pcs_pma_0_block #
       input        rxn,                   // Differential -ve for serial reception from PMD to PMA.
 
       output       txoutclk,              // txoutclk from GT transceiver (62.5MHz)
+      output       rxoutclk,              // txoutclk from GT transceiver (62.5MHz)
       output       resetdone,             // The GT transceiver has completed its reset cycle
+      output       cplllock,             // The GT transceiver has completed its reset cycle
       input        mmcm_locked,           // locked indication from MMCM
       input        userclk,               // 62.5MHz global clock.
       input        userclk2,              // 125MHz global clock.
+      input        rxuserclk,               // 62.5MHz global clock.
+      input        rxuserclk2,              // 125MHz global clock.
       input        independent_clock_bufg,// 200MHz Independent clock,
       input        pma_reset,             // transceiver PMA reset signal
 
@@ -152,8 +148,10 @@ module gig_ethernet_pcs_pma_0_block #
       //-------------
       output [15:0] status_vector,         // Core status.
       input        reset,                 // Asynchronous reset for entire core.
-      input        signal_detect          // Input from PMD to indicate presence of optical input.
-
+      
+      input        signal_detect,          // Input from PMD to indicate presence of optical input.
+      input gt0_qplloutclk_in,                          
+      input gt0_qplloutrefclk_in
    );
 
 
@@ -174,7 +172,6 @@ module gig_ethernet_pcs_pma_0_block #
    wire         rxdisperr;                // Disparity-error in RXDATA.
    wire         rxnotintable;             // Non-existent 8B/10 code indicated.
    wire         txbuferr;                 // TX Buffer error (overflow or underflow).
-   wire         loopback;                 // Set the Transceiver for loopback.
    wire         powerdown;                // Powerdown the Transceiver
    wire         txchardispmode;           // Set running disparity for current byte.
    wire         txchardispval;            // Set running disparity value.
@@ -194,6 +191,11 @@ module gig_ethernet_pcs_pma_0_block #
 //
 //    parameter gt_rx_byte_width_ver = 1;
 //
+
+ parameter EXAMPLE_SIMULATION = 0 ;
+
+   wire rxoutclk_i;
+   wire rxoutclk_buf;
 
 
 
@@ -232,7 +234,7 @@ module gig_ethernet_pcs_pma_0_block #
    //---------------------------------------------------------------------------
    // Instantiate the core
    //---------------------------------------------------------------------------
-   gig_ethernet_pcs_pma_v13_0 #(
+   gig_ethernet_pcs_pma_v14_1 #(
        .C_ELABORATION_TRANSIENT_DIR ("BlankString"),
        .C_COMPONENT_NAME            ("gig_ethernet_pcs_pma_0"),
        .C_FAMILY                    ("kintex7"),
@@ -248,6 +250,8 @@ module gig_ethernet_pcs_pma_0_block #
        .C_TRANSCEIVER_MODE          ("A"),
        .C_SGMII_FABRIC_BUFFER       (1'b1),
        .C_1588                      (0 ),
+       .B_SHIFTER_ADDR              (8'h4E),
+       .RX_GT_NOMINAL_LATENCY       (16'b0000000011001000),
        .GT_RX_BYTE_WIDTH            (1 )
      )
    gig_ethernet_pcs_pma_0_core
@@ -292,25 +296,15 @@ module gig_ethernet_pcs_pma_0_block #
    //  Component Instantiation for the Series-7 Transceiver wrapper
    //---------------------------------------------------------------------------
 
-   gig_ethernet_pcs_pma_0_transceiver #
-   (
-        .EXAMPLE_SIMULATION              (EXAMPLE_SIMULATION)
-   )
-
+   gig_ethernet_pcs_pma_0_transceiver 
 transceiver_inst (
 
-      .drpaddr_in            (drpaddr_in),
-      .drpclk_in             (drpclk_in ),
-      .drpdi_in              (drpdi_in  ),
-      .drpdo_out             (drpdo_out ),
-      .drpen_in              (drpen_in  ),
-      .drprdy_out            (drprdy_out),
-      .drpwe_in              (drpwe_in  ),
       .encommaalign          (enablealign),
-      .loopback              (loopback),
       .powerdown             (powerdown),
       .usrclk                (userclk),
       .usrclk2               (userclk2),
+      .rxusrclk                (rxuserclk),
+      .rxusrclk2               (rxuserclk2),
       .independent_clock     (independent_clock_bufg),
       .data_valid            (status_vector[1]),
       .txreset               (mgt_tx_reset),
@@ -328,16 +322,63 @@ transceiver_inst (
       .rxrundisp             (rxrundisp),
       .rxbuferr              (rxbufstatus[1]),
       .txbuferr              (txbuferr),
-      .plllkdet              (plllock),
+      .plllkdet              (cplllock),
       .txoutclk              (txoutclk),
+      .rxoutclk              (rxoutclk_i),
       .txn                   (txn),
       .txp                   (txp),
       .rxn                   (rxn),
       .rxp                   (rxp),
+
       .gtrefclk              (gtrefclk),
       .pmareset              (pma_reset),
       .mmcm_locked           (mmcm_locked),
-      .resetdone             (resetdone)
+      
+      .gt0_txpmareset_in            (1'b0),
+      .gt0_txpcsreset_in            (1'b0),
+      .gt0_rxpmareset_in            (1'b0),
+      .gt0_rxpcsreset_in            (1'b0),
+      .gt0_rxbufreset_in            (1'b0),
+      .gt0_rxpmaresetdone_out       (),
+      .gt0_rxbufstatus_out          (),
+      .gt0_txbufstatus_out          (),
+      .gt0_drpaddr_in               (9'b0),
+      .gt0_drpclk_in                (userclk2),
+      .gt0_drpdi_in                 (16'b0),
+      .gt0_drpdo_out                (),
+      .gt0_drpen_in                 (1'b0),
+      .gt0_drprdy_out               (),
+      .gt0_drpwe_in                 (1'b0),
+      .gt0_rxbyteisaligned_out      (),
+      .gt0_rxbyterealign_out        (),
+      .gt0_rxdfeagcovrden_in        (1'b0),
+      .gt0_rxmonitorout_out         (),
+      .gt0_rxmonitorsel_in          (2'b00),
+      .gt0_rxcommadet_out           (),
+      .gt0_txpolarity_in            (1'b0),
+      .gt0_txdiffctrl_in            (4'b1000),
+      .gt0_txpostcursor_in          (5'b00000),
+      .gt0_txprecursor_in           (5'b00000),
+      .gt0_rxpolarity_in            (1'b0),
+      .gt0_rxdfelpmreset_in         (1'b0),
+      .gt0_rxlpmen_in               (1'b0),
+      .gt0_txprbssel_in             (3'b000),
+      .gt0_txprbsforceerr_in        (1'b0),
+      .gt0_rxprbscntreset_in        (1'b0),
+      .gt0_rxprbserr_out            (),
+      .gt0_rxprbssel_in             (3'b000),
+      .gt0_loopback_in              (3'b000),
+      .gt0_txresetdone_out          (),
+      .gt0_rxresetdone_out          (),
+      .gt0_eyescanreset_in          (1'b0),
+      .gt0_eyescandataerror_out     (),
+      .gt0_eyescantrigger_in        (1'b0),
+      .gt0_rxcdrhold_in             (1'b0),
+      .gt0_dmonitorout_out          (),      
+      
+      .resetdone             (resetdone),
+      .gt0_qplloutclk(gt0_qplloutclk_in),                          
+      .gt0_qplloutrefclk(gt0_qplloutrefclk_in)
    );
 
 
@@ -346,11 +387,15 @@ transceiver_inst (
 
 
 
-  // Loopback is performed in the core itself.  To alternatively use
-  // Transceiver loopback, please drive this port appropriately.
-  assign loopback = 1'b0;
 
+   // Place the Rx recovered clock on a Global Clock Buffer (it may be possible
+   // to switch this for a BUFHCE)
+   BUFG rxrecclkbufg (
+      .I   (rxoutclk_i),
+      .O   (rxoutclk_buf)
+   );
 
+assign   rxoutclk = rxoutclk_buf ;
 
 endmodule // gig_ethernet_pcs_pma_0_block
 
