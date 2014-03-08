@@ -328,6 +328,15 @@ assign mac_rx_er = macr_rx_er;
 
 `endif
 
+mkKintex7JtagReadback jtagrdbk
+  (
+   .UCLOCK             (sys2_clk),
+   .URESET_N           (!sys0_rst),
+   .BUSY               (),
+   .CCLOCK_PRE_POSEDGE (1'b1)
+  );
+
+
 
 
 

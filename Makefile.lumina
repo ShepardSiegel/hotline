@@ -1,0 +1,41 @@
+default: hk3pb
+#	@echo hello
+
+clean:
+	@echo -n "Size before: ";du -sh .
+	@rm -fR `find . -name \*~`
+	@rm -fR xsim.* xelab.*
+	@# Remove this next line when xsim no longer leaving artifacts at top
+	@rm -rf out out.xsim.tcl xelab.* xsim.dir/ out.xsim.wdb dump.vcd
+	@echo "Removing and re-creating info obj sim vivado"
+	@rm -fR info obj sim vivado
+	@mkdir info obj sim vivado
+	@echo -n "Size after: ";du -sh .
+
+tar1:
+	tar czvf ../hotline-`date +%Y%m%d_%H%M`.tar.-gz doc if tcl constrs data rtl bin ip lib vivado
+
+hk3pb:
+	@rm -rf vivado
+	@mkdir vivado
+	@cp $(BLUESPECDIR)/board_support/bluenoc/xilinx/verilog/icap_fsm7.txt vivado/.
+	@cp $(BLUESPECDIR)/board_support/bluenoc/xilinx/verilog/internal_jtag.v rtl/.
+	@cd vivado; vivado -mode batch -source ../tcl/create_lumina_hkp3b.tcl
+	@cd vivado; vivado -mode batch -source ../tcl/create_lumina_rtl_hkp3b.tcl
+	@g++ -shared -fPIC -o libxrf.so -O3 -DUSINGSCEMI -I $(BLUESPECDIR)/SceMi/bsvxactors -I $(BLUESPECDIR)/SceMi/readback -L$(BLUESPECDIR)/tcllib/lib.linux32 -L$(BLUESPECDIR)/tcllib/lib.linux64 -l simtb -DUSE_TCL_STUBS $(BLUESPECDIR)/tcllib/include/Xrf.cpp $(BLUESPECDIR)/tcllib/include/bsdebug_common.cpp $(BLUESPECDIR)/tcllib/include/SceMiProbes.cpp -l design -l z -I$(BLUESPECDIR)/tcllib/include -I$(BLUESPECDIR)/SceMi/BlueNoC -L$(BLUESPECDIR)/tcllib/lib.linux64 -L$(BLUESPECDIR)/SceMi/BlueNoC/g++4_64 -ltclstub8.5 -lscemi -lpthread -ldl -lrt
+	@$(BLUESPECDIR)/tcllib/semu/create_xrf -pre vivado/top -so libxrf.so vivado/top.xrf
+
+xrfso:
+	@g++ -shared -fPIC -o libxrf.so -O3 -DUSINGSCEMI -I $(BLUESPECDIR)/SceMi/bsvxactors -I $(BLUESPECDIR)/SceMi/readback -L$(BLUESPECDIR)/tcllib/lib.linux32 -L$(BLUESPECDIR)/tcllib/lib.linux64 -l simtb -DUSE_TCL_STUBS $(BLUESPECDIR)/tcllib/include/Xrf.cpp $(BLUESPECDIR)/tcllib/include/bsdebug_common.cpp $(BLUESPECDIR)/tcllib/include/SceMiProbes.cpp -l design -l z -I$(BLUESPECDIR)/tcllib/include -I$(BLUESPECDIR)/SceMi/BlueNoC -L$(BLUESPECDIR)/tcllib/lib.linux64 -L$(BLUESPECDIR)/SceMi/BlueNoC/g++4_64 -ltclstub8.5 -lscemi -lpthread -ldl -lrt
+
+program:
+	@cp top_jtag.cmd vivado
+	@cd vivado; impact -batch top_jtag.cmd
+
+lumina:
+	@$(BLUESPECDIR)/bin/lumina -xrf vivado/top.xrf
+
+hk3pc:
+	@rm -rf vivado
+	@mkdir vivado
+	@cd vivado; vivado -source ../tcl/create_hkp3c.tcl &
