@@ -13,8 +13,6 @@
 		</SupportsRdiCustomization>
 		<SupportsRdiGeneration value="true">
 		</SupportsRdiGeneration>
-		<NativeOnly value="true">
-		</NativeOnly>
 		<ComponentPath value="component.xml">
 		</ComponentPath>
 	</IP>

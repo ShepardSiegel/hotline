@@ -111,7 +111,6 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
   );
 
 
-
   //----------------------------------------------------------------------------
   // Constants to set FIFO thresholds
   //----------------------------------------------------------------------------
@@ -197,6 +196,9 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
 
 
 
+(* ram_style = "distributed" *) reg [35:0] ram [63:0];
+wire [35:0] dpo;
+wire [35:0] spo;
   //----------------------------------------------------------------------------
   // FIFO write logic (Idles are removed as necessary).
   //----------------------------------------------------------------------------
@@ -374,115 +376,25 @@ module gig_ethernet_pcs_pma_0_rx_elastic_buffer
     end
   end // init_complete_logic;
 
-  //----------------------------------------------------------------------------
-  // Instantiate a dual port RAM
-  //----------------------------------------------------------------------------
+ 
+//Inferring a Distributed Ram
+always @ (posedge rxrecclk)
+ begin
+  if(wr_enable == 1'b1)
+   ram[wr_addr] <= wr_data_reg;
+ end
 
+ assign  spo = ram[wr_addr];
+ assign  dpo = ram[rd_addr];
+//registering the read data of ram 
+ always @(posedge rxusrclk2)
+ begin: reg_rd_data_ram
+    if (reset_modified == 1'b1)
+       rd_data <= 36'h000000000;
+    else
+       rd_data <= dpo;
+ end // reg_rd_data_ram
 
-
-  // Starting in core version 11.2, the SGMII Fabric Elastic Buffer is now
-  // constructed by default using distributed RAM instead of BRAM.  This uses
-  // extra LUT resources.
-
-  // If a BRAM implementation is prefered, please remove the following code
-  // and re-instate the commented out BRAM "RAMB36E1" instantiation which
-  // immediately follows.
-
-  genvar I;
-  generate for (I=0; I<36; I=I+1)
-  begin : GEN_FIFO
-     RAM64X1D DIST_RAM 
-     (
-        .D          (wr_data_reg[I]),
-        .WE         (wr_enable),
-        .WCLK       (rxrecclk),
-        .A0         (wr_addr[0]),
-        .A1         (wr_addr[1]),
-        .A2         (wr_addr[2]),
-        .A3         (wr_addr[3]),
-        .A4         (wr_addr[4]),
-        .A5         (wr_addr[5]),
-        .DPRA0      (rd_addr[0]),
-        .DPRA1      (rd_addr[1]),
-        .DPRA2      (rd_addr[2]),
-        .DPRA3      (rd_addr[3]),
-        .DPRA4      (rd_addr[4]),
-        .DPRA5      (rd_addr[5]),
-
-        .SPO        (),
-        .DPO        (rd_data_ram[I])
-     );
-
-     // Register the distributed RAM read data.
-     always @(posedge rxusrclk2)
-     begin: reg_rd_data_ram
-        if (reset_modified == 1'b1)
-           rd_data[I] <= 1'b0;
-        else
-           rd_data[I] <= rd_data_ram[I];
-     end // reg_rd_data_ram
-
-    end
-  endgenerate
-
-
-  //RAMB36E1 # (
-  //  .DOA_REG               (0),
-  //  .DOB_REG               (0),
-  //  .EN_ECC_READ           ("FALSE"),
-  //  .EN_ECC_WRITE          ("FALSE"),
-  //  .INIT_A                (36'h000000000),
-  //  .INIT_B                (36'h000000000),
-  //  .INIT_FILE             ("NONE"),
-  //  .RAM_EXTENSION_A       ("NONE"),
-  //  .RAM_EXTENSION_B       ("NONE"),
-  //  .RAM_MODE              ("TDP"),
-  //  .READ_WIDTH_A          (36),
-  //  .READ_WIDTH_B          (0),
-  //  .RSTREG_PRIORITY_A     ("RSTREG"),
-  //  .RSTREG_PRIORITY_B     ("RSTREG"),
-  //  .SIM_COLLISION_CHECK   ("ALL"),
-  //  .SRVAL_A               (36'h000000000),
-  //  .SRVAL_B               (36'h000000000),
-  //  .WRITE_WIDTH_A         (0),
-  //  .WRITE_WIDTH_B         (36),
-  //  .WRITE_MODE_A          ("WRITE_FIRST"),
-  //  .WRITE_MODE_B          ("WRITE_FIRST")
-  //
-  //) dual_port_block_ram (
-  //  .CASCADEOUTA           (),
-  //  .CASCADEOUTB           (),
-  //  .DBITERR               (),
-  //  .DOADO                 (rd_data[31:0]),
-  //  .DOBDO                 (),
-  //  .DOPADOP               (rd_data[35:32]),
-  //  .DOPBDOP               (),
-  //  .ECCPARITY             (),
-  //  .RDADDRECC             (),
-  //  .SBITERR               (),
-  //  .ADDRARDADDR           ({5'b0, rd_addr, 5'b0}),
-  //  .ADDRBWRADDR           ({5'b0, wr_addr, 5'b0}),
-  //  .CASCADEINA            (1'b0),
-  //  .CASCADEINB            (1'b0),
-  //  .CLKARDCLK             (rxusrclk2),
-  //  .CLKBWRCLK             (rxrecclk),
-  //  .DIADI                 (0),
-  //  .DIBDI                 (wr_data_reg[31:0]),
-  //  .DIPADIP               (0),
-  //  .DIPBDIP               (wr_data_reg[35:32]),
-  //  .ENARDEN               (1'b1),
-  //  .ENBWREN               (1'b1),
-  //  .INJECTDBITERR         (1'b0),
-  //  .INJECTSBITERR         (1'b0),
-  //  .REGCEAREGCE           (1'b0),
-  //  .REGCEB                (1'b0),
-  //  .RSTRAMARSTRAM         (1'b0),
-  //  .RSTRAMB               (1'b0),
-  //  .RSTREGARSTREG         (1'b0),
-  //  .RSTREGB               (1'b0),
-  //  .WEA                   (4'b0000),
-  //  .WEBWE                 ({4'b0000, wr_enable, wr_enable, wr_enable, wr_enable})
-  //);
 
 
 

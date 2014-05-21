@@ -1,7 +1,7 @@
-Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
+Copyright 1986-2014 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date         : Sun Feb 23 10:39:22 2014
+| Tool Version : Vivado v.2014.1 (lin64) Build 881834 Fri Apr  4 14:00:25 MDT 2014
+| Date         : Wed May 21 09:21:57 2014
 | Host         : ar-cms520 running 64-bit Red Hat Enterprise Linux Workstation release 6.5 (Santiago)
 | Command      : upgrade_ip
 | Device       : xc7k325tffg900-2
@@ -12,26 +12,25 @@ Upgrade Log for IP 'gig_ethernet_pcs_pma_0'
 1. Summary
 ----------
 
-CAUTION (success, with warnings) in the upgrade of gig_ethernet_pcs_pma_0 from xilinx.com:ip:gig_ethernet_pcs_pma:13.0 to xilinx.com:ip:gig_ethernet_pcs_pma:14.1
+SUCCESS in the upgrade of gig_ethernet_pcs_pma_0 from xilinx.com:ip:gig_ethernet_pcs_pma:14.1 to xilinx.com:ip:gig_ethernet_pcs_pma:14.2
 
-After upgrade, an IP may have parameter and port differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality. Also, please review the updated IP instantiation template to ensure proper connectivity, and update your design if required.
+2. Interface Information
+------------------------
 
-2. Connection Warnings
-----------------------
+Detected external interface differences while upgrading IP 'gig_ethernet_pcs_pma_0'.
 
-WARNING: Detected external port differences while upgrading IP 'gig_ethernet_pcs_pma_0'. These changes may impact your design.
 
--upgrade has removed port 'drpaddr_in'
--upgrade has removed port 'drpclk_in'
--upgrade has removed port 'drpdi_in'
--upgrade has removed port 'drpdo_out'
--upgrade has removed port 'drpen_in'
--upgrade has removed port 'drprdy_out'
--upgrade has removed port 'drpwe_in'
--upgrade has added port 'rxoutclk'
--upgrade has added port 'cplllock'
--upgrade has added port 'rxuserclk'
--upgrade has added port 'rxuserclk2'
--upgrade has added port 'gt0_qplloutclk_in'
--upgrade has added port 'gt0_qplloutrefclk_in'
+-upgrade has added interface 'ext_mdio_pcs_pma'
+-upgrade has added interface 'independent_clk_port'
+-upgrade has added interface 'independent_clock_bufgdiv6_port'
+-upgrade has added interface 'independent_clock_bufgdiv6_out_port'
+-upgrade has added interface 'clk312_port'
+-upgrade has added interface 'clk312_out_port'
+
+3. Upgrade messages
+-------------------
+
+Added parameter Ext_Management_Interface with value false
+Removed parameter EXAMPLE_SIMULATION
+Added parameter EXAMPLE_SIMULATION with value 0
 

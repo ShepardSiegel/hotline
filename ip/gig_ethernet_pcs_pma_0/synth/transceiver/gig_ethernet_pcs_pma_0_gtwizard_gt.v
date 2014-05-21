@@ -72,7 +72,7 @@
 module gig_ethernet_pcs_pma_0_GTWIZARD_GT #
 (
     // Simulation attributes
-    parameter   GT_SIM_GTRESET_SPEEDUP   =   "FALSE",       // Set to 1 to speed up sim reset;
+    parameter   GT_SIM_GTRESET_SPEEDUP   =   "FALSE",       // Set to "TRUE" to speed up sim reset;
     parameter   RX_DFE_KL_CFG2_IN        =   32'h301148AC,
     parameter   PMA_RSV_IN               =   32'h00018480,
     parameter   PCS_RSVD_ATTR_IN         =   48'h000000000000
@@ -109,7 +109,7 @@ module gig_ethernet_pcs_pma_0_GTWIZARD_GT #
     output          eyescandataerror_out,
     input           eyescantrigger_in,
     //----------------------- Receive Ports - CDR Ports ------------------------
-    output          rxcdrlock_out,
+    input           rxcdrhold_in,
     //---------------- Receive Ports - FPGA RX Interface Ports -----------------
     input           rxusrclk_in,
     input           rxusrclk2_in,
@@ -589,8 +589,8 @@ wire            rxstartofseq_float_i;
         .EYESCANTRIGGER                 (eyescantrigger_in),
         //----------------------- Receive Ports - CDR Ports ------------------------
         .RXCDRFREQRESET                 (tied_to_ground_i),
-        .RXCDRHOLD                      (tied_to_ground_i),
-        .RXCDRLOCK                      (rxcdrlock_out),
+        .RXCDRHOLD                      (rxcdrhold_in),
+        .RXCDRLOCK                      (),
         .RXCDROVRDEN                    (tied_to_ground_i),
         .RXCDRRESET                     (tied_to_ground_i),
         .RXCDRRESETRSV                  (tied_to_ground_i),

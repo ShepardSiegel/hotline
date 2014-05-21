@@ -24,3 +24,8 @@ hk3pc:
 	@rm -rf vivado
 	@mkdir vivado
 	@cd vivado; vivado -source ../tcl/create_hkp3c.tcl &
+
+hk3pd:
+	@rm -rf vivado
+	@mkdir vivado
+	@cd vivado; vivado -source ../tcl/create_hkp3d.tcl &

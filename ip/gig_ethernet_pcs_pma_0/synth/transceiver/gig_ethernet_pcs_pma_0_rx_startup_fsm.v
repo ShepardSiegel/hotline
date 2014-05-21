@@ -76,7 +76,6 @@
 module gig_ethernet_pcs_pma_0_RX_STARTUP_FSM #
    (
        parameter     EXAMPLE_SIMULATION      = 0,          // Set to 1 for Simulation
-       parameter     GT_TYPE                 = "GTX",
        parameter     EQ_MODE                 = "DFE",       //Rx Equalization Mode - Set to DFE or LPM
        parameter     STABLE_CLOCK_PERIOD     = 8,           //Period of the stable clock driving this state-machine, unit is [ns]
        parameter     RETRY_COUNTER_BITWIDTH  = 8, 
@@ -785,7 +784,7 @@ gig_ethernet_pcs_pma_0_sync_block sync_cpllrefclklost
 
             if(time_out_adapt)
             begin
-               if(GT_TYPE == "GTX"  && EQ_MODE == "DFE")
+               if(EQ_MODE == "DFE")
                begin
                   RXDFEAGCHOLD  <= `DLY 1'b1;
                   RXDFELFHOLD   <= `DLY 1'b1;

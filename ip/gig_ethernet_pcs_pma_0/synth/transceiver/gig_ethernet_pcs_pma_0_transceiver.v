@@ -324,7 +324,10 @@ module gig_ethernet_pcs_pma_0_transceiver #
    // Instantiate the Series-7 GTX
    //---------------------------------------------------------------------------
    // Direct from the Transceiver Wizard output
-   gig_ethernet_pcs_pma_0_GTWIZARD 
+   gig_ethernet_pcs_pma_0_GTWIZARD  #
+    (
+        .EXAMPLE_SIMULATION             (EXAMPLE_SIMULATION)
+    ) 
    gtwizard_inst
    (
        //----------------------------- Loopback Ports -----------------------------
@@ -335,7 +338,7 @@ module gig_ethernet_pcs_pma_0_transceiver #
         .gt0_eyescandataerror_out       (gt0_eyescandataerror_out),
         .gt0_eyescantrigger_in          (gt0_eyescantrigger_in),
     //----------------------- Receive Ports - CDR Ports ------------------------
-        .gt0_rxcdrlock_out              (),
+        .gt0_rxcdrhold_in               (gt0_rxcdrhold_in),
     //----------------- Receive Ports - Pattern Checker Ports ------------------
         .gt0_rxprbserr_out              (gt0_rxprbserr_out),
         .gt0_rxprbssel_in               (gt0_rxprbssel_in),

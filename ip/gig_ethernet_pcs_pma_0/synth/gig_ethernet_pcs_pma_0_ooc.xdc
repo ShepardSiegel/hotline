@@ -24,6 +24,8 @@ create_clock -name rxserclk2 -period 16.000 [get_ports userclk2]
 #----------------------------------------------------------
 create_clock -name gt0_qplloutclk_in -period 8.000 [get_ports gt0_qplloutclk_in]
 create_clock -name gt0_qplloutrefclk_in -period 8.000 [get_ports gt0_qplloutrefclk_in]
+
 create_clock -name independent_clock_bufg -period 5.000 [get_ports independent_clock_bufg]
+
 
 

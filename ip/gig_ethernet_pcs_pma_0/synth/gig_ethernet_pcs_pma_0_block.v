@@ -120,7 +120,6 @@ module gig_ethernet_pcs_pma_0_block
       input        rxuserclk2,              // 125MHz global clock.
       input        independent_clock_bufg,// 200MHz Independent clock,
       input        pma_reset,             // transceiver PMA reset signal
-
       // GMII Interface
       //---------------
       output       sgmii_clk_r,             // Clock for client MAC (125Mhz, 12.5MHz or 1.25MHz).
@@ -196,6 +195,15 @@ module gig_ethernet_pcs_pma_0_block
 
    wire rxoutclk_i;
    wire rxoutclk_buf;
+   wire gt0_txresetdone_out_i;
+   wire gt0_rxresetdone_out_i;
+   wire resetdone_i;
+   wire reset_done;
+   wire reset_done_i;
+
+   wire mdio_o_int;
+
+
 
 
 
@@ -234,7 +242,7 @@ module gig_ethernet_pcs_pma_0_block
    //---------------------------------------------------------------------------
    // Instantiate the core
    //---------------------------------------------------------------------------
-   gig_ethernet_pcs_pma_v14_1 #(
+   gig_ethernet_pcs_pma_v14_2 #(
        .C_ELABORATION_TRANSIENT_DIR ("BlankString"),
        .C_COMPONENT_NAME            ("gig_ethernet_pcs_pma_0"),
        .C_FAMILY                    ("kintex7"),
@@ -286,7 +294,8 @@ module gig_ethernet_pcs_pma_0_block
       .configuration_vector  (configuration_vector),
       .status_vector          (status_vector),
       .reset                  (reset),
-      .signal_detect          (signal_detect)
+      .signal_detect          (signal_detect),
+      .reset_done             (reset_done_i)
 
       );
 
@@ -296,7 +305,10 @@ module gig_ethernet_pcs_pma_0_block
    //  Component Instantiation for the Series-7 Transceiver wrapper
    //---------------------------------------------------------------------------
 
-   gig_ethernet_pcs_pma_0_transceiver 
+   gig_ethernet_pcs_pma_0_transceiver #
+    (
+        .EXAMPLE_SIMULATION             (EXAMPLE_SIMULATION)
+    )  
 transceiver_inst (
 
       .encommaalign          (enablealign),
@@ -368,18 +380,30 @@ transceiver_inst (
       .gt0_rxprbserr_out            (),
       .gt0_rxprbssel_in             (3'b000),
       .gt0_loopback_in              (3'b000),
-      .gt0_txresetdone_out          (),
-      .gt0_rxresetdone_out          (),
+      .gt0_txresetdone_out          (gt0_txresetdone_out_i),
+      .gt0_rxresetdone_out          (gt0_rxresetdone_out_i),
       .gt0_eyescanreset_in          (1'b0),
       .gt0_eyescandataerror_out     (),
       .gt0_eyescantrigger_in        (1'b0),
       .gt0_rxcdrhold_in             (1'b0),
       .gt0_dmonitorout_out          (),      
       
-      .resetdone             (resetdone),
+      .resetdone             (),
       .gt0_qplloutclk(gt0_qplloutclk_in),                          
       .gt0_qplloutrefclk(gt0_qplloutrefclk_in)
    );
+
+
+assign resetdone = gt0_txresetdone_out_i & gt0_rxresetdone_out_i;
+assign reset_done = gt0_txresetdone_out_i & gt0_rxresetdone_out_i;
+
+gig_ethernet_pcs_pma_0_sync_block sync_block_reset_done
+        (
+           .clk             (userclk2),
+           .data_in         (reset_done),
+           .data_out        (reset_done_i)
+        );
+
 
 
   // Unused

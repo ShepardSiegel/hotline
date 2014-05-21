@@ -68,11 +68,11 @@
 `define DLY #1
 
 //***************************** Entity Declaration ****************************
-
-(* CORE_GENERATION_INFO = "gig_ethernet_pcs_pma_0_GTWIZARD_multi_gt,gtwizard_v3_1,{protocol_file=gigabit_ethernet_noCC}" *) module gig_ethernet_pcs_pma_0_GTWIZARD_multi_gt #
+(* DowngradeIPIdentifiedWarnings="yes" *)
+module gig_ethernet_pcs_pma_0_GTWIZARD_multi_gt #
 (
     // Simulation attributes
-    parameter   WRAPPER_SIM_GTRESET_SPEEDUP    =   "FALSE",     // Set to "true" to speed up sim reset
+    parameter   WRAPPER_SIM_GTRESET_SPEEDUP    =   "FALSE",     // Set to "TRUE" to speed up sim reset
     parameter   RX_DFE_KL_CFG2_IN              =   32'h301148AC,
     parameter   PMA_RSV_IN                     =   32'h00018480
 )
@@ -109,7 +109,7 @@
     output          gt0_eyescandataerror_out,
     input           gt0_eyescantrigger_in,
     //----------------------- Receive Ports - CDR Ports ------------------------
-    output          gt0_rxcdrlock_out,
+    input           gt0_rxcdrhold_in,
     //---------------- Receive Ports - FPGA RX Interface Ports -----------------
     input           gt0_rxusrclk_in,
     input           gt0_rxusrclk2_in,
@@ -143,7 +143,7 @@
     input           gt0_rxdfelpmreset_in,
     output  [6:0]   gt0_rxmonitorout_out,
     input   [1:0]   gt0_rxmonitorsel_in,
-    output  [7:0]   dmonitorout_out,
+    output  [7:0]   gt0_dmonitorout_out,
     //------------- Receive Ports - RX Fabric Output Control Ports -------------
     output          gt0_rxoutclk_out,
     //----------- Receive Ports - RX Initialization and Reset Ports ------------
@@ -296,7 +296,7 @@ wire            gt0_qpllrefclk_i;
         .eyescandataerror_out           (gt0_eyescandataerror_out),
         .eyescantrigger_in              (gt0_eyescantrigger_in),
         //----------------------- Receive Ports - CDR Ports ------------------------
-        .rxcdrlock_out                  (gt0_rxcdrlock_out),
+        .rxcdrhold_in                   (gt0_rxcdrhold_in),
         //---------------- Receive Ports - FPGA RX Interface Ports -----------------
         .rxusrclk_in                    (gt0_rxusrclk_in),
         .rxusrclk2_in                   (gt0_rxusrclk2_in),
@@ -330,7 +330,7 @@ wire            gt0_qpllrefclk_i;
         .rxdfelpmreset_in               (gt0_rxdfelpmreset_in),
         .rxmonitorout_out               (gt0_rxmonitorout_out),
         .rxmonitorsel_in                (gt0_rxmonitorsel_in),
-        .dmonitorout_out                (dmonitorout_out),
+        .dmonitorout_out                (gt0_dmonitorout_out),
         //------------- Receive Ports - RX Fabric Output Control Ports -------------
         .rxoutclk_out                   (gt0_rxoutclk_out),
         //----------- Receive Ports - RX Initialization and Reset Ports ------------

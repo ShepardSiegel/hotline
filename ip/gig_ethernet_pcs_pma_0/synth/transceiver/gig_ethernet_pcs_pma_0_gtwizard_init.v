@@ -67,7 +67,7 @@
 `define DLY #1
 
 //***********************************Entity Declaration************************
-
+(* DowngradeIPIdentifiedWarnings="yes" *)
 module gig_ethernet_pcs_pma_0_GTWIZARD_init #
 (
     parameter EXAMPLE_SIM_GTRESET_SPEEDUP            = "TRUE",     // Simulation setting for GT SecureIP model
@@ -115,7 +115,7 @@ input           gt0_data_valid_in,
     output          gt0_eyescandataerror_out,
     input           gt0_eyescantrigger_in,
     //----------------------- Receive Ports - CDR Ports ------------------------
-    output          gt0_rxcdrlock_out,
+    input           gt0_rxcdrhold_in,
     //----------------- receive ports - clock correction ports -----------------
     //---------------- Receive Ports - FPGA RX Interface Ports -----------------
     input           gt0_rxusrclk_in,
@@ -279,12 +279,14 @@ input           gt0_data_valid_in,
     wire           gt0_txoutclk_i;
     wire           gt0_rxoutclk_i;
     wire           gt0_recclk_stable_i;
+    reg            gt0_rx_cdrlocked;
+    integer  gt0_rx_cdrlock_counter= 0;
 
 
 
 
 
-    integer  rx_cdrlock_counter= 0;
+
     reg              rx_cdrlocked;
 
     wire           gt0_gttxreset_gt;
@@ -314,6 +316,8 @@ input           gt0_data_valid_in,
     )
     gtwizard_i
     (
+        .gt0_rxusrclk_in                (gt0_rxusrclk_in),
+        .gt0_rxusrclk2_in               (gt0_rxusrclk2_in),
         .gt0_gtrxreset_in               (gt0_gtrxreset_gt),
         .gt0_gttxreset_in               (gt0_gttxreset_gt),
   
@@ -337,7 +341,7 @@ input           gt0_data_valid_in,
         .gt0_drpen_in                   (gt0_drpen_in),
         .gt0_drprdy_out                 (gt0_drprdy_out),
         .gt0_drpwe_in                   (gt0_drpwe_in),
-        .dmonitorout_out                (gt0_dmonitorout_out),
+        .gt0_dmonitorout_out                (gt0_dmonitorout_out),
         //----------------------------- Loopback Ports -----------------------------
         .gt0_loopback_in                (gt0_loopback_in),
         //---------------------------- Power-Down Ports ----------------------------
@@ -350,11 +354,7 @@ input           gt0_data_valid_in,
         .gt0_eyescandataerror_out       (gt0_eyescandataerror_out),
         .gt0_eyescantrigger_in          (gt0_eyescantrigger_in),
         //----------------------- Receive Ports - CDR Ports ------------------------
-        .gt0_rxcdrlock_out              (gt0_rxcdrlock_out),
-        //----------------- Receive Ports - Clock Correction Ports -----------------
-        //---------------- Receive Ports - FPGA RX Interface Ports -----------------
-        .gt0_rxusrclk_in                (gt0_rxusrclk_in),
-        .gt0_rxusrclk2_in               (gt0_rxusrclk2_in),
+        .gt0_rxcdrhold_in               (gt0_rxcdrhold_in),// input wire  gt0_rxcdrhold_in
         //---------------- Receive Ports - FPGA RX interface Ports -----------------
         .gt0_rxdata_out                 (gt0_rxdata_out),
         //----------------- Receive Ports - Pattern Checker Ports ------------------
@@ -478,6 +478,7 @@ endgenerate
 
 gig_ethernet_pcs_pma_0_TX_STARTUP_FSM #
           (
+           .EXAMPLE_SIMULATION       (EXAMPLE_SIMULATION),
            .STABLE_CLOCK_PERIOD      (STABLE_CLOCK_PERIOD),           // Period of the stable clock driving this state-machine, unit is [ns]
            .RETRY_COUNTER_BITWIDTH   (8), 
            .TX_QPLL_USED             ("FALSE"),                       // the TX and RX Reset FSMs must
@@ -517,7 +518,6 @@ gt0_txresetfsm_i
 gig_ethernet_pcs_pma_0_RX_STARTUP_FSM  #
           (
            .EXAMPLE_SIMULATION       (EXAMPLE_SIMULATION),
-           .GT_TYPE                  ("GTX"), //GTX or GTH or GTP
            .EQ_MODE                  ("DFE"),                   //Rx Equalization Mode - Set to DFE or LPM
            .STABLE_CLOCK_PERIOD      (STABLE_CLOCK_PERIOD),              //Period of the stable clock driving this state-machine, unit is [ns]
            .RETRY_COUNTER_BITWIDTH   (8), 
@@ -572,19 +572,19 @@ gt0_rxresetfsm_i
   begin
         if(gt0_gtrxreset_gt_sync)
         begin
-          rx_cdrlocked       <= `DLY    1'b0;
-          rx_cdrlock_counter <= `DLY    0;      
+          gt0_rx_cdrlocked       <= `DLY    1'b0;
+          gt0_rx_cdrlock_counter <= `DLY    0;      
         end                
-        else if (rx_cdrlock_counter == WAIT_TIME_CDRLOCK) 
+        else if (gt0_rx_cdrlock_counter == WAIT_TIME_CDRLOCK) 
         begin
-          rx_cdrlocked       <= `DLY    1'b1;
-          rx_cdrlock_counter <= `DLY    rx_cdrlock_counter;
+          gt0_rx_cdrlocked       <= `DLY    1'b1;
+          gt0_rx_cdrlock_counter <= `DLY    gt0_rx_cdrlock_counter;
         end
         else
-          rx_cdrlock_counter <= `DLY    rx_cdrlock_counter + 1;
+          gt0_rx_cdrlock_counter <= `DLY    gt0_rx_cdrlock_counter + 1;
   end 
 
-assign  gt0_recclk_stable_i                  =  rx_cdrlocked;
+assign  gt0_recclk_stable_i                  =  gt0_rx_cdrlocked;
 
 
 

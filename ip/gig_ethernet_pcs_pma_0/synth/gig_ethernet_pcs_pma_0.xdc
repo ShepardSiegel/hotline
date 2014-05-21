@@ -9,9 +9,13 @@
 
 
 # Clock period for the recovered Rx clock
-create_clock  -period 16.000 [get_pins transceiver_inst/gtwizard_inst/*/gtwizard_i/gt0_GTWIZARD_i/gtxe2_i/TXOUTCLK]
+create_clock  -period 16.000 [get_pins -hier -filter {name =~  *transceiver_inst/gtwizard_inst/*/gtwizard_i/gt0_GTWIZARD_i/gtxe2_i/TXOUTCLK}]
 
-
+#-----------------------------------------------------------
+# Receive Clock period Constraint: please do not relax
+#-----------------------------------------------------------
+# Clock period for the recovered Rx clock
+create_clock  -period 16.000 [get_pins -hier -filter { name =~ *transceiver_inst/gtwizard_inst/*/gtwizard_i/gt0_GTWIZARD_i/gtxe2_i/RXOUTCLK}]
 
 
 #***********************************************************
@@ -28,12 +32,7 @@ create_clock  -period 16.000 [get_pins transceiver_inst/gtwizard_inst/*/gtwizard
 set_false_path -from [get_pins -of [get_cells -hier -filter { name =~ *transceiver_inst/data_valid_reg_reg* } ] -filter { name =~ *C } ] -to [get_pins -of [get_cells -hier -filter { name =~ *transceiver_inst/sync_block_data_valid/data_sync* } ] -filter { name =~ *D } ]
 
 
-#-----------------------------------------------------------
-# Fabric Rx Elastic Buffer Timing Constraints:             -
-#-----------------------------------------------------------
 
-# Clock period for the recovered Rx clock
-create_clock  -period 16.000 [get_pins transceiver_inst/gtwizard_inst/*/gtwizard_i/gt0_GTWIZARD_i/gtxe2_i/RXOUTCLK]
 
 
 # Control Gray Code delay and skew across clock boundary
@@ -41,8 +40,8 @@ set_max_delay -from [get_cells -hier -filter {name =~ *transceiver_inst/rx_elast
 set_max_delay -from [get_cells -hier -filter {name =~  *transceiver_inst/rx_elastic_buffer_inst/rd_addr_gray_reg[*]}] -to [get_pins -hier -filter { name =~ *reclock_rd_addrgray[*].sync_rd_addrgray/data_sync*/D}] 8 -datapath_only
 
 # Constrain between Distributed Memory (output data) and the 1st set of flip-flops
-set_false_path -to [get_pins -hierarchical -filter { name =~ *rx_elastic_buffer_inst/GEN_FIFO[*].rd_data_reg*/D } ] 
-set_false_path -to [get_pins -hierarchical -filter { name =~ *rx_elastic_buffer_inst/sync_initialize_ram_comp/data_sync_reg*/D } ] 
+set_false_path -from [get_clocks -of [get_pins  -hier -filter { name =~ *transceiver_inst/gtwizard_inst/*/gtwizard_i/gt0_GTWIZARD_i/gtxe2_i/RXOUTCLK}]] -to [get_pins -hierarchical -filter { name =~ *rx_elastic_buffer_inst/rd_data_reg*/D } ] 
+set_false_path -from [get_clocks -of [get_pins  -hier -filter { name =~ *transceiver_inst/gtwizard_inst/*/gtwizard_i/gt0_GTWIZARD_i/gtxe2_i/RXOUTCLK}]] -to [get_pins -hierarchical -filter { name =~ *rx_elastic_buffer_inst/sync_initialize_ram_comp/data_sync_reg*/D } ] 
 
 
 
@@ -62,6 +61,7 @@ set_false_path -to [get_pins -of [get_cells -hier -filter { name =~ *gtwizard_in
 
 # false path constraints to async inputs coming directly to synchronizer
 set_false_path -to [get_pins -hier -filter {name =~ *SYNC_*/data_sync*/D }]
+set_false_path -to [get_pins -hier -filter {name =~ *sync_block_reset_done/data_sync*/D }]
 
 set_false_path -to [get_pins -hier -filter {name =~ */*sync_speed_10*/data_sync*/D }]
 set_false_path -to [get_pins -hier -filter {name =~ */*gen_sync_reset/reset_sync*/PRE }]

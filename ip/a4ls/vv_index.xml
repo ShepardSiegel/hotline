@@ -13,8 +13,6 @@
 		</SupportsRdiCustomization>
 		<SupportsRdiGeneration value="true">
 		</SupportsRdiGeneration>
-		<NativeOnly value="true">
-		</NativeOnly>
 		<CoreRevision value="1">
 		</CoreRevision>
 		<ComponentPath value="component.xml">

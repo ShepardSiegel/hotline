@@ -1,7 +1,7 @@
-// Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2014 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-// Date        : Sun Feb 23 10:42:37 2014
+// Tool Version: Vivado v.2014.1 (lin64) Build 881834 Fri Apr  4 14:00:25 MDT 2014
+// Date        : Wed May 21 09:23:06 2014
 // Host        : ar-cms520 running 64-bit Red Hat Enterprise Linux Workstation release 6.5 (Santiago)
 // Command     : write_verilog -force -mode synth_stub
 //               /home/shep/projects/hotline/ip/gig_ethernet_pcs_pma_0/gig_ethernet_pcs_pma_0_stub.v

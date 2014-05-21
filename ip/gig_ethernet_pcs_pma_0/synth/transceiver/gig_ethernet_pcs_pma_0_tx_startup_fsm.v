@@ -156,8 +156,6 @@ module gig_ethernet_pcs_pma_0_TX_STARTUP_FSM  #
   localparam integer MAX_RETRIES          = 2**RETRY_COUNTER_BITWIDTH-1; 
   reg [7:0] retry_counter_int = 0;
   reg [18:0] time_out_counter = 0;
-  reg [10:0] count_1us= 0;
-  reg      count_1us_done   = 1'b0;  //--\Flags that the various time-out points 
     
   reg      reset_time_out = 1'b0;
   reg      time_out_2ms   = 1'b0;  //--\Flags that the various time-out points 

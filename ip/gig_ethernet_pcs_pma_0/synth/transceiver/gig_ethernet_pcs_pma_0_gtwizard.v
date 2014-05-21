@@ -66,9 +66,13 @@
 
 `timescale 1ns / 1ps
 `define DLY #1
+(* DowngradeIPIdentifiedWarnings="yes" *)
 
 //***************************** Entity Declaration ****************************
-module gig_ethernet_pcs_pma_0_GTWIZARD 
+module gig_ethernet_pcs_pma_0_GTWIZARD #
+(
+    parameter EXAMPLE_SIMULATION                     =  0         // Set to 1 for simulation
+)  
 (
 input           sysclk_in,
 input           soft_reset_in,
@@ -107,7 +111,7 @@ input           gt0_data_valid_in,
     output          gt0_eyescandataerror_out,
     input           gt0_eyescantrigger_in,
     //----------------------- Receive Ports - CDR Ports ------------------------
-    output          gt0_rxcdrlock_out,
+    input           gt0_rxcdrhold_in,
     //---------------- Receive Ports - FPGA RX Interface Ports -----------------
     input           gt0_rxusrclk_in,
     input           gt0_rxusrclk2_in,
@@ -207,7 +211,7 @@ input           gt0_data_valid_in,
     gig_ethernet_pcs_pma_0_GTWIZARD_init #
     (
         .EXAMPLE_SIM_GTRESET_SPEEDUP    ("TRUE"),
-        .EXAMPLE_SIMULATION             (0),
+        .EXAMPLE_SIMULATION             (EXAMPLE_SIMULATION),
         .STABLE_CLOCK_PERIOD            (5),
         .EXAMPLE_USE_CHIPSCOPE          (0)
     )
@@ -250,7 +254,7 @@ input           gt0_data_valid_in,
         .gt0_eyescandataerror_out       (gt0_eyescandataerror_out),
         .gt0_eyescantrigger_in          (gt0_eyescantrigger_in),
     //----------------------- Receive Ports - CDR Ports ------------------------
-        .gt0_rxcdrlock_out              (gt0_rxcdrlock_out),
+        .gt0_rxcdrhold_in               (gt0_rxcdrhold_in),// input wire  gt0_rxcdrhold_in
     //---------------- Receive Ports - FPGA RX Interface Ports -----------------
         .gt0_rxusrclk_in                (gt0_rxusrclk_in),
         .gt0_rxusrclk2_in               (gt0_rxusrclk2_in),
