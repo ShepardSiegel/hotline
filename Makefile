@@ -1,3 +1,23 @@
+
+help:
+	@echo " targets:"
+#	@echo "         make bsim           - build objects for bluesim"
+#	@echo "         make bsim.exe       - build bluesim simulation executable"
+#	@echo "         make bsim_run       - run bluesim executable"
+#	@echo "         make bsim_run sim_args=\"-V +quiet_in\"- run bluesim executable with args"
+#	@echo ""
+#	@echo "         make vlog           - build objects for verilog and verilog"
+#	@echo "         make vlog.exe       - build verilog simulation executable"
+#	@echo "         make vlog_export    - cp verilog for bitstream build"
+#	@echo "         make bitstream_prep - cp verilog for bitstream build"
+#	@echo "         make vlog_run       - run verilog executable"
+#	@echo "         make vlog_run sim_args=\"+bscvcd +quiet_in\"- run verilog executable with args"
+#	@echo ""
+	@echo "         make clean          - remove generated objects"
+	@echo ""
+#	@echo "         make list           - list build targets"
+#	@echo ""
+
 default:
 	@echo hello
 
